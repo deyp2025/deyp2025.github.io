@@ -2,296 +2,221 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CV — Priyadarshi Dey</title>
-  <meta name="description" content="Curriculum Vitae of Priyadarshi Dey — Assistant Professor of Mathematics at Millsaps College.">
+  <title>Priyadarshi Dey</title>
+  <meta name="description" content="Priyadarshi Dey, Assistant Professor of Mathematics at Millsaps College. Functional analysis and operator theory.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --text:#111827;
-      --muted:#6b7280;
-      --link:#1d4ed8;
-      --bg:#ffffff;
-      --card:#f9fafb;
-      --border:#e5e7eb;
-    }
+<style>
+  :root{
+    --text:#111827;
+    --muted:#6b7280;
+    --link:#1d4ed8;
+    --bg:#ffffff;
+    --card:#f9fafb;
+    --border:#e5e7eb;
+  }
 
-    body{
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      max-width: 900px;
-      margin: 64px auto;
-      padding: 0 22px;
-      line-height: 1.7;
-      font-size: 17px;
-    }
+  body{
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    max-width: 1000px;
+    margin: 64px auto;
+    padding: 0 22px;
+    line-height: 1.7;
+    font-size: 17px;
+  }
 
-    header{
-      margin-bottom: 22px;
-    }
+  header{ margin-bottom: 34px; }
 
-    h1{
-      font-size: 40px;
-      letter-spacing: -0.02em;
-      margin: 0 0 6px 0;
-    }
+  .top{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 22px;
+    align-items: center;
+  }
 
-    .subtitle{
-      color: var(--muted);
-      margin: 0;
-      font-size: 17px;
-    }
+  .photo{
+    width: 150px;
+    height: 150px;
+    border-radius: 18px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
 
-    nav{
-      margin-top: 14px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+  h1{
+    font-size: 44px;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px 0;
+  }
 
-    nav a{
-      display: inline-block;
-      padding: 8px 14px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      text-decoration: none;
-      color: var(--text);
-      background: var(--card);
-      font-size: 15px;
-    }
+  .subtitle{
+    color: var(--muted);
+    margin: 0;
+    font-size: 18px;
+  }
 
-    nav a:hover{ border-color:#cbd5e1; }
+  nav{
+    margin-top: 18px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
 
-    section{
-      margin-top: 18px;
-      padding: 18px 20px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-    }
+  nav a{
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--text);
+    background: var(--card);
+    font-size: 15px;
+  }
 
-    h2{
-      margin: 0 0 10px 0;
-      font-size: 20px;
-    }
+  nav a:hover{ border-color:#cbd5e1; }
 
-    a{ color: var(--link); }
+  section{
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+  }
 
-    .top-actions{
-      margin-top: 14px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+  h2{
+    margin: 0 0 12px 0;
+    font-size: 24px;
+  }
 
-    .btn{
-      display: inline-block;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: #fff;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 15px;
-    }
+  h3{
+    margin: 14px 0 6px 0;
+    font-size: 18px;
+  }
 
-    .btn:hover{ border-color:#cbd5e1; }
+  p{ margin: 10px 0; }
 
-    .grid{
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 6px 16px;
-      margin-top: 10px;
-    }
+  ul{ margin: 8px 0 0 22px; }
+  li{ margin: 6px 0; }
 
-    .label{
-      color: var(--muted);
-      font-size: 15px;
-    }
+  a{ color: var(--link); }
 
-    ul{
-      margin: 8px 0 0 20px;
-    }
+  .small{
+    color: var(--muted);
+    font-size: 14px;
+  }
 
-    li{ margin: 6px 0; }
+  footer{
+    margin-top: 42px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+  }
 
-    .small{
-      color: var(--muted);
-      font-size: 14px;
-      margin-top: 10px;
-    }
-
-    .subhead{
-      margin-top: 12px;
-      font-weight: 600;
-    }
-
-    footer{
-      margin-top: 34px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-    }
-  </style>
+  @media (max-width: 600px){
+    .top{ grid-template-columns: 1fr; }
+    .photo{ width: 120px; height: 120px; }
+  }
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>Curriculum Vitae</h1>
-  <p class="subtitle"><strong>Priyadarshi Dey</strong> · Assistant Professor of Mathematics · Millsaps College</p>
-
-  <div class="top-actions">
-    <a class="btn" href="cv.pdf"><strong>Download PDF</strong></a>
-    <a class="btn" href="index.html">Back to Home</a>
+  <div class="top">
+    <img src="headshot.jpg" alt="Priyadarshi Dey" class="photo">
+    <div>
+      <h1>Priyadarshi Dey</h1>
+      <p class="subtitle">
+        <strong>Assistant Professor of Mathematics</strong><br>
+        Millsaps College
+      </p>
+      <p class="small">
+        Functional Analysis · Operator Theory · Spectral Theory
+      </p>
+    </div>
   </div>
 
   <nav>
-    <a href="#contact">Contact</a>
-    <a href="#employment">Employment</a>
-    <a href="#education">Education</a>
+    <a href="#about">About</a>
     <a href="#research">Research</a>
     <a href="#teaching">Teaching</a>
-    <a href="#awards">Awards</a>
-    <a href="#service">Service</a>
-    <a href="#skills">Skills</a>
-    <a href="#references">References</a>
+    <a href="#cv">CV</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <div class="grid">
-    <div class="label">Email</div>
-    <div>
-      <a href="mailto:deyp@millsaps.edu">deyp@millsaps.edu</a> ·
-      <a href="mailto:priyadarshid4@gmail.com">priyadarshid4@gmail.com</a>
-    </div>
-
-    <div class="label">Phone</div>
-    <div>(+1) 901-246-9829</div>
-
-    <div class="label">Address</div>
-    <div>Millsaps College, Jackson, MS</div>
-  </div>
-</section>
-
-<section id="employment">
-  <h2>Employment</h2>
-  <ul>
-    <li><strong>Assistant Professor</strong>, Millsaps College — Aug 2025–Present</li>
-    <li><strong>Visiting Assistant Professor</strong>, Kenyon College — Aug 2023–Jul 2025</li>
-    <li><strong>Visiting Assistant Professor</strong>, University of South Florida — Aug 2022–Jul 2023</li>
-    <li><strong>Instructor of Mathematics</strong>, Virginia Tech — Aug 2021–Jul 2022</li>
-  </ul>
-</section>
-
-<section id="education">
-  <h2>Education</h2>
-
-  <p class="subhead">Ph.D. in Mathematics (2016–2021)</p>
-  <ul>
-    <li>Advisor: <strong>Dr. Fernanda Botelho</strong></li>
-    <li>Thesis: <em>Hermitian projections and geometric properties of Banach spaces</em></li>
-    <li>Research areas: Operator theory, Functional Analysis, Operator Algebras, Harmonic Analysis</li>
-  </ul>
-
-  <p class="subhead">M.S. in Mathematics (2013–2016)</p>
-  <ul>
-    <li>Thesis: <em>Theory of Majorization and its Applications</em></li>
-  </ul>
-
-  <p class="small">
-    Note: If you want, we can add institution names/locations here exactly as in your PDF.
+<section id="about">
+  <h2>About</h2>
+  <p>
+    I am an Assistant Professor of Mathematics at Millsaps College. My research interests are in
+    functional analysis and operator theory, with a focus on <em>n</em>-potent operators, projections
+    on Banach spaces, and spectral decompositions.
+  </p>
+  <p>
+    I am particularly interested in undergraduate research, proof-based instruction, and
+    building strong mathematical intuition alongside rigor.
   </p>
 </section>
 
 <section id="research">
   <h2>Research</h2>
-  <div class="grid">
-    <div class="label">Interests</div>
-    <div>Functional Analysis, Operator Theory, Spectral Theory; n-potent operators; projections on Banach spaces.</div>
-  </div>
-
-  <p class="subhead">Publications / Preprints</p>
-  <p class="small">
-    Add your items here in reverse chronological order. If you paste your publication list, I’ll format it cleanly with
-    journal/arXiv links and consistent bibliographic style.
+  <p>
+    My work explores structural and spectral properties of operators on Banach spaces,
+    including eigenprojections, Riesz projections, and decompositions associated with
+    <em>n</em>-potent operators.
   </p>
+
+  <h3>Publications & Preprints</h3>
+  <ul>
+    <li><em>Titles and links will appear here.</em></li>
+  </ul>
+
+  <h3>Research Topics</h3>
+  <ul>
+    <li><em>n</em>-potent operators</li>
+    <li>Operator algebras and spectral theory</li>
+    <li>Geometry of Banach spaces</li>
+  </ul>
 </section>
 
 <section id="teaching">
   <h2>Teaching</h2>
+  <p>
+    I teach a range of undergraduate mathematics courses, from introductory calculus
+    and statistics to proof-based courses and real analysis.
+  </p>
 
-  <p class="subhead">Millsaps College (2025–Present)</p>
   <ul>
-    <li>MATH 4630 — Real Analysis (Spring 2026)</li>
-    <li>MATH 1150 — Elementary Statistics (Spring 2026, 2 sections)</li>
-    <li>MATH 2310 — Introduction to Advanced Mathematics (Fall 2025)</li>
-    <li>MATH 1220 — Analytical Geometry & Calculus I (Fall 2025, 2 sections)</li>
+    <li>Calculus I / II</li>
+    <li>Elementary Statistics</li>
+    <li>Linear Algebra</li>
+    <li>Introduction to Advanced Mathematics (Proofs)</li>
+    <li>Real Analysis</li>
   </ul>
+</section>
 
-  <p class="subhead">Kenyon College (2023–2025)</p>
-  <ul>
-    <li>MATH 341 — Real Analysis I (Fall 2024)</li>
-    <li>MATH 342 — Real Analysis II (Spring 2025)</li>
-    <li>MATH 224 — Linear Algebra (Fall 2023, Spring 2024, Fall 2024)</li>
-    <li>STAT 106 — Elements of Statistics (Spring 2024, Spring 2025; multiple sections)</li>
-    <li>MATH 112 — Calculus II (Fall 2023)</li>
-  </ul>
-
+<section id="cv">
+  <h2>Curriculum Vitae</h2>
+  <p>
+    <a href="cv.pdf"><strong>Download CV (PDF)</strong></a>
+  </p>
   <p class="small">
-    If you want this to look even more “CV-like”, we can convert these to a compact table format — but lists are more readable on phones.
+    A concise HTML version will be added soon.
   </p>
 </section>
 
-<section id="awards">
-  <h2>Awards & Honors</h2>
-  <ul>
-    <li>DMS 2021 Research Award (Spring 2021)</li>
-    <li>Outstanding Graduate Assistant Award (Spring 2021)</li>
-    <li>Selected participant: MSRI Summer Grad School “Mathematics of Big Data: Sketching and (Multi-)Linear Algebra” (Summer 2021)</li>
-    <li>Cecil C. Rousseau Award (Fall 2020)</li>
-  </ul>
-</section>
-
-<section id="service">
-  <h2>Service & Mentoring</h2>
-
-  <p class="subhead">Mentoring</p>
-  <ul>
-    <li>Graduate student mentor for NSF grant “Promoting Success in Undergraduate Mathematics Program” (PI: John Haddock), University of Memphis — 2019–2021</li>
-  </ul>
-
-  <p class="subhead">Service</p>
-  <ul>
-    <li>Panel member, Undergraduate Honor System, Virginia Tech — Fall 2021</li>
-    <li>Facilitator, conference “One Day in Operator Theory” — February 2020</li>
-  </ul>
-</section>
-
-<section id="skills">
-  <h2>Skills</h2>
-  <div class="grid">
-    <div class="label">Languages</div>
-    <div>R, Python</div>
-
-    <div class="label">Software</div>
-    <div>LaTeX, Maple</div>
-  </div>
-</section>
-
-<section id="references">
-  <h2>References</h2>
-  <ul>
-    <li>Fernanda Botelho — Professor, University of Memphis · <a href="mailto:mbotelho@memphis.edu">mbotelho@memphis.edu</a></li>
-    <li>Catherine Beneteau — Professor, University of South Florida · <a href="mailto:cbenetea@usf.edu">cbenetea@usf.edu</a></li>
-    <li>Erin Leatherman — Associate Professor, Kenyon College · <a href="mailto:leatherman1@kenyon.edu">leatherman1@kenyon.edu</a></li>
-    <li>Marie Snipes — Associate Professor, Kenyon College · <a href="mailto:snipesm@kenyon.edu">snipesm@kenyon.edu</a></li>
-  </ul>
-
-  <p class="small">Last updated: December 2025</p>
+<section id="contact">
+  <h2>Contact</h2>
+  <p>
+    Email: <a href="mailto:deyp@millsaps.edu">deyp@millsaps.edu</a>
+  </p>
+  <p>
+    <a href="#">Google Scholar</a> ·
+    <a href="#">arXiv</a> ·
+    <a href="https://github.com/deyp2025">GitHub</a>
+  </p>
 </section>
 
 <footer>
