@@ -36,15 +36,15 @@
     align-items: center;
   }
 
-.photo{
-  width: 150px;
-  height: 150px;
-  border-radius: 18px;
-  object-fit: cover;
-  object-position: center top;
-  border: 1px solid var(--border);
-  background: var(--card);
-}
+  .photo{
+    width: 150px;
+    height: 150px;
+    border-radius: 18px;
+    object-fit: cover;
+    object-position: center top;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
 
   h1{
     font-size: 44px;
@@ -119,6 +119,40 @@
     .top{ grid-template-columns: 1fr; }
     .photo{ width: 120px; height: 120px; }
   }
+
+  /* Publications list -> card style */
+  .pubs{
+    list-style: none;
+    padding-left: 0;
+    margin-top: 12px;
+  }
+
+  .pubs li{
+    padding: 14px 14px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #fff;
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+
+  .pubs .title{
+    font-weight: 600;
+  }
+
+  .pubs .meta{
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  .pubs a{
+    text-decoration: none;
+    margin-right: 8px;
+  }
+
+  .pubs a:hover{
+    text-decoration: underline;
+  }
 </style>
 </head>
 
@@ -150,68 +184,64 @@
 
 <section id="about">
   <h2>About</h2>
-<p>
-  I am an Assistant Professor of Mathematics at Millsaps College. My research is in functional
-  analysis and operator theory, with a focus on <em>n</em>-potent operators, projections and isometries on Banach
-  spaces, and spectral decompositions, where I study how the geometric structure of the underlying
-  space influences operator behavior.
-</p>
-<p>
-  I am enthusiastic about undergraduate teaching and mentoring at both introductory and upper-level
-  courses. I enjoy helping students develop mathematical intuition alongside rigor, and guiding them
-  toward meaningful research experiences.
-</p>
+  <p>
+    I am an Assistant Professor of Mathematics at Millsaps College. I work in functional analysis and operator theory,
+    studying projections and related spectral structure on Banach spaces (including <em>n</em>-potent operators).
+  </p>
+  <p>
+    I am especially enthusiastic about proof-based teaching and mentoring undergraduates toward research-level
+    thinking—building intuition and rigor side by side.
+  </p>
 </section>
 
 <section id="research">
   <h2>Research</h2>
   <p>
-  My research lies in functional analysis and operator theory, focusing on operators on Banach spaces.
-  I am particularly interested in projections and isometries, and in understanding their structural
-  and spectral properties. My current work explores how geometric features of Banach spaces influence
-  the existence and behavior of spectral and Riesz projections, as well as related operator classes.
-  I also study problems that arise at the interface of operator theory and other areas of analysis.
-</p>
-<section id="publications">
-  <h2>Publications and Preprints</h2>
+    My research lies in functional analysis and operator theory, focusing on operators on Banach spaces.
+    I am particularly interested in projections and isometries, and in understanding their structural
+    and spectral properties. My current work explores how geometric features of Banach spaces influence
+    the existence and behavior of spectral and Riesz projections, as well as related operator classes.
+    I also study problems that arise at the interface of operator theory and other areas of analysis.
+  </p>
 
-  <ul class="pubs">
+  <section id="publications">
+    <h2>Publications and Preprints</h2>
 
-    <li>
-      <span class="title">
-        Projections in the “Complex Convex Hull” of Operators of Finite Order
-      </span><br>
-      Priyadarshi Dey, Zachary Easley, Monika<br>
-      <span class="meta">Submitted, 2025.</span><br>
-      <a href="LINK_TO_PREPRINT_PDF" target="_blank">[PDF]</a>
-    </li>
+    <ul class="pubs">
 
-    <li>
-      <span class="title">
-        Projections in the Convex Hull of Isometries on Absolutely Continuous Function Spaces
-      </span><br>
-      Fernanda Botelho, Priyadarshi Dey, Zachary Easley<br>
-      <span class="meta">
-        <em>Journal of Mathematical Analysis and Applications</em>, 2023.
-      </span><br>
-      <a href="https://www.sciencedirect.com/science/article/abs/pii/S0022247X22008897" target="_blank">[Journal]</a>
+      <li>
+        <span class="title">
+          Projections in the “Complex Convex Hull” of Operators of Finite Order
+        </span><br>
+        Priyadarshi Dey, Zachary Easley, Monika<br>
+        <span class="meta">Submitted, 2025.</span><br>
+        <a href="LINK_TO_PREPRINT_PDF" target="_blank">[PDF]</a>
+      </li>
 
-    </li>
+      <li>
+        <span class="title">
+          Projections in the Convex Hull of Isometries on Absolutely Continuous Function Spaces
+        </span><br>
+        Fernanda Botelho, Priyadarshi Dey, Zachary Easley<br>
+        <span class="meta">
+          <em>Journal of Mathematical Analysis and Applications</em>, 2023.
+        </span><br>
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0022247X22008897" target="_blank">[Journal]</a>
+      </li>
 
-    <li>
-      <span class="title">
-        Hermitian Projections on Some Banach Spaces and Related Topics
-      </span><br>
-      Fernanda Botelho, Priyadarshi Dey, Dijana Ilišević<br>
-      <span class="meta">
-        <em>Linear Algebra and Its Applications</em>, 2020.
-      </span><br>
-      <a href="https://www.sciencedirect.com/science/article/pii/S0024379520301701" target="_blank">[Journal]</a>
-    </li>
+      <li>
+        <span class="title">
+          Hermitian Projections on Some Banach Spaces and Related Topics
+        </span><br>
+        Fernanda Botelho, Priyadarshi Dey, Dijana Ilišević<br>
+        <span class="meta">
+          <em>Linear Algebra and Its Applications</em>, 2020.
+        </span><br>
+        <a href="https://www.sciencedirect.com/science/article/pii/S0024379520301701" target="_blank">[Journal]</a>
+      </li>
 
-  </ul>
-</section>
-</style>
+    </ul>
+  </section>
 </section>
 
 <section id="teaching">
@@ -230,46 +260,47 @@
     </ul>
   </div>
 
-  <div class="teaching-entry">
-    <div class="school-line">
-      <span class="school"><strong>Kenyon College</strong> | Department of Mathematics &amp; Statistics</span>
-      <span class="dates">2023–2025</span>
-    </div>
-    <ul class="teaching-list">
-      <li>MATH 341: Real Analysis I, F24</li>
-      <li>MATH 342: Real Analysis II, S25</li>
-      <li>MATH 224: Linear Algebra, F24, F23, S24</li>
-      <li>STAT 106: Elements of Statistics, S25 (&times;2), S24 (&times;2)</li>
-      <li>MATH 112: Calculus II, F23</li>
-    </ul>
-  </div>
+  <details>
+    <summary><strong>Previous courses (Kenyon, USF, Virginia Tech)</strong></summary>
 
-  <div class="teaching-entry">
-    <div class="school-line">
-      <span class="school"><strong>University of South Florida</strong> | Department of Mathematics and Statistics</span>
-      <span class="dates">2022–2023</span>
+    <div class="teaching-entry" style="margin-top:12px;">
+      <div class="school-line">
+        <span class="school"><strong>Kenyon College</strong> | Department of Mathematics &amp; Statistics</span>
+        <span class="dates">2023–2025</span>
+      </div>
+      <ul class="teaching-list">
+        <li>MATH 341: Real Analysis I, F24</li>
+        <li>MATH 342: Real Analysis II, S25</li>
+        <li>MATH 224: Linear Algebra, F24, F23, S24</li>
+        <li>STAT 106: Elements of Statistics, S25 (&times;2), S24 (&times;2)</li>
+        <li>MATH 112: Calculus II, F23</li>
+      </ul>
     </div>
-    <ul class="teaching-list">
-      <li>MAS 3105: Linear Algebra, S23</li>
-      <li>MAC 2282: Engineering Calculus II, S23</li>
-      <li>MAC 2312: Calculus II, F22 (&times;2)</li>
-    </ul>
-  </div>
 
-  <div class="teaching-entry">
-    <div class="school-line">
-      <span class="school"><strong>Virginia Tech</strong> | Department of Mathematics</span>
-      <span class="dates">2021–2022</span>
+    <div class="teaching-entry">
+      <div class="school-line">
+        <span class="school"><strong>University of South Florida</strong> | Department of Mathematics and Statistics</span>
+        <span class="dates">2022–2023</span>
+      </div>
+      <ul class="teaching-list">
+        <li>MAS 3105: Linear Algebra, S23</li>
+        <li>MAC 2282: Engineering Calculus II, S23</li>
+        <li>MAC 2312: Calculus II, F22 (&times;2)</li>
+      </ul>
     </div>
-    <ul class="teaching-list">
-      <li>MATH 1226: Calculus of a Single Variable, S22 (&times;2)</li>
-      <li>MATH 1225: Calculus of a Single Variable, F21 (&times;3), S22</li>
-    </ul>
-  </div>
+
+    <div class="teaching-entry">
+      <div class="school-line">
+        <span class="school"><strong>Virginia Tech</strong> | Department of Mathematics</span>
+        <span class="dates">2021–2022</span>
+      </div>
+      <ul class="teaching-list">
+        <li>MATH 1226: Calculus of a Single Variable, S22 (&times;2)</li>
+        <li>MATH 1225: Calculus of a Single Variable, F21 (&times;3), S22</li>
+      </ul>
+    </div>
+  </details>
 </section>
-
-
-  
 
 <section id="cv">
   <h2>Curriculum Vitae</h2>
@@ -277,7 +308,7 @@
     <a href="cv.pdf"><strong>Download CV (PDF)</strong></a>
   </p>
   <p class="small">
-    A concise HTML version will be added soon.
+    HTML summary available upon request; the PDF is the authoritative version.
   </p>
 </section>
 
@@ -286,12 +317,11 @@
   <p>
     Email: <a href="mailto:deyp@millsaps.edu">deyp@millsaps.edu</a>
   </p>
- <p>
-  <a href="https://scholar.google.com/citations?user=Pl2Ei5kAAAAJ&hl=en" target="_blank">Google Scholar</a> ·
-   <a href="https://www.researchgate.net/profile/Priyadarshi-Dey-2?ev=hdr_xprf" target="_blank">ResearchGate</a>
-
-  <a href="https://orcid.org/0000-0002-1064-7735" target="_blank">ORCID</a> 
-</p>
+  <p>
+    <a href="https://scholar.google.com/citations?user=Pl2Ei5kAAAAJ&hl=en" target="_blank">Google Scholar</a> ·
+    <a href="https://www.researchgate.net/profile/Priyadarshi-Dey-2?ev=hdr_xprf" target="_blank">ResearchGate</a> ·
+    <a href="https://orcid.org/0000-0002-1064-7735" target="_blank">ORCID</a>
+  </p>
 </section>
 
 <footer>
