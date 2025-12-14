@@ -5,6 +5,7 @@
   <title>Priyadarshi Dey</title>
   <meta name="description" content="Priyadarshi Dey, Assistant Professor of Mathematics at Millsaps College. Research in functional analysis and operator theory.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
   :root{
     --text:#111827;
@@ -27,7 +28,7 @@
   }
 
   header{
-    margin-bottom: 28px;
+    margin-bottom: 32px;
   }
 
   h1{
@@ -51,12 +52,13 @@
 
   nav a{
     display: inline-block;
-    padding: 8px 12px;
+    padding: 8px 14px;
     border: 1px solid var(--border);
     border-radius: 999px;
     text-decoration: none;
     color: var(--text);
     background: var(--card);
+    font-size: 15px;
   }
 
   nav a:hover{
@@ -65,19 +67,32 @@
 
   section{
     margin-top: 26px;
-    padding: 18px 18px;
+    padding: 20px 22px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 16px;
   }
 
   h2{
-    margin: 0 0 10px 0;
-    font-size: 20px;
+    margin: 0 0 12px 0;
+    font-size: 22px;
+  }
+
+  h3{
+    margin: 16px 0 6px 0;
+    font-size: 18px;
   }
 
   p{
     margin: 10px 0;
+  }
+
+  ul{
+    margin: 8px 0 0 20px;
+  }
+
+  li{
+    margin: 6px 0;
   }
 
   a{
@@ -88,39 +103,106 @@
     color: var(--muted);
     font-size: 15px;
   }
+
+  .cv-grid{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 8px 16px;
+    margin-top: 12px;
+    font-size: 16px;
+  }
+
+  .cv-grid div{
+    padding: 2px 0;
+  }
+
+  footer{
+    margin-top: 40px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+  }
 </style>
 </head>
+
 <body>
 
-<h1>Priyadarshi Dey</h1>
-<p><strong>Assistant Professor of Mathematics</strong><br>
-Millsaps College</p>
+<header>
+  <h1>Priyadarshi Dey</h1>
+  <p class="subtitle"><strong>Assistant Professor of Mathematics</strong> · Millsaps College</p>
 
-<p>
-I am an Assistant Professor of Mathematics at Millsaps College. My research interests are in
-functional analysis and operator theory, with a focus on n-potent operators, projections on Banach spaces,
-and spectral theory.
-</p>
+  <nav>
+    <a href="#research">Research</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#cv">CV</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-<h2>Research</h2>
-<p>
-My work focuses on operator-theoretic decompositions, spectral projections, and structure of n-potent operators.
-</p>
+<section id="research">
+  <h2>Research</h2>
+  <p>
+    I work in functional analysis and operator theory, with a focus on <em>n</em>-potent operators,
+    projections on Banach spaces, and spectral decompositions. My interests include the structure
+    of operator algebras, eigenprojections, and applications of spectral theory.
+  </p>
 
-<h2>Teaching</h2>
-<p>
-Calculus, Real Analysis, Linear Algebra, and Proof-based courses.
-</p>
+  <h3>Publications & Preprints</h3>
+  <p class="small">
+    A list of publications and preprints will appear here.
+    (Links to arXiv and journals.)
+  </p>
+</section>
 
-<h2>CV</h2>
-<p>
-<a href="cv.pdf">Download CV (PDF)</a>
-</p>
+<section id="teaching">
+  <h2>Teaching</h2>
+  <p>
+    I teach undergraduate courses in calculus, linear algebra, real analysis, and proof-based
+    mathematics. I am particularly interested in undergraduate research and expository writing.
+  </p>
+</section>
 
-<h2>Contact</h2>
-<p>
-Email: priyadarshi.dey@millsaps.edu
-</p>
+<section id="cv">
+  <h2>Curriculum Vitae</h2>
+
+  <p>
+    <a href="cv.pdf"><strong>Download CV (PDF)</strong></a>
+  </p>
+
+  <div class="cv-grid">
+    <div><strong>Position</strong></div>
+    <div>Assistant Professor of Mathematics, Millsaps College</div>
+
+    <div><strong>Research Areas</strong></div>
+    <div>Functional Analysis, Operator Theory, Spectral Theory</div>
+
+    <div><strong>Education</strong></div>
+    <div>Ph.D. in Mathematics</div>
+
+    <div><strong>Service</strong></div>
+    <div>Undergraduate mentoring, departmental service</div>
+  </div>
+
+  <p class="small">
+    Last updated: December 2025
+  </p>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>
+    Email: <a href="mailto:priyadarshi.dey@millsaps.edu">priyadarshi.dey@millsaps.edu</a>
+  </p>
+  <p>
+    <a href="#">Google Scholar</a> ·
+    <a href="#">arXiv</a> ·
+    <a href="#">GitHub</a>
+  </p>
+</section>
+
+<footer>
+  © 2025 Priyadarshi Dey
+</footer>
 
 </body>
 </html>
