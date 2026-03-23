@@ -99,7 +99,6 @@
     font-size: 18px;
   }
 
-  /* ── Tab nav ── */
   nav{
     margin-top: 18px;
     display: flex;
@@ -116,42 +115,16 @@
     color: var(--text);
     background: var(--card);
     font-size: 15px;
-    cursor: pointer;
-    transition: background .18s, border-color .18s, color .18s;
   }
 
-  nav a:hover{
-    border-color: #cbd5e1;
-  }
+  nav a:hover{ border-color:#cbd5e1; }
 
-  nav a.active{
-    background: #111827;
-    color: #fff;
-    border-color: #111827;
-  }
-
-  /* ── Sections: hidden by default, shown when active ── */
   section{
     margin-top: 28px;
     padding: 22px 24px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 18px;
-    display: none;        /* hidden by default */
-  }
-
-  section.active{
-    display: block;       /* shown when tab clicked */
-  }
-
-  /* nested section inside research stays visible */
-  section section {
-    display: block;
-    margin-top: 20px;
-    padding: 0;
-    background: none;
-    border: none;
-    border-radius: 0;
   }
 
   h2{
@@ -221,37 +194,6 @@
   .pubs a:hover{
     text-decoration: underline;
   }
-
-  /* Teaching styles */
-  .teaching-entry { margin-bottom: 1rem; }
-  .school-line {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: .3rem;
-    margin-bottom: .4rem;
-  }
-  .teaching-list { list-style: none; padding: 0; margin: 0; }
-  .teaching-list li {
-    font-size: .95rem;
-    padding: .25rem 0;
-    border-bottom: 1px dashed var(--border);
-  }
-  .teaching-list li:last-child { border-bottom: none; }
-
-  details { margin-top: 1rem; }
-  summary {
-    cursor: pointer;
-    font-size: .95rem;
-    padding: .4rem .6rem;
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    list-style: none;
-    user-select: none;
-  }
-  summary::-webkit-details-marker { display: none; }
-  summary:hover { background: #f3f4f6; }
 </style>
 </head>
 
@@ -273,15 +215,15 @@
   </div>
 
   <nav>
-    <a href="#about"       class="tab-link" data-target="about">About</a>
-    <a href="#research"    class="tab-link" data-target="research">Research</a>
-    <a href="#teaching"    class="tab-link" data-target="teaching">Teaching</a>
-    <a href="#cv"          class="tab-link" data-target="cv">CV</a>
-    <a href="#contact"     class="tab-link" data-target="contact">Contact</a>
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#cv">CV</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<section id="about" class="active">
+<section id="about">
   <h2>About</h2>
   <p>
     I am an Assistant Professor of Mathematics at Millsaps College. I work in functional analysis and operator theory,
@@ -295,6 +237,8 @@
 
 <section id="research">
   <h2>Research</h2>
+
+
   <p>
     My research lies in functional analysis and operator theory, focusing on operators on Banach spaces.
     I am particularly interested in projections and isometries, and in understanding their structural
@@ -305,6 +249,7 @@
 
   <section id="publications">
     <h2>Publications and Preprints</h2>
+
     <ul class="pubs">
 
       <li>
@@ -410,12 +355,12 @@
 <section id="contact">
   <h2>Contact</h2>
   <p>
-    <strong>Priyadarshi Dey</strong><br>
-    Assistant Professor of Mathematics<br>
-    Millsaps College<br>
-    Jackson, MS, USA<br>
-    <span class="small">Email:</span> deyp&nbsp;[at]&nbsp;millsaps&nbsp;[dot]&nbsp;edu
-  </p>
+  <strong>Priyadarshi Dey</strong><br>
+  Assistant Professor of Mathematics<br>
+  Millsaps College<br>
+    Jackson, MS, USA <br>
+  <span class="small">Email:</span> deyp&nbsp;[at]&nbsp;millsaps&nbsp;[dot]&nbsp;edu
+</p>
   <p>
     <a href="https://scholar.google.com/citations?user=Pl2Ei5kAAAAJ&hl=en" target="_blank">Google Scholar</a> ·
     <a href="https://www.researchgate.net/profile/Priyadarshi-Dey-2?ev=hdr_xprf" target="_blank">ResearchGate</a> ·
@@ -424,51 +369,8 @@
 </section>
 
 <footer>
-  &copy; <span id="yr"></span> Priyadarshi Dey
+  © 2025 Priyadarshi Dey
 </footer>
-
-<script>
-  // Dynamic year
-  document.getElementById('yr').textContent = new Date().getFullYear();
-
-  // Tab switching
-  const links   = document.querySelectorAll('.tab-link');
-  const sections = document.querySelectorAll('body > section');
-
-  function showTab(id) {
-    // hide all top-level sections
-    sections.forEach(s => s.classList.remove('active'));
-    // deactivate all nav links
-    links.forEach(l => l.classList.remove('active'));
-
-    // show the target section
-    const target = document.getElementById(id);
-    if (target) target.classList.add('active');
-
-    // activate the matching nav link
-    const activeLink = document.querySelector(`.tab-link[data-target="${id}"]`);
-    if (activeLink) activeLink.classList.add('active');
-  }
-
-  links.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const id = this.getAttribute('data-target');
-      showTab(id);
-      // update URL hash without scrolling
-      history.pushState(null, '', '#' + id);
-    });
-  });
-
-  // On page load, check if there's a hash in the URL
-  const hash = window.location.hash.replace('#', '');
-  if (hash && document.getElementById(hash)) {
-    showTab(hash);
-  } else {
-    // default: show About
-    showTab('about');
-  }
-</script>
 
 </body>
 </html>
