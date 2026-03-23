@@ -2,34 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
+  <!-- Stronger title for name + role searches -->
   <title>Priyadarshi Dey | Assistant Professor of Mathematics</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Canonical + indexing -->
+  <!-- Canonical + indexing hints -->
   <link rel="canonical" href="https://deyp2025.github.io/">
   <meta name="robots" content="index,follow">
-  <meta name="description" content="Priyadarshi Dey — Assistant Professor of Mathematics at Millsaps College. Research in functional analysis, operator theory, Banach space geometry.">
 
-  <!-- Open Graph -->
-  <meta property="og:type"  content="website">
+  <!-- Open Graph (social sharing) -->
+  <meta property="og:type" content="website">
   <meta property="og:title" content="Priyadarshi Dey | Assistant Professor of Mathematics">
-  <meta property="og:url"   content="https://deyp2025.github.io/">
+  <meta property="og:url" content="https://deyp2025.github.io/">
+  <!-- Make sure the filename matches exactly (case-sensitive) -->
   <meta property="og:image" content="https://deyp2025.github.io/Headshot.jpg">
 
   <!-- Twitter card -->
-  <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="Priyadarshi Dey | Assistant Professor of Mathematics">
-  <meta name="twitter:description" content="Functional analysis and operator theory. Projections, Banach spaces.">
-  <meta name="twitter:image"       content="https://deyp2025.github.io/Headshot.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Priyadarshi Dey | Assistant Professor of Mathematics">
+  <meta name="twitter:description" content="Functional analysis and operator theory. Projections, spectral theory, Banach spaces.">
+  <meta name="twitter:image" content="https://deyp2025.github.io/Headshot.jpg">
 
-  <!-- Structured data -->
+  <!-- Structured data: helps Google understand "this page is a person" -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Priyadarshi Dey",
     "jobTitle": "Assistant Professor of Mathematics",
-    "affiliation": { "@type": "CollegeOrUniversity", "name": "Millsaps College" },
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "Millsaps College"
+    },
     "url": "https://deyp2025.github.io/",
     "image": "https://deyp2025.github.io/Headshot.jpg",
     "sameAs": [
@@ -41,679 +47,427 @@
   }
   </script>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --text:#111827;
+    --muted:#6b7280;
+    --link:#1d4ed8;
+    --bg:#ffffff;
+    --card:#f9fafb;
+    --border:#e5e7eb;
+  }
 
-  <style>
-    /* ── Variables ─────────────────────────────────────── */
-    :root {
-      --navy:       #0d1b2a;
-      --navy-mid:   #1b3352;
-      --gold:       #b8922a;
-      --gold-light: #d4ac55;
-      --cream:      #faf7f3;
-      --white:      #ffffff;
-      --card:       #ffffff;
-      --border:     #e2ddd6;
-      --text:       #1a1a1a;
-      --muted:      #6b6560;
-      --link:       #1a4080;
-      --link-h:     #b8922a;
-      --font-serif: 'Cormorant Garamond', Georgia, serif;
-      --font-sans:  'DM Sans', system-ui, sans-serif;
-      --radius-sm:  6px;
-      --radius:     14px;
-      --shadow:     0 1px 4px rgba(13,27,42,.07), 0 4px 16px rgba(13,27,42,.06);
-      --shadow-h:   0 4px 12px rgba(13,27,42,.11), 0 8px 28px rgba(13,27,42,.09);
-    }
+  body{
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    max-width: 1000px;
+    margin: 64px auto;
+    padding: 0 22px;
+    line-height: 1.7;
+    font-size: 17px;
+  }
 
-    /* ── Reset ─────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+  header{ margin-bottom: 34px; }
 
-    body {
-      font-family: var(--font-sans);
-      background: var(--cream);
-      color: var(--text);
-      font-size: 16px;
-      line-height: 1.75;
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 56px 24px 72px;
-    }
+  .top{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 22px;
+    align-items: center;
+  }
 
-    a { color: var(--link); text-decoration: none; transition: color .18s; }
-    a:hover { color: var(--link-h); }
+  .photo{
+    width: 150px;
+    height: 150px;
+    border-radius: 18px;
+    object-fit: cover;
+    object-position: center top;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
 
-    /* ── Fade-in on load ───────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: none; }
-    }
+  h1{
+    font-size: 44px;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px 0;
+  }
 
-    header, section {
-      animation: fadeUp .5s ease both;
-    }
-    header                { animation-delay: .04s; }
-    section:nth-of-type(1){ animation-delay: .12s; }
-    section:nth-of-type(2){ animation-delay: .20s; }
-    section:nth-of-type(3){ animation-delay: .28s; }
-    section:nth-of-type(4){ animation-delay: .36s; }
-    section:nth-of-type(5){ animation-delay: .44s; }
+  .subtitle{
+    color: var(--muted);
+    margin: 0;
+    font-size: 18px;
+  }
 
-    /* ══ HEADER ══════════════════════════════════════════ */
-    header { margin-bottom: 1.4rem; }
+  /* ── Tab nav ── */
+  nav{
+    margin-top: 18px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
 
-    .top {
-      display: grid;
-      grid-template-columns: 148px 1fr;
-      gap: 2rem;
-      align-items: center;
-      background: var(--navy);
-      border-radius: var(--radius);
-      padding: 2.2rem 2.4rem;
-      position: relative;
-      overflow: hidden;
-    }
+  nav a{
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--text);
+    background: var(--card);
+    font-size: 15px;
+    cursor: pointer;
+    transition: background .18s, border-color .18s, color .18s;
+  }
 
-    /* Geometric accent circle */
-    .top::before {
-      content: '';
-      position: absolute;
-      top: -70px; right: -70px;
-      width: 240px; height: 240px;
-      border-radius: 50%;
-      border: 44px solid rgba(184,146,42,.10);
-      pointer-events: none;
-    }
+  nav a:hover{
+    border-color: #cbd5e1;
+  }
 
-    /* Gold rule at bottom of header card */
-    .top::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light) 45%, transparent);
-    }
+  nav a.active{
+    background: #111827;
+    color: #fff;
+    border-color: #111827;
+  }
 
-    .photo {
-      width: 136px;
-      height: 136px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center top;
-      border: 3px solid rgba(255,255,255,.18);
-      display: block;
-    }
+  /* ── Sections: hidden by default, shown when active ── */
+  section{
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    display: none;        /* hidden by default */
+  }
 
-    .header-text h1 {
-      font-family: var(--font-serif);
-      font-size: 2.55rem;
-      font-weight: 500;
-      letter-spacing: -.01em;
-      color: #fff;
-      line-height: 1.15;
-      margin-bottom: .35rem;
-    }
+  section.active{
+    display: block;       /* shown when tab clicked */
+  }
 
-    .subtitle {
-      color: rgba(255,255,255,.72);
-      font-size: .95rem;
-      font-weight: 300;
-      margin-bottom: .55rem;
-      line-height: 1.5;
-    }
-    .subtitle strong { color: #fff; font-weight: 500; }
+  /* nested section inside research stays visible */
+  section section {
+    display: block;
+    margin-top: 20px;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+  }
 
-    .kw-row {
-      display: flex; flex-wrap: wrap; gap: .35rem;
-      margin-top: .55rem;
-    }
+  h2{
+    margin: 0 0 12px 0;
+    font-size: 24px;
+  }
 
-    .kw {
-      font-size: .68rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      background: rgba(255,255,255,.1);
-      color: rgba(255,255,255,.68);
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 3px;
-      padding: .2em .6em;
-    }
+  h3{
+    margin: 14px 0 6px 0;
+    font-size: 18px;
+  }
 
-    /* Nav pills */
-    nav {
-      margin-top: 1rem;
-      display: flex; gap: .5rem; flex-wrap: wrap;
-    }
+  p{ margin: 10px 0; }
 
-    nav a {
-      display: inline-block;
-      padding: .42rem .95rem;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      color: var(--navy-mid);
-      background: var(--white);
-      font-size: .82rem;
-      font-weight: 500;
-      letter-spacing: .04em;
-      transition: background .18s, border-color .18s, color .18s, box-shadow .18s;
-    }
+  ul{ margin: 8px 0 0 22px; }
+  li{ margin: 6px 0; }
 
-    nav a:hover {
-      background: var(--navy);
-      color: #fff;
-      border-color: var(--navy);
-      box-shadow: 0 2px 8px rgba(13,27,42,.18);
-    }
+  a{ color: var(--link); }
 
-    /* ══ SECTIONS ════════════════════════════════════════ */
-    section {
-      margin-top: 1.4rem;
-      padding: 1.8rem 2rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
+  .small{
+    color: var(--muted);
+    font-size: 14px;
+  }
 
-    /* Nested section inside Research — no extra card */
-    section section {
-      margin-top: 1.8rem;
-      padding: 0;
-      background: none;
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-      animation: none;
-    }
+  footer{
+    margin-top: 42px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+  }
 
-    h2 {
-      font-family: var(--font-serif);
-      font-size: 1.72rem;
-      font-weight: 500;
-      color: var(--navy);
-      letter-spacing: .01em;
-      margin-bottom: 1rem;
-      padding-bottom: .5rem;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-    }
+  @media (max-width: 600px){
+    .top{ grid-template-columns: 1fr; }
+    .photo{ width: 120px; height: 120px; }
+  }
 
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 0;
-      width: 2.2rem; height: 2px;
-      background: var(--gold);
-    }
+  /* Publications list -> card style */
+  .pubs{
+    list-style: none;
+    padding-left: 0;
+    margin-top: 12px;
+  }
 
-    p { margin: .6rem 0; color: #222; }
+  .pubs li{
+    padding: 14px 14px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #fff;
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
 
-    /* Research keyword tags */
-    .rtags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
-    .rtag {
-      font-size: .7rem; letter-spacing: .07em; text-transform: uppercase;
-      background: var(--navy); color: #b4c8db;
-      border-radius: 3px; padding: .22em .7em;
-    }
+  .pubs .title{
+    font-weight: 600;
+  }
 
-    /* ── Publication cards ──────────────────────────────── */
-    .pubs { list-style: none; padding: 0; margin-top: .9rem; }
+  .pubs .meta{
+    color: var(--muted);
+    font-size: 15px;
+  }
 
-    .pubs li {
-      padding: 1.1rem 1.3rem;
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--gold);
-      border-radius: var(--radius-sm);
-      background: #fff;
-      margin-bottom: 1rem;
-      line-height: 1.55;
-      transition: box-shadow .2s, transform .2s;
-    }
+  .pubs a{
+    text-decoration: none;
+    margin-right: 8px;
+  }
 
-    .pubs li:last-child { margin-bottom: 0; }
+  .pubs a:hover{
+    text-decoration: underline;
+  }
 
-    .pubs li:hover {
-      box-shadow: var(--shadow-h);
-      transform: translateY(-2px);
-    }
+  /* Teaching styles */
+  .teaching-entry { margin-bottom: 1rem; }
+  .school-line {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .3rem;
+    margin-bottom: .4rem;
+  }
+  .teaching-list { list-style: none; padding: 0; margin: 0; }
+  .teaching-list li {
+    font-size: .95rem;
+    padding: .25rem 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .teaching-list li:last-child { border-bottom: none; }
 
-    .pubs .title {
-      font-family: var(--font-serif);
-      font-size: 1.08rem;
-      font-weight: 600;
-      color: var(--navy);
-      display: block;
-      margin-bottom: .25rem;
-    }
-
-    .pubs .authors { font-size: .88rem; color: #333; display: block; margin-bottom: .15rem; }
-    .pubs .authors .me { font-weight: 600; color: var(--navy); }
-
-    .pubs .meta {
-      color: var(--muted); font-size: .84rem; font-style: italic;
-      display: block; margin: .2rem 0 .4rem;
-    }
-
-    .pubs .desc {
-      font-size: .84rem; color: #555;
-      display: block; margin-bottom: .5rem; line-height: 1.55;
-    }
-
-    .pub-link {
-      display: inline-block;
-      font-size: .73rem; font-weight: 500;
-      letter-spacing: .06em; text-transform: uppercase;
-      padding: .22em .7em;
-      border: 1px solid currentColor;
-      border-radius: 3px;
-      color: var(--link);
-      margin-right: .4rem;
-      transition: background .16s, color .16s, border-color .16s;
-    }
-
-    .pub-link:hover {
-      background: var(--navy); color: #fff; border-color: var(--navy);
-    }
-
-    /* ── Teaching ───────────────────────────────────────── */
-    .teaching-entry { margin-bottom: 1rem; }
-
-    .school-line {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: .3rem;
-      margin-bottom: .4rem;
-    }
-
-    .school { font-size: .95rem; }
-    .dates  { font-size: .8rem; color: var(--gold); letter-spacing: .06em; font-weight: 500; }
-
-    .teaching-list { list-style: none; padding: 0; margin: 0; }
-
-    .teaching-list li {
-      font-size: .88rem;
-      color: #333;
-      display: flex;
-      justify-content: space-between;
-      padding: .3rem .4rem;
-      border-bottom: 1px dashed var(--border);
-    }
-
-    .teaching-list li:last-child { border-bottom: none; }
-
-    .course-sem {
-      font-size: .78rem; color: var(--muted);
-      white-space: nowrap; margin-left: .8rem;
-    }
-
-    /* Collapsible previous courses */
-    details { margin-top: 1rem; }
-
-    summary {
-      cursor: pointer;
-      font-size: .88rem;
-      color: var(--navy-mid);
-      padding: .45rem .75rem;
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      user-select: none;
-      transition: background .18s;
-    }
-
-    summary::-webkit-details-marker { display: none; }
-
-    summary::before {
-      content: '▸';
-      font-size: .72rem;
-      color: var(--gold);
-      transition: transform .2s;
-      display: inline-block;
-    }
-
-    details[open] summary::before { transform: rotate(90deg); }
-    summary:hover { background: #ede8df; }
-
-    details .teaching-entry { margin-top: 1rem; }
-
-    /* ── CV button ──────────────────────────────────────── */
-    .cv-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: .55rem;
-      background: var(--navy);
-      color: #fff !important;
-      padding: .65rem 1.4rem;
-      border-radius: var(--radius-sm);
-      font-size: .85rem;
-      font-weight: 500;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      margin-top: .4rem;
-      transition: background .2s, transform .18s, box-shadow .18s;
-    }
-
-    .cv-btn:hover {
-      background: var(--navy-mid);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(13,27,42,.22);
-      color: var(--gold-light) !important;
-    }
-
-    /* ── Contact ────────────────────────────────────────── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: .8rem;
-      margin-top: .8rem;
-    }
-
-    .contact-card {
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: .9rem 1.1rem;
-    }
-
-    .contact-label {
-      font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--gold); font-weight: 500; margin-bottom: .3rem;
-    }
-
-    .contact-value { font-size: .9rem; color: var(--text); line-height: 1.55; }
-
-    .social-row {
-      display: flex; gap: 1rem; flex-wrap: wrap;
-      margin-top: .9rem;
-    }
-
-    .social-row a {
-      font-size: .88rem; font-weight: 500; color: var(--link);
-      padding-bottom: 1px;
-      border-bottom: 1px solid transparent;
-      transition: border-color .18s, color .18s;
-    }
-
-    .social-row a:hover { color: var(--link-h); border-bottom-color: var(--link-h); }
-
-    /* ── Footer ─────────────────────────────────────────── */
-    footer {
-      margin-top: 2.5rem;
-      text-align: center;
-      color: var(--muted);
-      font-size: .78rem;
-    }
-
-    /* ── Responsive ─────────────────────────────────────── */
-    @media (max-width: 640px) {
-      .top {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 1.8rem 1.4rem;
-      }
-      .photo { margin: 0 auto; }
-      .kw-row { justify-content: center; }
-      .top::before { display: none; }
-      section { padding: 1.4rem 1.2rem; }
-      .contact-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  details { margin-top: 1rem; }
+  summary {
+    cursor: pointer;
+    font-size: .95rem;
+    padding: .4rem .6rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    list-style: none;
+    user-select: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { background: #f3f4f6; }
+</style>
 </head>
 
 <body>
 
-<!-- ══ HEADER ════════════════════════════════════════════ -->
 <header>
   <div class="top">
     <img src="Headshot.jpg" alt="Priyadarshi Dey" class="photo">
-    <div class="header-text">
+    <div>
       <h1>Priyadarshi Dey</h1>
       <p class="subtitle">
         <strong>Assistant Professor of Mathematics</strong><br>
-        Millsaps College &nbsp;&middot;&nbsp; Jackson, MS
+        Millsaps College
       </p>
-      <div class="kw-row">
-        <span class="kw">Functional Analysis</span>
-        <span class="kw">Operator Theory</span>
-        <span class="kw">Banach Spaces</span>
-      </div>
+      <p class="small">
+        Functional Analysis · Operator Theory · Spectral Theory
+      </p>
     </div>
   </div>
 
   <nav>
-    <a href="#about">About</a>
-    <a href="#research">Research</a>
-    <a href="#publications">Publications</a>
-    <a href="#teaching">Teaching</a>
-    <a href="#cv">CV</a>
-    <a href="#contact">Contact</a>
+    <a href="#about"       class="tab-link" data-target="about">About</a>
+    <a href="#research"    class="tab-link" data-target="research">Research</a>
+    <a href="#teaching"    class="tab-link" data-target="teaching">Teaching</a>
+    <a href="#cv"          class="tab-link" data-target="cv">CV</a>
+    <a href="#contact"     class="tab-link" data-target="contact">Contact</a>
   </nav>
 </header>
 
-<!-- ══ ABOUT ═════════════════════════════════════════════ -->
-<section id="about">
+<section id="about" class="active">
   <h2>About</h2>
- <p>
-  I am an Assistant Professor in the 
-  <a href="https://millsaps.edu/departments/mathematics-department/" target="_blank" rel="noopener">Department of Mathematics</a> at 
-  <a href="https://www.millsaps.edu/" target="_blank" rel="noopener">Millsaps College</a>. 
-  Prior to this, I held teaching and research positions at 
-  <a href="math.kenyon.edu" target="_blank" rel="noopener">Kenyon College</a>, 
-  <a href="https://www.usf.edu/arts-sciences/departments/mathematics-statistics/">the University of South Florida</a>, and 
-  <a href="https://math.vt.edu/" target="_blank" rel="noopener">Virginia Tech</a>. 
-  I completed my Ph.D. in Mathematics at the 
-  <a href="https://www.memphis.edu/msci/" target="_blank" rel="noopener">University of Memphis</a> 
-  in 2021 under the guidance of 
-  <a href="https://www.memphis.edu/msci/people/mbotelho.php">Dr. Fernanda Botelho</a>. 
-  I received my Master's degree in Mathematics from the 
-  <a href="https://math.iiserkol.ac.in/" target="_blank" rel="noopener">Indian Institute of Science Education and Research, Kolkata</a> in 2016 
-  and my Bachelor's degree in Mathematics from the 
-  <a href="https://www.caluniv.ac.in/" target="_blank" rel="noopener">University of Calcutta</a> in 2013. 
-  My research interests lie in operator theory and Banach space geometry, 
-  with a focus on the structural and spectral properties of operators and 
-  projections on Banach spaces.
-<p>
-  I enjoy teaching mathematics at all levels and am committed to active, 
-  inquiry-based learning and working with undergraduates on research.
-</p> 
+  <p>
+    I am an Assistant Professor of Mathematics at Millsaps College. I work in functional analysis and operator theory,
+    studying projections and related spectral structure on Banach spaces.
+  </p>
+  <p>
+    I am especially enthusiastic about proof-based teaching and mentoring undergraduates toward research-level
+    thinking, with an emphasis on building intuition and rigor side by side.
+  </p>
 </section>
 
-<!-- ══ RESEARCH ══════════════════════════════════════════ -->
 <section id="research">
   <h2>Research</h2>
   <p>
-<p>
-  My research lies at the intersection of functional analysis, operator theory, 
-  and Banach space geometry. I am broadly interested in understanding how the 
-  algebraic and spectral properties of operators on Banach spaces interact with 
-  the geometric structure of the space. A particular focus of my work is the 
-  study of projections and isometries &mdash; how they arise from operators, 
-  what they reveal about the underlying space, and how they connect to the 
-  broader geometry of Banach spaces. I am also actively interested in problems 
-  related to the numerical index of Banach spaces, which sits at a rich 
-  interface between operator theory and Banach space geometry.
-</p>
+    My research lies in functional analysis and operator theory, focusing on operators on Banach spaces.
+    I am particularly interested in projections and isometries, and in understanding their structural
+    and spectral properties. My current work explores how geometric features of Banach spaces influence
+    the existence and behavior of spectral and Riesz projections, as well as related operator classes.
+    I also study problems that arise at the interface of operator theory and other areas of analysis.
+  </p>
 
-  <!-- Publications nested inside Research, no extra card -->
   <section id="publications">
+    <h2>Publications and Preprints</h2>
+    <ul class="pubs">
 
-  <h2>Publications</h2>
-  <ul class="pubs">
+      <li>
+        <span class="title">
+          Projections in the Algebra generated by an n-potent operator
+        </span><br>
+        Priyadarshi Dey, Zachary Easley, Monika<br>
+        <span class="meta">Submitted, 2025.</span><br>
+        <a href="https://arxiv.org/abs/2512.22497" target="_blank">[arxiv]</a>
+      </li>
 
-    <li>
-      <span class="title">Projections in the Convex Hull of Isometries on Absolutely Continuous Function Spaces</span>
-      <span class="authors">
-        Fernanda Botelho, <span class="me">Priyadarshi Dey</span>, Zachary Easley
-      </span>
-      <span class="meta"><em>Journal of Mathematical Analysis and Applications</em> &middot; 2023</span>
-      <a class="pub-link" href="https://www.sciencedirect.com/science/article/abs/pii/S0022247X22008897" target="_blank" rel="noopener">Journal</a>
-    </li>
+      <li>
+        <span class="title">
+          Projections in the Convex Hull of Isometries on Absolutely Continuous Function Spaces
+        </span><br>
+        Fernanda Botelho, Priyadarshi Dey, Zachary Easley<br>
+        <span class="meta">
+          <em>Journal of Mathematical Analysis and Applications</em>, 2023.
+        </span><br>
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0022247X22008897" target="_blank">[Journal]</a>
+      </li>
 
-    <li>
-      <span class="title">Hermitian Projections on Some Banach Spaces and Related Topics</span>
-      <span class="authors">
-        Fernanda Botelho, <span class="me">Priyadarshi Dey</span>, Dijana Ili&scaron;evi&cacute;
-      </span>
-      <span class="meta"><em>Linear Algebra and Its Applications</em> &middot; 2020</span>
-      <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S0024379520301701" target="_blank" rel="noopener">Journal</a>
-    </li>
-
-  </ul>
-
-  <h2>Preprints</h2>
-  <ul class="pubs">
-<li>
-      <span class="title">On the Convergence of Numerical Index via Operator Openings and Ultraproducts</span>
-      <span class="authors">
-        Tattwamasi Amrutam, <span class="me">Priyadarshi Dey</span>, Monika
-      </span>
-      <span class="meta">Preprint &middot; 2026</span>
-      <a class="pub-link" href="https://arxiv.org/abs/" target="_blank" rel="noopener">arXiv</a>
-    </li>
-
-    <li>
-      <span class="title">Projections in the Algebra Generated by an <em>n</em>-Potent Operator</span>
-      <span class="authors">
-        <span class="me">Priyadarshi Dey</span>, Zachary Easley, Monika
-      </span>
-      <span class="meta">Preprint &middot; 2025</span>
-      <a class="pub-link" href="https://arxiv.org/abs/2512.22497" target="_blank" rel="noopener">arXiv</a>
-    </li>
-
-    
-
-  </ul>
-
-</section>
+      <li>
+        <span class="title">
+          Hermitian Projections on Some Banach Spaces and Related Topics
+        </span><br>
+        Fernanda Botelho, Priyadarshi Dey, Dijana Ilišević<br>
+        <span class="meta">
+          <em>Linear Algebra and Its Applications</em>, 2020.
+        </span><br>
+        <a href="https://www.sciencedirect.com/science/article/pii/S0024379520301701" target="_blank">[Journal]</a>
+      </li>
 
     </ul>
   </section>
 </section>
 
-<!-- ══ TEACHING ══════════════════════════════════════════ -->
 <section id="teaching">
   <h2>Teaching</h2>
 
-<p style="margin-bottom:1rem;">
-  I have taught a broad range of courses, from large introductory classes to 
-  advanced proof-based classes. I aim to create an active and inclusive classroom 
-  environment where students develop both mathematical intuition and the ability 
-  to think and communicate rigorously.
-</p>
-
-<div class="teaching-entry">
-  <div class="school-line">
-    <span class="school"><strong>Millsaps College</strong> &nbsp;|&nbsp; Department of Mathematics</span>
-    <span class="dates">2025 – Present</span>
-  </div>
-  <ul class="teaching-list">
-    <li><span>MATH 4630: Real Analysis</span>                        <span class="course-sem">Spring 2026, Spring 2027</span></li>
-    <li><span>MATH 4510: Mathematical Statistics</span>              <span class="course-sem">Fall 2026</span></li>
-    <li><span>MATH 2310: Introduction to Advanced Mathematics</span> <span class="course-sem">Fall 2025</span></li>
-    <li><span>MATH 1220: Analytical Geometry &amp; Calculus I</span> <span class="course-sem">Fall 2025 (&times;2)</span></li>
-    <li><span>MATH 1150: Elementary Statistics</span>                <span class="course-sem">Fall 2026, Spring 2026 (&times;2), Spring 2027</span></li>
-  </ul>
-</div>
-<details>
-  <summary>Earlier teaching experience (2021–2025)</summary>
-
-  <div class="teaching-entry" style="margin-top:1rem;">
-    <div class="school-line">
-      <span class="school"><strong>Kenyon College</strong> &nbsp;|&nbsp; Department of Mathematics &amp; Statistics</span>
-      <span class="dates">2023 – 2025</span>
-    </div>
-    <ul class="teaching-list">
-      <li><span>MATH 341: Real Analysis I</span>        <span class="course-sem">Fall 2024</span></li>
-      <li><span>MATH 342: Real Analysis II</span>       <span class="course-sem">Spring 2025</span></li>
-      <li><span>MATH 224: Linear Algebra</span>         <span class="course-sem">Fall 2024, Fall 2023, Spring 2024</span></li>
-      <li><span>STAT 106: Elements of Statistics</span> <span class="course-sem">Spring 2025 (&times;2), Spring 2024 (&times;2)</span></li>
-      <li><span>MATH 112: Calculus II</span>            <span class="course-sem">Fall 2023</span></li>
-    </ul>
-  </div>
-
   <div class="teaching-entry">
     <div class="school-line">
-      <span class="school"><strong>University of South Florida</strong> &nbsp;|&nbsp; Department of Mathematics and Statistics</span>
-      <span class="dates">2022 – 2023</span>
+      <span class="school"><strong>Millsaps College</strong> | Department of Mathematics</span>
+      <span class="dates">2025–Present</span>
     </div>
     <ul class="teaching-list">
-      <li><span>MAS 3105: Linear Algebra</span>          <span class="course-sem">Spring 2023</span></li>
-      <li><span>MAC 2282: Engineering Calculus II</span> <span class="course-sem">Spring 2023</span></li>
-      <li><span>MAC 2312: Calculus II</span>             <span class="course-sem">Fall 2022 (&times;2)</span></li>
+      <li>MATH 4630: Real Analysis, S26</li>
+      <li>MATH 1150: Elementary Statistics, S26 (&times;2)</li>
+      <li>MATH 2310: Introduction to Advanced Mathematics, F25</li>
+      <li>MATH 1220: Analytical Geometry &amp; Calculus I, F25 (&times;2)</li>
     </ul>
   </div>
 
-  <div class="teaching-entry">
-    <div class="school-line">
-      <span class="school"><strong>Virginia Tech</strong> &nbsp;|&nbsp; Department of Mathematics</span>
-      <span class="dates">2021 – 2022</span>
+  <details>
+    <summary><strong>Previous courses (Kenyon, USF, Virginia Tech)</strong></summary>
+
+    <div class="teaching-entry" style="margin-top:12px;">
+      <div class="school-line">
+        <span class="school"><strong>Kenyon College</strong> | Department of Mathematics &amp; Statistics</span>
+        <span class="dates">2023–2025</span>
+      </div>
+      <ul class="teaching-list">
+        <li>MATH 341: Real Analysis I, F24</li>
+        <li>MATH 342: Real Analysis II, S25</li>
+        <li>MATH 224: Linear Algebra, F24, F23, S24</li>
+        <li>STAT 106: Elements of Statistics, S25 (&times;2), S24 (&times;2)</li>
+        <li>MATH 112: Calculus II, F23</li>
+      </ul>
     </div>
-    <ul class="teaching-list">
-      <li><span>MATH 1226: Calculus of a Single Variable</span><span class="course-sem">Spring 2022 (&times;2)</span></li>
-      <li><span>MATH 1225: Calculus of a Single Variable</span><span class="course-sem">Fall 2021 (&times;3), Spring 2022</span></li>
-    </ul>
-  </div>
-</details>
+
+    <div class="teaching-entry">
+      <div class="school-line">
+        <span class="school"><strong>University of South Florida</strong> | Department of Mathematics and Statistics</span>
+        <span class="dates">2022–2023</span>
+      </div>
+      <ul class="teaching-list">
+        <li>MAS 3105: Linear Algebra, S23</li>
+        <li>MAC 2282: Engineering Calculus II, S23</li>
+        <li>MAC 2312: Calculus II, F22 (&times;2)</li>
+      </ul>
+    </div>
+
+    <div class="teaching-entry">
+      <div class="school-line">
+        <span class="school"><strong>Virginia Tech</strong> | Department of Mathematics</span>
+        <span class="dates">2021–2022</span>
+      </div>
+      <ul class="teaching-list">
+        <li>MATH 1226: Calculus of a Single Variable, S22 (&times;2)</li>
+        <li>MATH 1225: Calculus of a Single Variable, F21 (&times;3), S22</li>
+      </ul>
+    </div>
   </details>
 </section>
 
-<!-- ══ CV ════════════════════════════════════════════════ -->
 <section id="cv">
   <h2>Curriculum Vitae</h2>
-  <p>Full academic CV including publications, presentations, teaching, and service.</p>
-  <a class="cv-btn" href="CV_PDey.pdf" target="_blank" rel="noopener">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-         stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-      <polyline points="7 10 12 15 17 10"/>
-      <line x1="12" y1="15" x2="12" y2="3"/>
-    </svg>
-    Download CV (PDF)
-  </a>
+  <p>
+    <a href="cv.pdf"><strong>Download CV (PDF)</strong></a>
+  </p>
 </section>
 
-<!-- ══ CONTACT ═══════════════════════════════════════════ -->
 <section id="contact">
   <h2>Contact</h2>
-  <div class="contact-grid">
-    <div class="contact-card">
-      <div class="contact-label">Email</div>
-      <div class="contact-value">deyp&nbsp;[at]&nbsp;millsaps&nbsp;[dot]&nbsp;edu</div>
-      <div class="contact-value">priyadarshid4&nbsp;[at]&nbsp;gmail&nbsp;[dot]&nbsp;com</div>
-    </div>
-    <div class="contact-card">
-      <div class="contact-label">Address</div>
-      <div class="contact-value">
-        Department of Mathematics<br>
-        Millsaps College<br>
-        Jackson, MS, USA
-      </div>
-    </div>
-  </div>
-  <div class="social-row">
-    <a href="https://scholar.google.com/citations?user=Pl2Ei5kAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-    <a href="https://www.researchgate.net/profile/Priyadarshi-Dey-2?ev=hdr_xprf"  target="_blank" rel="noopener">ResearchGate</a>
-    <a href="https://orcid.org/0000-0002-1064-7735" target="_blank" rel="noopener">ORCID</a>
-  </div>
+  <p>
+    <strong>Priyadarshi Dey</strong><br>
+    Assistant Professor of Mathematics<br>
+    Millsaps College<br>
+    Jackson, MS, USA<br>
+    <span class="small">Email:</span> deyp&nbsp;[at]&nbsp;millsaps&nbsp;[dot]&nbsp;edu
+  </p>
+  <p>
+    <a href="https://scholar.google.com/citations?user=Pl2Ei5kAAAAJ&hl=en" target="_blank">Google Scholar</a> ·
+    <a href="https://www.researchgate.net/profile/Priyadarshi-Dey-2?ev=hdr_xprf" target="_blank">ResearchGate</a> ·
+    <a href="https://orcid.org/0000-0002-1064-7735" target="_blank">ORCID</a>
+  </p>
 </section>
 
-<!-- ══ FOOTER ════════════════════════════════════════════ -->
 <footer>
-  &copy; <span id="yr"></span> Priyadarshi Dey &nbsp;&middot;&nbsp; Millsaps College
+  &copy; <span id="yr"></span> Priyadarshi Dey
 </footer>
 
 <script>
+  // Dynamic year
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Tab switching
+  const links   = document.querySelectorAll('.tab-link');
+  const sections = document.querySelectorAll('body > section');
+
+  function showTab(id) {
+    // hide all top-level sections
+    sections.forEach(s => s.classList.remove('active'));
+    // deactivate all nav links
+    links.forEach(l => l.classList.remove('active'));
+
+    // show the target section
+    const target = document.getElementById(id);
+    if (target) target.classList.add('active');
+
+    // activate the matching nav link
+    const activeLink = document.querySelector(`.tab-link[data-target="${id}"]`);
+    if (activeLink) activeLink.classList.add('active');
+  }
+
+  links.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const id = this.getAttribute('data-target');
+      showTab(id);
+      // update URL hash without scrolling
+      history.pushState(null, '', '#' + id);
+    });
+  });
+
+  // On page load, check if there's a hash in the URL
+  const hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById(hash)) {
+    showTab(hash);
+  } else {
+    // default: show About
+    showTab('about');
+  }
 </script>
 
 </body>
