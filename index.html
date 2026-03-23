@@ -45,7 +45,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 
   <style>
-    /* ── Variables ─────────────────────────────────────── */
     :root {
       --navy:       #0d1b2a;
       --navy-mid:   #1b3352;
@@ -81,7 +80,7 @@
     a { color: var(--link); text-decoration: none; transition: color .18s; }
     a:hover { color: var(--link-h); }
 
-    /* ══ HEADER CARD ════════════════════════════════════ */
+    /* ══ HEADER ══════════════════════════════════════════ */
     .site-header {
       background: var(--navy);
       padding: 2.8rem 3rem 0;
@@ -152,9 +151,7 @@
 
     .header-sub strong { color: #fff; font-weight: 500; }
 
-    .kw-row {
-      display: flex; flex-wrap: wrap; gap: .35rem;
-    }
+    .kw-row { display: flex; flex-wrap: wrap; gap: .35rem; }
 
     .kw {
       font-size: .67rem;
@@ -174,54 +171,50 @@
       margin-top: 1.8rem;
       position: relative;
       z-index: 1;
+      flex-wrap: wrap;
     }
 
     .tab-nav a {
       display: inline-block;
-      padding: .7rem 1.3rem;
-      font-size: .82rem;
+      padding: .7rem 1.2rem;
+      font-size: .8rem;
       font-weight: 500;
       letter-spacing: .05em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.55);
+      color: rgba(255,255,255,.5);
       text-decoration: none;
       border-bottom: 3px solid transparent;
       transition: color .18s, border-color .18s;
       cursor: pointer;
     }
 
-    .tab-nav a:hover {
-      color: rgba(255,255,255,.85);
-    }
+    .tab-nav a:hover { color: rgba(255,255,255,.85); }
 
     .tab-nav a.active {
       color: #fff;
       border-bottom-color: var(--gold);
     }
 
-    /* ══ MAIN CONTENT AREA ══════════════════════════════ */
+    /* ══ CONTENT ═════════════════════════════════════════ */
     .content-wrap {
       max-width: 900px;
       margin: 0 auto;
       padding: 2.4rem 3rem 4rem;
     }
 
-    /* ── Sections (tabs) ── */
     .tab-section {
       display: none;
       animation: fadeIn .3s ease;
     }
 
-    .tab-section.active {
-      display: block;
-    }
+    .tab-section.active { display: block; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(8px); }
       to   { opacity: 1; transform: none; }
     }
 
-    /* ── Section headings ── */
+    /* ── Headings ── */
     .section-title {
       font-family: var(--font-serif);
       font-size: 1.9rem;
@@ -243,7 +236,7 @@
 
     .subsection-title {
       font-family: var(--font-serif);
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 500;
       color: var(--navy);
       margin: 2rem 0 1rem;
@@ -261,7 +254,6 @@
     }
 
     p { margin: .65rem 0; color: #222; }
-
     ul { padding-left: 1.3rem; }
     li { margin-bottom: .35rem; }
 
@@ -272,7 +264,7 @@
       margin-bottom: 1rem;
     }
 
-    /* ── Research tags ── */
+    /* Research tags */
     .rtags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
     .rtag {
       font-size: .7rem; letter-spacing: .07em; text-transform: uppercase;
@@ -295,19 +287,12 @@
     }
 
     .pubs li:last-child { margin-bottom: 0; }
-
-    .pubs li:hover {
-      box-shadow: var(--shadow-h);
-      transform: translateY(-2px);
-    }
+    .pubs li:hover { box-shadow: var(--shadow-h); transform: translateY(-2px); }
 
     .pub-title {
       font-family: var(--font-serif);
-      font-size: 1.08rem;
-      font-weight: 600;
-      color: var(--navy);
-      display: block;
-      margin-bottom: .2rem;
+      font-size: 1.08rem; font-weight: 600;
+      color: var(--navy); display: block; margin-bottom: .2rem;
     }
 
     .pub-authors { font-size: .88rem; color: #333; display: block; margin-bottom: .15rem; }
@@ -329,27 +314,23 @@
       letter-spacing: .06em; text-transform: uppercase;
       padding: .22em .7em;
       border: 1px solid currentColor;
-      border-radius: 3px;
-      color: var(--link);
+      border-radius: 3px; color: var(--link);
       margin-right: .4rem;
       transition: background .16s, color .16s, border-color .16s;
     }
 
-    .pub-link:hover {
-      background: var(--navy); color: #fff; border-color: var(--navy);
-    }
+    .pub-link:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
 
-    
     /* ── Talks ── */
     .talk-list { display: flex; flex-direction: column; gap: .9rem; margin-top: .9rem; }
- 
+
     .talk-item {
       display: grid;
       grid-template-columns: 3px 1fr;
       gap: 0 1rem;
       align-items: start;
     }
- 
+
     .talk-bar {
       width: 3px;
       background: var(--gold);
@@ -357,7 +338,7 @@
       margin-top: .35rem;
       align-self: stretch;
     }
- 
+
     .talk-title {
       font-weight: 500;
       color: var(--navy);
@@ -366,16 +347,16 @@
       line-height: 1.4;
       margin-bottom: .15rem;
     }
- 
+
     .talk-venue {
       font-size: .84rem;
       color: var(--muted);
       line-height: 1.45;
     }
- 
+
     .talk-venue a { color: var(--muted); border-bottom: 1px solid transparent; transition: border-color .18s, color .18s; }
     .talk-venue a:hover { color: var(--link-h); border-bottom-color: var(--link-h); }
- 
+
     .talk-badge {
       display: inline-block;
       font-size: .65rem;
@@ -386,13 +367,13 @@
       margin-left: .4rem;
       vertical-align: middle;
     }
- 
+
     .badge-invited {
       background: #eef2ff;
       color: #2244aa;
       border: 1px solid #c7d2fe;
     }
- 
+
     .badge-contributed {
       background: #fdf4e7;
       color: #7c5a1e;
@@ -410,110 +391,72 @@
 
     .teach-inst {
       font-family: var(--font-serif);
-      font-size: 1.08rem;
-      font-weight: 600;
-      color: var(--navy);
+      font-size: 1.08rem; font-weight: 600; color: var(--navy);
     }
 
     .teach-period {
-      font-size: .78rem;
-      color: var(--gold);
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      font-weight: 500;
-      margin-bottom: .7rem;
-      margin-top: .1rem;
+      font-size: .78rem; color: var(--gold);
+      letter-spacing: .06em; text-transform: uppercase;
+      font-weight: 500; margin-bottom: .7rem; margin-top: .1rem;
     }
 
     .teach-list { list-style: none; padding: 0; margin: 0; }
 
     .teach-list li {
-      font-size: .88rem;
-      color: #333;
-      display: flex;
-      justify-content: space-between;
+      font-size: .88rem; color: #333;
+      display: flex; justify-content: space-between;
       padding: .28rem .3rem;
       border-bottom: 1px dashed var(--border);
     }
 
     .teach-list li:last-child { border-bottom: none; }
 
-    .course-sem {
-      font-size: .78rem; color: var(--muted);
-      white-space: nowrap; margin-left: .8rem;
-    }
+    .course-sem { font-size: .78rem; color: var(--muted); white-space: nowrap; margin-left: .8rem; }
 
     details { margin-top: 1rem; }
 
     summary {
-      cursor: pointer;
-      font-size: .88rem;
-      color: var(--navy-mid);
+      cursor: pointer; font-size: .88rem; color: var(--navy-mid);
       padding: .45rem .75rem;
-      background: var(--cream);
-      border: 1px solid var(--border);
+      background: var(--cream); border: 1px solid var(--border);
       border-radius: var(--radius-sm);
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      user-select: none;
-      transition: background .18s;
+      list-style: none; display: flex; align-items: center;
+      gap: .5rem; user-select: none; transition: background .18s;
     }
 
     summary::-webkit-details-marker { display: none; }
-
-    summary::before {
-      content: '▸';
-      font-size: .72rem;
-      color: var(--gold);
-      transition: transform .2s;
-      display: inline-block;
-    }
-
+    summary::before { content: '▸'; font-size: .72rem; color: var(--gold); transition: transform .2s; display: inline-block; }
     details[open] summary::before { transform: rotate(90deg); }
     summary:hover { background: #ede8df; }
-
     .teach-prev { margin-top: 1rem; }
     .teach-prev .teach-block { margin-bottom: .8rem; }
 
     /* ── CV button ── */
     .cv-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: .55rem;
-      background: var(--navy);
-      color: #fff !important;
-      padding: .7rem 1.5rem;
-      border-radius: var(--radius-sm);
-      font-size: .85rem;
-      font-weight: 500;
-      letter-spacing: .05em;
-      text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: .55rem;
+      background: var(--navy); color: #fff !important;
+      padding: .7rem 1.5rem; border-radius: var(--radius-sm);
+      font-size: .85rem; font-weight: 500;
+      letter-spacing: .05em; text-transform: uppercase;
       margin-top: .5rem;
       transition: background .2s, transform .18s, box-shadow .18s;
     }
 
     .cv-btn:hover {
-      background: var(--navy-mid);
-      transform: translateY(-2px);
+      background: var(--navy-mid); transform: translateY(-2px);
       box-shadow: 0 4px 14px rgba(13,27,42,.22);
       color: var(--gold-light) !important;
     }
 
     /* ── Contact ── */
     .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: .8rem;
-      margin-top: .8rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: .8rem; margin-top: .8rem;
     }
 
     .contact-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: .9rem 1.1rem;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: .9rem 1.1rem;
     }
 
     .contact-label {
@@ -523,10 +466,7 @@
 
     .contact-value { font-size: .9rem; color: var(--text); line-height: 1.55; }
 
-    .social-row {
-      display: flex; gap: 1rem; flex-wrap: wrap;
-      margin-top: 1rem;
-    }
+    .social-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
 
     .social-row a {
       font-size: .88rem; font-weight: 500; color: var(--link);
@@ -538,13 +478,9 @@
 
     /* ── Footer ── */
     footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: .78rem;
-      padding: 1.5rem 0 2rem;
-      border-top: 1px solid var(--border);
-      max-width: 900px;
-      margin: 0 auto;
+      text-align: center; color: var(--muted); font-size: .78rem;
+      padding: 1.5rem 0 2rem; border-top: 1px solid var(--border);
+      max-width: 900px; margin: 0 auto;
     }
 
     /* ── Responsive ── */
@@ -554,7 +490,7 @@
       .top { grid-template-columns: 1fr; text-align: center; }
       .photo { margin: 0 auto; }
       .kw-row { justify-content: center; }
-      .tab-nav a { padding: .6rem .8rem; font-size: .75rem; }
+      .tab-nav a { padding: .6rem .7rem; font-size: .72rem; }
       .contact-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -576,7 +512,8 @@
           <span class="kw">Functional Analysis</span>
           <span class="kw">Operator Theory</span>
           <span class="kw">Banach Spaces</span>
-      
+          <span class="kw">Numerical Index</span>
+          <span class="kw">Spectral Theory</span>
         </div>
       </div>
     </div>
@@ -585,6 +522,7 @@
       <a class="tab-link active" data-target="about">About</a>
       <a class="tab-link" data-target="research">Research</a>
       <a class="tab-link" data-target="publications">Publications</a>
+      <a class="tab-link" data-target="talks">Talks</a>
       <a class="tab-link" data-target="teaching">Teaching</a>
       <a class="tab-link" data-target="cv">CV</a>
       <a class="tab-link" data-target="contact">Contact</a>
@@ -598,26 +536,29 @@
   <!-- ABOUT -->
   <div class="tab-section active" id="about">
     <h2 class="section-title">About</h2>
-    <p>
-      I am an Assistant Professor in the
-      <a href="https://millsaps.edu/departments/mathematics-department/" target="_blank" rel="noopener">Department of Mathematics</a>
-      at <a href="https://www.millsaps.edu/" target="_blank" rel="noopener">Millsaps College</a>.
-      Prior to this, I held teaching and research positions at
-      <a href="https://www.kenyon.edu/academics/departments-and-majors/mathematics-statistics/" target="_blank" rel="noopener">Kenyon College</a>,
-      the <a href="https://www.usf.edu/arts-sciences/departments/mathematics-statistics/" target="_blank" rel="noopener">University of South Florida</a>,
-      and <a href="https://math.vt.edu/" target="_blank" rel="noopener">Virginia Tech</a>.
-      I completed my Ph.D. in Mathematics at the
-      <a href="https://www.memphis.edu/msci/" target="_blank" rel="noopener">University of Memphis</a>
-      in 2021 under the guidance of
-      <a href="https://www.memphis.edu/msci/people/mbotelho.php" target="_blank" rel="noopener">Dr. Fernanda Botelho</a>.
-      I received my Master's degree in Mathematics from the
-      <a href="https://math.iiserkol.ac.in/" target="_blank" rel="noopener">Indian Institute of Science Education and Research, Kolkata</a>
-      and my Bachelor's degree in Mathematics from the
-      <a href="https://www.caluniv.ac.in/" target="_blank" rel="noopener">University of Calcutta</a>.
-      My research interests lie in operator theory and Banach space geometry,
-      with a focus on the structural and spectral properties of operators and projections on Banach spaces. I am committed to active, inquiry-based
-  teaching and enjoy working with undergraduates on research.
-    </p>
+    <div class="about-intro">
+      <p>
+        I am an Assistant Professor in the
+        <a href="https://millsaps.edu/departments/mathematics-department/" target="_blank" rel="noopener">Department of Mathematics</a>
+        at <a href="https://www.millsaps.edu/" target="_blank" rel="noopener">Millsaps College</a>.
+        Prior to this, I held teaching and research positions at
+        <a href="https://www.kenyon.edu/academics/departments-and-majors/mathematics-statistics/" target="_blank" rel="noopener">Kenyon College</a>,
+        the <a href="https://www.math.usf.edu/" target="_blank" rel="noopener">University of South Florida</a>,
+        and <a href="https://math.vt.edu/" target="_blank" rel="noopener">Virginia Tech</a>.
+        I completed my Ph.D. in Mathematics at the
+        <a href="https://www.memphis.edu/msci/" target="_blank" rel="noopener">University of Memphis</a>
+        in 2021 under the guidance of
+        <a href="https://www.memphis.edu/msci/people/mbotelho.php" target="_blank" rel="noopener">Dr. Fernanda Botelho</a>.
+        I received my Master's degree in Mathematics from the
+        <a href="https://math.iiserkol.ac.in/" target="_blank" rel="noopener">Indian Institute of Science Education and Research, Kolkata</a>
+        and my Bachelor's degree in Mathematics from the
+        <a href="https://www.caluniv.ac.in/" target="_blank" rel="noopener">University of Calcutta</a>.
+        My research interests lie in operator theory and Banach space geometry,
+        with a focus on the structural and spectral properties of operators and
+        projections on Banach spaces. I am committed to active, inquiry-based
+        teaching and enjoy working with undergraduates on research.
+      </p>
+    </div>
   </div>
 
   <!-- RESEARCH -->
@@ -632,6 +573,22 @@
       interested in problems related to the numerical index of Banach spaces, which sits at a rich
       interface between operator theory and Banach space geometry.
     </p>
+    <p>Current and recent projects include:</p>
+    <ul style="margin:.6rem 0 .2rem;">
+      <li>Projections in algebras generated by <em>n</em>-potent operators and their Boolean lattice structure.</li>
+      <li>The <strong>numerical index</strong> of Banach spaces and approximate numerical range convergence (ANCP) under isometric embeddings.</li>
+      <li>Generalized circular and Hermitian projections on classical Banach spaces.</li>
+      <li>Connections between isometry groups and projection structure on function spaces.</li>
+    </ul>
+    <div class="rtags">
+      <span class="rtag">Banach Spaces</span>
+      <span class="rtag">Numerical Index</span>
+      <span class="rtag">Operator Algebras</span>
+      <span class="rtag">Spectral Theory</span>
+      <span class="rtag">Isometry Theory</span>
+      <span class="rtag"><em>n</em>-Potent Operators</span>
+      <span class="rtag">Hermitian Projections</span>
+    </div>
   </div>
 
   <!-- PUBLICATIONS -->
@@ -643,19 +600,17 @@
 
       <li>
         <span class="pub-title">Projections in the Convex Hull of Isometries on Absolutely Continuous Function Spaces</span>
-        <span class="pub-authors">
-          Fernanda Botelho, <span class="me">Priyadarshi Dey</span>, Zachary Easley
-        </span>
+        <span class="pub-authors">Fernanda Botelho, <span class="me">Priyadarshi Dey</span>, Zachary Easley</span>
         <span class="pub-meta"><em>Journal of Mathematical Analysis and Applications</em> &middot; 2023</span>
+        <span class="pub-desc">Identifies projections in the convex hull of the isometry group on AC function spaces, extending the Hermitian projection framework to this setting.</span>
         <a class="pub-link" href="https://www.sciencedirect.com/science/article/abs/pii/S0022247X22008897" target="_blank" rel="noopener">Journal</a>
       </li>
 
       <li>
         <span class="pub-title">Hermitian Projections on Some Banach Spaces and Related Topics</span>
-        <span class="pub-authors">
-          Fernanda Botelho, <span class="me">Priyadarshi Dey</span>, Dijana Ilišević
-        </span>
+        <span class="pub-authors">Fernanda Botelho, <span class="me">Priyadarshi Dey</span>, Dijana Ilišević</span>
         <span class="pub-meta"><em>Linear Algebra and Its Applications</em> &middot; 2020</span>
+        <span class="pub-desc">Classifies Hermitian projections on several classical Banach spaces and explores connections to bicircular projections and isometry groups.</span>
         <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S0024379520301701" target="_blank" rel="noopener">Journal</a>
       </li>
 
@@ -664,36 +619,32 @@
     <h3 class="subsection-title">Preprints</h3>
     <ul class="pubs">
 
-       <li>
-        <span class="pub-title">On the Convergence of Numerical Index via Operator Openings and Ultraproducts</span>
-        <span class="pub-authors">
-          Tattwamasi Amrutam, <span class="me">Priyadarshi Dey</span>, Monika
-        </span>
-        <span class="pub-meta">Preprint &middot; 2026</span>
-        <a class="pub-link" href="https://arxiv.org/abs/" target="_blank" rel="noopener">arXiv</a>
-      </li>
-
-
       <li>
         <span class="pub-title">Projections in the Algebra Generated by an <em>n</em>-Potent Operator</span>
-        <span class="pub-authors">
-          <span class="me">Priyadarshi Dey</span>, Zachary Easley, Monika
-        </span>
-        <span class="pub-meta">Preprint &middot; 2025</span>
+        <span class="pub-authors"><span class="me">Priyadarshi Dey</span>, Zachary Easley, Monika [Last Name]</span>
+        <span class="pub-meta">Under review &middot; 2025</span>
+        <span class="pub-desc">Characterizes all projections in the Banach algebra generated by an <em>n</em>-potent operator, establishing a bijection with subsets of the nonzero spectral idempotents via a Boolean lattice structure.</span>
         <a class="pub-link" href="https://arxiv.org/abs/2512.22497" target="_blank" rel="noopener">arXiv</a>
       </li>
 
-     
+      <li>
+        <span class="pub-title">On the Convergence of Numerical Index via Operator Openings and Ultraproducts</span>
+        <span class="pub-authors">Tattwamasi Amrutam, <span class="me">Priyadarshi Dey</span>, Monika [Last Name]</span>
+        <span class="pub-meta">Preprint &middot; 2026</span>
+        <span class="pub-desc">Studies the convergence of the numerical index through operator openings and ultraproduct techniques on Banach spaces.</span>
+        <a class="pub-link" href="https://arxiv.org/abs/" target="_blank" rel="noopener">arXiv</a>
+      </li>
+
     </ul>
   </div>
 
-   <!-- TALKS -->
+  <!-- TALKS -->
   <div class="tab-section" id="talks">
     <h2 class="section-title">Talks &amp; Presentations</h2>
- 
+
     <h3 class="subsection-title">Invited Talks</h3>
     <div class="talk-list">
- 
+
       <div class="talk-item">
         <div class="talk-bar"></div>
         <div>
@@ -704,7 +655,7 @@
           </div>
         </div>
       </div>
- 
+
       <div class="talk-item">
         <div class="talk-bar"></div>
         <div>
@@ -715,7 +666,7 @@
           </div>
         </div>
       </div>
- 
+
       <div class="talk-item">
         <div class="talk-bar"></div>
         <div>
@@ -726,7 +677,7 @@
           </div>
         </div>
       </div>
- 
+
       <div class="talk-item">
         <div class="talk-bar"></div>
         <div>
@@ -737,12 +688,12 @@
           </div>
         </div>
       </div>
- 
+
     </div>
- 
+
     <h3 class="subsection-title">Contributed Talks</h3>
     <div class="talk-list">
- 
+
       <div class="talk-item">
         <div class="talk-bar"></div>
         <div>
@@ -753,7 +704,7 @@
           </div>
         </div>
       </div>
- 
+
       <div class="talk-item">
         <div class="talk-bar"></div>
         <div>
@@ -764,7 +715,7 @@
           </div>
         </div>
       </div>
- 
+
       <div class="talk-item">
         <div class="talk-bar"></div>
         <div>
@@ -775,7 +726,7 @@
           </div>
         </div>
       </div>
- 
+
       <div class="talk-item">
         <div class="talk-bar"></div>
         <div>
@@ -786,7 +737,7 @@
           </div>
         </div>
       </div>
- 
+
       <div class="talk-item">
         <div class="talk-bar"></div>
         <div>
@@ -797,9 +748,9 @@
           </div>
         </div>
       </div>
- 
+
     </div>
- 
+
     <p style="font-size:.83rem;color:#888;margin-top:1.4rem;">
       For a complete list of presentations, see <a href="cv.pdf">CV</a>.
     </p>
@@ -809,15 +760,13 @@
   <div class="tab-section" id="teaching">
     <h2 class="section-title">Teaching</h2>
 
-  <p style="margin-bottom:1.2rem;">
-  I have taught a broad range of courses, from large introductory classes 
-  to advanced proof-based classes. I aim to create an active and inclusive 
-  classroom environment where students develop both mathematical intuition 
-  and the ability to think and communicate rigorously. I am also enthusiastic 
-  about undergraduate research and enjoy guiding students as they learn to 
-  ask good questions, work through uncertainty, and communicate mathematics 
-  with clarity and precision.
-</p>
+    <p style="margin-bottom:1.2rem;">
+      I have taught a broad range of courses, from large introductory classes to advanced proof-based seminars.
+      I aim to create an active and inclusive classroom environment where students develop both mathematical
+      intuition and the ability to think and communicate rigorously. I am also enthusiastic about undergraduate
+      research and enjoy guiding students as they learn to ask good questions, work through uncertainty,
+      and communicate mathematics with clarity and precision.
+    </p>
 
     <div class="teach-block">
       <div class="teach-inst">Millsaps College &nbsp;|&nbsp; Department of Mathematics</div>
@@ -852,7 +801,7 @@
           <div class="teach-period">2021 – 2023</div>
           <ul class="teach-list">
             <li><span>Linear Algebra, Engineering Calculus II, Calculus II</span><span class="course-sem">USF, 2022–23</span></li>
-            <li><span>Calculus of a Single Variable</span>                       <span class="course-sem">Virginia Tech, 2021–22</span></li>
+            <li><span>Calculus of a Single Variable</span>                        <span class="course-sem">Virginia Tech, 2021–22</span></li>
           </ul>
         </div>
 
@@ -864,7 +813,7 @@
   <div class="tab-section" id="cv">
     <h2 class="section-title">Curriculum Vitae</h2>
     <p>Full academic CV including publications, presentations, teaching, and service.</p>
-    <a class="cv-btn" href="CV_PDey.pdf" target="_blank" rel="noopener">
+    <a class="cv-btn" href="cv.pdf" target="_blank" rel="noopener">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
            stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -882,7 +831,6 @@
       <div class="contact-card">
         <div class="contact-label">Email</div>
         <div class="contact-value">deyp&nbsp;[at]&nbsp;millsaps&nbsp;[dot]&nbsp;edu</div>
-        <div class="contact-value">priyadarshid4&nbsp;[at]&nbsp;gmail&nbsp;[dot]&nbsp;com</div>
       </div>
       <div class="contact-card">
         <div class="contact-label">Address</div>
@@ -895,7 +843,7 @@
     </div>
     <div class="social-row">
       <a href="https://scholar.google.com/citations?user=Pl2Ei5kAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-      <a href="https://www.researchgate.net/profile/Priyadarshi-Dey-2?ev=hdr_xprf" target="_blank" rel="noopener">ResearchGate</a>
+      <a href="https://www.researchgate.net/profile/Priyadarshi-Dey-2?ev=hdr_xprf"  target="_blank" rel="noopener">ResearchGate</a>
       <a href="https://orcid.org/0000-0002-1064-7735" target="_blank" rel="noopener">ORCID</a>
     </div>
   </div>
