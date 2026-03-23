@@ -339,6 +339,66 @@
       background: var(--navy); color: #fff; border-color: var(--navy);
     }
 
+    
+    /* ── Talks ── */
+    .talk-list { display: flex; flex-direction: column; gap: .9rem; margin-top: .9rem; }
+ 
+    .talk-item {
+      display: grid;
+      grid-template-columns: 3px 1fr;
+      gap: 0 1rem;
+      align-items: start;
+    }
+ 
+    .talk-bar {
+      width: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin-top: .35rem;
+      align-self: stretch;
+    }
+ 
+    .talk-title {
+      font-weight: 500;
+      color: var(--navy);
+      font-size: .97rem;
+      font-style: italic;
+      line-height: 1.4;
+      margin-bottom: .15rem;
+    }
+ 
+    .talk-venue {
+      font-size: .84rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+ 
+    .talk-venue a { color: var(--muted); border-bottom: 1px solid transparent; transition: border-color .18s, color .18s; }
+    .talk-venue a:hover { color: var(--link-h); border-bottom-color: var(--link-h); }
+ 
+    .talk-badge {
+      display: inline-block;
+      font-size: .65rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: .15em .55em;
+      border-radius: 3px;
+      margin-left: .4rem;
+      vertical-align: middle;
+    }
+ 
+    .badge-invited {
+      background: #eef2ff;
+      color: #2244aa;
+      border: 1px solid #c7d2fe;
+    }
+ 
+    .badge-contributed {
+      background: #fdf4e7;
+      color: #7c5a1e;
+      border: 1px solid #f0d8a0;
+    }
+
     /* ── Teaching ── */
     .teach-block {
       background: var(--white);
