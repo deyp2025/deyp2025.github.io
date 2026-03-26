@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CV — Priyadarshi Dey</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy:       #0d1b2a;
+      --navy-mid:   #1b3352;
+      --gold:       #b8922a;
+      --gold-light: #d4ac55;
+      --cream:      #faf7f3;
+      --white:      #ffffff;
+      --border:     #e2ddd6;
+      --text:       #1a1a1a;
+      --muted:      #6b6560;
+      --link:       #1a4080;
+      --link-h:     #b8922a;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    a { color: var(--link); text-decoration: none; transition: color .18s; }
+    a:hover { color: var(--link-h); }
+
+    /* ── Header ── */
+    .cv-header {
+      background: var(--navy);
+      padding: 2.5rem 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cv-header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      border: 40px solid rgba(184,146,42,.09);
+      pointer-events: none;
+    }
+
+    .cv-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light) 50%, transparent);
+    }
+
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .cv-name {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: -.01em;
+      margin-bottom: .3rem;
+    }
+
+    .cv-title {
+      color: rgba(255,255,255,.72);
+      font-size: .9rem;
+      font-weight: 300;
+      line-height: 1.5;
+      margin-bottom: .6rem;
+    }
+
+    .cv-title strong { color: #fff; font-weight: 500; }
+
+    .cv-contact {
+      text-align: right;
+      font-size: .82rem;
+      color: rgba(255,255,255,.65);
+      line-height: 1.8;
+    }
+
+    .cv-contact a { color: rgba(255,255,255,.75); }
+    .cv-contact a:hover { color: var(--gold-light); }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.75) !important;
+      border: 1px solid rgba(255,255,255,.18);
+      padding: .4rem .9rem;
+      border-radius: 4px;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      margin-top: .8rem;
+      transition: background .18s, color .18s;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background: rgba(255,255,255,.18);
+      color: #fff !important;
+    }
+
+    /* ── Print / Download bar ── */
+    .action-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: .7rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .action-bar-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .action-bar p {
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    .action-btns { display: flex; gap: .6rem; }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .38rem .9rem;
+      border-radius: 4px;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .18s, color .18s;
+      border: none;
+    }
+
+    .btn-pdf {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .btn-pdf:hover { background: var(--navy-mid); }
+
+    .btn-print {
+      background: var(--cream);
+      color: var(--navy);
+      border: 1px solid var(--border);
+    }
+
+    .btn-print:hover { background: #ede8df; }
+
+    /* ── Main content ── */
+    .cv-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 3rem 4rem;
+    }
+
+    /* ── CV Section ── */
+    .cv-section {
+      margin-bottom: 2.2rem;
+    }
+
+    .cv-section-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--navy);
+      letter-spacing: .01em;
+      padding-bottom: .4rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .cv-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 2rem; height: 2px;
+      background: var(--gold);
+    }
+
+    /* ── Entry (employment/education) ── */
+    .cv-entry {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: .2rem 1rem;
+      margin-bottom: 1rem;
+      align-items: start;
+    }
+
+    .cv-entry:last-child { margin-bottom: 0; }
+
+    .entry-inst {
+      font-weight: 500;
+      color: var(--navy);
+      font-size: .95rem;
+    }
+
+    .entry-role {
+      font-size: .88rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .entry-date {
+      font-size: .82rem;
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: .04em;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .entry-location {
+      font-size: .82rem;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .entry-details {
+      grid-column: 1 / -1;
+      margin-top: .3rem;
+    }
+
+    .entry-details li {
+      font-size: .85rem;
+      color: #333;
+      margin-bottom: .2rem;
+      margin-left: 1rem;
+    }
+
+    /* ── Publication list ── */
+    .pub-list { list-style: none; padding: 0; }
+
+    .pub-list li {
+      padding: .8rem 1rem;
+      border-left: 3px solid var(--gold);
+      background: var(--white);
+      border-radius: 0 4px 4px 0;
+      margin-bottom: .7rem;
+      font-size: .88rem;
+      line-height: 1.6;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+    }
+
+    .pub-list li:last-child { margin-bottom: 0; }
+
+    .pub-subsection {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: .82rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      margin-bottom: .6rem;
+      margin-top: 1rem;
+    }
+
+    .pub-subsection:first-child { margin-top: 0; }
+
+    /* ── Award / talk list ── */
+    .item-list { list-style: none; padding: 0; }
+
+    .item-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding: .5rem 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+
+    .item-list li:last-child { border-bottom: none; }
+
+    .item-text { flex: 1; color: #222; }
+    .item-date { white-space: nowrap; color: var(--muted); font-size: .82rem; }
+
+    /* ── Teaching table ── */
+    .teach-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem 1.2rem;
+      margin-bottom: .8rem;
+    }
+
+    .teach-inst {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: .92rem;
+      margin-bottom: .1rem;
+    }
+
+    .teach-period {
+      font-size: .75rem;
+      color: var(--gold);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: .6rem;
+    }
+
+    .teach-courses { list-style: none; padding: 0; }
+
+    .teach-courses li {
+      display: flex;
+      justify-content: space-between;
+      font-size: .85rem;
+      color: #333;
+      padding: .22rem .2rem;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .teach-courses li:last-child { border-bottom: none; }
+    .course-sem { color: var(--muted); font-size: .8rem; white-space: nowrap; margin-left: .5rem; }
+
+    /* ── References ── */
+    .ref-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: .8rem;
+    }
+
+    .ref-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: .8rem 1rem;
+      font-size: .85rem;
+      line-height: 1.6;
+    }
+
+    .ref-name { font-weight: 600; color: var(--navy); }
+    .ref-role { color: var(--muted); font-size: .82rem; }
+
+    /* ── Print styles ── */
+    @media print {
+      .action-bar, .back-btn { display: none; }
+      body { background: #fff; font-size: 11pt; }
+      .cv-header { background: #fff; color: #000; padding: 0 0 1rem; border-bottom: 2pt solid #000; }
+      .cv-name { color: #000; font-size: 20pt; }
+      .cv-title, .cv-contact { color: #333; }
+      .cv-body { padding: 1rem 0; }
+      .cv-section { page-break-inside: avoid; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .cv-header { padding: 2rem 1.5rem 1.5rem; }
+      .header-inner { grid-template-columns: 1fr; }
+      .cv-contact { text-align: left; }
+      .cv-body { padding: 2rem 1.5rem 3rem; }
+      .action-bar { padding: .7rem 1.5rem; }
+      .cv-entry { grid-template-columns: 1fr; }
+      .entry-date, .entry-location { text-align: left; }
+      .ref-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<div class="cv-header">
+  <div class="header-inner">
+    <div>
+      <div class="cv-name">Priyadarshi Dey</div>
+      <div class="cv-title">
+        <strong>Assistant Professor of Mathematics</strong><br>
+        Millsaps College &nbsp;&middot;&nbsp; Jackson, MS
+      </div>
+      <a class="back-btn" href="https://deyp2025.github.io">
+        ← Back to Website
+      </a>
+    </div>
+    <div class="cv-contact">
+      <div>(+1) 901 246 9829</div>
+      <div><a href="mailto:deyp@millsaps.edu">deyp@millsaps.edu</a></div>
+      <div><a href="https://deyp2025.github.io">deyp2025.github.io</a></div>
+      <div>
+        <a href="https://scholar.google.com/citations?user=Pl2Ei5kAAAAJ&hl=en">Google Scholar</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://orcid.org/0000-0002-1064-7735">ORCID</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://www.researchgate.net/profile/Priyadarshi-Dey-2">ResearchGate</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Action bar ── -->
+<div class="action-bar">
+  <div class="action-bar-inner">
+    <p>Curriculum Vitae &nbsp;&middot;&nbsp; Last updated March 2026</p>
+    <div class="action-btns">
+      <button class="action-btn btn-print" onclick="window.print()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print
+      </button>
+      <a class="action-btn btn-pdf" href="cv.pdf" target="_blank">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ── CV Body ── -->
+<div class="cv-body">
+
+  <!-- Employment -->
+  <div class="cv-section">
+    <h2 class="cv-section-title">Employment</h2>
+
+    <div class="cv-entry">
+      <div class="entry-inst">Millsaps College</div>
+      <div class="entry-date">Aug 2025 – Present</div>
+      <div class="entry-role">Assistant Professor of Mathematics</div>
+      <div class="entry-location">Jackson, MS</div>
+    </div>
+
+    <div class="cv-entry">
+      <div class="entry-inst">Kenyon College</div>
+      <div class="entry-date">Aug 2023 – Jul 2025</div>
+      <div class="entry-role">Visiting Assistant Professor</div>
+      <div class="entry-location">Gambier, OH</div>
+    </div>
+
+    <div class="cv-entry">
+      <div class="entry-inst">University of South Florida</div>
+      <div class="entry-date">Aug 2022 – Jul 2023</div>
+      <div class="entry-role">Visiting Assistant Professor</div>
+      <div class="entry-location">Tampa, FL</div>
+    </div>
+
+    <div class="cv-entry">
+      <div class="entry-inst">Virginia Tech</div>
+      <div class="entry-date">Aug 2021 – Jul 2022</div>
+      <div class="entry-role">Instructor of Mathematics</div>
+      <div class="entry-location">Blacksburg, VA</div>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="cv-section">
+    <h2 class="cv-section-title">Education</h2>
+
+    <div class="cv-entry">
+      <div class="entry-inst">University of Memphis</div>
+      <div class="entry-date">2016 – 2021</div>
+      <div class="entry-role">Ph.D. in Mathematics</div>
+      <div class="entry-location">Memphis, TN</div>
+      <div class="entry-details">
+        <ul>
+          <li>Advisor: <a href="https://www.memphis.edu/msci/people/mbotelho.php">Dr. Fernanda Botelho</a></li>
+          <li>Thesis: <a href="https://drive.google.com/file/d/1OGG7XLIM4OvF44xK8ACHLinzv1PLUJK9/view?usp=sharing">Hermitian Projections and Geometric Properties of Banach Spaces</a></li>
+          <li>Research area: Operator Theory, Functional Analysis, Banach Space Geometry</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-entry">
+      <div class="entry-inst">Indian Institute of Science Education and Research, Kolkata</div>
+      <div class="entry-date">2014 – 2016</div>
+      <div class="entry-role">M.Sc. in Mathematics</div>
+      <div class="entry-location">Kolkata, India</div>
+    </div>
+
+    <div class="cv-entry">
+      <div class="entry-inst">University of Calcutta</div>
+      <div class="entry-date">2011 – 2014</div>
+      <div class="entry-role">B.Sc. in Mathematics</div>
+      <div class="entry-location">Kolkata, India</div>
+    </div>
+  </div>
+
+  <!-- Research Articles -->
+  <div class="cv-section">
+    <h2 class="cv-section-title">Research Articles</h2>
+
+    <div class="pub-subsection">Published</div>
+    <ul class="pub-list">
+      <li>
+        Botelho, F., <strong>Dey, P.</strong>, Easley, Z.
+        Projections in the convex hull of isometries on Absolutely Continuous Function Spaces.
+        <em>Journal of Mathematical Analysis and Applications</em>, 2023.
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0022247X22008897">[Journal]</a>
+      </li>
+      <li>
+        Botelho, F., <strong>Dey, P.</strong>, Ilišević, D.
+        Hermitian projections on some Banach spaces and related topics.
+        <em>Linear Algebra and Its Applications</em>, 2020.
+        <a href="https://www.sciencedirect.com/science/article/pii/S0024379520301701">[Journal]</a>
+      </li>
+    </ul>
+
+    <div class="pub-subsection">Preprints</div>
+    <ul class="pub-list">
+      <li>
+        <strong>Dey, P.</strong>, Easley, Z., Monika [Last Name].
+        Projections in the Algebra Generated by an <em>n</em>-potent Operator.
+        Preprint, 2025.
+        <a href="https://arxiv.org/abs/2512.22497">[arXiv]</a>
+      </li>
+      <li>
+        Amrutam, T., <strong>Dey, P.</strong>, Monika [Last Name].
+        On the Convergence of Numerical Index via Operator Openings and Ultraproducts.
+        Preprint, 2026.
+        <a href="https://arxiv.org/abs/2603.21311">[arXiv]</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Teaching -->
+  <div class="cv-section">
+    <h2 class="cv-section-title">Teaching</h2>
+
+    <div class="teach-block">
+      <div class="teach-inst">Millsaps College &nbsp;|&nbsp; Department of Mathematics</div>
+      <div class="teach-period">2025 – Present</div>
+      <ul class="teach-courses">
+        <li><span>MATH 4630: Real Analysis</span>                        <span class="course-sem">Spring 2026, Spring 2027</span></li>
+        <li><span>MATH 4510: Mathematical Statistics</span>              <span class="course-sem">Fall 2026</span></li>
+        <li><span>MATH 2310: Introduction to Advanced Mathematics</span> <span class="course-sem">Fall 2025</span></li>
+        <li><span>MATH 1220: Analytical Geometry &amp; Calculus I</span> <span class="course-sem">Fall 2025 (&times;2)</span></li>
+        <li><span>MATH 1150: Elementary Statistics</span>                <span class="course-sem">Spring 2026 (&times;2), Fall 2026 (&times;2), Spring 2027</span></li>
+      </ul>
+    </div>
+
+    <div class="teach-block">
+      <div class="teach-inst">Kenyon College &nbsp;|&nbsp; Department of Mathematics &amp; Statistics</div>
+      <div class="teach-period">2023 – 2025</div>
+      <ul class="teach-courses">
+        <li><span>MATH 341: Real Analysis I</span>        <span class="course-sem">Fall 2024</span></li>
+        <li><span>MATH 342: Real Analysis II</span>       <span class="course-sem">Spring 2025</span></li>
+        <li><span>MATH 224: Linear Algebra</span>         <span class="course-sem">Fall 2024, Fall 2023, Spring 2024</span></li>
+        <li><span>STAT 106: Elements of Statistics</span> <span class="course-sem">Spring 2025 (&times;2), Spring 2024 (&times;2)</span></li>
+        <li><span>MATH 112: Calculus II</span>            <span class="course-sem">Fall 2023</span></li>
+      </ul>
+    </div>
+
+    <div class="teach-block">
+      <div class="teach-inst">University of South Florida &amp; Virginia Tech</div>
+      <div class="teach-period">2021 – 2023</div>
+      <ul class="teach-courses">
+        <li><span>Linear Algebra, Engineering Calculus II, Calculus II</span><span class="course-sem">USF, 2022–23</span></li>
+        <li><span>Calculus of a Single Variable</span>                        <span class="course-sem">Virginia Tech, 2021–22</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Student Mentoring -->
+  <div class="cv-section">
+    <h2 class="cv-section-title">Student Mentoring</h2>
+    <ul class="item-list">
+      <li>
+        <span class="item-text">Senior Capstone Advisor, <em>Investigating the Derivation of Real and Complex Fourier Coefficients</em>, Department of Mathematics &amp; Statistics, Kenyon College.</span>
+        <span class="item-date">2023</span>
+      </li>
+      <li>
+        <span class="item-text">Graduate Student Mentor, NSF grant <em>Promoting Success in Undergraduate Mathematics Program</em> (PI: John Haddock), University of Memphis.</span>
+        <span class="item-date">2019–2021</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Awards and Honors -->
+  <div class="cv-section">
+    <h2 class="cv-section-title">Awards &amp; Honors</h2>
+    <ul class="item-list">
+      <li>
+        <span class="item-text">Recipient of <a href="https://www.mathprograms.org/db/programs/1795">AMS–ICM 2026 Travel Grant</a> (funded by NSF), for early career mathematicians to attend ICM 2026, Philadelphia, PA.</span>
+        <span class="item-date">Spring 2026</span>
+      </li>
+      <li>
+        <span class="item-text">Recipient of <a href="https://www.ams.org/grants-awards/travel-grants/mca">AMS–MCA 2025 Travel Grant</a> (funded by NSF), Mathematical Congress of the Americas, University of Miami, FL. Grant declined due to family reasons.</span>
+        <span class="item-date">Summer 2025</span>
+      </li>
+      <li>
+        <span class="item-text">Recipient of <a href="https://www.ams.org/programs/travel-grants/puifac-tg">JMM Travel Grant for PUI Faculty</a>, Joint Mathematics Meetings 2024.</span>
+        <span class="item-date">Spring 2024</span>
+      </li>
+      <li>
+        <span class="item-text">Recipient of <a href="https://www.memphis.edu/msci/grad/awards.php">DMS 2021 Research Award</a> for excellent progress toward the doctoral degree, University of Memphis.</span>
+        <span class="item-date">Spring 2021</span>
+      </li>
+      <li>
+        <span class="item-text">Recipient of <a href="https://www.memphis.edu/msci/grad/awards.php">Outstanding 2021 Graduate Assistant Award</a>, University of Memphis.</span>
+        <span class="item-date">Spring 2021</span>
+      </li>
+      <li>
+        <span class="item-text">Invited to participate in the Summer Graduate School <a href="https://www.msri.org/summer_schools/956">Mathematics of Big Data: Sketching and (Multi-)Linear Algebra</a>, MSRI, Berkeley.</span>
+        <span class="item-date">Summer 2021</span>
+      </li>
+      <li>
+        <span class="item-text">Recipient of <a href="https://www.memphis.edu/msci/grad/awards.php">Cecil C. Rousseau Award</a> for excellent progress toward the doctoral degree and excellent teaching record, University of Memphis.</span>
+        <span class="item-date">Fall 2020</span>
+      </li>
+      <li>
+        <span class="item-text">Recipient of Travel Enrichment Fund, University of Memphis, for presenting at <a href="https://iwota2019.math.tecnico.ulisboa.pt/home">IWOTA 2019</a>.</span>
+        <span class="item-date">Summer 2019</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Invited Talks -->
+  <div class="cv-section">
+    <h2 class="cv-section-title">Invited Talks</h2>
+    <ul class="item-list">
+      <li>
+        <span class="item-text"><em>&ldquo;Projections and Isometries: Interconnections in Infinite-Dimensional Spaces.&rdquo;</em> <a href="https://www.oberlin.edu/events/mathematics-ohio-speaker-circuit-priyadarshi-dey">Ohio Speaker Circuit</a>, Oberlin College, Oberlin, OH.</span>
+        <span class="item-date">April 2025</span>
+      </li>
+      <li>
+        <span class="item-text"><em>&ldquo;Exploring Connections between Isometries and Projections on Infinite Dimensional Spaces.&rdquo;</em> <a href="https://www.kenyon.edu/academics/departments-and-majors/mathematics-statistics/math-mondays/">Math Mondays</a>, Kenyon College, Gambier, OH.</span>
+        <span class="item-date">November 2023</span>
+      </li>
+      <li>
+        <span class="item-text"><em>&ldquo;Recent Results in Hermitian Projections on Banach Spaces.&rdquo;</em> <a href="https://www.memphis.edu/msci/news/odot.php">One Day in Operator Theory</a>, University of Memphis, Memphis, TN.</span>
+        <span class="item-date">February 2020</span>
+      </li>
+      <li>
+        <span class="item-text"><em>&ldquo;Hermitian Projections on Operator Spaces.&rdquo;</em> <a href="https://iwota2019.math.tecnico.ulisboa.pt/home">IWOTA 2019</a>, University of Lisbon, Portugal.</span>
+        <span class="item-date">July 2019</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Contributed Talks -->
+  <div class="cv-section">
+    <h2 class="cv-section-title">Contributed Talks</h2>
+    <ul class="item-list">
+      <li>
+        <span class="item-text"><em>&ldquo;Projections in the Algebra Generated by an <em>n</em>-Potent Operator.&rdquo;</em> <a href="https://sites.google.com/view/seam42/home">South Eastern Analysis Meeting (SEAM)</a>, University of Richmond, Richmond, VA.</span>
+        <span class="item-date">March 2026</span>
+      </li>
+      <li>
+        <span class="item-text"><em>&ldquo;A Class of Projections and Its Characterization on Banach Spaces.&rdquo;</em> <a href="https://jointmathematicsmeetings.org/jmm">New Faces in Operator Theory</a>, JMM 2025, Seattle, WA.</span>
+        <span class="item-date">January 2025</span>
+      </li>
+      <li>
+        <span class="item-text"><em>&ldquo;Projections in the Combination of Powers of Operators of Finite Order.&rdquo;</em> <a href="https://meetings.ams.org/math/jmm2024/meetingapp.cgi/Session/8027">AMS Special Session on New Faces in Operator Theory</a>, JMM 2024, San Francisco, CA.</span>
+        <span class="item-date">January 2024</span>
+      </li>
+      <li>
+        <span class="item-text"><em>&ldquo;Projections in the Convex Hull of Surjective Isometries.&rdquo;</em> <a href="https://sites.google.com/view/oram12/home">Ohio River Analysis Meeting XII (ORAM)</a>, University of Cincinnati, Cincinnati, OH.</span>
+        <span class="item-date">March 2023</span>
+      </li>
+      <li>
+        <span class="item-text"><em>&ldquo;Hermitian Projections on Some Operator Spaces.&rdquo;</em> <a href="https://people.clas.ufl.edu/sam/seam-38/">38th South Eastern Analysis Meeting (SEAM)</a>, University of Florida, Gainesville, FL (held online).</span>
+        <span class="item-date">March 2022</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Professional Service -->
+  <div class="cv-section">
+    <h2 class="cv-section-title">Professional Service</h2>
+    <ul class="item-list">
+      <li>
+        <span class="item-text">Reviewer, <a href="https://mathscinet.ams.org/mathscinet/">Mathematical Reviews (MathSciNet)</a>, American Mathematical Society.</span>
+        <span class="item-date">2026–Present</span>
+      </li>
+      <li>
+        <span class="item-text">Referee, Journal of Contemporary Mathematics.</span>
+        <span class="item-date">Summer 2023</span>
+      </li>
+      <li>
+        <span class="item-text">Panel member, Undergraduate Honor System, Virginia Tech.</span>
+        <span class="item-date">Fall 2021</span>
+      </li>
+      <li>
+        <span class="item-text">Facilitator, One Day in Operator Theory conference, University of Memphis.</span>
+        <span class="item-date">February 2020</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- References -->
+  <div class="cv-section">
+    <h2 class="cv-section-title">References</h2>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <div class="ref-name">Fernanda Botelho</div>
+        <div class="ref-role">Professor Emeritus, University of Memphis</div>
+        <div><a href="mailto:mbotelho@memphis.edu">mbotelho@memphis.edu</a></div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-name">Catherine Beneteau</div>
+        <div class="ref-role">Professor, University of South Florida</div>
+        <div><a href="mailto:cbenetea@usf.edu">cbenetea@usf.edu</a></div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-name">Erin Leatherman</div>
+        <div class="ref-role">Associate Professor, Kenyon College</div>
+        <div><a href="mailto:leatherman1@kenyon.edu">leatherman1@kenyon.edu</a></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end cv-body -->
+
+<footer style="text-align:center;padding:1.5rem;font-size:.78rem;color:var(--muted);border-top:1px solid var(--border);">
+  &copy; <span id="yr"></span> Priyadarshi Dey &nbsp;&middot;&nbsp;
+  <a href="https://deyp2025.github.io">deyp2025.github.io</a>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
