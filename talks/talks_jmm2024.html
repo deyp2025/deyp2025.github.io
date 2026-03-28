@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projections in the Combination of Operators of Finite Orders | Priyadarshi Dey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[
+    {left:'$$',right:'$$',display:true},
+    {left:'$',right:'$',display:false}
+  ]});"></script>
+<style>
+  :root {
+    --navy:#1a2744; --gold:#b8943f; --light:#f7f5f0;
+    --white:#fff; --border:#ddd8ce; --accent:#2c4a8a; --muted:#6b6b6b;
+    --blue:#e8f0fb; --green:#e8f5ec; --orange:#fdf3e3; --purple:#f2ecfb; --red:#fbeaea;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'EB Garamond',Georgia,serif;font-size:17px;line-height:1.8;
+       color:#2a2a2a;background:var(--light)}
+  header{background:var(--navy);color:white;padding:2.5rem 2rem 2rem;
+         border-bottom:4px solid var(--gold)}
+  .hinner{max-width:860px;margin:0 auto}
+  .inst{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;
+        letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+  header h1{font-size:1.75rem;font-weight:600;line-height:1.3;margin-bottom:.5rem}
+  .meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+             gap:.5rem;margin-top:.8rem}
+  .meta-item{font-family:'Source Sans 3',sans-serif;font-size:13px}
+  .meta-label{color:var(--gold);font-weight:600;font-size:11px;
+               letter-spacing:.08em;text-transform:uppercase;display:block}
+  .meta-value{color:rgba(255,255,255,.85)}
+  .banner{background:#eef2fa;border:1px solid #c5d0e8;border-radius:6px;
+          padding:.75rem 1.4rem;max-width:860px;margin:1.2rem auto 0;
+          font-family:'Source Sans 3',sans-serif;font-size:14px;color:var(--accent);
+          display:flex;align-items:center;gap:.8rem}
+  .banner a{color:var(--accent);font-weight:600;text-decoration:none}
+  .banner a:hover{text-decoration:underline}
+  main{max-width:860px;margin:0 auto;padding:2rem 2rem 4rem}
+  h2{font-family:'Source Sans 3',sans-serif;font-size:.75rem;font-weight:600;
+     letter-spacing:.15em;text-transform:uppercase;color:var(--gold);
+     margin-top:2.5rem;margin-bottom:.8rem;padding-bottom:.35rem;
+     border-bottom:1px solid var(--border)}
+  h2:first-of-type{margin-top:.5rem}
+  h3{font-family:'Source Sans 3',sans-serif;font-size:1rem;font-weight:600;
+     color:var(--navy);margin:1.3rem 0 .4rem}
+  p{margin:.65rem 0}
+  ul,ol{padding-left:1.5rem;margin:.5rem 0}
+  li{margin-bottom:.5rem}
+  .defbox{background:var(--blue);border-left:3px solid #2c6fad;border-radius:0 6px 6px 0;padding:1rem 1.2rem;margin:1rem 0}
+  .thmbox{background:var(--green);border-left:3px solid #2a7a42;border-radius:0 6px 6px 0;padding:1rem 1.2rem;margin:1rem 0}
+  .corbox{background:#f0faf3;border-left:3px solid #3a9a52;border-radius:0 6px 6px 0;padding:1rem 1.2rem;margin:1rem 0}
+  .alertbox{background:var(--red);border-left:3px solid #b41414;border-radius:0 6px 6px 0;padding:1rem 1.2rem;margin:1rem 0}
+  .exbox{background:var(--purple);border-left:3px solid #7c40b8;border-radius:0 6px 6px 0;padding:1rem 1.2rem;margin:1rem 0}
+  .warnbox{background:var(--orange);border-left:3px solid #c07020;border-radius:0 6px 6px 0;padding:1rem 1.2rem;margin:1rem 0}
+  .resolvedbox{background:#e8f5ec;border:1.5px solid #2a7a42;border-radius:6px;padding:1rem 1.2rem;margin:1rem 0}
+  .boxlabel{font-family:'Source Sans 3',sans-serif;font-size:.7rem;font-weight:600;
+            letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;display:block}
+  .defbox .boxlabel{color:#2c6fad}
+  .thmbox .boxlabel{color:#2a7a42}
+  .corbox .boxlabel{color:#3a9a52}
+  .alertbox .boxlabel{color:#b41414}
+  .exbox .boxlabel{color:#7c40b8}
+  .warnbox .boxlabel{color:#c07020}
+  .resolvedbox .boxlabel{color:#2a7a42}
+  table{width:100%;border-collapse:collapse;font-family:'Source Sans 3',sans-serif;font-size:14.5px;margin:1rem 0}
+  th{background:var(--navy);color:white;padding:.5rem .9rem;text-align:center;font-size:13px}
+  td{padding:.5rem .9rem;border-bottom:1px solid var(--border);text-align:center}
+  tr:nth-child(even) td{background:#f2efe8}
+  .ref-list{list-style:none;padding:0}
+  .ref-list li{padding:.5rem .8rem;border-bottom:1px solid var(--border);font-size:.9rem}
+  .ref-list li:last-child{border-bottom:none}
+  .ref-author{font-weight:600;color:var(--navy)}
+  .ref-journal{font-style:italic;color:var(--muted)}
+  footer{text-align:center;padding:1.2rem;font-family:'Source Sans 3',sans-serif;
+         font-size:13px;color:var(--muted);border-top:1px solid var(--border);
+         max-width:860px;margin:0 auto}
+  a{color:var(--accent)}
+  strong{font-weight:600}
+  .tag{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:.68rem;
+       font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+       padding:.18em .6em;border-radius:3px;margin-left:.4rem;vertical-align:middle}
+  .tag-contributed{background:#fdf4e7;color:#7c5a1e;border:1px solid #f0d8a0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hinner">
+    <div class="inst">Department of Mathematics &amp; Statistics, Kenyon College &mdash; Research Talk</div>
+    <h1>Projections in the Combination of Operators of Finite Orders
+      <span class="tag tag-contributed">Contributed Talk</span>
+    </h1>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <span class="meta-label">Speaker</span>
+        <span class="meta-value">Priyadarshi Dey</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Venue</span>
+        <span class="meta-value">AMS Special Session on New Faces in Operator Theory, JMM 2024, San Francisco, CA</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Date</span>
+        <span class="meta-value">January 2024</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Note</span>
+        <span class="meta-value">The open question posed here was resolved in arXiv:2512.22497 (2025)</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="banner">
+  &#128196;&nbsp;
+  <span>
+    <a href="talks_jmm2024.pdf">Download Slides (PDF)</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="https://arxiv.org/abs/2512.22497" target="_blank" rel="noopener">Resolution: arXiv:2512.22497</a>
+  </span>
+</div>
+
+<main>
+
+  <h2>Abstract</h2>
+  <p>
+    This talk investigates when a linear combination of powers of an $n$-potent operator $T$
+    (satisfying $T^n = T$) yields a projection. Starting from classical examples of projections
+    as averages of isometric reflections, we develop the theory of "basic projections" —
+    the fundamental building blocks — and enumerate all projections in
+    $\operatorname{span}\{T, T^2, \ldots, T^{n-1}\}$ for small values of $n$.
+    The talk concludes with an open question that was subsequently resolved in joint work
+    with Easley and Monika (arXiv:2512.22497, 2025).
+  </p>
+
+  <h2>Motivation: Projections and Isometries</h2>
+
+  <p>Projections and isometries are central objects in functional analysis for complementary reasons:</p>
+  <ul>
+    <li>Projections have a simple spectral structure (eigenvalues only $0$ and $1$) and arise as building blocks in the Spectral Theorem. Orthogonal projections appear in linear regression, QR decomposition, and multivariate analysis.</li>
+    <li>Isometries are distance-preserving maps — the "isomorphisms" of metric geometry — and preserve many deep structural properties.</li>
+    <li>The two are interconnected: averages of isometries often produce projections, and projections often arise from isometric structure.</li>
+  </ul>
+
+  <h2>Definitions</h2>
+
+  <div class="defbox">
+    <span class="boxlabel">Definition — Isometry</span>
+    <p>A linear map $T \colon X \to Y$ between normed spaces is an <strong>isometry</strong> if $\|Tx\| = \|x\|$ for every $x \in X$.</p>
+  </div>
+
+  <div class="defbox">
+    <span class="boxlabel">Definition — Projection and Reflection</span>
+    <p>A bounded operator $P \colon X \to X$ is a <strong>projection</strong> if $P^2 = P$.</p>
+    <p style="margin-top:.5rem">A bounded operator $R \colon X \to X$ is a <strong>reflection</strong> if $R^2 = I$.</p>
+  </div>
+
+  <h2>Projections as Averages of Reflections</h2>
+
+  <div class="exbox">
+    <span class="boxlabel">Example — Finite Dimensional</span>
+    <p>On $\mathbb{R}^3$ with $\|\cdot\|_\infty$, define $R(x_1,x_2,x_3) = (x_2,x_1,x_3)$. Then $R^2 = I$ and $R$ is an isometry. The average
+    $$P = \tfrac{1}{2}(I+R) \colon (x_1,x_2,x_3) \mapsto \tfrac{1}{2}(x_1+x_2,\, x_1+x_2,\, 2x_3)$$
+    is a projection.</p>
+  </div>
+
+  <div class="exbox">
+    <span class="boxlabel">Example — Infinite Dimensional</span>
+    <p>On $C[0,1]$, define $Rf(t) = f(1-t)$. Then $R^2 = I$ and $R$ is an isometry. The average
+    $$P(f)(t) = \tfrac{1}{2}(f(t) + f(1-t))$$
+    is a projection.</p>
+    <p style="margin-top:.5rem"><strong>General principle:</strong> If $R$ is an isometric reflection, then $P = \frac{1}{2}(I+R)$ is a projection.</p>
+  </div>
+
+  <div class="alertbox">
+    <span class="boxlabel">The Converse Fails</span>
+    <p>Not every projection arises as $\frac{1}{2}(I+R)$. On $\mathbb{R}^3$ with $\|\cdot\|_\infty$, the projection $P(x_1,x_2,x_3) = (x_1+x_2, 0, x_3)$ would require
+    $R(x_1,x_2,x_3) = (x_1+2x_2,-x_2,x_3)$, which is not an isometry.</p>
+  </div>
+
+  <h2>Projections in the Convex Hull of Periodic Operators</h2>
+
+  <div class="thmbox">
+    <span class="boxlabel">Theorem — Botelho, Dey, Easley (JMAA, 2023)</span>
+    <p>For two isometries $T_0, T_1$ and positive $\lambda_0, \lambda_1$ with $\lambda_0 + \lambda_1 = 1$: if $Q = \lambda_0 T_0 + \lambda_1 T_1$ is a projection ($Q \neq I$), then $\lambda_0 = \lambda_1 = \frac{1}{2}$.</p>
+  </div>
+
+  <div class="thmbox">
+    <span class="boxlabel">Theorem — Botelho, Dey, Easley (JMAA, 2023)</span>
+    <p>For $T^n = I$ and positive $\lambda_0, \ldots, \lambda_{n-1}$ summing to $1$: if
+    $Q = \lambda_0 I + \lambda_1 T + \cdots + \lambda_{n-1} T^{n-1}$ is a projection, then
+    $\lambda_0 = \cdots = \lambda_{n-1} = \dfrac{1}{n}$.</p>
+  </div>
+
+  <h2>The $n$-Potent Problem: Basic Projections</h2>
+
+  <div class="defbox">
+    <span class="boxlabel">Definition — $n$-Potent Operator</span>
+    <p>An operator $T$ is <strong>$n$-potent</strong> if $T^n = T$.</p>
+    <p style="margin-top:.4rem"><strong>Examples:</strong> projections ($n=2$), tripotents ($n=3$), periodic operators $T^m=I$ ($n=m+1$).</p>
+  </div>
+
+  <div class="defbox">
+    <span class="boxlabel">Definition — Basic Projection</span>
+    <p>Let $T^{k+1} = T$ and $\lambda$ be a $k$-th root of unity. The projection
+    $$Q_\lambda = \frac{1}{k}\sum_{i=1}^{k} \lambda^{-i} T^i$$
+    is called a <strong>basic projection</strong>.</p>
+  </div>
+
+  <h3>Classification for small $n$</h3>
+
+  <p><strong>$n=2$</strong> ($T^2 = T$): $Q = a_1 T$ is a projection $\Leftrightarrow$ $a_1 \in \{0,1\}$. Only projections: $0$ and $T$.</p>
+
+  <p><strong>$n=3$</strong> ($T^3 = T$): $Q = a_1 T + a_2 T^2$ is a projection $\Leftrightarrow$ $Q \in \left\{0,\; \dfrac{T+T^2}{2},\; \dfrac{-T+T^2}{2},\; T^2\right\}$.</p>
+
+  <div class="exbox">
+    <span class="boxlabel">Complete List for $n=4$ ($T^4=T$, $\omega = \frac{-1+\sqrt{3}i}{2}$)</span>
+    <table>
+      <tr><th>#</th><th>Expression</th><th>Type</th></tr>
+      <tr><td>1</td><td>$0$</td><td>trivial</td></tr>
+      <tr><td>2</td><td>$\frac{1}{3}(T+T^2+T^3)$</td><td>basic</td></tr>
+      <tr><td>3</td><td>$\frac{1}{3}(\omega T+\omega^2 T^2+T^3)$</td><td>basic</td></tr>
+      <tr><td>4</td><td>$\frac{1}{3}(\omega^2 T+\omega T^2+T^3)$</td><td>basic</td></tr>
+      <tr><td>5</td><td>$\alpha T+\beta T^2+\frac{2}{3}T^3$</td><td>#2+#3</td></tr>
+      <tr><td>6</td><td>$\beta T+\alpha T^2+\frac{2}{3}T^3$</td><td>#2+#4</td></tr>
+      <tr><td>7</td><td>$\frac{1}{3}(-T-T^2+2T^3)$</td><td>#3+#4</td></tr>
+      <tr><td>8</td><td>$T^3$</td><td>sum of all basic</td></tr>
+    </table>
+    <p style="font-size:.88rem;margin-top:.4rem">where $\alpha = \frac{1+\sqrt{3}i}{6}$, $\beta = \frac{1-\sqrt{3}i}{6}$, $\omega = \frac{-1+\sqrt{3}i}{2}$. Exactly $2^3 = 8$ projections.</p>
+  </div>
+
+  <h2>The Open Question and Its Resolution</h2>
+
+  <div class="warnbox">
+    <span class="boxlabel">Open Question (posed in this talk)</span>
+    <p>For an $n$-potent operator $T$, is it possible to classify all projections in
+    $\operatorname{span}\{T, T^2, \ldots, T^{n-1}\}$ via the basic projections?</p>
+  </div>
+
+  <div class="resolvedbox">
+    <span class="boxlabel" style="color:#2a7a42">Resolved — Dey, Easley, Monika (arXiv:2512.22497, 2025)</span>
+    <p><strong>Yes.</strong> Every projection in $\operatorname{comb}(T)$ is uniquely a sum $P_S = \sum_{\lambda \in S} P_{\{\lambda\}}$ of Riesz projections indexed by a subset $S \subseteq \sigma(T) \setminus \{0\}$. The full family forms a Boolean algebra with exactly $2^{|\sigma_0(T)|}$ elements — consistent with the count of $8 = 2^3$ for $n=4$ above.</p>
+    <p style="margin-top:.5rem"><a href="https://arxiv.org/abs/2512.22497" target="_blank">arXiv:2512.22497 [math.FA]</a></p>
+  </div>
+
+  <h2>References</h2>
+  <ul class="ref-list">
+    <li><span class="ref-author">Botelho, F., Dey, P. &amp; Easley, Z.</span> — Projections in the convex hull of isometries on absolutely continuous function spaces. <span class="ref-journal">J. Math. Anal. Appl.</span>, 2023. <a href="https://www.sciencedirect.com/science/article/abs/pii/S0022247X22008897" target="_blank">[Journal]</a></li>
+    <li><span class="ref-author">Dey, P., Easley, Z. &amp; Monika</span> — Projections in the algebra generated by an $n$-potent operator. Preprint, 2025. <a href="https://arxiv.org/abs/2512.22497" target="_blank">[arXiv:2512.22497]</a></li>
+  </ul>
+
+</main>
+
+<footer>
+  Priyadarshi Dey &nbsp;&bull;&nbsp; Department of Mathematics, Millsaps College &nbsp;&bull;&nbsp;
+  <a href="mailto:deyp@millsaps.edu">deyp@millsaps.edu</a> &nbsp;&bull;&nbsp;
+  <a href="https://deyp2025.github.io" target="_blank">deyp2025.github.io</a>
+</footer>
+
+</body>
+</html>
