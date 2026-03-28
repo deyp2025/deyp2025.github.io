@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermitian Projections on Some Operator Spaces | Priyadarshi Dey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[
+    {left:'$$',right:'$$',display:true},
+    {left:'$',right:'$',display:false}
+  ]});"></script>
+<style>
+  :root {
+    --navy:#1a2744; --gold:#b8943f; --light:#f7f5f0;
+    --white:#fff; --border:#ddd8ce; --accent:#2c4a8a; --muted:#6b6b6b;
+    --blue:#e8f0fb; --green:#e8f5ec; --orange:#fdf3e3; --purple:#f2ecfb; --red:#fbeaea;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'EB Garamond',Georgia,serif;font-size:17px;line-height:1.8;
+       color:#2a2a2a;background:var(--light)}
+  header{background:var(--navy);color:white;padding:2.5rem 2rem 2rem;
+         border-bottom:4px solid var(--gold)}
+  .hinner{max-width:860px;margin:0 auto}
+  .inst{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;
+        letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+  header h1{font-size:1.75rem;font-weight:600;line-height:1.3;margin-bottom:.5rem}
+  .tagline{font-style:italic;color:rgba(255,255,255,.65);font-size:1rem;margin-bottom:.7rem}
+  .meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+             gap:.5rem;margin-top:.8rem}
+  .meta-item{font-family:'Source Sans 3',sans-serif;font-size:13px}
+  .meta-label{color:var(--gold);font-weight:600;font-size:11px;
+               letter-spacing:.08em;text-transform:uppercase;display:block}
+  .meta-value{color:rgba(255,255,255,.85)}
+  .banner{background:#eef2fa;border:1px solid #c5d0e8;border-radius:6px;
+          padding:.75rem 1.4rem;max-width:860px;margin:1.2rem auto 0;
+          font-family:'Source Sans 3',sans-serif;font-size:14px;color:var(--accent);
+          display:flex;align-items:center;gap:.8rem}
+  .banner a{color:var(--accent);font-weight:600;text-decoration:none}
+  .banner a:hover{text-decoration:underline}
+  main{max-width:860px;margin:0 auto;padding:2rem 2rem 4rem}
+  h2{font-family:'Source Sans 3',sans-serif;font-size:.75rem;font-weight:600;
+     letter-spacing:.15em;text-transform:uppercase;color:var(--gold);
+     margin-top:2.5rem;margin-bottom:.8rem;padding-bottom:.35rem;
+     border-bottom:1px solid var(--border)}
+  h2:first-of-type{margin-top:.5rem}
+  h3{font-family:'Source Sans 3',sans-serif;font-size:1rem;font-weight:600;
+     color:var(--navy);margin:1.3rem 0 .4rem}
+  p{margin:.65rem 0}
+  ul,ol{padding-left:1.5rem;margin:.5rem 0}
+  li{margin-bottom:.5rem}
+  .defbox{background:var(--blue);border-left:3px solid #2c6fad;border-radius:0 6px 6px 0;
+          padding:1rem 1.2rem;margin:1rem 0}
+  .thmbox{background:var(--green);border-left:3px solid #2a7a42;border-radius:0 6px 6px 0;
+          padding:1rem 1.2rem;margin:1rem 0}
+  .corbox{background:#f0faf3;border-left:3px solid #3a9a52;border-radius:0 6px 6px 0;
+          padding:1rem 1.2rem;margin:1rem 0}
+  .propbox{background:#f5f0fb;border-left:3px solid #7040b0;border-radius:0 6px 6px 0;
+           padding:1rem 1.2rem;margin:1rem 0}
+  .alertbox{background:var(--red);border-left:3px solid #b41414;border-radius:0 6px 6px 0;
+            padding:1rem 1.2rem;margin:1rem 0}
+  .exbox{background:var(--purple);border-left:3px solid #7c40b8;border-radius:0 6px 6px 0;
+         padding:1rem 1.2rem;margin:1rem 0}
+  .warnbox{background:var(--orange);border-left:3px solid #c07020;border-radius:0 6px 6px 0;
+           padding:1rem 1.2rem;margin:1rem 0}
+  .boxlabel{font-family:'Source Sans 3',sans-serif;font-size:.7rem;font-weight:600;
+            letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;display:block}
+  .defbox .boxlabel{color:#2c6fad}
+  .thmbox .boxlabel{color:#2a7a42}
+  .corbox .boxlabel{color:#3a9a52}
+  .propbox .boxlabel{color:#7040b0}
+  .alertbox .boxlabel{color:#b41414}
+  .exbox .boxlabel{color:#7c40b8}
+  .warnbox .boxlabel{color:#c07020}
+  .ref-list{list-style:none;padding:0}
+  .ref-list li{padding:.5rem .8rem;border-bottom:1px solid var(--border);font-size:.9rem}
+  .ref-list li:last-child{border-bottom:none}
+  .ref-author{font-weight:600;color:var(--navy)}
+  .ref-journal{font-style:italic;color:var(--muted)}
+  footer{text-align:center;padding:1.2rem;font-family:'Source Sans 3',sans-serif;
+         font-size:13px;color:var(--muted);border-top:1px solid var(--border);
+         max-width:860px;margin:0 auto}
+  a{color:var(--accent)}
+  strong{font-weight:600}
+  .tag{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:.68rem;
+       font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+       padding:.18em .6em;border-radius:3px;margin-left:.4rem;vertical-align:middle}
+  .tag-contributed{background:#fdf4e7;color:#7c5a1e;border:1px solid #f0d8a0}
+  ol.proof-steps{padding-left:1.5rem}
+  ol.proof-steps li{margin-bottom:.7rem}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hinner">
+    <div class="inst">Department of Mathematics &amp; Statistics, Kenyon College &mdash; Research Talk</div>
+    <h1>Hermitian Projections on Some Operator Spaces
+      <span class="tag tag-contributed">Contributed Talk</span>
+    </h1>
+    <div class="tagline">Something old, something new, something borrowed, something blue</div>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <span class="meta-label">Speaker</span>
+        <span class="meta-value">Priyadarshi Dey</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Venue</span>
+        <span class="meta-value">New Faces in Operator Theory &amp; Function Theory, JMM 2025, Seattle, WA</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Date</span>
+        <span class="meta-value">January 2025</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Based on</span>
+        <span class="meta-value">Botelho, Dey, Ilišević — Linear Algebra Appl., 2020</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="banner">
+  &#128196;&nbsp;
+  <span>
+    <a href="talk_jmm2025.pdf">Download Slides (PDF)</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="https://www.sciencedirect.com/science/article/pii/S0024379520301701" target="_blank" rel="noopener">Journal Article (LAA, 2020)</a>
+  </span>
+</div>
+
+<main>
+
+  <!-- Abstract -->
+  <h2>Abstract</h2>
+  <p>
+    A projection $P$ on a complex Banach space $X$ is called a <strong>Hermitian projection</strong>
+    if $P + e^{it}(I-P)$ is an isometry for every $t \in \mathbb{R}$. This talk surveys and extends
+    the theory of Hermitian projections on classical operator spaces. Starting from the classical
+    results of Berkson–Sourour and Stachó–Zalar, we present new characterizations of Hermitian
+    projections on $C(K,E)$, $L^p(\Omega,X)$, and — our main result — on
+    $\mathcal{B}(X,Y)$ for ideal pairs $(X,Y)$.
+    The key tools are a theorem of Fong–Sourour on operator identities and the Khalil–Saleh
+    characterization of surjective isometries on $\mathcal{B}(X,Y)$.
+  </p>
+
+  <!-- Motivation -->
+  <h2>Introduction and Motivation</h2>
+
+  <div class="defbox">
+    <span class="boxlabel">Definition — Hermitian Operator</span>
+    <p>Let $X$ be a complex Banach space and $T \in \mathcal{B}(X)$. The operator $T$ is <strong>Hermitian</strong>
+    if $e^{itT}$ is an isometry for every $t \in \mathbb{R}$.</p>
+    <p style="margin-top:.5rem"><strong>Examples of trivial Hermitian operators:</strong> scalar multiples $Tx = \lambda x$ for $\lambda \in \mathbb{R}$.</p>
+  </div>
+
+  <div class="exbox">
+    <span class="boxlabel">Spaces with Only Trivial Hermitian Operators</span>
+    <p><em>Berkson, Sourour (Studia Math., 1974):</em> Hermitian operators are trivial on:</p>
+    <ul>
+      <li>$C^1[0,1]$ with $\|f\| = \|f\|_\infty + \|f'\|_\infty$</li>
+      <li>$\mathrm{AC}[0,1]$ with $\|f\| = \|f\|_\infty + \|f'\|_1$</li>
+      <li>$\mathrm{Lip}[0,1]$ with $\|f\| = \|f\|_\infty + \mathrm{ess\,sup}|f'|$</li>
+      <li>$H^p(\mathbb{D})$ for $1 \leq p \leq \infty$, $p \neq 2$</li>
+    </ul>
+  </div>
+
+  <div class="alertbox">
+    <span class="boxlabel">Example: Not a Hermitian Operator</span>
+    <p>On $C[0,1]$, consider $H(f)(x) = f(1-x)$. Taking $f(x) = x$:
+    $$e^{2\pi itH}(f)(x) = (\cos 2\pi t)\,x + i\sin 2\pi t\,(1-x).$$
+    For $t = \frac{1}{8}$: $\|e^{2\pi i\frac{1}{8}H}(f)\| = \frac{\sqrt{2}}{2} \neq \|f\|$.
+    So $H$ is <em>not</em> Hermitian.</p>
+  </div>
+
+  <div class="thmbox">
+    <span class="boxlabel">Theorem — Jamison (Linear Algebra Appl., 2007)</span>
+    <p>A projection $P$ on a complex Banach space $X$ is a <strong>Hermitian projection</strong>
+    if and only if $P + e^{it}(I-P)$ is an isometry for all $t \in \mathbb{R}$.</p>
+    <p style="margin-top:.5rem"><strong>Note:</strong> Every orthogonal projection on a Hilbert space is a Hermitian projection.</p>
+  </div>
+
+  <!-- Classical results -->
+  <h2>Hermitian Projections on Classical Operator Spaces</h2>
+
+  <div class="thmbox">
+    <span class="boxlabel">Theorem — Stachó and Zalar (Linear Algebra Appl., 2004)</span>
+    <ol>
+      <li>A Hermitian projection $P: \mathcal{B(H)} \to \mathcal{B(H)}$ has the form $x \mapsto Qx$ or $x \mapsto xQ$ for some $Q = Q^* = Q^2 \in \mathcal{B(H)}$.</li>
+      <li>A Hermitian projection $P: \mathcal{S(H)} \to \mathcal{S(H)}$ satisfies $P=0$ or $P=I$.</li>
+      <li>A Hermitian projection $P: \mathcal{A(H)} \to \mathcal{A(H)}$: there exists a unit vector $\alpha \in \mathcal{H}$ such that either $Px = Qx + xQ^T$ or $(I-P)x = Qx + xQ^T$ where $Q = \alpha \otimes \alpha$.</li>
+    </ol>
+  </div>
+
+  <div class="propbox">
+    <span class="boxlabel">Proposition — Dey, Botelho, Ilišević</span>
+    <p>Let $K$ be a compact Hausdorff space, $E$ a Banach space, and $T$ a Hermitian projection
+    on $C(K,E)$. Then there exists a map $t \mapsto A(t)$ from $K$ into $\mathcal{HP}(E)$ such that
+    $$TF(t) = A(t)F(t), \quad \text{for every } F \in C(K,E) \text{ and } t \in K,$$
+    where $\mathcal{HP}(E)$ denotes the space of all Hermitian projections on $E$.</p>
+  </div>
+
+  <div class="propbox">
+    <span class="boxlabel">Proposition — Dey, Botelho, Ilišević</span>
+    <p>Let $(\Omega,\Sigma,\mu)$ be a finite measure space and $X$ a separable Banach space.
+    A Hermitian operator $T$ on $L^p(\Omega,X)$, $1 \leq p < \infty$, $p \neq 2$, is a projection
+    if and only if there exists a strongly measurable $t \mapsto A(t)$ from $\Omega$ into $\mathcal{HP}(X)$ such that
+    $$(Tf)(t) = A(t)f(t), \quad \text{for every } f \in L^p(\Omega,X) \text{ and } t \in \Omega.$$</p>
+  </div>
+
+  <div class="corbox">
+    <span class="boxlabel">Corollary</span>
+    <p>Let $E$ be a complex symmetric sequence space different from $\ell^2$. Then $T$ on $E$ is a
+    Hermitian projection if and only if there exists $a = (a(k)) \in E$ with all entries in $\{0,1\}$
+    such that $Tx = ax = (a(k)x(k))$.</p>
+  </div>
+
+  <!-- Main result -->
+  <h2>Main Result: Hermitian Projections on $\mathcal{B}(X,Y)$</h2>
+
+  <div class="defbox">
+    <span class="boxlabel">Definition — Ideal Pair (Khalil, Saleh, 2003)</span>
+    <p>A pair of Banach spaces $(X,Y)$ is an <strong>ideal pair</strong> if:
+    $X$ and $Y$ are reflexive; $X$ and $Y^*$ are strictly convex; $X^*$ has the approximation property;
+    $\mathcal{K}(X,Y)$ is an $M$-ideal in $\mathcal{B}(X,Y)$.</p>
+    <p style="margin-top:.5rem"><strong>Example (Cohen, 1973):</strong> $(\ell^p, \ell^q)$ is an ideal pair for $1 < p \leq q < \infty$.</p>
+  </div>
+
+  <div class="thmbox">
+    <span class="boxlabel">Main Theorem — Dey, Botelho, Ilišević (LAA, 2020)</span>
+    <p>Let $(X,Y)$ be an ideal pair such that $X$ is not isometric to $Y^*$.
+    Then $P: \mathcal{B}(X,Y) \to \mathcal{B}(X,Y)$ is a Hermitian projection if and only if:</p>
+    <ol>
+      <li>Either there exists a Hermitian projection $Q \in \mathcal{B}(X)$ such that $P(A) = AQ$ for every $A \in \mathcal{B}(X,Y)$, or</li>
+      <li>there exists a Hermitian projection $R \in \mathcal{B}(Y)$ such that $P(A) = RA$ for every $A \in \mathcal{B}(X,Y)$.</li>
+    </ol>
+  </div>
+
+  <div class="corbox">
+    <span class="boxlabel">Corollary — Hilbert Space Case</span>
+    <p>Let $\mathcal{H}$, $\mathcal{K}$ be two non-isometric Hilbert spaces.
+    Then $P: \mathcal{B}(\mathcal{H},\mathcal{K}) \to \mathcal{B}(\mathcal{H},\mathcal{K})$ is a
+    Hermitian projection if and only if either $P(A) = AQ$ for some Hermitian projection
+    $Q \in \mathcal{B}(\mathcal{H})$, or $P(A) = RA$ for some Hermitian projection
+    $R \in \mathcal{B}(\mathcal{K})$.</p>
+  </div>
+
+  <!-- Proof sketch -->
+  <h2>Key Ingredients and Proof Sketch</h2>
+
+  <div class="warnbox">
+    <span class="boxlabel">Theorem — Fong, Sourour (C.J. Math., 1979)</span>
+    <p>If $\sum_{k=1}^m A_k T B_k = 0$ for all $T \in \mathcal{B}(X,Y)$, then either
+    $\{B_1,\ldots,B_m\}$ is linearly independent and $A_i = 0$ for every $i$,
+    or $\{B_1,\ldots,B_m\}$ is linearly dependent.</p>
+  </div>
+
+  <div class="warnbox">
+    <span class="boxlabel">Theorem — Khalil, Saleh (Proc. AMS, 2003)</span>
+    <p>Let $(X,Y)$ be an ideal pair with $X$ and $Y^*$ not isometric. Then $T: \mathcal{B}(X,Y) \to \mathcal{B}(X,Y)$ is a surjective isometry if and only if there are surjective isometries $U \in \mathcal{B}(Y)$ and $V \in \mathcal{B}(X)$ such that $T(f) = UfV$.</p>
+  </div>
+
+  <div class="exbox">
+    <span class="boxlabel">Proof Sketch</span>
+    <ol class="proof-steps">
+      <li>Given a Hermitian projection $T$ and $t \in (0,1)$, using Khalil–Saleh we obtain
+        $$Tf = \frac{U_t f V_t - e^{it}f}{1 - e^{it}}$$
+        with $U_t$, $V_t$ surjective isometries on $Y$ and $X$ respectively.</li>
+      <li>Since $T$ is a projection, for each $t$:
+        $$U_t^2 f V_t^2 - (1+e^{2\pi it}) U_t f V_t + e^{2\pi it} f = 0 \quad \text{for every } f \in \mathcal{B}(X,Y).$$</li>
+      <li>By Fong–Sourour, $\{V_t^2, V_t, I\}$ is linearly dependent for every $t$, which forces either $V_t = I$ or $U_t = I$, yielding the two cases of the theorem.</li>
+    </ol>
+  </div>
+
+  <!-- References -->
+  <h2>References</h2>
+  <ul class="ref-list">
+    <li><span class="ref-author">Berkson, E. &amp; Sourour, A.</span> — The hermitian operators on some Banach spaces. <span class="ref-journal">Studia Math.</span>, 1974.</li>
+    <li><span class="ref-author">Jamison, J.</span> — Bicircular projections on some Banach spaces. <span class="ref-journal">Linear Algebra Appl.</span>, 2007.</li>
+    <li><span class="ref-author">Stachó, L. &amp; Zalar, B.</span> — Bicircular projections on some matrix and operator spaces. <span class="ref-journal">Linear Algebra Appl.</span>, 2004.</li>
+    <li><span class="ref-author">Khalil, R. &amp; Saleh, A.</span> — Isometries of certain operator spaces. <span class="ref-journal">Proc. Amer. Math. Soc.</span>, 2003.</li>
+    <li><span class="ref-author">Fong, C.K. &amp; Sourour, A.</span> — On the operator identity $\sum A_k X B_k = 0$. <span class="ref-journal">Canad. J. Math.</span>, 1979.</li>
+    <li><span class="ref-author">Botelho, F., Dey, P. &amp; Ilišević, D.</span> — Hermitian projections on some Banach spaces and related topics. <span class="ref-journal">Linear Algebra and Its Applications</span>, 2020.
+      <a href="https://www.sciencedirect.com/science/article/pii/S0024379520301701" target="_blank">[Journal]</a></li>
+  </ul>
+
+</main>
+
+<footer>
+  Priyadarshi Dey &nbsp;&bull;&nbsp; Department of Mathematics, Millsaps College &nbsp;&bull;&nbsp;
+  <a href="mailto:deyp@millsaps.edu">deyp@millsaps.edu</a> &nbsp;&bull;&nbsp;
+  <a href="https://deyp2025.github.io" target="_blank">deyp2025.github.io</a>
+</footer>
+
+</body>
+</html>
