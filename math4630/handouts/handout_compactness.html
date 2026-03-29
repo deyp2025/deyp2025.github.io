@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATH 4630 — Compact Sets | Priyadarshi Dey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[
+    {left:'$$',right:'$$',display:true},
+    {left:'$',right:'$',display:false}
+  ]});"></script>
+<style>
+  :root {
+    --navy:#1a2744; --gold:#b8943f; --light:#f7f5f0;
+    --white:#fff; --border:#ddd8ce; --accent:#2c4a8a; --muted:#6b6b6b;
+    --blue:#e8f0fb; --green:#e8f5ec; --orange:#fdf3e3; --purple:#f2ecfb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'EB Garamond',Georgia,serif;font-size:17px;line-height:1.8;
+       color:#2a2a2a;background:var(--light)}
+  header{background:var(--navy);color:white;padding:2rem 2rem 1.5rem;
+         border-bottom:4px solid var(--gold)}
+  .hinner{max-width:860px;margin:0 auto}
+  .inst{font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:500;
+        letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+  header h1{font-size:1.9rem;font-weight:600;margin-bottom:.2rem}
+  header .meta{font-size:.95rem;color:#b0bbd4}
+  .banner{background:#eef2fa;border:1px solid #c5d0e8;border-radius:6px;
+          padding:.75rem 1.2rem;max-width:860px;margin:1.2rem auto 0;
+          font-family:'Source Sans 3',sans-serif;font-size:14px;color:var(--accent)}
+  .banner a{color:var(--accent);font-weight:600;text-decoration:none}
+  main{max-width:860px;margin:0 auto;padding:1.8rem 2rem 4rem}
+  h2{font-family:'Source Sans 3',sans-serif;font-size:.75rem;font-weight:600;
+     letter-spacing:.15em;text-transform:uppercase;color:var(--gold);
+     margin-top:2.2rem;margin-bottom:.7rem;padding-bottom:.35rem;
+     border-bottom:1px solid var(--border)}
+  h2:first-of-type{margin-top:.5rem}
+  .defbox{background:var(--blue);border-left:3px solid #2c6fad;border-radius:0 6px 6px 0;
+          padding:1rem 1.2rem;margin:1rem 0}
+  .thmbox{background:var(--green);border-left:3px solid #2a7a42;border-radius:0 6px 6px 0;
+          padding:1rem 1.2rem;margin:1rem 0}
+  .exbox{background:var(--purple);border-left:3px solid #7c40b8;border-radius:0 6px 6px 0;
+         padding:1rem 1.2rem;margin:1rem 0}
+  .warnbox{background:var(--orange);border-left:3px solid #c07020;border-radius:0 6px 6px 0;
+           padding:1rem 1.2rem;margin:1rem 0}
+  .boxlabel{font-family:'Source Sans 3',sans-serif;font-size:.72rem;font-weight:600;
+            letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;display:block}
+  .defbox .boxlabel{color:#2c6fad}
+  .thmbox .boxlabel{color:#2a7a42}
+  .exbox .boxlabel{color:#7c40b8}
+  .warnbox .boxlabel{color:#c07020}
+  p{margin:.6rem 0}
+  ol,ul{padding-left:1.5rem;margin:.5rem 0}
+  li{margin-bottom:.4rem}
+  table{width:100%;border-collapse:collapse;font-family:'Source Sans 3',sans-serif;
+        font-size:14.5px;margin:1rem 0}
+  th{background:var(--navy);color:white;padding:.5rem .9rem;text-align:center;font-size:13px}
+  td{padding:.5rem .9rem;border-bottom:1px solid var(--border);text-align:center}
+  tr:nth-child(even) td{background:#f2efe8}
+  .blank{display:inline-block;border-bottom:1.5px solid #555;min-width:3rem}
+  footer{text-align:center;padding:1.2rem;font-family:'Source Sans 3',sans-serif;
+         font-size:13px;color:var(--muted);border-top:1px solid var(--border);
+         max-width:860px;margin:0 auto}
+  a{color:var(--accent)}
+  strong{font-weight:600}
+</style>
+</head>
+<body>
+<header>
+  <div class="hinner">
+    <div class="inst">Millsaps College &mdash; MATH 4630: Real Analysis</div>
+    <h1>Compact Sets</h1>
+    <div class="meta">Chapter 3: Basic Topology of $\mathbb{R}$ &nbsp;&bull;&nbsp; Spring 2026</div>
+  </div>
+</header>
+<div class="banner">
+  &#128196;&nbsp; <a href="handout_compactness.pdf">Download PDF version</a>
+</div>
+<main>
+
+  <p>Throughout our study of analysis, we have worked with sequences in <em>infinite</em> sets such as $(0,1)$, $\mathbb{R}$, etc. The concept of a <strong>compact set</strong> is designed to impose enough structure so that infinite processes can be controlled as if they were finite.</p>
+
+  <div class="warnbox">
+    <span class="boxlabel">Motivating Question</span>
+    <p>Suppose $(a_n)$ is a sequence that <em>does not converge</em>. Can we guarantee some "convergent part" of it?</p>
+    <p>Recall the <strong>Bolzano–Weierstrass Theorem</strong>: every bounded sequence has a convergent subsequence.</p>
+    <ul>
+      <li>Does $a_n = (-1)^n$ converge? <span class="blank">&nbsp;&nbsp;&nbsp;</span> &nbsp; Does it have a convergent subsequence? <span class="blank">&nbsp;&nbsp;&nbsp;</span></li>
+      <li>Does $a_n = n$ have a convergent subsequence? <span class="blank">&nbsp;&nbsp;&nbsp;</span> &nbsp; Why not?</li>
+      <li>If $(a_n) \subseteq [0,1]$, must subsequential limits also lie in $[0,1]$? <span class="blank">&nbsp;&nbsp;&nbsp;</span></li>
+    </ul>
+    <p>The key feature of $[0,1]$: it is <em>bounded</em> (so B-W applies) <em>and closed</em> (so limits stay inside). This is exactly what compactness captures!</p>
+  </div>
+
+  <h2>Definition of Compactness</h2>
+
+  <div class="defbox">
+    <span class="boxlabel">Definition 1</span>
+    <p>A set $K \subseteq \mathbb{R}$ is called <strong>compact</strong> if every sequence $(a_n)$ contained in $K$ has a subsequence $(a_{n_k})$ that converges to a limit also in $K$:
+    $$(a_n) \subseteq K \;\Longrightarrow\; \exists\; (a_{n_k}) \text{ with } a_{n_k} \to L \in K.$$</p>
+  </div>
+
+  <p>Compactness is a "self-contained" property: convergent subsequences <em>exist</em>, and their limits remain <em>trapped</em> inside $K$.</p>
+
+  <div class="exbox">
+    <span class="boxlabel">Your Turn</span>
+    <p>For each set $K$, determine whether it is compact. If not, produce a sequence $(x_n) \subseteq K$ such that every convergent subsequence converges to a limit <em>not</em> in $K$.</p>
+    <ol type="a">
+      <li>$K = [0, 1]$ &nbsp;&nbsp; Compact? <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+      <li>$K = (0,1)$ &nbsp;&nbsp; Compact? <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+      <li>$K = [1, \infty)$ &nbsp;&nbsp; Compact? <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;</span> &nbsp; <em>(Hint: can you find an unbounded sequence in $K$?)</em></li>
+      <li>$K = \{0\} \cup \left\{\dfrac{1}{n} : n \in \mathbb{N}\right\}$ &nbsp;&nbsp; Compact? <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+    </ol>
+  </div>
+
+  <h2>The Characterization Theorem</h2>
+
+  <div class="defbox">
+    <span class="boxlabel">Definition 2</span>
+    <p>A set $A \subseteq \mathbb{R}$ is <strong>bounded</strong> if there exists $M > 0$ such that <span class="blank" style="min-width:6rem">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+  </div>
+
+  <div class="thmbox">
+    <span class="boxlabel">Theorem 1</span>
+    <p>A set $K \subseteq \mathbb{R}$ is compact if and only if it is <strong>closed and bounded</strong>.</p>
+  </div>
+
+  <p><strong>Proof sketch ($\Rightarrow$):</strong></p>
+  <div class="exbox">
+    <span class="boxlabel">Step 1: K is bounded</span>
+    <p>Suppose $K$ is compact but <em>not</em> bounded. Show that for each $n \in \mathbb{N}$ there exists $x_n \in K$ with $|x_n| > n$. Explain why $(x_n)$ cannot have any convergent subsequence. Why does this contradict compactness?</p>
+  </div>
+  <div class="exbox">
+    <span class="boxlabel">Step 2: K is closed</span>
+    <p>Suppose $(x_n) \subseteq K$ with $x_n \to L$. Use compactness to show $L \in K$.</p>
+  </div>
+
+  <div class="exbox">
+    <span class="boxlabel">Your Turn — Closed and Bounded Table</span>
+    <table>
+      <tr><th>Set</th><th>Bounded?</th><th>Closed?</th><th>Compact?</th></tr>
+      <tr><td>$[2,7]$</td><td></td><td></td><td></td></tr>
+      <tr><td>$[2,7)$</td><td></td><td></td><td></td></tr>
+      <tr><td>$\mathbb{Z}$</td><td></td><td></td><td></td></tr>
+      <tr><td>$\left\{\dfrac{1}{n}:n\in\mathbb{N}\right\}$</td><td></td><td></td><td></td></tr>
+      <tr><td>$[0,1]\cup[3,5]$</td><td></td><td></td><td></td></tr>
+    </table>
+  </div>
+
+  <h2>Nested Compact Sets</h2>
+
+  <div class="thmbox">
+    <span class="boxlabel">Theorem 2</span>
+    <p>If $K_1 \supseteq K_2 \supseteq K_3 \supseteq \cdots$ is a nested sequence of nonempty compact sets, then $\bigcap_{n=1}^{\infty} K_n$ <span class="blank" style="min-width:4rem">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</p>
+  </div>
+
+  <p><strong>Proof:</strong> Left as an exercise.</p>
+
+  <div class="warnbox">
+    <span class="boxlabel">Important Note</span>
+    <p>Closedness alone is <em>not</em> sufficient — we need compactness. Consider $F_n = [n, \infty)$. Each $F_n$ is closed and $F_1 \supseteq F_2 \supseteq \cdots$.</p>
+    <p>What is $\displaystyle\bigcap_{n=1}^{\infty} F_n$? <span class="blank" style="min-width:5rem">&nbsp;&nbsp;&nbsp;</span></p>
+    <p>What hypothesis of Theorem 2 does $\{F_n\}$ fail?</p>
+  </div>
+
+  <h2>Open Covers and the Heine–Borel Theorem</h2>
+
+  <div class="defbox">
+    <span class="boxlabel">Definition 3</span>
+    <p>An <strong>open cover</strong> for $A \subseteq \mathbb{R}$ is a collection of open sets $\{O_\lambda\}$ with $A \subseteq \bigcup_\lambda O_\lambda$. A <strong>finite subcover</strong> is a finite subcollection whose union still contains $A$.</p>
+  </div>
+
+  <div class="exbox">
+    <span class="boxlabel">Example</span>
+    <p>Let $A = (0,1]$ and $O_n = \left(\frac{1}{n}, 2\right)$ for each $n \in \mathbb{N}$.</p>
+    <ol type="a">
+      <li>Show that $\{O_n\}$ is an open cover of $(0,1]$.</li>
+      <li>Can any finite subcollection $\{O_{n_1},\ldots,O_{n_k}\}$ be a subcover for $A$?</li>
+      <li>Is $(0,1]$ compact? Why or why not?</li>
+    </ol>
+  </div>
+
+  <div class="thmbox">
+    <span class="boxlabel">Theorem 3 — Heine–Borel</span>
+    <p>Let $K \subseteq \mathbb{R}$. The following are equivalent:</p>
+    <ol type="i">
+      <li>$K$ is <strong>compact</strong>: every sequence in $K$ has a subsequence converging to a limit in $K$.</li>
+      <li>$K$ is <strong>closed and bounded</strong>.</li>
+      <li>$K$ has the <strong>finite cover property</strong>: every open cover of $K$ has a finite subcover.</li>
+    </ol>
+  </div>
+
+  <div class="exbox">
+    <span class="boxlabel">Your Turn — Heine–Borel Applications</span>
+    <p>For each $K$, determine whether it is compact. If not, produce an open cover with no finite subcover.</p>
+    <ol type="a">
+      <li>$K = [-5, 5]$</li>
+      <li>$K = \mathbb{N}$</li>
+      <li>$K = \{x \in \mathbb{R} : |x^2 - 3| \leq 1\} = [-2,-\sqrt{2}] \cup [\sqrt{2},2]$</li>
+    </ol>
+  </div>
+
+  <h2>Activity</h2>
+
+  <div class="exbox">
+    <span class="boxlabel">Exercise</span>
+    <p>Prove that if $K$ is compact and nonempty, then $\sup K$ exists and $\sup K \in K$.</p>
+    <ol>
+      <li>Why does $\sup K$ exist?</li>
+      <li>Use the definition of supremum: for each $n \in \mathbb{N}$ there exists $a_n \in K$ with $\sup K - \frac{1}{n} < a_n \leq \sup K$. What does the Squeeze Theorem tell you about $(a_n)$?</li>
+      <li>Use compactness to conclude $\sup K \in K$.</li>
+    </ol>
+    <p style="margin-top:.8rem"><strong>Follow-up:</strong> Does $\sup(0,1)$ belong to $(0,1)$? <span class="blank">&nbsp;&nbsp;&nbsp;</span> Why does the argument break down for open sets?</p>
+  </div>
+
+  <div class="warnbox">
+    <span class="boxlabel">Summary: Three Equivalent Definitions of Compactness in ℝ</span>
+    <table>
+      <tr><th>Name</th><th>Statement</th></tr>
+      <tr><td><strong>Sequential</strong></td><td>Every sequence has a convergent subsequence with limit in $K$</td></tr>
+      <tr><td><strong>Closed &amp; Bounded</strong></td><td>$K$ is closed and $K$ is bounded</td></tr>
+      <tr><td><strong>Finite Cover</strong></td><td>Every open cover of $K$ has a finite subcover</td></tr>
+    </table>
+    <p style="margin-top:.6rem;font-size:.9rem">Sequential $\Longleftrightarrow$ Closed &amp; Bounded (Theorem 1) $\Longleftrightarrow$ Finite Cover (Heine–Borel)</p>
+  </div>
+
+</main>
+<footer>
+  MATH 4630 &mdash; Real Analysis &nbsp;&bull;&nbsp; Spring 2026 &nbsp;&bull;&nbsp;
+  <a href="mailto:deyp@millsaps.edu">deyp@millsaps.edu</a>
+</footer>
+</body>
+</html>
