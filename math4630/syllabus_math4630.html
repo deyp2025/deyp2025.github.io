@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATH 4630 — Real Analysis | Priyadarshi Dey</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;500;600&display=swap');
+
+  :root {
+    --navy:   #1a2744;
+    --gold:   #b8943f;
+    --light:  #f7f5f0;
+    --white:  #ffffff;
+    --gray:   #6b6b6b;
+    --border: #ddd8ce;
+    --accent: #2c4a8a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.75;
+    color: #2a2a2a;
+    background: var(--light);
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--navy);
+    color: white;
+    padding: 2.5rem 2rem 2rem;
+    border-bottom: 4px solid var(--gold);
+  }
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .institution {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  header h1 {
+    font-size: 2.1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.3rem;
+  }
+  header .subtitle {
+    font-size: 1.1rem;
+    color: #b0bbd4;
+    font-style: italic;
+  }
+
+  /* ── Info bar ── */
+  .info-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+  }
+  .info-bar-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  .info-item { font-family: 'Source Sans 3', sans-serif; font-size: 14px; }
+  .info-label { font-weight: 600; color: var(--navy); display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .info-value { color: #333; }
+  .info-value a { color: var(--accent); text-decoration: none; }
+  .info-value a:hover { text-decoration: underline; }
+
+  /* ── PDF banner ── */
+  .pdf-banner {
+    background: #eef2fa;
+    border: 1px solid #c5d0e8;
+    border-radius: 6px;
+    padding: 0.85rem 1.4rem;
+    max-width: 860px;
+    margin: 1.5rem auto 0;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .pdf-banner a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .pdf-banner a:hover { text-decoration: underline; }
+
+  /* ── Main content ── */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+  }
+
+  /* ── Section headings ── */
+  h2 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 2.8rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h2:first-of-type { margin-top: 1rem; }
+
+  h3 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 1.4rem 0 0.4rem;
+  }
+
+  p { margin-bottom: 0.9rem; }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14.5px;
+    margin: 1rem 0 1.4rem;
+  }
+  th {
+    background: var(--navy);
+    color: white;
+    padding: 0.55rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  td {
+    padding: 0.55rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #f8f6f2; }
+
+  /* Two-column grade tables */
+  .grade-tables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 1rem 0 1.4rem;
+  }
+  @media (max-width: 600px) {
+    .grade-tables { grid-template-columns: 1fr; }
+  }
+  .grade-tables table { margin: 0; }
+  .grade-tables th { text-align: center; }
+  .grade-tables td { text-align: center; }
+
+  /* ── Lists ── */
+  ul, ol {
+    padding-left: 1.6rem;
+    margin-bottom: 0.9rem;
+  }
+  li { margin-bottom: 0.4rem; }
+  li ul { margin-top: 0.3rem; margin-bottom: 0.3rem; }
+
+  /* ── Policy blocks ── */
+  .policy-block {
+    background: var(--white);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .policy-block h3 { margin-top: 0; }
+
+  /* ── Important dates callout ── */
+  .dates-callout {
+    background: #fff8ec;
+    border: 1px solid #e8d5a0;
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+  }
+
+  /* ── Honor pledge ── */
+  .pledge {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.4rem;
+    font-style: italic;
+    color: #444;
+    margin: 1rem 0;
+    font-size: 16px;
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+  a { color: var(--accent); }
+  code { font-family: monospace; font-size: 0.92em; background: #eee; padding: 1px 4px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="institution">Millsaps College &mdash; Department of Mathematics</div>
+    <h1>Real Analysis</h1>
+    <div class="subtitle">MATH 4630-01 &nbsp;&bull;&nbsp; Spring 2026</div>
+  </div>
+</header>
+
+<div class="info-bar">
+  <div class="info-bar-inner">
+    <div class="info-item">
+      <span class="info-label">Instructor</span>
+      <span class="info-value">Dr. Priyadarshi Dey</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Email</span>
+      <span class="info-value"><a href="mailto:deyp@millsaps.edu">deyp@millsaps.edu</a></span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Time</span>
+      <span class="info-value">TTh 9:55 &ndash; 11:25 am</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Location</span>
+      <span class="info-value">Sullivan-Harrell Hall 268</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Office Hours</span>
+      <span class="info-value">MW 1:00 &ndash; 2:30 pm or by appointment</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Office</span>
+      <span class="info-value">Sullivan-Harrell Hall 362</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <div class="pdf-banner">
+    &#128196;&nbsp; <span>A printable version of this syllabus is available here: <a href="syllabus_math4630.pdf">Download PDF</a></span>
+  </div>
+
+  <!-- ── Course Overview ── -->
+  <h2>Course Overview</h2>
+
+  <p><strong>Textbook:</strong> <em>Understanding Analysis</em>, 2nd edition, by Stephen Abbott (Springer).</p>
+
+  <p><strong>Prerequisites:</strong> MATH 2240 (Calculus III) and MATH 2310 (Introduction to Advanced Mathematics).</p>
+
+  <p><strong>Course Objectives:</strong> This course provides a rigorous treatment of the real number system, developing from first principles the notions of limits, sequences and series, differentiation, and integration, among other core topics. The goal is not only to strengthen technical understanding, but also to challenge and refine mathematical intuition. As the text emphasizes, real analysis is more than a refined version of introductory calculus: students encounter the subtle structure of the real line, the nuanced distinctions among modes of convergence, and the intellectual richness that emerges from the paradoxes of infinity.</p>
+
+  <!-- ── Course Structure ── -->
+  <h2>Course Structure</h2>
+
+  <p>Homework assignments, student presentations, two in-class exams, a final exam, and class participation together make up the most substantial portion of your grade.</p>
+
+  <div class="policy-block">
+    <h3>Homework Assignments</h3>
+    <p>You are expected to complete and submit assigned problem sets through Course Connect approximately every other week. Homework assignments will typically be posted in advance, and you will be given sufficient time to work through the problems carefully.</p>
+  </div>
+
+  <div class="policy-block">
+    <h3>Student Presentations</h3>
+    <p>There will be a regular student presentation component throughout the semester, occurring roughly once per week. Students will present selected problems, examples, or proofs related to the course material. Presentation topics and problems will be announced ahead of time to allow for adequate preparation.</p>
+  </div>
+
+  <div class="policy-block">
+    <h3>Exams</h3>
+    <p>There will be two in-class exams during the semester and a comprehensive final exam. The in-class exams will assess your understanding of definitions, theorems, and proof techniques covered up to that point, while the final exam will emphasize synthesis of ideas from across the course.</p>
+  </div>
+
+  <!-- ── Exam Dates ── -->
+  <h2>Exam Dates</h2>
+
+  <table>
+    <tr><th>Exam</th><th>Date</th><th>Time</th></tr>
+    <tr><td>Test #1</td><td>Thursday, February 19</td><td>In-class</td></tr>
+    <tr><td>Test #2</td><td>Thursday, April 2</td><td>In-class</td></tr>
+    <tr><td>Final Exam</td><td>Tuesday, May 5</td><td>9:00 &ndash; 11:00 am</td></tr>
+  </table>
+
+  <p>You must take tests on the specified dates. Makeup exams will generally not be given. If a student misses an exam for reasons that are serious, unavoidable, and beyond the student's control, the situation will be handled on an individual basis. Employment schedules, vacations, and athletic training schedules do not constitute valid excuses. The Final exam will not be rescheduled for discretionary reasons.</p>
+
+  <!-- ── Grading ── -->
+  <h2>Grading</h2>
+
+  <div class="grade-tables">
+    <table>
+      <tr><th>Component</th><th>Weight</th></tr>
+      <tr><td>Homework (~every other week)</td><td>15%</td></tr>
+      <tr><td>Student Presentations (weekly)</td><td>15%</td></tr>
+      <tr><td>Midterm Exams (2 total)</td><td>20% each</td></tr>
+      <tr><td>Final Exam (cumulative)</td><td>30%</td></tr>
+    </table>
+    <table>
+      <tr><th>Average</th><th>Grade</th></tr>
+      <tr><td>93 &ndash; 100</td><td>A</td></tr>
+      <tr><td>90 &ndash; 92</td><td>A&minus;</td></tr>
+      <tr><td>87 &ndash; 89</td><td>B+</td></tr>
+      <tr><td>83 &ndash; 86</td><td>B</td></tr>
+      <tr><td>80 &ndash; 82</td><td>B&minus;</td></tr>
+      <tr><td>77 &ndash; 79</td><td>C+</td></tr>
+      <tr><td>73 &ndash; 76</td><td>C</td></tr>
+      <tr><td>70 &ndash; 72</td><td>C&minus;</td></tr>
+      <tr><td>67 &ndash; 69</td><td>D+</td></tr>
+      <tr><td>60 &ndash; 66</td><td>D</td></tr>
+      <tr><td>Below 60</td><td>F</td></tr>
+    </table>
+  </div>
+
+  <!-- ── Important Dates ── -->
+  <h2>Important Dates</h2>
+
+  <div class="dates-callout">
+    <table>
+      <tr><th>Date</th><th>Event</th></tr>
+      <tr><td>Mar. 9 &ndash; Mar. 13</td><td>Spring Break &mdash; no classes</td></tr>
+      <tr><td>Wednesday, Mar. 25</td><td>Deadline for dropping with grade W</td></tr>
+    </table>
+  </div>
+
+  <!-- ── Instructor Policies ── -->
+  <h2>Instructor Policies</h2>
+
+  <ul>
+    <li>If your score on the cumulative final exam is higher than your lowest midterm exam score, then the final exam score will replace that lowest midterm score. Otherwise, all exam scores will remain unchanged.</li>
+    <li>You are allowed to take <strong><em>one extension</em></strong> on a homework assignment during the semester. The extension must be requested before the original due date and provides an additional 24 hours. No further extensions will be granted, and late work without an approved extension will not be accepted.</li>
+    <li>Any violation of the Millsaps Honor Code will be reported to the Honor Council. See <a href="https://millsaps.edu/academics/the-millsaps-experience/academic-integrity/" target="_blank">millsaps.edu/academics/academic-integrity</a>.</li>
+    <li>Class communications will be made by Millsaps email. Students should check their Millsaps email at least once per day.</li>
+    <li>Grades for all assignments will be posted within one week of submission on Course Connect.</li>
+    <li>Content of this syllabus is subject to change by the instructor.</li>
+  </ul>
+
+  <!-- ── College Policies ── -->
+  <h2>College-Wide Statements</h2>
+
+  <div class="policy-block">
+    <h3>ADA Accommodations</h3>
+    <p>Under the Americans with Disabilities Act (ADA) and Section 504, accommodations can be made for students with disabilities or learning differences. Contact the Student Support Coordinator at <a href="mailto:ada@millsaps.edu">ada@millsaps.edu</a>. Accommodations will not be granted until you have met with the Coordinator and your instructor.</p>
+  </div>
+
+  <div class="policy-block">
+    <h3>Attendance</h3>
+    <p>In-person attendance for all class meetings is the expectation for all students. Students should notify their instructor prior to the meeting time if they need to miss a session. Faculty will regularly report attendance to the College.</p>
+  </div>
+
+  <div class="policy-block">
+    <h3>Course Connect</h3>
+    <p>Course Connect is Millsaps' learning management system. Access at <a href="https://courses.millsaps.edu" target="_blank">courses.millsaps.edu</a>. For technical issues contact Rachel Long at <a href="mailto:rachel.long@millsaps.edu">rachel.long@millsaps.edu</a>.</p>
+  </div>
+
+  <div class="policy-block">
+    <h3>ITS HelpDesk</h3>
+    <p>Located in AC 100. Phone: 601-974-1144. Email: <a href="mailto:help@millsaps.edu">help@millsaps.edu</a>.</p>
+  </div>
+
+  <div class="policy-block">
+    <h3>Writing Center and CASE</h3>
+    <p>The Writing Center and Center for Academic Success and Excellence (CASE) offer peer tutoring across all disciplines. Appointments at <a href="https://millsaps.mywconline.com" target="_blank">millsaps.mywconline.com</a>. Contact Prof. Liz Egan at <a href="mailto:eganee@millsaps.edu">eganee@millsaps.edu</a>.</p>
+  </div>
+
+  <div class="policy-block">
+    <h3>Title IX</h3>
+    <p>I have a mandatory reporting responsibility as a member of the faculty. If students wish to speak with someone confidentially, contact Student Life at 601-974-1200.</p>
+  </div>
+
+  <div class="policy-block">
+    <h3>Millsaps-Wilson Library</h3>
+    <p>Library resources available at <a href="http://www.millsaps.edu/library/" target="_blank">millsaps.edu/library</a>. Email: <a href="mailto:librarian@millsaps.edu">librarian@millsaps.edu</a>.</p>
+  </div>
+
+  <div class="policy-block">
+    <h3>CARE</h3>
+    <p>If you are struggling with coursework, mental health, finances, or any aspect of college life, Millsaps has free resources available. Report concerns at <a href="https://millsaps-advocate.symplicity.com/care_report" target="_blank">the CARE form</a>. All emergency concerns: Campus Safety at <strong>601-974-1234</strong>.</p>
+  </div>
+
+  <div class="policy-block">
+    <h3>Honor Code</h3>
+    <p>Millsaps College is an academic community built on personal honesty and mutual trust. Each graded assignment carries the affirmed pledge:</p>
+    <div class="pledge">&ldquo;I hereby certify that I have neither given nor received unauthorized aid on this assignment.&rdquo;</div>
+    <p>Violations including cheating, plagiarism, and unauthorized use of AI tools should be reported to <a href="mailto:AcademicAffairs@millsaps.edu">AcademicAffairs@millsaps.edu</a>.</p>
+  </div>
+
+  <p style="text-align:center; margin-top:2.5rem; font-size:1.1rem; color: var(--navy); font-weight:600;">
+    All the best for the semester!
+  </p>
+
+</main>
+
+<footer>
+  MATH 4630 &mdash; Real Analysis &nbsp;&bull;&nbsp; Spring 2026 &nbsp;&bull;&nbsp;
+  <a href="mailto:deyp@millsaps.edu">deyp@millsaps.edu</a> &nbsp;&bull;&nbsp;
+  <a href="https://deyp2025.github.io" target="_blank">deyp2025.github.io</a>
+</footer>
+
+</body>
+</html>
