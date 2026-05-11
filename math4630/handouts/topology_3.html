@@ -3,332 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Topology in ℝⁿ — Handout 3: Perfect and Connected Sets</title>
-
+<title>MATH 4630 — Perfect Sets</title>
 <style>
-  :root{
-    --navy-mid:#1f3a5f;
-    --navy-dark:#13243d;
-    --cream:#faf7f0;
-    --gold:#b48a4a;
-    --muted:#4a4a4a;
-    --border:#d9d2c2;
-    --highlight:#fff3b0;
-    --box-bg:#fdfcf8;
-  }
-
-  *{box-sizing:border-box;}
-
-  body{
-    font-family: Georgia, "Times New Roman", serif;
-    background: var(--cream);
-    color: var(--muted);
-    margin:0;
-    padding: 2rem 1rem;
-    line-height: 1.7;
-  }
-
-  .page{
-    max-width: 900px;
-    margin: 0 auto;
-    background: #fff;
-    border: 1px solid var(--border);
-    padding: 2.5rem 2.8rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,.04);
-  }
-
-  header{
-    border-bottom: 2px solid var(--gold);
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
-  }
-  header h1{
-    margin: 0 0 .3rem 0;
-    font-size: 1.9rem;
-    color: var(--navy-dark);
-    font-weight: 700;
-  }
-  header .meta{
-    font-size: .95rem;
-    color: var(--muted);
-  }
-
-  .section-title{
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--navy-dark);
-    margin: 2.2rem 0 1.2rem 0;
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .definition-box, .theorem-box, .exercise-box, .note-box{
-    border-left: 4px solid var(--gold);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    background: var(--box-bg);
-  }
-
-  .definition-box strong, .theorem-box strong{
-    color: var(--navy-dark);
-  }
-
-  .exercise-box{
-    border-left-color: var(--gold);
-    background: #fffbf0;
-  }
-
-  .note-box{
-    border-left-color: #888;
-    background: #f5f5f5;
-    font-size: .95rem;
-  }
-
-  .theorem-box{
-    background: #f0f4ff;
-    border-left-color: #3366cc;
-  }
-
-  p{
-    margin: 0.8rem 0;
-  }
-
-  .blank-fill{
-    border-bottom: 1px solid var(--muted);
-    display: inline-block;
-    min-width: 8rem;
-    padding: 0 0.3rem;
-  }
-
-  .back{
-    display: inline-block;
-    margin-top: 2.5rem;
-    font-size: .9rem;
-    color: var(--navy-mid);
-    text-decoration: none;
-    border-bottom: 1px dashed var(--border);
-  }
-  .back:hover{ color: var(--gold); }
-
-  .formula{
-    font-family: "Courier New", monospace;
-    background: #f0f0f0;
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-  }
-
-  ul, ol{
-    margin: 0.8rem 0;
-  }
-
-  li{
-    margin: 0.5rem 0;
-  }
-
-  .centered{
-    text-align: center;
-    margin: 1.5rem 0;
-  }
-
-  strong{
-    color: var(--navy-mid);
-  }
-
-  em{
-    color: #555;
-  }
+body { font-family: Georgia, serif; max-width: 8.5in; margin: 0 auto; padding: 0.5in; line-height: 1.55; color: #333; }
+header { text-align: center; margin-bottom: 1.5em; padding-bottom: 0.8em; border-bottom: 1px solid #999; }
+header h1 { font-size: 1.15em; margin: 0 0 0.2em; }
+header .subtitle { font-size: 0.9em; color: #666; font-style: italic; }
+h2 { font-size: 1em; font-weight: bold; margin: 1.3em 0 0.6em; border-top: 1px solid #ccc; padding-top: 0.4em; }
+h3 { font-size: 0.95em; font-weight: bold; margin: 1.1em 0 0.5em; }
+p { margin: 0.4em 0; text-align: justify; }
+.fbox { border: 1px solid #999; padding: 0.7em; margin: 0.9em 0; background: #fafaf8; }
+.definition-box { border-left: 4px solid #333; padding: 0.7em; margin: 0.9em 0; background: #f8f8f6; }
+.theorem-box { border-left: 4px solid #1a5aba; padding: 0.7em; margin: 0.9em 0; background: #eff3f9; }
+.exercise-box { border-left: 4px solid #b8860b; padding: 0.7em; margin: 0.9em 0; background: #fffbf0; }
+.definition, .theorem { font-weight: bold; }
+ol, ul { margin: 0.35em 0; padding-left: 2em; }
+li { margin: 0.25em 0; }
+em { font-style: italic; }
+strong { font-weight: bold; }
+.blank { border-bottom: 1px solid #333; display: inline-block; min-width: 2.2cm; margin: 0 0.08em; }
+.fill { display: block; height: 0.28in; margin: 0.15em 0; }
+table { border-collapse: collapse; margin: 0.7em 0; width: 100%; font-size: 0.95em; }
+table, th, td { border: 1px solid #999; }
+th, td { padding: 0.5em; text-align: left; }
+th { background: #e8f4ff; font-weight: bold; }
+.page-break { margin: 1.5em 0; border-bottom: 1px solid #ccc; page-break-after: always; }
+.back-link { display: inline-block; margin-top: 1.5em; text-decoration: none; color: #1a5aba; border-bottom: 1px dashed #ccc; }
+.proof-label { font-weight: bold; margin-top: 0.5em; margin-bottom: 0.3em; }
 </style>
-
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 </head>
-
 <body>
-<main class="page">
 
-  <header>
-    <h1>Topology in ℝⁿ — Handout 3</h1>
-  </header>
+<header>
+<h1>MATH 4630</h1>
+<div class="subtitle">Chapter 3: Perfect Sets</div>
+</header>
 
-  <div class="section-title">§1. Perfect Sets</div>
+<h2>Perfect Sets</h2>
 
-  <p>
-    A <strong>perfect</strong> set is a closed set with no isolated points. In ℝⁿ, perfect sets exhibit rich structure 
-    and can be highly nontrivial (fractals, Cantor-like sets, etc.).
-  </p>
+<p>In the previous section we characterized compactness as being <em>closed</em> and <em>bounded</em>. We now introduce another important property of sets in ℝ: <strong>perfectness</strong>.</p>
 
-  <div class="definition-box">
-    <strong>Definition (Isolated Point):</strong> A point <span class="formula">x ∈ A</span> is <strong>isolated</strong> in 
-    <span class="formula">A</span> if there exists <span class="formula">ε > 0</span> such that 
-    $$V_\varepsilon(x) \cap A = \{x\}.$$
-    Equivalently, <span class="formula">x</span> is <strong>not</strong> a limit point of <span class="formula">A</span>.
-  </div>
+<div class="exercise-box">
+<strong>Question:</strong> Are all closed sets intervals?
 
-  <div class="definition-box">
-    <strong>Definition (Perfect Set):</strong> A set <span class="formula">P ⊆ ℝⁿ</span> is <strong>perfect</strong> if 
-    <strong>(i)</strong> <span class="formula">P</span> is closed, and <strong>(ii)</strong> every point of <span class="formula">P</span> 
-    is a limit point of <span class="formula">P</span> (equivalently, <span class="formula">P</span> has no isolated points).
-  </div>
+<p>Two ways a closed set can "fail to be an interval."</p>
 
-  <div class="centered">
-    <strong>In words:</strong> Perfect sets are closed and "every point has neighbors in the set."
-  </div>
+<p>Recall that a point x ∈ A is an <strong>isolated point</strong> if some ε-neighbourhood V<sub>ε</sub>(x) contains <em>no other point</em> of A; equivalently, x is <em>not</em> a limit point of A.</p>
 
-  <div class="exercise-box">
-    <strong>Classify each set in ℝⁿ as: closed, perfect, both, or neither.</strong>
-    <ol>
-      <li>
-        <span class="formula">P = [0,1]ⁿ</span> (closed unit cube)
-        <br><br>Classification: <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">P = \{(x,y) ∈ ℝ² : x² + y² = 1\}</span> (unit circle)
-        <br><br>Classification: <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">P = ℤⁿ</span> (integer lattice)
-        <br><br>Classification: <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">P = [0,1] ∪ \{2\}</span> (closed interval plus isolated point)
-        <br><br>Classification: <span class="blank-fill"></span>
-        <br><br>
-      </li>
-    </ol>
-  </div>
+<p>Consider these four sets. For each one, mark whether each point is a limit point (L) or an isolated point (I) of the set.</p>
 
-  <div class="theorem-box">
-    <strong>Theorem (Perfect Sets are Uncountable):</strong> Every nonempty perfect set in ℝⁿ is uncountable.
-  </div>
+<table>
+<tr><th>Set A</th><th>Sample point</th><th>L or I?</th><th>Closed?</th></tr>
+<tr><td>[0,1]</td><td>any x ∈ (0,1)</td><td><span class="blank"></span></td><td><span class="blank"></span></td></tr>
+<tr><td>[0,1]</td><td>the endpoint x = 0</td><td><span class="blank"></span></td><td><span class="blank"></span></td></tr>
+<tr><td>ℕ = {1,2,3,…}</td><td>any n ∈ ℕ</td><td><span class="blank"></span></td><td><span class="blank"></span></td></tr>
+<tr><td>{1/n : n ∈ ℕ} ∪ {0}</td><td>x = 1/n for fixed n</td><td><span class="blank"></span></td><td><span class="blank"></span></td></tr>
+<tr><td>{1/n : n ∈ ℕ} ∪ {0}</td><td>x = 0</td><td><span class="blank"></span></td><td><span class="blank"></span></td></tr>
+</table>
 
-  <div class="note-box">
-    <strong>Remark:</strong> This is a deep result. Perfect sets may look complicated (fractals, Cantor-type constructions), 
-    but they always contain uncountably many points. Finite and countable sets cannot be perfect.
-  </div>
+<p><strong>Observation.</strong> Closed sets come in (at least) two flavours:</p>
+<ul>
+<li><strong>Interval-like:</strong> [0,1] is closed and every point is a limit point.</li>
+<li><strong>Discrete-like:</strong> ℕ is closed but <em>every</em> point is isolated.</li>
+<li><strong>Mixed:</strong> {1/n} ∪ {0} has isolated points (1/n) and one limit point (0).</li>
+</ul>
 
-  <div class="section-title">§2. Connected Sets</div>
+<p><strong>Question:</strong> What if we insist that a closed set has <em>no</em> isolated points at all? Then every point must be a limit point. This is exactly what compactness cannot guarantee on its own, and it leads to a new concept.</p>
+</div>
 
-  <p>
-    A <strong>connected</strong> set is one that is "all in one piece"—it cannot be split into two separated open parts.
-  </p>
+<div class="definition-box">
+<span class="definition">Definition</span>
+<p>A set P ⊆ ℝ is <strong>perfect</strong> if it is closed and contains <em>no</em> isolated points, i.e., every point of P is a limit point of P.</p>
+</div>
 
-  <div class="definition-box">
-    <strong>Definition (Separated Sets):</strong> Two nonempty sets <span class="formula">A, B ⊆ ℝⁿ</span> are 
-    <strong>separated</strong> if
-    $$\overline{A} \cap B = \emptyset \quad\text{and}\quad A \cap \overline{B} = \emptyset.$$
-  </div>
+<div class="exercise-box">
+<strong>Your turn:</strong> For each set, decide whether it is perfect. If not, identify <em>precisely</em> which condition fails: not closed, has an isolated point, or both. Provide a brief justification.
 
-  <div class="definition-box">
-    <strong>Definition (Disconnected and Connected):</strong> A set <span class="formula">E ⊆ ℝⁿ</span> is 
-    <strong>disconnected</strong> if it can be written as <span class="formula">E = A ∪ B</span> for some nonempty separated sets 
-    <span class="formula">A</span> and <span class="formula">B</span>. Otherwise, <span class="formula">E</span> is <strong>connected</strong>.
-  </div>
+<ol>
+<li>[0,1] — Perfect? <span class="blank"></span>
+<div class="fill"></div><div class="fill"></div><div class="fill"></div>
+</li>
+<li>{0} ∪ {1/n : n ∈ ℕ} — Perfect? <span class="blank"></span>
+<div class="fill"></div><div class="fill"></div><div class="fill"></div>
+</li>
+<li>ℕ — Perfect? <span class="blank"></span>
+<div class="fill"></div><div class="fill"></div><div class="fill"></div>
+</li>
+<li>[−1,0) ∪ (0,1] — Perfect? <span class="blank"></span>
+<div class="fill"></div><div class="fill"></div><div class="fill"></div>
+</li>
+</ol>
+</div>
 
-  <div class="centered">
-    <strong>Intuition:</strong> Connected sets cannot have a "gap" in them.
-  </div>
+<h3>What does "No Isolated Points" really mean?</h3>
 
-  <div class="exercise-box">
-    <strong>Determine if each set is connected in ℝⁿ:</strong>
-    <ol>
-      <li>
-        <span class="formula">E = [0,1]ⁿ</span> (closed unit cube)
-        <br><br>Connected? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">E = \{(x,y) ∈ ℝ² : x² + y² < 1\} ∪ \{(x,y) : x² + y² > 4\}</span> (open disk union exterior)
-        <br><br>Connected? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">E = \{x ∈ ℝⁿ : \|x\| = 1\}</span> (unit sphere)
-        <br><br>Connected? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">E = (\mathbb{Q} ∩ [0,1]) × [0,1]</span> (rationals cross unit interval)
-        <br><br>Connected? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-    </ol>
-  </div>
+<p>The definition says every point of P is a limit point of P. Let us unpack this with a concrete family of examples that shows how <em>delicate</em> this condition is.</p>
 
-  <div class="section-title">§3. Path-Connected Sets</div>
+<div class="exercise-box">
+<strong>Example.</strong> Let A = {1/n : n ∈ ℕ} and B = A ∪ {0}.
 
-  <p>
-    A stronger notion of connectedness: a set is <strong>path-connected</strong> if any two points can be joined by a continuous path.
-  </p>
+<p>(a) Is A closed? <span class="blank"></span><div class="fill"></div></p>
 
-  <div class="definition-box">
-    <strong>Definition (Path-Connected):</strong> A set <span class="formula">E ⊆ ℝⁿ</span> is <strong>path-connected</strong> if 
-    for every <span class="formula">x, y ∈ E</span>, there exists a continuous function <span class="formula">γ : [0,1] → E</span> 
-    (a <strong>path</strong>) such that <span class="formula">γ(0) = x</span> and <span class="formula">γ(1) = y</span>.
-  </div>
+<p>(b) Is B = A ∪ {0} closed? <span class="blank"></span><div class="fill"></div></p>
 
-  <div class="centered">
-    <strong>Key fact:</strong> Path-connected $\implies$ connected. But the converse is false in ℝⁿ for <span class="formula">n ≥ 2</span>!
-  </div>
+<p>(c) Is the point x = 0 an isolated point of B? <span class="blank"></span><div class="fill"></div></p>
 
-  <div class="exercise-box">
-    <strong>Are these path-connected?</strong>
-    <ol>
-      <li>
-        <span class="formula">E = [0,1]ⁿ</span>
-        <br><br>Path-connected? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">E = \{(x,y) ∈ ℝ² : x² + y² ≤ 1\}</span> (closed disk)
-        <br><br>Path-connected? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">E = \{(x,\sin(1/x)) : x ∈ (0,1]\} ∪ (\{0\} × [−1,1])</span> (topologist's sine curve)
-        <br><br>Path-connected? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-    </ol>
-  </div>
+<p>(d) Is the point x = 1/n (for fixed n) an isolated point of B? <span class="blank"></span><div class="fill"></div></p>
 
-  <div class="theorem-box">
-    <strong>Theorem (Continuous Image of Connected = Connected):</strong> If <span class="formula">f : E → ℝⁿ</span> is continuous 
-    and <span class="formula">E</span> is connected, then <span class="formula">f(E)</span> is connected.
-  </div>
+<p>(e) Is B perfect? <span class="blank"></span> What single element would you need to add to (or remove from) B to move <em>closer</em> to a perfect set?<div class="fill"></div><div class="fill"></div></p>
+</div>
 
-  <div class="theorem-box">
-    <strong>Theorem (Intermediate Value Property):</strong> If <span class="formula">f : E → ℝ</span> is continuous 
-    and <span class="formula">E ⊆ ℝⁿ</span> is connected, then <span class="formula">f(E)</span> is a connected subset of ℝ, 
-    i.e., an interval. Therefore, <span class="formula">f</span> attains all intermediate values between any two points in <span class="formula">E</span>.
-  </div>
+<p><strong>Observation:</strong> Even adding the "right" limit point 0 does not cure the isolated-point problem—the isolated points 1/n remain. The simplest perfect sets are closed intervals.</p>
 
-  <div class="exercise-box">
-    <strong>Application:</strong> Let <span class="formula">f(x,y) = x² + y²</span> on the disk <span class="formula">E = \{(x,y) : x² + y² ≤ 4\}</span>.
-    <ol>
-      <li>Is <span class="formula">E</span> connected? <span class="blank-fill"></span></li>
-      <li>Is <span class="formula">f</span> continuous? <span class="blank-fill"></span></li>
-      <li>What is <span class="formula">f(E) =</span> <span class="blank-fill"></span> (as an interval)</li>
-      <li>What is <span class="formula">\text{min} f(E) =</span> <span class="blank-fill"></span> and <span class="formula">\text{max} f(E) =</span> <span class="blank-fill"></span></li>
-    </ol>
-  </div>
+<div class="theorem-box">
+<span class="theorem">Theorem</span>
+<p>Every closed interval [a,b] with a < b is perfect.</p>
+</div>
 
-  <div class="note-box">
-    <strong>Summary:</strong> Connected sets, compact sets, and continuous functions interact beautifully:
-    <ul>
-      <li>Connected + Continuous = Connected image</li>
-      <li>Compact + Continuous = Compact image (and extrema attained)</li>
-      <li>Path-connected is "nicer" but rarer than connected.</li>
-    </ul>
-  </div>
+<p><em>Proof sketch.</em> We must verify two things: <strong>(i)</strong> [a,b] is closed, and <strong>(ii)</strong> every x ∈ [a,b] is a limit point of [a,b].</p>
 
-  <hr style="border:none; border-top:1px solid var(--border); margin: 2rem 0;">
+<div class="exercise-box">
+<strong>Part (i):</strong> Why is [a,b] closed?
+<div class="fill"></div>
+</div>
 
-  <a class="back" href="index.html">&larr; Back to Topology Handouts</a>
+<div class="exercise-box">
+<strong>Part (ii):</strong> Let x ∈ [a,b] and let ε > 0 be arbitrary.
 
-</main>
+<p><strong>Step 1.</strong> Write down what V<sub>ε</sub>(x) ∩ [a,b] looks like explicitly:
+$$V_\varepsilon(x) \cap [a,b] = \bigl(\underline{\hspace{2cm}}, \underline{\hspace{2cm}}\bigr).$$
+</p>
+
+<p><strong>Step 2.</strong> Show that this intersection is a <em>nonempty open interval</em>.
+<div class="fill"></div><div class="fill"></div>
+</p>
+
+<p><strong>Step 3.</strong> Explain why a nonempty open interval cannot be a singleton {x}, and therefore must contain a point y ≠ x.
+<div class="fill"></div><div class="fill"></div>
+</p>
+
+<p><strong>Conclude:</strong> V<sub>ε</sub>(x) ∩ [a,b] contains a point y ∈ [a,b] with y ≠ x. Since ε > 0 was arbitrary, x is a limit point of [a,b]. Therefore, the closed interval [a,b] is perfect. ∎</p>
+</div>
+
+<h3>A Shocking Theorem: Perfect Sets are Big</h3>
+
+<div class="theorem-box">
+<span class="theorem">Theorem</span>
+<p>A nonempty perfect set is uncountable.</p>
+</div>
+
+<div class="page-break"></div>
+
+<h2>Activity:</h2>
+
+<div class="exercise-box">
+<strong>Exercise 1.</strong> Let P be a perfect set and K compact.
+
+<ol>
+<li>Is P ∩ K always compact? Justify your answer. (<em>Hint:</em> Is the intersection of a closed set and a compact set compact?)
+<div class="fill"></div><div class="fill"></div><div class="fill"></div>
+</li>
+<li>Is P ∩ K always perfect? If not, give a counterexample.
+<div class="fill"></div><div class="fill"></div>
+</li>
+</ol>
+</div>
+
+<div class="exercise-box">
+<strong>Exercise 2.</strong> Prove that no finite nonempty set F ⊆ ℝ is perfect.
+<div class="fill"></div><div class="fill"></div><div class="fill"></div>
+
+<p><strong>Follow-up.</strong> Use this and Theorem 2 to give another proof that every perfect set is infinite.
+<div class="fill"></div><div class="fill"></div>
+</p>
+</div>
+
+<hr style="margin-top: 2em; border: none; border-top: 1px solid #999;">
+
+<a href="../../index.html" class="back-link">&larr; Back to MATH 4630</a>
+
 </body>
 </html>
