@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MATH 4630 — Real Analysis | Millsaps College</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MATH 4630: Real Analysis course materials, handouts, and syllabus at Millsaps College.">
+  
+  <style>
+    :root {
+      --navy:       #0d1b2a;
+      --navy-mid:   #1b3352;
+      --navy-dark:  #13243d;
+      --gold:       #b8922a;
+      --gold-light: #d4ac55;
+      --cream:      #faf7f3;
+      --white:      #ffffff;
+      --border:     #e2ddd6;
+      --text:       #1a1a1a;
+      --muted:      #6b6560;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    a { color: #1a4080; text-decoration: none; transition: color .18s; }
+    a:hover { color: var(--gold); }
+
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
+    }
+
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
+      color: var(--navy-mid);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    section {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    section h2 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--border);
+      position: relative;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 2.5rem;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    section p {
+      margin-bottom: 1rem;
+      color: #222;
+      line-height: 1.65;
+    }
+
+    details {
+      cursor: pointer;
+      color: var(--navy-mid);
+      font-weight: 500;
+      font-size: 0.78rem;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.5rem 0.8rem;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 1.5rem;
+      transition: background 0.18s;
+    }
+
+    details:hover {
+      background: #ede8df;
+    }
+
+    details summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-weight: 500;
+    }
+
+    details summary span {
+      font-size: 0.6rem;
+      color: var(--gold);
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary span {
+      transform: rotate(90deg);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0.3rem 0 0.3rem 0;
+      margin: 0;
+    }
+
+    li {
+      padding: 0.1rem 0 0.1rem 0;
+      border: none;
+      margin-bottom: 0;
+    }
+
+    li strong {
+      color: var(--navy-dark);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: block;
+      padding: 0.5rem 0 0.3rem 0;
+      margin-top: 0.6rem;
+    }
+
+    li a {
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-bottom: 1px dashed var(--border);
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+      padding: 0.2rem 0;
+    }
+
+    li a:hover {
+      color: var(--navy-mid);
+      border-bottom-color: var(--navy-mid);
+    }
+
+    li span {
+      margin-left: 0.4rem;
+    }
+
+    li span a {
+      font-size: 0.75rem;
+    }
+
+    footer {
+      background: var(--navy-dark);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 680px) {
+      header { padding: 2rem 1.5rem; }
+      header h1 { font-size: 1.8rem; }
+      main { padding: 0 1.5rem; }
+      section { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MATH 4630: Real Analysis</h1>
+  <p>Millsaps College | Spring 2026</p>
+</header>
+
+<main>
+  <a href="../index.html" class="back-link">← Back to Homepage</a>
+
+  <section>
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+      <div>
+        <h3 style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--navy); margin-bottom: 0.3rem;">
+          Instructor: Priyadarshi Dey
+        </h3>
+        <p style="margin: 0; font-size: 0.9rem; color: var(--muted);">
+          deyp@millsaps.edu
+        </p>
+      </div>
+      <div>
+        <a href="syllabus/syllabus_math4630.pdf" target="_blank"
+           style="display: inline-block; padding: 0.6rem 1.2rem; background: var(--navy); color: white; border-radius: 4px; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">
+          Download Syllabus (PDF)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Course Materials</h2>
+    <p>
+      This page contains all handouts, homework assignments, and course resources organized by topic.
+      Each handout includes problems, proofs, and definitions for you to work through. 
+      Homework assignments are available below.
+    </p>
+
+    <details open>
+      <summary>
+        <span>▸</span> Handouts
+      </summary>
+      <ul style="margin-top: 1rem; padding-left: 0;">
+        
+        <!-- Chapter 1: Completeness and Order Properties -->
+        <li>
+          <strong style="margin-top: 1rem;">Completeness and Order Properties</strong>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/completeness_1.html" target="_blank">Axioms of Real Numbers (Part 1)</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/completeness_1.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/completeness_2.html" target="_blank">Axiom of Completeness (Part 2)</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/completeness_2.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/completeness_3.html" target="_blank">Consequences of Completeness (Part 1)</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/completeness_3.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/completeness_4.html" target="_blank">Consequences of Completeness (Part 2)</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/completeness_4.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+
+        <!-- Chapter 2: Sequences and Series -->
+        <li>
+          <strong style="margin-top: 1rem;">Sequences and Series</strong>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/sequences_1.html" target="_blank">Sequences and Limits</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/sequences_1.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/sequences_2.html" target="_blank">The Limit Theorems (Part I)</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/sequences_2.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/sequences_3.html" target="_blank">The Limit Theorems (Part II)</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/sequences_3.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/sequences_4.html" target="_blank">The Cauchy Criterion</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/sequences_4.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/sequences_5.html" target="_blank">Monotone Convergence Theorem and Infinite Series</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/sequences_5.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/sequences_6.html" target="_blank">Subsequences and Bolzano-Weierstrass</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/sequences_6.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/sequences_7.html" target="_blank">Properties of Infinite Series</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/sequences_7.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+
+        <!-- Chapter 3: Basic Topology of ℝ -->
+        <li>
+          <strong style="margin-top: 1rem;">Basic Topology of ℝ</strong>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/topology_1.html" target="_blank">Open Sets, Closed Sets, Limit Points</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/topology_1.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/topology_2.html" target="_blank">Compact Sets</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/topology_2.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/topology_3.html" target="_blank">Perfect Sets</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/topology_3.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+        
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="handouts/topology_4.html" target="_blank">Connected Sets</a>
+          <span style="margin-left: 0.4rem;">
+            <a href="handouts/topology_4.pdf" target="_blank">[pdf]</a>
+          </span>
+        </li>
+
+      </ul>
+    </details>
+
+    <details>
+      <summary>
+        <span>▸</span> Homework Assignments
+      </summary>
+      <ul style="margin-top: 1rem; padding-left: 0;">
+        
+        <li>
+          <strong style="margin-top: 1rem;">Completeness and Order Properties</strong>
+        </li>
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="homework/hw1.html" target="_blank">Homework 1</a>
+        </li>
+
+        <li>
+          <strong style="margin-top: 1rem;">Sequences and Series</strong>
+        </li>
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="homework/hw2.html" target="_blank">Homework 2</a>
+        </li>
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="homework/hw3.html" target="_blank">Homework 3</a>
+        </li>
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="homework/hw4.html" target="_blank">Homework 4</a>
+        </li>
+        <li style="padding: 0.15rem 0 0.15rem 1.2rem;">
+          <a href="homework/hw5.html" target="_blank">Homework 5</a>
+        </li>
+
+      </ul>
+    </details>
+
+  </section>
+
+  <section>
+    <h2>About This Course</h2>
+    <p>
+      This course provides a rigorous introduction to real analysis, covering the foundational concepts 
+      of completeness, sequences, series, and topology of the real numbers. Through careful proofs and 
+      problem-solving, you will develop a deep understanding of how the real number system works and the 
+      tools we use to study functions and their properties.
+    </p>
+    <p>
+      Each handout is designed for active learning. Work through the definitions, theorems, and examples, 
+      and attempt the exercises before checking the solutions.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  &copy; 2026 Priyadarshi Dey. All handouts are available for use in MATH 4630.
+</footer>
+
+</body>
+</html>
