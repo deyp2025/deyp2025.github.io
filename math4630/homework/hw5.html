@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATH 4630 — Homework 5</title>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        id="MathJax-script" async></script>
+
+<style>
+  :root{
+    --navy-mid:#1f3a5f;
+    --navy-dark:#13243d;
+    --cream:#faf7f0;
+    --gold:#b48a4a;
+    --muted:#4a4a4a;
+    --border:#d9d2c2;
+    --highlight:#fff3b0;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--muted);
+    margin:0;
+    padding: 2rem 1rem;
+    line-height: 1.55;
+  }
+
+  .page{
+    max-width: 820px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 2.2rem 2.4rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+
+  header.hw-head{
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .8rem;
+    margin-bottom: 1.4rem;
+  }
+  header.hw-head .row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    flex-wrap:wrap; gap:.5rem;
+  }
+  header.hw-head .course{
+    font-weight: 700; color: var(--navy-dark);
+    letter-spacing:.02em;
+  }
+  header.hw-head .title{
+    font-weight: 700; color: var(--navy-dark);
+  }
+  header.hw-head .due{
+    background: var(--highlight);
+    padding: .15rem .45rem;
+    border-radius: 2px;
+    font-style: italic;
+    color: var(--navy-dark);
+  }
+  header.hw-head .sections{
+    color: var(--muted);
+    font-size: .95rem;
+  }
+
+  .instructions{
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: .8rem 1rem;
+    margin: 1.2rem 0 1.6rem;
+    text-align: center;
+    font-size: .95rem;
+    background: #fdfcf8;
+  }
+  .instructions strong{ color: var(--navy-dark); }
+
+  ol.problems{
+    list-style: none;
+    counter-reset: prob;
+    padding: 0;
+    margin: 0;
+  }
+  ol.problems > li.problem{
+    counter-increment: prob;
+    margin: 1.6rem 0;
+    padding-left: 0;
+  }
+  ol.problems > li.problem::before{
+    content: "Problem " counter(prob) ".";
+    display: inline;
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin-right: .4rem;
+  }
+
+  ol.parts{
+    list-style: none;
+    counter-reset: part;
+    padding-left: 1.2rem;
+    margin: .6rem 0 0;
+  }
+  ol.parts > li{
+    counter-increment: part;
+    margin: .55rem 0;
+    position: relative;
+  }
+  ol.parts > li::before{
+    content: "(" counter(part, lower-alpha) ")";
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin-right: .4rem;
+  }
+
+  .hint{
+    font-style: italic;
+    color: #555;
+  }
+  .hint strong{ font-style: normal; color: var(--navy-dark); }
+
+  .callout{
+    border: 1px solid var(--border);
+    background: #fdfcf8;
+    padding: .8rem 1rem;
+    margin: 1.8rem 0 .5rem;
+    font-style: italic;
+    color: var(--navy-dark);
+  }
+
+  hr.divider{
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.6rem 0;
+  }
+
+  .back{
+    display: inline-block;
+    margin-top: 1.6rem;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .back:hover{ color: var(--gold); }
+
+  .pdf-link{
+    float: right;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .pdf-link:hover{ color: var(--gold); }
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <a class="pdf-link" href="hw5.pdf" target="_blank">[pdf]</a>
+
+  <header class="hw-head">
+    <div class="row">
+      <span class="course">MATH&nbsp;4630&#8209;01</span>
+      <span class="title">Homework Assignment #5</span>
+    </div>
+    <div class="row">
+      <span class="due">DUE: Wednesday, Apr&nbsp;17, 11:59p</span>
+      <span class="sections">Sections&nbsp;4.3&ndash;4.5</span>
+    </div>
+  </header>
+
+  <div class="instructions">
+    <strong>Instructions:</strong> Show all work clearly and justify each conclusion.
+    Collaboration is encouraged, but <em>write up your solutions individually in your own words.</em>
+    <br>
+    For any <strong>prove/disprove</strong> problem: either give a proof, or give a specific
+    counterexample (with a brief explanation of why it works).
+  </div>
+
+  <ol class="problems">
+
+    <li class="problem">
+      Provide an example of each or explain why it is impossible.
+      <ol class="parts">
+        <li>Two functions $f$ and $g$, neither of which is continuous at $0$, but such that
+            $f(x)g(x)$ and $f(x)+g(x)$ are continuous at $0$.</li>
+        <li>A function $f(x)$ continuous at $0$ and a function $g(x)$ not continuous at $0$
+            such that $f(x)+g(x)$ is continuous at $0$.</li>
+        <li>A function $f(x)$ continuous at $0$ and a function $g(x)$ not continuous at $0$
+            such that $f(x)g(x)$ is continuous at $0$.</li>
+        <li>A function $f(x)$ not continuous at $0$ such that $[f(x)]^{2}$ is continuous at $0$.</li>
+      </ol>
+    </li>
+
+    <li class="problem">
+      Assume $g:\mathbb{R}\to\mathbb{R}$ is continuous on $\mathbb{R}$ and let
+      \[
+        K = \{\, x\in\mathbb{R} : g(x)=0 \,\}.
+      \]
+      Show that $K$ is a closed set.
+    </li>
+
+    <li class="problem">
+      Let $f:\mathbb{R}\to\mathbb{R}$ be continuous at $c$ and suppose $f(c)>0$.
+      Show that there exists a neighborhood $V_{\delta}(c)$ of $c$ such that if
+      $x \in V_{\delta}(c)$, then $f(x)>0$.
+      <span class="hint">(<strong>Hint:</strong> Use the $\varepsilon$&ndash;$\delta$ definition of
+      continuity of $f$ at $c$ with $\varepsilon = \tfrac{f(c)}{2}$.)</span>
+    </li>
+
+    <li class="problem">
+      Consider the function $f:\mathbb{R}\setminus\{0\}\to\mathbb{R}$ defined by
+      \[
+        f(x)=\frac{1}{x^{2}}.
+      \]
+      <ol class="parts">
+        <li>Show that $f$ is uniformly continuous on $[1,\infty)$.</li>
+        <li>Show that $f$ is <em>not</em> uniformly continuous on $(0,1]$.</li>
+      </ol>
+    </li>
+
+    <li class="problem">
+      A function $f:A\to\mathbb{R}$ is said to be a <em>Lipschitz function</em> if there exists
+      a constant $M>0$ with
+      \[
+        \left|\frac{f(x)-f(y)}{x-y}\right|\le M
+        \quad\text{for all } x\ne y.
+      \]
+      Show that if $f:A\to\mathbb{R}$ is Lipschitz, then $f$ is uniformly continuous on $A$.
+    </li>
+
+    <li class="problem">
+      Provide an example of each of the following, or explain why it is impossible.
+      <ol class="parts">
+        <li>A continuous function defined on an open interval with range equal to a closed interval.</li>
+        <li>A continuous function defined on a closed interval with range equal to an open interval.</li>
+        <li>A continuous function defined on an open interval with range equal to an unbounded
+            closed set different from $\mathbb{R}$.</li>
+        <li>A continuous function defined on all of $\mathbb{R}$ with range equal to $\mathbb{Q}$.</li>
+      </ol>
+    </li>
+
+    <li class="problem">
+      Let $f$ be continuous on the interval $[0,1]$ to $\mathbb{R}$ and suppose that $f(0)=f(1)$.
+      Prove that there exists a point $c\in[0,\tfrac{1}{2}]$ such that
+      \[
+        f(c)=f\!\left(c+\tfrac{1}{2}\right).
+      \]
+    </li>
+
+  </ol>
+
+  <div class="callout">
+    This result shows that, at any given time, there exist antipodal points on the
+    Earth&rsquo;s equator that have the same temperature.
+  </div>
+
+  <hr class="divider">
+
+  <a class="back" href="../../math4630.html">&larr; Back to MATH&nbsp;4630</a>
+
+</main>
+</body>
+</html>
