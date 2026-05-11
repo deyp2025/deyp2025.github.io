@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATH 4630 — Handout: Consequences of Completeness (Part 1)</title>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        id="MathJax-script" async></script>
+
+<style>
+  :root{
+    --navy-mid:#1f3a5f;
+    --navy-dark:#13243d;
+    --cream:#faf7f0;
+    --gold:#b48a4a;
+    --muted:#4a4a4a;
+    --border:#d9d2c2;
+    --highlight:#fff3b0;
+    --box-bg:#fdfcf8;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--muted);
+    margin:0;
+    padding: 2rem 1rem;
+    line-height: 1.6;
+  }
+
+  .page{
+    max-width: 820px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 2.2rem 2.4rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+
+  header.handout-head{
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 1rem;
+    margin-bottom: 1.6rem;
+  }
+  header.handout-head h1{
+    margin: 0 0 .4rem 0;
+    font-size: 1.6rem;
+    color: var(--navy-dark);
+    font-weight: 700;
+  }
+  header.handout-head .meta{
+    font-size: .9rem;
+    color: var(--muted);
+  }
+
+  .intro{
+    font-size: .95rem;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+    padding: 1rem;
+    background: var(--box-bg);
+    border-left: 3px solid var(--gold);
+  }
+
+  .section-title{
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin: 2rem 0 1rem 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .subsection-title{
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy-mid);
+    margin: 1.6rem 0 0.8rem 0;
+  }
+
+  .theorem-box, .definition-box, .exercise-box, .note-box{
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    background: var(--box-bg);
+    padding: 1.2rem;
+    margin: 1.4rem 0;
+    border-radius: 2px;
+  }
+
+  .theorem-box h3, .definition-box h3, .exercise-box h3, .note-box h3{
+    margin: 0 0 .8rem 0;
+    font-size: 1rem;
+    color: var(--navy-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: .9rem;
+  }
+
+  .theorem-box p, .definition-box p, .exercise-box p, .note-box p{
+    margin: 0.5rem 0;
+  }
+
+  ol, ul {
+    margin: 0.8rem 0;
+    padding-left: 1.8rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .blank-fill{
+    border-bottom: 1px solid var(--muted);
+    display: inline-block;
+    min-width: 4rem;
+    margin: 0 .3rem;
+  }
+
+  .hr-divider{
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.8rem 0;
+  }
+
+  .highlight-box{
+    background: #fff9e6;
+    border-left: 4px solid var(--gold);
+    padding: 1.2rem;
+    margin: 1.4rem 0;
+  }
+
+  .back{
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .back:hover{ color: var(--gold); }
+
+  .pdf-link{
+    float: right;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .pdf-link:hover{ color: var(--gold); }
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <a class="pdf-link" href="completeness_3.pdf" target="_blank">[pdf]</a>
+
+  <header class="handout-head">
+    <h1>Consequences of Completeness (Part 1)</h1>
+    <div class="meta">MATH 4630 · Chapter 1: The Real Numbers</div>
+  </header>
+
+  <div class="intro">
+    <p>In the previous handout, we established the <strong>Axiom of Completeness</strong> (Axiom 3). In this section, we will explore four fundamental consequences of this Axiom. This handout focuses on the first two consequences. We will discuss consequences 3 and 4 in the next handout.</p>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>Four Fundamental Consequences:</strong></p>
+    <ol>
+      <li><strong>Archimedean Property:</strong> Natural numbers grow without bound</li>
+      <li><strong>Nested Intervals:</strong> Shrinking intervals converge to a point</li>
+      <li><strong>Density of $\mathbb{Q}$:</strong> Rationals are everywhere in $\mathbb{R}$</li>
+      <li><strong>Existence of $\sqrt{2}$:</strong> We can finally prove it exists!</li>
+    </ol>
+    <p><strong>Note:</strong> All four properties <em>fail</em> in $\mathbb{Q}$! Completeness is what makes them work.</p>
+  </div>
+
+  <div class="section-title">1. The Archimedean Property</div>
+
+  <div class="theorem-box">
+    <h3>Theorem: Archimedean Property</h3>
+    <p><strong>(i)</strong> Given any real number $x\in\mathbb{R}$, there exists $n\in\mathbb{N}$ such that</p>
+    $$n > x.$$
+    <p><strong>(ii)</strong> Given any real number $\varepsilon>0$, there exists $n\in\mathbb{N}$ such that</p>
+    $$\frac{1}{n} < \varepsilon.$$
+  </div>
+
+  <div class="note-box">
+    <h3>Intuition</h3>
+    <p><strong>Part (i):</strong> No matter how large $x$ is, we can find a natural number bigger than $x$. The natural numbers are <span class="blank-fill"></span>—they have no upper bound.</p>
+    <p><strong>Part (ii):</strong> No matter how small $\varepsilon>0$ is, we can find $\frac{1}{n}$ smaller than $\varepsilon$. We can make $\frac{1}{n}$ <span class="blank-fill"></span>.</p>
+  </div>
+
+  <div class="subsection-title">Proof of Part (i)</div>
+
+  <p>Suppose for contradiction that $\mathbb{N}$ is bounded above. Then by Axiom 3, $\mathbb{N}$ has a <span class="blank-fill"></span>; call it $s=\sup\mathbb{N}$.</p>
+
+  <p>Since $s$ is the least upper bound, $s-1$ is <span class="blank-fill"></span> an upper bound for $\mathbb{N}$.</p>
+
+  <p>Therefore, there exists $n\in\mathbb{N}$ such that: $n > s - 1$.</p>
+
+  <p>But then $n+1\in\mathbb{N}$ and: $n+1 > s - 1 + 1 = s$.</p>
+
+  <p>This contradicts that $s$ is an <span class="blank-fill"></span> for $\mathbb{N}$.</p>
+
+  <p>Therefore, $\mathbb{N}$ is <span class="blank-fill"></span>. Hence for any $x \in \mathbb{R}$, there exists $n \in \mathbb{N}$ with $n>x$. $\square$</p>
+
+  <div class="exercise-box">
+    <h3>Exercise</h3>
+    <ol style="line-height: 2;">
+      <li>Use part (i) to prove part (ii).
+        <p style="font-size: 0.9rem; font-style: italic;">Hint: Apply part (i) to $x=\frac{1}{\varepsilon}$.</p>
+        <div style="margin-top: 3rem; border-bottom: 1px solid var(--border);"></div>
+      </li>
+      <li><strong>True or False:</strong> For any $x>0$, there exists $n\in\mathbb{N}$ such that $\frac{1}{n}<x$.
+        <div style="margin-top: 1rem; border-bottom: 1px solid var(--border);"></div>
+      </li>
+      <li>Find $n\in\mathbb{N}$ such that $\frac{1}{n}<0.001$.
+        <div style="margin-top: 1rem; border-bottom: 1px solid var(--border);"></div>
+      </li>
+    </ol>
+  </div>
+
+  <div class="section-title">2. The Nested Interval Property</div>
+
+  <div class="theorem-box">
+    <h3>Theorem: Nested Interval Property</h3>
+    <p>Assume $I_n=[a_n,b_n]$ is a sequence of closed, bounded intervals with</p>
+    $$I_1 \supseteq I_2 \supseteq I_3 \supseteq \cdots$$
+    <p>Then the intersection $\displaystyle\bigcap_{n=1}^{\infty}I_n$ is <span class="blank-fill"></span>.</p>
+  </div>
+
+  <div class="note-box">
+    <h3>Visually</h3>
+    <p>Imagine a sequence of nested closed intervals, each shrinking inside the previous one. Their intersection is at least one point.</p>
+  </div>
+
+  <div class="subsection-title">Proof Sketch</div>
+
+  <p>Define the set</p>
+  $$A=\{a_n:n\in\mathbb{N}\}=\text{(all left endpoints)}.$$
+
+  <p><strong>Step 1:</strong> Show that $A$ is <em>nonempty</em> and <em>bounded above</em>.</p>
+  <div style="margin-top: 3rem; border-bottom: 1px solid var(--border);"></div>
+
+  <p><strong>Step 2:</strong> By Axiom 3, let $x=<span class="blank-fill"></span>$.</p>
+
+  <p><strong>Step 3:</strong> Prove that $x\in I_n$ for all $n \in \mathbb{N}$:</p>
+  <ul style="margin-left: 2rem;">
+    <li>Show $a_n\le x$ for all $n \in \mathbb{N}$:
+      <div style="margin-top: 2rem; border-bottom: 1px solid var(--border);"></div>
+    </li>
+    <li>Show $x\le b_n$ for all $n \in \mathbb{N}$:
+      <div style="margin-top: 3rem; border-bottom: 1px solid var(--border);"></div>
+    </li>
+  </ul>
+
+  <p>Altogether, we have $a_n \le x \le b_n$ for all $n$, and therefore $x\in\bigcap_{n=1}^{\infty}I_n$, so the intersection is nonempty. $\square$</p>
+
+  <div class="exercise-box">
+    <h3>Exercise: Nested Intervals</h3>
+    <p>Consider the sequence of intervals $I_n=[0,\tfrac{1}{n}]$ for $n=1,2,3,\ldots$</p>
+    <ol style="line-height: 2;">
+      <li>Verify that $I_1 \supseteq I_2 \supseteq I_3 \supseteq \cdots$
+        <div style="margin-top: 2rem; border-bottom: 1px solid var(--border);"></div>
+      </li>
+      <li>What is $\bigcap_{n=1}^{\infty} I_n$?
+        <div style="margin-top: 1rem; border-bottom: 1px solid var(--border);"></div>
+      </li>
+      <li>Now consider the nested <em>open</em> intervals $J_n=(0,\tfrac{1}{n})$ for $n=1,2,3,\ldots$
+        <ol style="list-style-type: lower-alpha;">
+          <li>Show that $J_1 \supseteq J_2 \supseteq J_3 \supseteq \cdots$.
+            <div style="margin-top: 2rem; border-bottom: 1px solid var(--border);"></div>
+          </li>
+          <li>Prove that $\bigcap_{n=1}^{\infty} J_n = \emptyset$.
+            <div style="margin-top: 3rem; border-bottom: 1px solid var(--border);"></div>
+          </li>
+        </ol>
+      </li>
+      <li>Explain why the Nested Interval Property holds for $(I_n)$ but fails for $(J_n)$.
+        <div style="margin-top: 2rem; border-bottom: 1px solid var(--border);"></div>
+      </li>
+    </ol>
+  </div>
+
+  <hr class="hr-divider">
+
+  <a class="back" href="../../math4630.html">&larr; Back to MATH 4630</a>
+
+</main>
+</body>
+</html>

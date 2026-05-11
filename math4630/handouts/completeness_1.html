@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATH 4630 — Handout: Construction of ℝ and Axiom of Completeness (Part 1)</title>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        id="MathJax-script" async></script>
+
+<style>
+  :root{
+    --navy-mid:#1f3a5f;
+    --navy-dark:#13243d;
+    --cream:#faf7f0;
+    --gold:#b48a4a;
+    --muted:#4a4a4a;
+    --border:#d9d2c2;
+    --highlight:#fff3b0;
+    --box-bg:#fdfcf8;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--muted);
+    margin:0;
+    padding: 2rem 1rem;
+    line-height: 1.6;
+  }
+
+  .page{
+    max-width: 820px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 2.2rem 2.4rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+
+  header.handout-head{
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 1rem;
+    margin-bottom: 1.6rem;
+  }
+  header.handout-head h1{
+    margin: 0 0 .4rem 0;
+    font-size: 1.6rem;
+    color: var(--navy-dark);
+    font-weight: 700;
+  }
+  header.handout-head .meta{
+    font-size: .9rem;
+    color: var(--muted);
+  }
+
+  .intro{
+    font-size: .95rem;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+    padding: 1rem;
+    background: var(--box-bg);
+    border-left: 3px solid var(--gold);
+  }
+
+  .section-title{
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin: 2rem 0 1rem 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .theorem-box, .definition-box, .exercise-box, .note-box{
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    background: var(--box-bg);
+    padding: 1.2rem;
+    margin: 1.4rem 0;
+    border-radius: 2px;
+  }
+
+  .theorem-box h3, .definition-box h3, .exercise-box h3, .note-box h3{
+    margin: 0 0 .8rem 0;
+    font-size: 1rem;
+    color: var(--navy-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: .9rem;
+  }
+
+  .theorem-box p, .definition-box p, .exercise-box p, .note-box p{
+    margin: 0.5rem 0;
+  }
+
+  ol, ul {
+    margin: 0.8rem 0;
+    padding-left: 1.8rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .blank-fill{
+    border-bottom: 1px solid var(--muted);
+    display: inline-block;
+    min-width: 5rem;
+    margin: 0 .3rem;
+  }
+
+  .wishlisst{
+    background: #fff9e6;
+    border-left: 4px solid var(--gold);
+    padding: 1.2rem;
+    margin: 1.4rem 0;
+  }
+
+  .hr-divider{
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.8rem 0;
+  }
+
+  .back{
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .back:hover{ color: var(--gold); }
+
+  .pdf-link{
+    float: right;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .pdf-link:hover{ color: var(--gold); }
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <a class="pdf-link" href="completeness_1.pdf" target="_blank">[pdf]</a>
+
+  <header class="handout-head">
+    <h1>Construction of $\mathbb{R}$ — The Axiom of Completeness (Part 1)</h1>
+    <div class="meta">MATH 4630 · Chapter 1: The Real Numbers</div>
+  </header>
+
+  <div class="intro">
+    <p>The real numbers $\mathbb{R}$ are fundamentally one of the important objects for real analysis. Although we use real numbers constantly, it is not immediately clear which of their properties should be taken as assumptions and which should be proved. In this handout, we will describe the real number system <em>axiomatically</em>. Rather than constructing $\mathbb{R}$ from scratch, we will list a small number of fundamental properties, called <em>axioms</em>—that characterize the real numbers and distinguish them from other familiar number systems.</p>
+  </div>
+
+  <div class="section-title">Axiom 1: Field Axioms</div>
+
+  <div class="theorem-box">
+    <h3>Axiom 1: Field Axioms</h3>
+    <p>Let $\mathbb{R}$ be a set. We assume there exist two binary operations on $\mathbb{R}$, called $+$ (addition) and $\cdot$ (multiplication), such that $(\mathbb{R},+,\cdot)$ is a <span class="blank-fill"></span>. This means that for all $x,y,z\in\mathbb{R}$:</p>
+    <ul>
+      <li><strong>Closure:</strong> $x+y\in\mathbb{R}$ and $x\cdot y\in\mathbb{R}$.</li>
+      <li><strong>Associativity:</strong> $(x+y)+z = x+(y+z)$, $(x\cdot y)\cdot z = x\cdot(y\cdot z)$.</li>
+      <li><strong>Commutativity:</strong> $x+y=y+x$, $x\cdot y=y\cdot x$.</li>
+      <li><strong>Identities:</strong> There exist $0,1\in\mathbb{R}$ such that $x+0=x$ and $x\cdot 1=x$.</li>
+      <li><strong>Inverses:</strong>
+        <ul>
+          <li>(Additive inverse) For every $x$, there exists $-x$ such that $x+(-x)=0$.</li>
+          <li>(Multiplicative inverse) For every $x\neq 0$, there exists $x^{-1}$ such that $x\cdot x^{-1}=1$.</li>
+        </ul>
+      </li>
+      <li><strong>Distributive Law:</strong> $x(y+z)=xy+xz$.</li>
+    </ul>
+    <hr class="hr-divider">
+    <p>We <em>define</em> subtraction and division by:</p>
+    $$x-y = x + (-y) \qquad\text{and}\qquad x\div y = x \cdot y^{-1} \quad (y\neq 0).$$
+    <hr class="hr-divider">
+    <p><strong>Fact:</strong> For each $x\in\mathbb{R}$, the additive inverse is <em>unique</em>, and if $x\neq 0$, the multiplicative inverse is <em>unique</em>.</p>
+  </div>
+
+  <div class="section-title">The "Wish List"</div>
+
+  <div class="wishlisst">
+    <p><strong>The following statements about real numbers are all true, but they are not explicitly listed in Axiom 1. Some will follow from Axiom 1, while others require additional axioms.</strong></p>
+    <ol>
+      <li>For all $x\in\mathbb{R}$, $x\cdot 0=0$.</li>
+      <li>For all $x\in\mathbb{R}$, $-x = (-1)\cdot x$.</li>
+      <li>For all nonzero real numbers $a$, $a\neq -a$.</li>
+      <li>$\mathbb{R}$ is an infinite set.</li>
+      <li>There exists a real number $x$ such that $x^2=2$.</li>
+    </ol>
+  </div>
+
+  <div class="exercise-box">
+    <h3>Exercise</h3>
+    <p><strong>Prove that for all $x\in\mathbb{R}$, $x\cdot 0=0$ using only the field axioms.</strong></p>
+    <div style="margin-top: 6rem; border-bottom: 1px solid var(--border);"></div>
+  </div>
+
+  <div class="section-title">Axiom 2: Order Axioms</div>
+
+  <div class="theorem-box">
+    <h3>Axiom 2: Order Axioms</h3>
+    <p>There exists a subset $\mathbb{R}^{+}\subseteq\mathbb{R}$, called the set of <span class="blank-fill"></span>. This set satisfies:</p>
+    <ol>
+      <li>If $x,y\in\mathbb{R}^{+}$, then $x+y\in<span class="blank-fill"></span>$ and $x\cdot y\in<span class="blank-fill"></span>$.</li>
+      <li>For every real number $a$, <em>exactly one</em> of the following is true:
+        <ul style="list-style-type: none;">
+          <li>$a$ is <span class="blank-fill"></span>.</li>
+          <li>$a$ is <span class="blank-fill"></span>.</li>
+          <li>$-a$ is <span class="blank-fill"></span>.</li>
+        </ul>
+      </li>
+    </ol>
+    <p>We call elements of $\mathbb{R}^{+}$ <span class="blank-fill"></span>. The set of <span class="blank-fill"></span> real numbers is the complement of $\mathbb{R}^{+}\cup\{0\}$ in $\mathbb{R}$, and we denote it by $\mathbb{R}^{-}$.</p>
+  </div>
+
+  <div class="exercise-box">
+    <h3>Exercise</h3>
+    <p><strong>Verify the following facts using Axiom 2.</strong></p>
+    <ol>
+      <li>The real number $1$ is positive.
+        <div style="margin-top: 4rem; border-bottom: 1px solid var(--muted);"></div>
+      </li>
+      <li>There exists a negative real number.
+        <div style="margin-top: 4rem; border-bottom: 1px solid var(--muted);"></div>
+      </li>
+      <li>For all nonzero real numbers $a$, $a\neq -a$.
+        <div style="margin-top: 4rem; border-bottom: 1px solid var(--muted);"></div>
+      </li>
+    </ol>
+  </div>
+
+  <div class="note-box">
+    <h3>Note</h3>
+    <p>The rational numbers $\mathbb{Q}$ satisfy both Axiom 1 and Axiom 2.</p>
+  </div>
+
+  <div class="section-title">So What is Missing?</div>
+
+  <p>If $\mathbb{Q}$ already satisfies Axioms 1 and 2, why do we need $\mathbb{R}$?</p>
+
+  <div class="exercise-box">
+    <h3>Thought Experiment</h3>
+    <p><strong>There is <em>no</em> rational number whose square is $2$.</strong></p>
+    <div style="margin-top: 4rem; border-bottom: 1px solid var(--muted);"></div>
+  </div>
+
+  <p>So we can't hope that every positive real number has a square root using only <em>Axiom 1</em> and <em>Axiom 2</em>. We need one more axiom—an axiom that will "fill the holes" left by rational numbers:</p>
+
+  <div class="section-title">Axiom 3: The Axiom of Completeness</div>
+
+  <div class="theorem-box">
+    <h3>Axiom 3: The Axiom of Completeness</h3>
+    <p>Every <span class="blank-fill"></span> subset of $\mathbb{R}$ that is bounded above has a <span class="blank-fill"></span>.</p>
+    <p>We will treat this as an <span class="blank-fill"></span>: something we may use without proof.</p>
+  </div>
+
+  <p>In the next handout, we will unpack what "bounded above" and "least upper bound" mean, and we will learn how to compute $\sup A$ and $\inf A$ in examples.</p>
+
+  <hr class="hr-divider">
+
+  <a class="back" href="../../math4630.html">&larr; Back to MATH 4630</a>
+
+</main>
+</body>
+</html>

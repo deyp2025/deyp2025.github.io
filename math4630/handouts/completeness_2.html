@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATH 4630 — Handout: Axiom of Completeness (Part 2)</title>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        id="MathJax-script" async></script>
+
+<style>
+  :root{
+    --navy-mid:#1f3a5f;
+    --navy-dark:#13243d;
+    --cream:#faf7f0;
+    --gold:#b48a4a;
+    --muted:#4a4a4a;
+    --border:#d9d2c2;
+    --highlight:#fff3b0;
+    --box-bg:#fdfcf8;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--muted);
+    margin:0;
+    padding: 2rem 1rem;
+    line-height: 1.6;
+  }
+
+  .page{
+    max-width: 820px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 2.2rem 2.4rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+
+  header.handout-head{
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 1rem;
+    margin-bottom: 1.6rem;
+  }
+  header.handout-head h1{
+    margin: 0 0 .4rem 0;
+    font-size: 1.6rem;
+    color: var(--navy-dark);
+    font-weight: 700;
+  }
+  header.handout-head .meta{
+    font-size: .9rem;
+    color: var(--muted);
+  }
+
+  .intro{
+    font-size: .95rem;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+    padding: 1rem;
+    background: var(--box-bg);
+    border-left: 3px solid var(--gold);
+  }
+
+  .section-title{
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin: 2rem 0 1rem 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .theorem-box, .definition-box, .exercise-box, .note-box{
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    background: var(--box-bg);
+    padding: 1.2rem;
+    margin: 1.4rem 0;
+    border-radius: 2px;
+  }
+
+  .theorem-box h3, .definition-box h3, .exercise-box h3, .note-box h3{
+    margin: 0 0 .8rem 0;
+    font-size: 1rem;
+    color: var(--navy-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: .9rem;
+  }
+
+  .theorem-box p, .definition-box p, .exercise-box p, .note-box p{
+    margin: 0.5rem 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: white;
+  }
+
+  table th, table td {
+    border: 1px solid var(--border);
+    padding: 0.8rem;
+    text-align: center;
+  }
+
+  table th {
+    background: var(--box-bg);
+    font-weight: 700;
+    color: var(--navy-dark);
+  }
+
+  ol, ul {
+    margin: 0.8rem 0;
+    padding-left: 1.8rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .blank-fill{
+    border-bottom: 1px solid var(--muted);
+    display: inline-block;
+    min-width: 4rem;
+    margin: 0 .3rem;
+  }
+
+  .hr-divider{
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.8rem 0;
+  }
+
+  .back{
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .back:hover{ color: var(--gold); }
+
+  .pdf-link{
+    float: right;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .pdf-link:hover{ color: var(--gold); }
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <a class="pdf-link" href="completeness_2.pdf" target="_blank">[pdf]</a>
+
+  <header class="handout-head">
+    <h1>The Axiom of Completeness (Part 2)</h1>
+    <div class="meta">MATH 4630 · Chapter 1: The Real Numbers</div>
+  </header>
+
+  <div class="intro">
+    <p>In the previous handout, we stated the following axiom:</p>
+    <p><strong>Axiom 3:</strong> Every <em>nonempty</em> subset of $\mathbb{R}$ that is <em>bounded above</em> has a <em>least upper bound</em> in $\mathbb{R}$.</p>
+    <p>In this handout, we will explore Axiom 3 in detail. Let us begin with some important definitions.</p>
+  </div>
+
+  <div class="section-title">Bounded Sets</div>
+
+  <div class="definition-box">
+    <h3>Definition: Bounded Above and Below</h3>
+    <p>A set $A\subseteq\mathbb{R}$ is <strong>bounded above</strong> if there exists $b\in\mathbb{R}$ such that</p>
+    $$a \le b \text{ for all } a \in A.$$
+    <p>Such a number $b$ is called an <span class="blank-fill"></span> for $A$.</p>
+    <hr class="hr-divider">
+    <p>A set $A\subseteq\mathbb{R}$ is <strong>bounded below</strong> if there exists $\ell\in\mathbb{R}$ such that</p>
+    $$\ell \le a \text{ for all } a \in A.$$
+    <p>Such a number $\ell$ is called a <span class="blank-fill"></span> for $A$.</p>
+  </div>
+
+  <div class="exercise-box">
+    <h3>Exercise</h3>
+    <p><strong>For each set below, complete the table.</strong></p>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: left;">Set</th>
+          <th>Bounded Above?</th>
+          <th>Bounded Below?</th>
+          <th>One Upper Bound</th>
+          <th>One Lower Bound</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left;">(i) $A=(0,1)$</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">(ii) $B=\{x\in\mathbb{R}:x^2<4\}$</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">(iii) $C=\{x\in\mathbb{R}:x\ge 3\}$</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">(iv) $D=\left\{\frac{1}{n}:n\in\mathbb{N}\right\}$</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">(v) $E=\{x\in\mathbb{R}:x<5\}$</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">Supremum and Infimum</div>
+
+  <div class="definition-box">
+    <h3>Definition: Least Upper Bound (Supremum)</h3>
+    <p>A real number $s$ is the <strong>least upper bound</strong> or <strong>supremum</strong> of $A$ (written $s=\sup A$) if:</p>
+    <ol>
+      <li>$s$ is an upper bound for $A$: for all $a \in A$, $a \le s$.</li>
+      <li>$s$ is the <em>least</em> such bound: if $b$ is any upper bound for $A$, then $s \le b$.</li>
+    </ol>
+    <hr class="hr-divider">
+    <p>A real number $\ell$ is the <strong>greatest lower bound</strong> or <strong>infimum</strong> of $A$ (written $\ell=\inf A$) if:</p>
+    <ol>
+      <li>$\ell$ is a lower bound for $A$: for all $a \in A$, $\ell \le a$.</li>
+      <li>$\ell$ is the <em>greatest</em> such bound: if $m$ is any lower bound for $A$, then $m \le \ell$.</li>
+    </ol>
+  </div>
+
+  <div class="exercise-box">
+    <h3>Exercise: Uniqueness of Supremum</h3>
+    <p><strong>Let $A\subseteq\mathbb{R}$ be a nonempty set that is bounded above. Suppose $s_1$ and $s_2$ are both supremums of $A$. Prove that $s_1 = s_2$.</strong></p>
+    <div style="margin-top: 6rem; border-bottom: 1px solid var(--border);"></div>
+  </div>
+
+  <div class="note-box">
+    <h3>Note</h3>
+    <p>The supremum of a set <span class="blank-fill"></span>.</p>
+    <ul>
+      <li>If a set is <span class="blank-fill"></span>, then it has no supremum (e.g., $\mathbb{N}$).</li>
+      <li>The empty set has <span class="blank-fill"></span> supremum. By convention, one sometimes writes $\sup\varnothing=-\infty$, but this is not a real number and is outside our definition.</li>
+    </ul>
+  </div>
+
+  <div class="exercise-box">
+    <h3>Exercise: Computing Supremum and Infimum</h3>
+    <p><strong>For each set below, determine $\sup A$ and $\inf A$ (if they exist) and whether they belong to the set.</strong></p>
+    <ol style="line-height: 2;">
+      <li>$A=(0,1)$
+        <div style="margin-top: 5rem; border-bottom: 1px solid var(--border);"></div>
+      </li>
+      <li>$C=\{x\in\mathbb{R}:x\ge 3\}$
+        <div style="margin-top: 4rem; border-bottom: 1px solid var(--border);"></div>
+      </li>
+      <li>$D=\{x\in\mathbb{R}:x<5\}$
+        <div style="margin-top: 5rem; border-bottom: 1px solid var(--border);"></div>
+      </li>
+    </ol>
+  </div>
+
+  <div class="exercise-box">
+    <h3>Reflection</h3>
+    <p><strong>Give an example from the list above where:</strong></p>
+    <ol>
+      <li>the supremum exists but <em>does not belong</em> to the set: <span class="blank-fill"></span></li>
+      <li>the infimum exists but <em>does not belong</em> to the set: <span class="blank-fill"></span></li>
+      <li><em>neither</em> the supremum nor the infimum belongs to the set: <span class="blank-fill"></span></li>
+    </ol>
+  </div>
+
+  <div class="section-title">Maximum and Minimum</div>
+
+  <div class="note-box">
+    <h3>Note: Maximum and Minimum</h3>
+    <p>In general, $\sup A$ and $\inf A$ <em>need not belong</em> to the set $A$.</p>
+    <ul>
+      <li>If $\sup A\in A$, then $\sup A$ is called the <span class="blank-fill">maximum</span> of $A$, and we write $\max A=\sup A$.</li>
+      <li>If $\inf A\in A$, then $\inf A$ is called the <span class="blank-fill">minimum</span> of $A$, and we write $\min A=\inf A$.</li>
+    </ul>
+  </div>
+
+  <div class="section-title">An Equivalent Characterization of Supremum</div>
+
+  <div class="theorem-box">
+    <h3>Proposition</h3>
+    <p>Let $A\subseteq\mathbb{R}$ be nonempty and bounded above, and assume $s$ is an upper bound for $A$. Then $s=\sup A$ if and only if:</p>
+    <p style="text-align: center; margin-top: 1rem;">For every $\varepsilon>0$, there exists $a\in A$ such that $s - \varepsilon < a \le s$.</p>
+  </div>
+
+  <div class="note-box">
+    <h3>Visually</h3>
+    <p>For any $\varepsilon > 0$, the interval $(s-\varepsilon, s]$ must contain at least one point from $A$.</p>
+    <p><em>Takeaway:</em> No matter how small $\varepsilon$ is, $A$ must come within $\varepsilon$ of $s$ from below.</p>
+  </div>
+
+  <hr class="hr-divider">
+
+  <a class="back" href="../../math4630.html">&larr; Back to MATH 4630</a>
+
+</main>
+</body>
+</html>
