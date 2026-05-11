@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topology in ℝⁿ — Handout 1: Open and Closed Sets</title>
+
+<style>
+  :root{
+    --navy-mid:#1f3a5f;
+    --navy-dark:#13243d;
+    --cream:#faf7f0;
+    --gold:#b48a4a;
+    --muted:#4a4a4a;
+    --border:#d9d2c2;
+    --highlight:#fff3b0;
+    --box-bg:#fdfcf8;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--muted);
+    margin:0;
+    padding: 2rem 1rem;
+    line-height: 1.7;
+  }
+
+  .page{
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 2.5rem 2.8rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+
+  header{
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+  header h1{
+    margin: 0 0 .3rem 0;
+    font-size: 1.9rem;
+    color: var(--navy-dark);
+    font-weight: 700;
+  }
+  header .meta{
+    font-size: .95rem;
+    color: var(--muted);
+  }
+
+  .section-title{
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin: 2.2rem 0 1.2rem 0;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .definition-box, .theorem-box, .exercise-box, .note-box{
+    border-left: 4px solid var(--gold);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    background: var(--box-bg);
+  }
+
+  .definition-box strong, .theorem-box strong{
+    color: var(--navy-dark);
+  }
+
+  .exercise-box{
+    border-left-color: var(--gold);
+    background: #fffbf0;
+  }
+
+  .note-box{
+    border-left-color: #888;
+    background: #f5f5f5;
+    font-size: .95rem;
+  }
+
+  .theorem-box{
+    background: #f0f4ff;
+    border-left-color: #3366cc;
+  }
+
+  p{
+    margin: 0.8rem 0;
+  }
+
+  .blank-fill{
+    border-bottom: 1px solid var(--muted);
+    display: inline-block;
+    min-width: 8rem;
+    padding: 0 0.3rem;
+  }
+
+  .back{
+    display: inline-block;
+    margin-top: 2.5rem;
+    font-size: .9rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .back:hover{ color: var(--gold); }
+
+  .formula{
+    font-family: "Courier New", monospace;
+    background: #f0f0f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  ul, ol{
+    margin: 0.8rem 0;
+  }
+
+  li{
+    margin: 0.5rem 0;
+  }
+
+  .centered{
+    text-align: center;
+    margin: 1.5rem 0;
+  }
+
+  strong{
+    color: var(--navy-mid);
+  }
+
+  em{
+    color: #555;
+  }
+</style>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+<main class="page">
+
+  <header>
+    <h1>Topology in ℝⁿ — Handout 1</h1>
+    <div class="meta">Open and Closed Sets in Higher Dimensions</div>
+  </header>
+
+  <div class="section-title">§1. Moving from ℝ to ℝⁿ</div>
+
+  <p>
+    In Chapter 3, we developed the topology of ℝ: open sets, closed sets, limit points, compactness, connectedness. 
+    All these concepts generalize beautifully to ℝⁿ—we just need to replace the absolute value with the 
+    <strong>Euclidean norm</strong>.
+  </p>
+
+  <div class="definition-box">
+    <strong>Definition (Euclidean Norm in ℝⁿ):</strong> For <span class="formula">x = (x₁, x₂, …, xₙ) ∈ ℝⁿ</span>, the <strong>Euclidean norm</strong> is
+    $$\|x\| = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2}.$$
+    The <strong>distance</strong> between <span class="formula">x, y ∈ ℝⁿ</span> is
+    $$d(x,y) = \|x - y\|.$$
+  </div>
+
+  <p>
+    <strong>Remark:</strong> When <span class="formula">n=1</span>, we recover <span class="formula">d(x,y) = |x-y|</span>.
+  </p>
+
+  <div class="centered">
+    <strong>Key insight:</strong> Distance in ℝⁿ works exactly like distance in ℝ—just computed differently.
+  </div>
+
+  <div class="section-title">§2. Neighborhoods and Open Sets</div>
+
+  <div class="definition-box">
+    <strong>Definition (Neighborhood):</strong> Let <span class="formula">x₀ ∈ ℝⁿ</span> and <span class="formula">ε > 0</span>. The <strong>open ball</strong> (or <strong>ε-neighborhood</strong>) 
+    centered at <span class="formula">x₀</span> is
+    $$V_\varepsilon(x_0) = \{ x \in \mathbb{R}^n : \|x - x_0\| < \varepsilon \}.$$
+  </div>
+
+  <p>
+    In ℝ: <span class="formula">V_ε(x₀) = (x₀ - ε, x₀ + ε)</span> is an interval.
+  </p>
+  <p>
+    In ℝ²: <span class="formula">V_ε(x₀)</span> is an open disk.
+  </p>
+  <p>
+    In ℝ³: <span class="formula">V_ε(x₀)</span> is an open ball (sphere interior).
+  </p>
+
+  <div class="definition-box">
+    <strong>Definition (Open Set in ℝⁿ):</strong> A set <span class="formula">O ⊆ ℝⁿ</span> is <strong>open</strong> if for every 
+    <span class="formula">x ∈ O</span>, there exists <span class="formula">ε > 0</span> such that 
+    $$V_\varepsilon(x) \subseteq O.$$
+  </div>
+
+  <p>
+    <strong>In words:</strong> A set is open if every point has an entire (small) ball around it that stays inside the set.
+  </p>
+
+  <div class="exercise-box">
+    <strong>Your turn:</strong> Determine whether each set in ℝ² is open. Justify.
+    <ol>
+      <li>
+        <span class="formula">O = \{(x,y) : x² + y² < 1\}</span> (open unit disk)
+        <br><br><span style="color:#888;">Open?</span> <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">O = \{(x,y) : x > 0, y > 0\}</span> (first quadrant, excluding axes)
+        <br><br><span style="color:#888;">Open?</span> <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">O = \{(x,y) : x² + y² ≤ 1\}</span> (closed unit disk)
+        <br><br><span style="color:#888;">Open?</span> <span class="blank-fill"></span>
+        <br><br>
+      </li>
+    </ol>
+  </div>
+
+  <div class="theorem-box">
+    <strong>Theorem (Properties of Open Sets in ℝⁿ):</strong>
+    <ol>
+      <li>The union of any collection of open sets is open.</li>
+      <li>The intersection of <em>finitely many</em> open sets is open.</li>
+      <li>ℝⁿ and ∅ are open.</li>
+    </ol>
+  </div>
+
+  <div class="section-title">§3. Closed Sets and Limit Points</div>
+
+  <div class="definition-box">
+    <strong>Definition (Limit Point in ℝⁿ):</strong> A point <span class="formula">x ∈ ℝⁿ</span> is a <strong>limit point</strong> of a set 
+    <span class="formula">A ⊆ ℝⁿ</span> if every neighborhood <span class="formula">V_ε(x)</span> contains a point of <span class="formula">A</span> 
+    different from <span class="formula">x</span>:
+    $$(V_\varepsilon(x) \setminus \{x\}) \cap A \neq \emptyset \text{ for all } \varepsilon > 0.$$
+  </div>
+
+  <div class="theorem-box">
+    <strong>Theorem (Characterization via Sequences):</strong> A point <span class="formula">x</span> is a limit point of 
+    <span class="formula">A</span> if and only if there exists a sequence <span class="formula">(aₖ)</span> with 
+    <span class="formula">aₖ ∈ A</span>, <span class="formula">aₖ ≠ x</span>, such that <span class="formula">aₖ → x</span>.
+  </div>
+
+  <div class="definition-box">
+    <strong>Definition (Closed Set in ℝⁿ):</strong> A set <span class="formula">F ⊆ ℝⁿ</span> is <strong>closed</strong> if it contains 
+    all of its limit points.
+  </div>
+
+  <div class="exercise-box">
+    <strong>Examples:</strong> Decide if each set in ℝⁿ is closed.
+    <ol>
+      <li>
+        <span class="formula">F = \{(x,y) ∈ ℝ² : x² + y² ≤ 1\}</span> (closed unit disk)
+        <br><br><span style="color:#888;">Closed?</span> <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">F = \{(x,y) ∈ ℝ² : x² + y² < 1\}</span> (open unit disk)
+        <br><br><span style="color:#888;">Closed?</span> <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">F = ℤⁿ</span> (integer lattice in ℝⁿ)
+        <br><br><span style="color:#888;">Closed?</span> <span class="blank-fill"></span>
+        <br><br>
+      </li>
+    </ol>
+  </div>
+
+  <div class="theorem-box">
+    <strong>Theorem (Complements Link Open and Closed):</strong> A set <span class="formula">F ⊆ ℝⁿ</span> is closed if and only if 
+    its complement <span class="formula">Fᶜ = ℝⁿ ∖ F</span> is open.
+  </div>
+
+  <div class="theorem-box">
+    <strong>Theorem (Properties of Closed Sets in ℝⁿ):</strong>
+    <ol>
+      <li>ℝⁿ and ∅ are closed.</li>
+      <li>The intersection of any collection of closed sets is closed.</li>
+      <li>The union of <em>finitely many</em> closed sets is closed.</li>
+    </ol>
+  </div>
+
+  <div class="section-title">§4. Closure and Interior</div>
+
+  <div class="definition-box">
+    <strong>Definition (Closure):</strong> The <strong>closure</strong> of <span class="formula">A ⊆ ℝⁿ</span>, denoted <span class="formula">Ā</span>, is
+    $$\overline{A} = A \cup L(A),$$
+    where <span class="formula">L(A)</span> is the set of all limit points of <span class="formula">A</span>.
+  </div>
+
+  <p><strong>Key fact:</strong> <span class="formula">Ā</span> is always closed, and is the smallest closed set containing <span class="formula">A</span>.</p>
+
+  <div class="definition-box">
+    <strong>Definition (Interior):</strong> The <strong>interior</strong> of <span class="formula">A ⊆ ℝⁿ</span>, denoted <span class="formula">A°</span>, is 
+    the set of all points <span class="formula">x ∈ A</span> for which there exists <span class="formula">ε > 0</span> such that <span class="formula">V_ε(x) ⊆ A</span>.
+  </div>
+
+  <p><strong>Key fact:</strong> <span class="formula">A°</span> is always open, and is the largest open set contained in <span class="formula">A</span>.</p>
+
+  <div class="exercise-box">
+    <strong>Compute closure and interior:</strong> For <span class="formula">A = \{(x,y) ∈ ℝ² : 0 < x² + y² ≤ 1\}</span>:
+    <ol>
+      <li><span class="formula">\overline{A} =</span> <span class="blank-fill"></span></li>
+      <li><span class="formula">A° =</span> <span class="blank-fill"></span></li>
+    </ol>
+  </div>
+
+  <div class="note-box">
+    <strong>Note:</strong> Unlike in ℝ, open and closed sets in ℝⁿ can coexist in much more complex ways. 
+    The geometry becomes richer in higher dimensions!
+  </div>
+
+  <hr style="border:none; border-top:1px solid var(--border); margin: 2rem 0;">
+
+  <a class="back" href="index.html">&larr; Back to Topology Handouts</a>
+
+</main>
+</body>
+</html>

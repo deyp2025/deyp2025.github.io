@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topology in ℝⁿ — Handout 2: Compact Sets</title>
+
+<style>
+  :root{
+    --navy-mid:#1f3a5f;
+    --navy-dark:#13243d;
+    --cream:#faf7f0;
+    --gold:#b48a4a;
+    --muted:#4a4a4a;
+    --border:#d9d2c2;
+    --highlight:#fff3b0;
+    --box-bg:#fdfcf8;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--muted);
+    margin:0;
+    padding: 2rem 1rem;
+    line-height: 1.7;
+  }
+
+  .page{
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 2.5rem 2.8rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+
+  header{
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+  header h1{
+    margin: 0 0 .3rem 0;
+    font-size: 1.9rem;
+    color: var(--navy-dark);
+    font-weight: 700;
+  }
+  header .meta{
+    font-size: .95rem;
+    color: var(--muted);
+  }
+
+  .section-title{
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin: 2.2rem 0 1.2rem 0;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .definition-box, .theorem-box, .exercise-box, .note-box{
+    border-left: 4px solid var(--gold);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    background: var(--box-bg);
+  }
+
+  .definition-box strong, .theorem-box strong{
+    color: var(--navy-dark);
+  }
+
+  .exercise-box{
+    border-left-color: var(--gold);
+    background: #fffbf0;
+  }
+
+  .note-box{
+    border-left-color: #888;
+    background: #f5f5f5;
+    font-size: .95rem;
+  }
+
+  .theorem-box{
+    background: #f0f4ff;
+    border-left-color: #3366cc;
+  }
+
+  p{
+    margin: 0.8rem 0;
+  }
+
+  .blank-fill{
+    border-bottom: 1px solid var(--muted);
+    display: inline-block;
+    min-width: 8rem;
+    padding: 0 0.3rem;
+  }
+
+  .back{
+    display: inline-block;
+    margin-top: 2.5rem;
+    font-size: .9rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .back:hover{ color: var(--gold); }
+
+  .formula{
+    font-family: "Courier New", monospace;
+    background: #f0f0f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  ul, ol{
+    margin: 0.8rem 0;
+  }
+
+  li{
+    margin: 0.5rem 0;
+  }
+
+  .centered{
+    text-align: center;
+    margin: 1.5rem 0;
+  }
+
+  strong{
+    color: var(--navy-mid);
+  }
+
+  em{
+    color: #555;
+  }
+
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  table th, table td{
+    border: 1px solid var(--border);
+    padding: 0.8rem;
+    text-align: left;
+  }
+
+  table th{
+    background: var(--highlight);
+    color: var(--navy-dark);
+    font-weight: 600;
+  }
+</style>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+<main class="page">
+
+  <header>
+    <h1>Topology in ℝⁿ — Handout 2</h1>
+    <div class="meta">Compact Sets in Higher Dimensions</div>
+  </header>
+
+  <div class="section-title">§1. What is Compactness?</div>
+
+  <p>
+    In Chapter 3, we learned that compact sets in ℝ are exactly the closed and bounded sets (Heine–Borel Theorem). 
+    This same characterization holds in ℝⁿ, but compactness is even more powerful here because it imposes stronger control 
+    on infinite processes.
+  </p>
+
+  <div class="centered">
+    <strong>Core idea:</strong> Compact sets are "small enough" that infinite processes can be controlled.
+  </div>
+
+  <div class="definition-box">
+    <strong>Definition (Compactness via Sequences):</strong> A set <span class="formula">K ⊆ ℝⁿ</span> is <strong>compact</strong> if 
+    every sequence <span class="formula">(xₖ)</span> in <span class="formula">K</span> has a subsequence 
+    <span class="formula">(x_{k_j})</span> that converges to a limit in <span class="formula">K</span>:
+    $$(x_k) \subseteq K \implies \exists \text{ subsequence } (x_{k_j}) \text{ with } x_{k_j} \to L \in K.$$
+  </div>
+
+  <div class="definition-box">
+    <strong>Definition (Bounded Set in ℝⁿ):</strong> A set <span class="formula">A ⊆ ℝⁿ</span> is <strong>bounded</strong> if there exists 
+    <span class="formula">M > 0</span> such that
+    $$\|x\| \leq M \text{ for all } x \in A.$$
+  </div>
+
+  <div class="theorem-box">
+    <strong>Theorem (Heine–Borel in ℝⁿ):</strong> A set <span class="formula">K ⊆ ℝⁿ</span> is compact if and only if 
+    <span class="formula">K</span> is <strong>closed and bounded</strong>.
+  </div>
+
+  <p>
+    <strong>This is the main computational tool:</strong> To check if a set is compact in ℝⁿ, just verify closure and boundedness!
+  </p>
+
+  <div class="section-title">§2. Examples of Compact Sets</div>
+
+  <div class="exercise-box">
+    <strong>Determine if each set is compact in ℝⁿ:</strong>
+    <ol>
+      <li>
+        <span class="formula">K = \{x ∈ ℝⁿ : \|x\| ≤ 1\}</span> (closed unit ball)
+        <br><br>
+        Closed? <span class="blank-fill"></span> &nbsp; Bounded? <span class="blank-fill"></span> &nbsp; Compact? <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">K = \{x ∈ ℝⁿ : \|x\| < 1\}</span> (open unit ball)
+        <br><br>
+        Closed? <span class="blank-fill"></span> &nbsp; Bounded? <span class="blank-fill"></span> &nbsp; Compact? <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">K = \{(x,y) ∈ ℝ² : |x| + |y| ≤ 1\}</span> (diamond/square with vertices at ±1, 0)
+        <br><br>
+        Closed? <span class="blank-fill"></span> &nbsp; Bounded? <span class="blank-fill"></span> &nbsp; Compact? <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">K = [1,2] × [3,4]</span> (rectangle in ℝ²)
+        <br><br>
+        Closed? <span class="blank-fill"></span> &nbsp; Bounded? <span class="blank-fill"></span> &nbsp; Compact? <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">K = [0,∞) × [0,1]</span> (half-infinite strip)
+        <br><br>
+        Closed? <span class="blank-fill"></span> &nbsp; Bounded? <span class="blank-fill"></span> &nbsp; Compact? <span class="blank-fill"></span>
+        <br><br>
+      </li>
+    </ol>
+  </div>
+
+  <div class="section-title">§3. Key Properties of Compact Sets</div>
+
+  <div class="theorem-box">
+    <strong>Theorem (Closed Subset of Compact = Compact):</strong> If <span class="formula">K</span> is compact and <span class="formula">F ⊆ K</span> 
+    is closed, then <span class="formula">F</span> is compact.
+  </div>
+
+  <div class="note-box">
+    <strong>Remark:</strong> This is extremely useful! To show a set is compact, we can show it's closed within a compact set and then appeal to this theorem.
+  </div>
+
+  <div class="theorem-box">
+    <strong>Theorem (Nested Compact Sets):</strong> If <span class="formula">K₁ ⊇ K₂ ⊇ K₃ ⊇ ⋯</span> is a nested sequence of 
+    nonempty compact sets in ℝⁿ, then
+    $$\bigcap_{k=1}^{\infty} K_k \neq \emptyset.$$
+  </div>
+
+  <div class="exercise-box">
+    <strong>Verify the nested property:</strong> Let <span class="formula">K_n = \{x ∈ ℝ² : \|x\| ≤ 1/n\}</span> for <span class="formula">n = 1, 2, 3, …</span>
+    <ol>
+      <li>Is each <span class="formula">Kₙ</span> compact? <span class="blank-fill"></span></li>
+      <li><span class="formula">\bigcap_{n=1}^∞ K_n =</span> <span class="blank-fill"></span></li>
+      <li>Is this intersection nonempty? <span class="blank-fill"></span></li>
+    </ol>
+  </div>
+
+  <div class="section-title">§4. Continuous Functions on Compact Sets</div>
+
+  <div class="theorem-box">
+    <strong>Theorem (Extreme Value Theorem in ℝⁿ):</strong> If <span class="formula">f : K → ℝ</span> is continuous and 
+    <span class="formula">K ⊆ ℝⁿ</span> is compact, then <span class="formula">f</span> attains its maximum and minimum on <span class="formula">K</span>:
+    $$\exists x_{\max}, x_{\min} \in K : f(x_{\min}) \leq f(x) \leq f(x_{\max}) \text{ for all } x \in K.$$
+  </div>
+
+  <div class="exercise-box">
+    <strong>Application:</strong> Let <span class="formula">f(x,y) = x² + y²</span> and <span class="formula">K = \{(x,y) : x² + y² ≤ 4\}</span>.
+    <ol>
+      <li>Is <span class="formula">K</span> compact? <span class="blank-fill"></span></li>
+      <li>Is <span class="formula">f</span> continuous? <span class="blank-fill"></span></li>
+      <li>What is <span class="formula">\min_{(x,y) ∈ K} f(x,y) =</span> <span class="blank-fill"></span></li>
+      <li>What is <span class="formula">\max_{(x,y) ∈ K} f(x,y) =</span> <span class="blank-fill"></span></li>
+    </ol>
+  </div>
+
+  <div class="theorem-box">
+    <strong>Theorem (Continuous Image of Compact = Compact):</strong> If <span class="formula">f : K → ℝⁿ</span> is continuous 
+    and <span class="formula">K</span> is compact, then <span class="formula">f(K)</span> is compact.
+  </div>
+
+  <div class="note-box">
+    <strong>Intuition:</strong> Compactness is "preserved" by continuous functions. The image of a compact set stays compact.
+  </div>
+
+  <div class="section-title">§5. Open Covers and Heine–Borel</div>
+
+  <div class="definition-box">
+    <strong>Definition (Open Cover):</strong> An <strong>open cover</strong> of <span class="formula">K ⊆ ℝⁿ</span> is a collection 
+    <span class="formula">\{Oᵢ : i ∈ I\}</span> of open sets such that
+    $$K \subseteq \bigcup_{i \in I} O_i.$$
+    A <strong>finite subcover</strong> is a finite subcollection that still covers <span class="formula">K</span>.
+  </div>
+
+  <div class="theorem-box">
+    <strong>Theorem (Heine–Borel: Finite Cover Characterization):</strong> A set <span class="formula">K ⊆ ℝⁿ</span> is compact 
+    if and only if <strong>every</strong> open cover of <span class="formula">K</span> has a finite subcover.
+  </div>
+
+  <div class="note-box">
+    <strong>Remark:</strong> This is the topological definition of compactness. It's powerful because it works 
+    in general metric spaces and topological spaces, not just in ℝⁿ.
+  </div>
+
+  <div class="exercise-box">
+    <strong>Finite subcover example:</strong> Consider <span class="formula">K = [0,1]</span> (compact in ℝ) 
+    and the open cover <span class="formula">\{O_n = (-1/n, 1 + 1/n) : n = 1, 2, 3, …\}</span>.
+    <ol>
+      <li>Does this collection cover <span class="formula">[0,1]</span>? <span class="blank-fill"></span></li>
+      <li>Can we find a finite subcover? <span class="blank-fill"></span></li>
+      <li>If so, which finitely many intervals suffice?</li>
+    </ol>
+  </div>
+
+  <hr style="border:none; border-top:1px solid var(--border); margin: 2rem 0;">
+
+  <a class="back" href="index.html">&larr; Back to Topology Handouts</a>
+
+</main>
+</body>
+</html>

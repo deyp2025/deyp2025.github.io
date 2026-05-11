@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topology in ℝⁿ — Handout 3: Perfect and Connected Sets</title>
+
+<style>
+  :root{
+    --navy-mid:#1f3a5f;
+    --navy-dark:#13243d;
+    --cream:#faf7f0;
+    --gold:#b48a4a;
+    --muted:#4a4a4a;
+    --border:#d9d2c2;
+    --highlight:#fff3b0;
+    --box-bg:#fdfcf8;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--muted);
+    margin:0;
+    padding: 2rem 1rem;
+    line-height: 1.7;
+  }
+
+  .page{
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 2.5rem 2.8rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+
+  header{
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+  header h1{
+    margin: 0 0 .3rem 0;
+    font-size: 1.9rem;
+    color: var(--navy-dark);
+    font-weight: 700;
+  }
+  header .meta{
+    font-size: .95rem;
+    color: var(--muted);
+  }
+
+  .section-title{
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin: 2.2rem 0 1.2rem 0;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .definition-box, .theorem-box, .exercise-box, .note-box{
+    border-left: 4px solid var(--gold);
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    background: var(--box-bg);
+  }
+
+  .definition-box strong, .theorem-box strong{
+    color: var(--navy-dark);
+  }
+
+  .exercise-box{
+    border-left-color: var(--gold);
+    background: #fffbf0;
+  }
+
+  .note-box{
+    border-left-color: #888;
+    background: #f5f5f5;
+    font-size: .95rem;
+  }
+
+  .theorem-box{
+    background: #f0f4ff;
+    border-left-color: #3366cc;
+  }
+
+  p{
+    margin: 0.8rem 0;
+  }
+
+  .blank-fill{
+    border-bottom: 1px solid var(--muted);
+    display: inline-block;
+    min-width: 8rem;
+    padding: 0 0.3rem;
+  }
+
+  .back{
+    display: inline-block;
+    margin-top: 2.5rem;
+    font-size: .9rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .back:hover{ color: var(--gold); }
+
+  .formula{
+    font-family: "Courier New", monospace;
+    background: #f0f0f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  ul, ol{
+    margin: 0.8rem 0;
+  }
+
+  li{
+    margin: 0.5rem 0;
+  }
+
+  .centered{
+    text-align: center;
+    margin: 1.5rem 0;
+  }
+
+  strong{
+    color: var(--navy-mid);
+  }
+
+  em{
+    color: #555;
+  }
+</style>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+<main class="page">
+
+  <header>
+    <h1>Topology in ℝⁿ — Handout 3</h1>
+    <div class="meta">Perfect and Connected Sets in Higher Dimensions</div>
+  </header>
+
+  <div class="section-title">§1. Perfect Sets</div>
+
+  <p>
+    A <strong>perfect</strong> set is a closed set with no isolated points. In ℝⁿ, perfect sets exhibit rich structure 
+    and can be highly nontrivial (fractals, Cantor-like sets, etc.).
+  </p>
+
+  <div class="definition-box">
+    <strong>Definition (Isolated Point):</strong> A point <span class="formula">x ∈ A</span> is <strong>isolated</strong> in 
+    <span class="formula">A</span> if there exists <span class="formula">ε > 0</span> such that 
+    $$V_\varepsilon(x) \cap A = \{x\}.$$
+    Equivalently, <span class="formula">x</span> is <strong>not</strong> a limit point of <span class="formula">A</span>.
+  </div>
+
+  <div class="definition-box">
+    <strong>Definition (Perfect Set):</strong> A set <span class="formula">P ⊆ ℝⁿ</span> is <strong>perfect</strong> if 
+    <strong>(i)</strong> <span class="formula">P</span> is closed, and <strong>(ii)</strong> every point of <span class="formula">P</span> 
+    is a limit point of <span class="formula">P</span> (equivalently, <span class="formula">P</span> has no isolated points).
+  </div>
+
+  <div class="centered">
+    <strong>In words:</strong> Perfect sets are closed and "every point has neighbors in the set."
+  </div>
+
+  <div class="exercise-box">
+    <strong>Classify each set in ℝⁿ as: closed, perfect, both, or neither.</strong>
+    <ol>
+      <li>
+        <span class="formula">P = [0,1]ⁿ</span> (closed unit cube)
+        <br><br>Classification: <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">P = \{(x,y) ∈ ℝ² : x² + y² = 1\}</span> (unit circle)
+        <br><br>Classification: <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">P = ℤⁿ</span> (integer lattice)
+        <br><br>Classification: <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">P = [0,1] ∪ \{2\}</span> (closed interval plus isolated point)
+        <br><br>Classification: <span class="blank-fill"></span>
+        <br><br>
+      </li>
+    </ol>
+  </div>
+
+  <div class="theorem-box">
+    <strong>Theorem (Perfect Sets are Uncountable):</strong> Every nonempty perfect set in ℝⁿ is uncountable.
+  </div>
+
+  <div class="note-box">
+    <strong>Remark:</strong> This is a deep result. Perfect sets may look complicated (fractals, Cantor-type constructions), 
+    but they always contain uncountably many points. Finite and countable sets cannot be perfect.
+  </div>
+
+  <div class="section-title">§2. Connected Sets</div>
+
+  <p>
+    A <strong>connected</strong> set is one that is "all in one piece"—it cannot be split into two separated open parts.
+  </p>
+
+  <div class="definition-box">
+    <strong>Definition (Separated Sets):</strong> Two nonempty sets <span class="formula">A, B ⊆ ℝⁿ</span> are 
+    <strong>separated</strong> if
+    $$\overline{A} \cap B = \emptyset \quad\text{and}\quad A \cap \overline{B} = \emptyset.$$
+  </div>
+
+  <div class="definition-box">
+    <strong>Definition (Disconnected and Connected):</strong> A set <span class="formula">E ⊆ ℝⁿ</span> is 
+    <strong>disconnected</strong> if it can be written as <span class="formula">E = A ∪ B</span> for some nonempty separated sets 
+    <span class="formula">A</span> and <span class="formula">B</span>. Otherwise, <span class="formula">E</span> is <strong>connected</strong>.
+  </div>
+
+  <div class="centered">
+    <strong>Intuition:</strong> Connected sets cannot have a "gap" in them.
+  </div>
+
+  <div class="exercise-box">
+    <strong>Determine if each set is connected in ℝⁿ:</strong>
+    <ol>
+      <li>
+        <span class="formula">E = [0,1]ⁿ</span> (closed unit cube)
+        <br><br>Connected? <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">E = \{(x,y) ∈ ℝ² : x² + y² < 1\} ∪ \{(x,y) : x² + y² > 4\}</span> (open disk union exterior)
+        <br><br>Connected? <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">E = \{x ∈ ℝⁿ : \|x\| = 1\}</span> (unit sphere)
+        <br><br>Connected? <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">E = (\mathbb{Q} ∩ [0,1]) × [0,1]</span> (rationals cross unit interval)
+        <br><br>Connected? <span class="blank-fill"></span>
+        <br><br>
+      </li>
+    </ol>
+  </div>
+
+  <div class="section-title">§3. Path-Connected Sets</div>
+
+  <p>
+    A stronger notion of connectedness: a set is <strong>path-connected</strong> if any two points can be joined by a continuous path.
+  </p>
+
+  <div class="definition-box">
+    <strong>Definition (Path-Connected):</strong> A set <span class="formula">E ⊆ ℝⁿ</span> is <strong>path-connected</strong> if 
+    for every <span class="formula">x, y ∈ E</span>, there exists a continuous function <span class="formula">γ : [0,1] → E</span> 
+    (a <strong>path</strong>) such that <span class="formula">γ(0) = x</span> and <span class="formula">γ(1) = y</span>.
+  </div>
+
+  <div class="centered">
+    <strong>Key fact:</strong> Path-connected $\implies$ connected. But the converse is false in ℝⁿ for <span class="formula">n ≥ 2</span>!
+  </div>
+
+  <div class="exercise-box">
+    <strong>Are these path-connected?</strong>
+    <ol>
+      <li>
+        <span class="formula">E = [0,1]ⁿ</span>
+        <br><br>Path-connected? <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">E = \{(x,y) ∈ ℝ² : x² + y² ≤ 1\}</span> (closed disk)
+        <br><br>Path-connected? <span class="blank-fill"></span>
+        <br><br>
+      </li>
+      <li>
+        <span class="formula">E = \{(x,\sin(1/x)) : x ∈ (0,1]\} ∪ (\{0\} × [−1,1])</span> (topologist's sine curve)
+        <br><br>Path-connected? <span class="blank-fill"></span>
+        <br><br>
+      </li>
+    </ol>
+  </div>
+
+  <div class="theorem-box">
+    <strong>Theorem (Continuous Image of Connected = Connected):</strong> If <span class="formula">f : E → ℝⁿ</span> is continuous 
+    and <span class="formula">E</span> is connected, then <span class="formula">f(E)</span> is connected.
+  </div>
+
+  <div class="theorem-box">
+    <strong>Theorem (Intermediate Value Property):</strong> If <span class="formula">f : E → ℝ</span> is continuous 
+    and <span class="formula">E ⊆ ℝⁿ</span> is connected, then <span class="formula">f(E)</span> is a connected subset of ℝ, 
+    i.e., an interval. Therefore, <span class="formula">f</span> attains all intermediate values between any two points in <span class="formula">E</span>.
+  </div>
+
+  <div class="exercise-box">
+    <strong>Application:</strong> Let <span class="formula">f(x,y) = x² + y²</span> on the disk <span class="formula">E = \{(x,y) : x² + y² ≤ 4\}</span>.
+    <ol>
+      <li>Is <span class="formula">E</span> connected? <span class="blank-fill"></span></li>
+      <li>Is <span class="formula">f</span> continuous? <span class="blank-fill"></span></li>
+      <li>What is <span class="formula">f(E) =</span> <span class="blank-fill"></span> (as an interval)</li>
+      <li>What is <span class="formula">\text{min} f(E) =</span> <span class="blank-fill"></span> and <span class="formula">\text{max} f(E) =</span> <span class="blank-fill"></span></li>
+    </ol>
+  </div>
+
+  <div class="note-box">
+    <strong>Summary:</strong> Connected sets, compact sets, and continuous functions interact beautifully:
+    <ul>
+      <li>Connected + Continuous = Connected image</li>
+      <li>Compact + Continuous = Compact image (and extrema attained)</li>
+      <li>Path-connected is "nicer" but rarer than connected.</li>
+    </ul>
+  </div>
+
+  <hr style="border:none; border-top:1px solid var(--border); margin: 2rem 0;">
+
+  <a class="back" href="index.html">&larr; Back to Topology Handouts</a>
+
+</main>
+</body>
+</html>
