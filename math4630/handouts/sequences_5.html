@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATH 4630 — Handout: Monotone Convergence Theorem and Infinite Series</title>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        id="MathJax-script" async></script>
+
+<style>
+  :root{
+    --navy-mid:#1f3a5f;
+    --navy-dark:#13243d;
+    --cream:#faf7f0;
+    --gold:#b48a4a;
+    --muted:#4a4a4a;
+    --border:#d9d2c2;
+    --highlight:#fff3b0;
+    --box-bg:#fdfcf8;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--muted);
+    margin:0;
+    padding: 2rem 1rem;
+    line-height: 1.6;
+  }
+
+  .page{
+    max-width: 820px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 2.2rem 2.4rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+
+  header.handout-head{
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 1rem;
+    margin-bottom: 1.6rem;
+  }
+  header.handout-head h1{
+    margin: 0 0 .4rem 0;
+    font-size: 1.6rem;
+    color: var(--navy-dark);
+    font-weight: 700;
+  }
+  header.handout-head .meta{
+    font-size: .9rem;
+    color: var(--muted);
+  }
+
+  .intro{
+    font-size: .95rem;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+    padding: 1rem;
+    background: var(--box-bg);
+    border-left: 3px solid var(--gold);
+  }
+
+  .section-title{
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin: 2rem 0 1rem 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .subsection-title{
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy-mid);
+    margin: 1.6rem 0 0.8rem 0;
+  }
+
+  .theorem-box, .definition-box, .exercise-box, .note-box{
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    background: var(--box-bg);
+    padding: 1.2rem;
+    margin: 1.4rem 0;
+    border-radius: 2px;
+  }
+
+  .theorem-box h3, .definition-box h3, .exercise-box h3, .note-box h3{
+    margin: 0 0 .8rem 0;
+    font-size: 1rem;
+    color: var(--navy-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: .9rem;
+  }
+
+  .theorem-box p, .definition-box p, .exercise-box p, .note-box p{
+    margin: 0.5rem 0;
+  }
+
+  ol, ul {
+    margin: 0.8rem 0;
+    padding-left: 1.8rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .blank-fill{
+    border-bottom: 1px solid var(--muted);
+    display: inline-block;
+    min-width: 3rem;
+    margin: 0 .3rem;
+  }
+
+  .diagram{
+    margin: 1.2rem 0;
+    text-align: center;
+  }
+
+  .diagram svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .hr-divider{
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.8rem 0;
+  }
+
+  .back{
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .back:hover{ color: var(--gold); }
+
+  .pdf-link{
+    float: right;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .pdf-link:hover{ color: var(--gold); }
+
+  .proof-label{
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin-top: 1rem;
+  }
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <a class="pdf-link" href="sequences_5.pdf" target="_blank">[pdf]</a>
+
+  <header class="handout-head">
+    <h1>Monotone Convergence Theorem and Infinite Series</h1>
+    <div class="meta">MATH 4630 · Chapter 2: Sequences and Series</div>
+  </header>
+
+  <div class="intro">
+    <p>We now shift focus from general sequences to two important special classes: monotone sequences (which behave predictably) and infinite series (which are sums of infinitely many terms). The Monotone Convergence Theorem guarantees convergence under order structure, and series theory extends our convergence tools to new contexts.</p>
+  </div>
+
+  <div class="section-title">The Monotone Convergence Theorem</div>
+
+  <div class="definition-box">
+    <h3>Definition: Monotone Sequences</h3>
+    <p>A sequence $(a_n)$ is:</p>
+    <ul>
+      <li><strong>Monotone increasing</strong> (or non-decreasing) if $a_n \leq a_{n+1}$ for all $n \in \mathbb{N}$;</li>
+      <li><strong>Monotone decreasing</strong> (or non-increasing) if $a_n \geq a_{n+1}$ for all $n \in \mathbb{N}$;</li>
+      <li><strong>Monotone</strong> if it is either monotone increasing or monotone decreasing.</li>
+    </ul>
+  </div>
+
+  <div class="theorem-box">
+    <h3>Theorem: Monotone Convergence Theorem (MCT)</h3>
+    <p>A monotone sequence $(a_n)$ converges if and only if it is <span class="blank-fill"></span>.</p>
+  </div>
+
+  <div class="exercise-box">
+    <h3>Proof Sketch (for increasing bounded sequences)</h3>
+    
+    <p>Suppose $(a_n)$ is monotone increasing and bounded. Then the set $\{a_n : n \in \mathbb{N}\}$ is a bounded set of real numbers. By the <strong>Completeness Axiom</strong>, this set has a least upper bound (supremum).</p>
+    
+    <p class="proof-label">Define the limit candidate:</p>
+    <p>Let $a = \sup\{a_n : n \in \mathbb{N}\}$.</p>
+    
+    <p class="proof-label">Show $(a_n) \to a$:</p>
+    <p>Let $\varepsilon > 0$. Since $a - \varepsilon < a = \sup\{a_n\}$, there must exist some term $a_N$ such that</p>
+    $$a - \varepsilon < a_N$$
+    
+    <p>Since $(a_n)$ is monotone increasing, for all $n \geq N$:</p>
+    $$a - \varepsilon < a_N \leq a_n \leq a$$
+    
+    <p>Therefore:</p>
+    <div style="margin-top: 4rem; border-bottom: 1px solid var(--border);"></div>
+    
+    <p>Thus, $(a_n) \to a$. $\square$</p>
+  </div>
+
+  <div class="exercise-box">
+    <h3>Example: The Sequence $a_n = \dfrac{n}{n+1}$</h3>
+    
+    <p class="proof-label">Step 1: Show it's monotone increasing</p>
+    <p>We need to check if $a_n \leq a_{n+1}$:</p>
+    $$\frac{n}{n+1} \leq \frac{n+1}{n+2}$$
+    
+    <p>Cross-multiply (both denominators are positive):</p>
+    <div style="margin-top: 3rem; border-bottom: 1px solid var(--border);"></div>
+    
+    <p class="proof-label">Step 2: Show it's bounded above</p>
+    <p>For all $n$: $a_n = \dfrac{n}{n+1} = \dfrac{n+1-1}{n+1} = 1 - \dfrac{1}{n+1} < 1$.</p>
+    
+    <p class="proof-label">Step 3: Apply MCT</p>
+    <p>Since $(a_n)$ is monotone increasing and bounded above, by MCT it converges. The limit is</p>
+    $$\lim_{n \to \infty} \frac{n}{n+1} = <span class="blank-fill"></span>$$
+  </div>
+
+  <div class="section-title">Infinite Series</div>
+
+  <div class="definition-box">
+    <h3>Definition: Series and Partial Sums</h3>
+    <p>Let $(a_n)_{n=1}^{\infty}$ be a sequence. An <strong>infinite series</strong> is a formal sum</p>
+    $$\sum_{n=1}^{\infty} a_n = a_1 + a_2 + a_3 + \cdots$$
+    
+    <p>The <strong>$N$-th partial sum</strong> is</p>
+    $$S_N = \sum_{n=1}^{N} a_n = <span class="blank-fill"></span>$$
+    
+    <p>The series <strong>converges to $S$</strong> if the sequence of partial sums $(S_N)$ converges to $S$. We write</p>
+    $$\sum_{n=1}^{\infty} a_n = S$$
+  </div>
+
+  <div class="exercise-box">
+    <h3>Example: The Harmonic Series</h3>
+    
+    <p>The <strong>harmonic series</strong> is</p>
+    $$\sum_{n=1}^{\infty} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \cdots$$
+    
+    <p class="proof-label">Question: Does this converge or diverge?</p>
+    
+    <p>Consider the partial sum $S_{2^k}$ for $k = 1, 2, 3, \ldots$:</p>
+    $$S_{2^k} = 1 + \frac{1}{2} + \left(\frac{1}{3} + \frac{1}{4}\right) + \left(\frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8}\right) + \cdots$$
+    
+    <p>Group terms strategically:</p>
+    $$S_{2^k} \geq 1 + \frac{1}{2} + \left(\frac{1}{4} + \frac{1}{4}\right) + \left(\frac{1}{8} + \frac{1}{8} + \frac{1}{8} + \frac{1}{8}\right) + \cdots$$
+    
+    <p class="proof-label">Simplify:</p>
+    $$S_{2^k} \geq 1 + \frac{1}{2} + \frac{1}{2} + \frac{1}{2} + \cdots = 1 + \frac{k}{2}$$
+    
+    <p>As $k \to \infty$, we have $S_{2^k} \geq 1 + \dfrac{k}{2} \to \infty$. Therefore, the harmonic series <span class="blank-fill"></span>.</p>
+  </div>
+
+  <div class="section-title">Tests for Convergence of Series</div>
+
+  <div class="theorem-box">
+    <h3>Theorem: The Cauchy Condensation Test</h3>
+    <p>Let $(a_n)$ be a non-negative decreasing sequence. Then</p>
+    $$\sum_{n=1}^{\infty} a_n \quad \text{converges} \quad \Leftrightarrow \quad \sum_{k=0}^{\infty} 2^k a_{2^k} \quad \text{converges}$$
+  </p>
+  </div>
+
+  <div class="theorem-box">
+    <h3>Theorem: The $p$-Series Test</h3>
+    <p>For $p > 0$, the series $\sum\limits_{n=1}^{\infty} \dfrac{1}{n^p}$ converges if and only if $p > 1$.</p>
+  </div>
+
+  <div class="exercise-box">
+    <h3>Proof of $p$-Series Using Condensation Test</h3>
+    
+    <p>Let $p > 0$ and consider $a_n = \dfrac{1}{n^p}$. Then $a_n$ is positive and decreasing.</p>
+    
+    <p>By the Condensation Test:</p>
+    $$\sum_{n=1}^{\infty} \frac{1}{n^p} \text{ converges} \quad \Leftrightarrow \quad \sum_{k=0}^{\infty} 2^k \cdot \frac{1}{(2^k)^p} \text{ converges}$$
+    
+    <p>Simplify the condensed series:</p>
+    $$\sum_{k=0}^{\infty} 2^k \cdot 2^{-pk} = \sum_{k=0}^{\infty} 2^{k(1-p)}$$
+    
+    <p>This is a <span class="blank-fill"></span> series with ratio $r = 2^{1-p}$.</p>
+    
+    <p>A geometric series converges if and only if $|r| < 1$, so:</p>
+    $$2^{1-p} < 1 \quad \Leftrightarrow \quad 1 - p < 0 \quad \Leftrightarrow \quad p > 1$$
+    
+    <p>Therefore, $\sum\limits_{n=1}^{\infty} \dfrac{1}{n^p}$ converges if and only if $p > 1$. $\square$</p>
+  </div>
+
+  <div class="section-title">Exercises</div>
+
+  <div class="exercise-box">
+    <h3>Exercise 1</h3>
+    <p><strong>For each of the following, determine if the series converges or diverges. Justify your answer.</strong></p>
+    <ol>
+      <li>$\sum\limits_{n=1}^{\infty} \dfrac{1}{n^{0.5}}$</li>
+      <li>$\sum\limits_{n=1}^{\infty} \dfrac{1}{n^2}$</li>
+      <li>$\sum\limits_{n=1}^{\infty} \dfrac{1}{2n}$</li>
+    </ol>
+    <div style="margin-top: 8rem; border-bottom: 1px solid var(--border);"></div>
+  </div>
+
+  <div class="exercise-box">
+    <h3>Exercise 2</h3>
+    <p><strong>Consider the sequence $b_n = 1 - \dfrac{1}{2^n}$. Show that $(b_n)$ is monotone increasing and bounded, then find $\lim\limits_{n \to \infty} b_n$ using MCT.</strong></p>
+    <div style="margin-top: 8rem; border-bottom: 1px solid var(--border);"></div>
+  </div>
+
+  <div class="section-title">Key Takeaway</div>
+
+  <div class="note-box">
+    <p><strong>Monotone Convergence Theorem:</strong> Order structure + boundedness ⟹ convergence (no need for $\varepsilon$-$N$ arguments).</p>
+    <p><strong>Series:</strong> Extend convergence theory from sequences to infinite sums. Test convergence using specialized criteria like condensation or the $p$-series rule.</p>
+  </div>
+
+  <hr class="hr-divider">
+
+  <a class="back" href="../index.html">&larr; Back to MATH 4630</a>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATH 4630 — Handout: Sequences and Limits</title>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        id="MathJax-script" async></script>
+
+<style>
+  :root{
+    --navy-mid:#1f3a5f;
+    --navy-dark:#13243d;
+    --cream:#faf7f0;
+    --gold:#b48a4a;
+    --muted:#4a4a4a;
+    --border:#d9d2c2;
+    --highlight:#fff3b0;
+    --box-bg:#fdfcf8;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--muted);
+    margin:0;
+    padding: 2rem 1rem;
+    line-height: 1.6;
+  }
+
+  .page{
+    max-width: 820px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 2.2rem 2.4rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+
+  header.handout-head{
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 1rem;
+    margin-bottom: 1.6rem;
+  }
+  header.handout-head h1{
+    margin: 0 0 .4rem 0;
+    font-size: 1.6rem;
+    color: var(--navy-dark);
+    font-weight: 700;
+  }
+  header.handout-head .meta{
+    font-size: .9rem;
+    color: var(--muted);
+  }
+
+  .intro{
+    font-size: .95rem;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+    padding: 1rem;
+    background: var(--box-bg);
+    border-left: 3px solid var(--gold);
+  }
+
+  .section-title{
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin: 2rem 0 1rem 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .subsection-title{
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy-mid);
+    margin: 1.6rem 0 0.8rem 0;
+  }
+
+  .theorem-box, .definition-box, .exercise-box, .note-box, .thought-box{
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    background: var(--box-bg);
+    padding: 1.2rem;
+    margin: 1.4rem 0;
+    border-radius: 2px;
+  }
+
+  .theorem-box h3, .definition-box h3, .exercise-box h3, .note-box h3, .thought-box h3{
+    margin: 0 0 .8rem 0;
+    font-size: 1rem;
+    color: var(--navy-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: .9rem;
+  }
+
+  .theorem-box p, .definition-box p, .exercise-box p, .note-box p, .thought-box p{
+    margin: 0.5rem 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: white;
+  }
+
+  table th, table td {
+    border: 1px solid var(--border);
+    padding: 0.8rem;
+    text-align: center;
+  }
+
+  table th {
+    background: var(--box-bg);
+    font-weight: 700;
+    color: var(--navy-dark);
+  }
+
+  table td {
+    height: 2rem;
+  }
+
+  ol, ul {
+    margin: 0.8rem 0;
+    padding-left: 1.8rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .blank-fill{
+    border-bottom: 1px solid var(--muted);
+    display: inline-block;
+    min-width: 3rem;
+    margin: 0 .3rem;
+  }
+
+  .diagram{
+    margin: 1.2rem 0;
+    text-align: center;
+  }
+
+  .diagram svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .hr-divider{
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.8rem 0;
+  }
+
+  .back{
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .back:hover{ color: var(--gold); }
+
+  .pdf-link{
+    float: right;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .pdf-link:hover{ color: var(--gold); }
+
+  .thought-experiment {
+    background: #fff9e6;
+    border-left: 4px solid var(--gold);
+  }
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <a class="pdf-link" href="sequences_1.pdf" target="_blank">[pdf]</a>
+
+  <header class="handout-head">
+    <h1>Sequences and Limits</h1>
+    <div class="meta">MATH 4630 · Chapter 2: Sequences and Series</div>
+  </header>
+
+  <div class="intro">
+    <p>In this handout, we develop a precise definition of what it means for a sequence to <em>converge to</em> a number and use it to distinguish between a sequence approaching a value and a sequence actually attaining that value.</p>
+  </div>
+
+  <div class="section-title">Two Thought Experiments</div>
+
+  <div class="thought-box thought-experiment">
+    <h3>1. Two Infinite Lists of Numbers</h3>
+    <p>You are given two infinite lists of numbers. You are not told their formulas — only their first few terms.</p>
+    
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2"><strong>Sequence A</strong></th>
+          <th colspan="2"><strong>Sequence B</strong></th>
+        </tr>
+        <tr>
+          <th>$n$</th>
+          <th>$a_n$</th>
+          <th>$n$</th>
+          <th>$b_n$</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>0.50</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>0.67</td>
+          <td>2</td>
+          <td>$-1$</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>0.75</td>
+          <td>3</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>0.80</td>
+          <td>4</td>
+          <td>$-1$</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>0.83</td>
+          <td>5</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>0.91</td>
+          <td>6</td>
+          <td>$-1$</td>
+        </tr>
+        <tr>
+          <td>50</td>
+          <td>0.98</td>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+        </tr>
+        <tr>
+          <td>$\vdots$</td>
+          <td>$\vdots$</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Question:</strong> What do you notice?</p>
+    <div style="margin-top: 3rem; border-bottom: 1px solid var(--border);"></div>
+  </div>
+
+  <div class="thought-box thought-experiment">
+    <h3>2. Walking Toward a Wall</h3>
+    <p>Imagine you're walking toward a wall. You start 10 meters away from a wall. At each step, you walk <em>half of the remaining distance</em> to the wall.</p>
+    
+    <div class="diagram">
+      <svg width="500" height="120" xmlns="http://www.w3.org/2000/svg">
+        <!-- Wall -->
+        <rect x="420" y="20" width="30" height="80" fill="#999" stroke="black" stroke-width="2"/>
+        <text x="460" y="65" font-size="14">Wall</text>
+        
+        <!-- Person positions -->
+        <circle cx="20" cy="60" r="5" fill="#1f3a5f"/>
+        <text x="15" y="85" font-size="12">Start</text>
+        
+        <circle cx="150" cy="60" r="5" fill="#1f3a5f"/>
+        <circle cx="270" cy="60" r="5" fill="#1f3a5f"/>
+        <circle cx="330" cy="60" r="5" fill="#1f3a5f"/>
+        
+        <!-- Distance line -->
+        <line x1="20" y1="105" x2="420" y2="105" stroke="black" stroke-width="2"/>
+        <text x="220" y="120" font-size="12" text-anchor="middle">10 meters</text>
+      </svg>
+    </div>
+
+    <p><strong>Two Questions:</strong></p>
+    <ol>
+      <li>After many steps, is your distance from the wall getting <em>smaller</em>? <span class="blank-fill"></span></li>
+      <li>Will you ever <em>reach</em> the wall in a finite number of steps? <span class="blank-fill"></span></li>
+    </ol>
+  </div>
+
+  <div class="section-title">Definition: Sequence</div>
+
+  <div class="definition-box">
+    <h3>Definition</h3>
+    <p>A sequence is a function $f \colon \mathbb{N} \to \mathbb{R}$. We write $f(n)=a_n$ and denote the sequence by <span class="blank-fill"></span>.</p>
+  </div>
+
+  <div class="definition-box">
+    <h3>Examples: Common Ways to Describe Sequences</h3>
+    <ol style="line-height: 2;">
+      <li>Explicit list: $\left(1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots\right)$</li>
+      <li>Formula: $(a_n)_{n=1}^{\infty}$ where $a_n = $ <span class="blank-fill"></span></li>
+      <li>Recursive: $(x_n)$ where $x_1 = 2$ and $x_{n+1} = \frac{1}{2}(x_n + 1)$ for $n \ge 1$</li>
+      <li>General term: $((-1)^{n})_{n=1}^{\infty} = (-1,1,-1,1,-1,1, \ldots)$</li>
+    </ol>
+    <hr class="hr-divider">
+    <p><strong>Note:</strong> A sequence is an <span class="blank-fill"></span> list, not a set.</p>
+  </div>
+
+  <div class="section-title">Convergence of Sequences</div>
+
+  <p>Informally, a sequence $(a_n)$ converges to $a$ if: <em>after some point, all terms of the sequence stay close to $a$.</em></p>
+
+  <p><strong>Question:</strong> Can you explain why <em>Sequence A</em> "feels" convergent and <em>Sequence B</em> does not?</p>
+
+  <p>We need a precise definition:</p>
+
+  <div class="definition-box">
+    <h3>Definition: Convergence of a Sequence</h3>
+    <p>A sequence $(a_n)$ converges to $a \in \mathbb{R}$ if, for every $\varepsilon >0$, there exists $N \in \mathbb{N}$ such that whenever <span class="blank-fill"></span>, it follows that</p>
+    $$<span class="blank-fill"></span>$$
+    <p>In this case, we write</p>
+    $$\lim_{n \to \infty} a_n=a, \quad \text{or} \;\; a_n \to a.$$
+  </div>
+
+  <div class="section-title">Deciphering the Definition: $\varepsilon$-Neighborhoods</div>
+
+  <div class="definition-box">
+    <h3>Definition: $\varepsilon$-Neighborhood</h3>
+    <p>Given $a \in \mathbb{R}$ and $\varepsilon > 0$, the $\varepsilon$-neighborhood of $a$ is</p>
+    $$V_\varepsilon(a) = <span class="blank-fill"></span> = <span class="blank-fill"></span>$$
+  </div>
+
+  <div class="diagram">
+    <svg width="600" height="100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Number line -->
+      <line x1="30" y1="50" x2="570" y2="50" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+          <polygon points="0 0, 10 3, 0 6" fill="black"/>
+        </marker>
+      </defs>
+      
+      <!-- Point a -->
+      <circle cx="300" cy="50" r="4" fill="red"/>
+      <text x="300" y="70" font-size="14" text-anchor="middle" fill="red">$a$</text>
+      
+      <!-- Epsilon neighborhood -->
+      <line x1="150" y1="50" x2="450" y2="50" stroke="#1f3a5f" stroke-width="4"/>
+      <line x1="150" y1="45" x2="150" y2="55" stroke="#1f3a5f" stroke-width="2"/>
+      <line x1="450" y1="45" x2="450" y2="55" stroke="#1f3a5f" stroke-width="2"/>
+      
+      <!-- Label -->
+      <text x="300" y="25" font-size="12" text-anchor="middle" fill="#1f3a5f">$V_\varepsilon(a)$</text>
+    </svg>
+  </div>
+
+  <div class="note-box">
+    <h3>Geometric Interpretation</h3>
+    <p>$(a_n) \to a$ means: "Given <em>any</em> $\varepsilon$-neighborhood of $a$, eventually <span class="blank-fill"></span> terms of $(a_n)$ are in that neighborhood."</p>
+  </div>
+
+  <div class="section-title">Proof Template for Convergence</div>
+
+  <div class="exercise-box">
+    <h3>Example: Prove $\lim\limits_{n \to \infty} \frac{1}{\sqrt{n}} = 0$</h3>
+    
+    <p><strong>Scratch Work (DO THIS FIRST!):</strong></p>
+    <p>We want: <span class="blank-fill"></span>.</p>
+    <p>Solving for $n$:</p>
+    <div style="margin-top: 2rem; border-bottom: 1px solid var(--border);"></div>
+    
+    <hr class="hr-divider">
+    
+    <p><strong>Formal Proof:</strong></p>
+    <p>Let $\varepsilon > 0$ be arbitrary.</p>
+    <p><strong>Choose</strong> $N \in \mathbb{N}$ such that <span class="blank-fill"></span>.</p>
+    <p>Now let $n \geq N$. Then:</p>
+    <div style="margin-top: 3rem; border-bottom: 1px solid var(--border);"></div>
+    <p>Therefore, $\lim\limits_{n \to \infty} \frac{1}{\sqrt{n}} = $ <span class="blank-fill"></span>.</p>
+  </div>
+
+  <div class="theorem-box">
+    <h3>Template for Convergence Proofs</h3>
+    <p>To prove $\lim\limits_{n \to \infty} a_n = a$:</p>
+    <ol>
+      <li><strong>Start:</strong> Let $\varepsilon>0$.</li>
+      <li><strong>Scratch work:</strong> Solve $|a_n-a|<\varepsilon$ for $n$.</li>
+      <li><strong>Choose $N$:</strong> Choose $N$ accordingly.</li>
+      <li><strong>Verify:</strong> For $n\ge N$, verify $|a_n-a|<\varepsilon$.</li>
+      <li><strong>Conclude:</strong> $\lim\limits_{n \to \infty} a_n=a$.</li>
+    </ol>
+  </div>
+
+  <div class="exercise-box">
+    <h3>Exercise 1</h3>
+    <p><strong>Prove that $\lim\limits_{n \to \infty} \frac{n+1}{n} = 1$ using the definition of convergence of a sequence.</strong></p>
+    <div style="margin-top: 8rem; border-bottom: 1px solid var(--border);"></div>
+  </div>
+
+  <div class="section-title">Divergence</div>
+
+  <div class="definition-box">
+    <h3>Definition</h3>
+    <p>A sequence that <span class="blank-fill"></span> converge is said to be a <strong>divergent</strong> sequence.</p>
+  </div>
+
+  <div class="theorem-box">
+    <h3>How to Prove a Sequence Diverges</h3>
+    <p><strong>Remember:</strong> $a_n \to a$ if for every $\varepsilon >0$, there exists $N \in \mathbb{N}$ such that whenever <span class="blank-fill"></span>, it follows that $|a_n-a|< \varepsilon$.</p>
+    <hr class="hr-divider">
+    <p><strong>Negation of convergence:</strong></p>
+    <p>$(a_n) \not\to a$ means: <span class="blank-fill"></span> $\varepsilon > 0$ such that <span class="blank-fill"></span> $N \in \mathbb{N}$, <span class="blank-fill"></span> $n \geq N$ such that <span class="blank-fill"></span>.</p>
+  </div>
+
+  <div class="exercise-box">
+    <h3>Example: Show that $(-1, 1, -1, 1, -1, 1, \ldots)$ Does Not Converge to 0</h3>
+    <div style="margin-top: 5rem; border-bottom: 1px solid var(--border);"></div>
+  </div>
+
+  <div class="section-title">Activity</div>
+
+  <div class="exercise-box">
+    <h3>Exercise</h3>
+    <p><strong>Prove that</strong> $$\lim_{n \to \infty} \left(\frac{2n+1}{5n+4}\right) = \frac{2}{5}$$ <strong>using the definition of convergence of a sequence.</strong></p>
+    <div style="margin-top: 8rem; border-bottom: 1px solid var(--border);"></div>
+  </div>
+
+  <hr class="hr-divider">
+
+  <a class="back" href="../../math4630.html">&larr; Back to MATH 4630</a>
+
+</main>
+</body>
+</html>
