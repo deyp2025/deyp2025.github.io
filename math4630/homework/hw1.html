@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATH 4630 — Homework 1</title>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        id="MathJax-script" async></script>
+
+<style>
+  :root{
+    --navy-mid:#1f3a5f;
+    --navy-dark:#13243d;
+    --cream:#faf7f0;
+    --gold:#b48a4a;
+    --muted:#4a4a4a;
+    --border:#d9d2c2;
+    --highlight:#fff3b0;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--muted);
+    margin:0;
+    padding: 2rem 1rem;
+    line-height: 1.55;
+  }
+
+  .page{
+    max-width: 820px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 2.2rem 2.4rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+
+  header.hw-head{
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .8rem;
+    margin-bottom: 1.4rem;
+  }
+  header.hw-head .row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    flex-wrap:wrap; gap:.5rem;
+  }
+  header.hw-head .course{
+    font-weight: 700; color: var(--navy-dark);
+    letter-spacing:.02em;
+  }
+  header.hw-head .title{
+    font-weight: 700; color: var(--navy-dark);
+  }
+  header.hw-head .due{
+    background: var(--highlight);
+    padding: .15rem .45rem;
+    border-radius: 2px;
+    font-style: italic;
+    color: var(--navy-dark);
+  }
+  header.hw-head .sections{
+    color: var(--muted);
+    font-size: .95rem;
+  }
+
+  .instructions{
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: .8rem 1rem;
+    margin: 1.2rem 0 1.6rem;
+    text-align: center;
+    font-size: .95rem;
+    background: #fdfcf8;
+  }
+  .instructions strong{ color: var(--navy-dark); }
+
+  ol.problems{
+    list-style: none;
+    counter-reset: prob;
+    padding: 0;
+    margin: 0;
+  }
+  ol.problems > li.problem{
+    counter-increment: prob;
+    margin: 1.6rem 0;
+    padding-left: 0;
+  }
+  ol.problems > li.problem::before{
+    content: "Problem " counter(prob) ".";
+    display: inline;
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin-right: .4rem;
+  }
+
+  ol.parts{
+    list-style: none;
+    counter-reset: part;
+    padding-left: 1.2rem;
+    margin: .6rem 0 0;
+  }
+  ol.parts > li{
+    counter-increment: part;
+    margin: .55rem 0;
+    position: relative;
+  }
+  ol.parts > li::before{
+    content: "(" counter(part, lower-alpha) ")";
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin-right: .4rem;
+  }
+
+  .hint{
+    font-style: italic;
+    color: #555;
+  }
+  .hint strong{ font-style: normal; color: var(--navy-dark); }
+
+  .callout{
+    border: 1px solid var(--border);
+    background: #fdfcf8;
+    padding: .8rem 1rem;
+    margin: 1.8rem 0 .5rem;
+    font-style: italic;
+    color: var(--navy-dark);
+  }
+
+  hr.divider{
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.6rem 0;
+  }
+
+  .back{
+    display: inline-block;
+    margin-top: 1.6rem;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .back:hover{ color: var(--gold); }
+
+  .pdf-link{
+    float: right;
+    font-size: .85rem;
+    color: var(--navy-mid);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+  }
+  .pdf-link:hover{ color: var(--gold); }
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <a class="pdf-link" href="hw1.pdf" target="_blank">[pdf]</a>
+
+  <header class="hw-head">
+    <div class="row">
+      <span class="course">MATH&nbsp;4630&#8209;01</span>
+      <span class="title">Homework Assignment #1</span>
+    </div>
+    <div class="row">
+      <span class="due">DUE: Friday, Jan&nbsp;30, 11:59p</span>
+      <span class="sections">Sections&nbsp;1.1&ndash;1.5</span>
+    </div>
+  </header>
+
+  <div class="instructions">
+    <strong>Instructions:</strong> Show all work clearly and justify each conclusion.
+    Collaboration is encouraged, but <em>write up your solutions individually in your own words.</em>
+    <br>
+    For any <strong>prove/disprove</strong> problem: either give a proof, or give a specific
+    counterexample (with a brief explanation of why it works).
+  </div>
+
+  <ol class="problems">
+
+    <li class="problem">
+      Let $A, B \subseteq \mathbb{R}$ be nonempty and bounded.
+      <ol class="parts">
+        <li>Prove that if $A \subseteq B$, then $\sup A \le \sup B$.</li>
+        <li><strong>Prove or disprove:</strong> If $\sup A < \inf B$, then there exists a real number $c$ such that $a < c < b$ for all $a \in A$ and $b \in B$.</li>
+      </ol>
+    </li>
+
+    <li class="problem">
+      Let $a,b \in \mathbb{R}$. Recall the triangle inequality: $|x+y| \le |x| + |y|$ for all $x,y \in \mathbb{R}$.
+      <ol class="parts">
+        <li>Use the identity $a = (a-b) + b$ to obtain an upper bound for $|a|$ in terms of $|a-b|$ and $|b|$.</li>
+        <li>Interchange the roles of $a$ and $b$ to obtain a similar inequality for $|b|$.</li>
+        <li>Deduce that $\bigl||a| - |b|\bigr| \le |a-b|$.</li>
+      </ol>
+    </li>
+
+    <li class="problem">
+      Let $E$ and $F$ be nonempty subsets of $\mathbb{R}$ bounded above, and define $E + F = \{\, x + y : x \in E,\, y \in F \,\}$.
+      <ol class="parts">
+        <li>Let $\alpha = \sup E$ and $\beta = \sup F$. Show that $\alpha + \beta$ is an upper bound for $E + F$.</li>
+        <li>Let $M$ be an arbitrary upper bound for $E + F$, and fix $x \in E$. Show that $\beta \le M - x$.</li>
+        <li>Conclude that $\sup(E + F) = \alpha + \beta$.</li>
+      </ol>
+    </li>
+
+    <li class="problem">
+      For each set below, determine and <strong>justify</strong> $\sup A$ and $\inf A$, and state whether they belong to the set.
+      <ol class="parts">
+        <li>$A = \{\,x \in \mathbb{R} : x^2 < 2\,\}$</li>
+        <li>$A = \{\,1 - 1/n : n \in \mathbb{N}\,\}$</li>
+      </ol>
+    </li>
+
+    <li class="problem">
+      Recall that a set is <em>countable</em> if it is finite or in one-to-one correspondence with $\mathbb{N}$.
+      <ol class="parts">
+        <li>Prove that any finite subset of $\mathbb{R}$ is countable.</li>
+        <li>Show that $A = \{\, 1/n : n \in \mathbb{N} \,\}$ is countable by explicitly describing a bijection with $\mathbb{N}$.</li>
+        <li>Let $B = \mathbb{Z} \cap [0,\infty)$. Prove that $B$ is countable.</li>
+        <li>Prove that the union of a finite set and a countable set is countable.</li>
+      </ol>
+    </li>
+
+  </ol>
+
+  <hr class="divider">
+
+  <a class="back" href="../../math4630.html">&larr; Back to MATH&nbsp;4630</a>
+
+</main>
+</body>
+</html>
