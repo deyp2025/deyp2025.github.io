@@ -3,378 +3,284 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Topology in ℝⁿ — Handout 4: Continuity and Uniform Continuity</title>
-
+<title>MATH 4630 — Connected Sets</title>
 <style>
-  :root{
-    --navy-mid:#1f3a5f;
-    --navy-dark:#13243d;
-    --cream:#faf7f0;
-    --gold:#b48a4a;
-    --muted:#4a4a4a;
-    --border:#d9d2c2;
-    --highlight:#fff3b0;
-    --box-bg:#fdfcf8;
-  }
-
-  *{box-sizing:border-box;}
-
-  body{
-    font-family: Georgia, "Times New Roman", serif;
-    background: var(--cream);
-    color: var(--muted);
-    margin:0;
-    padding: 2rem 1rem;
-    line-height: 1.7;
-  }
-
-  .page{
-    max-width: 900px;
-    margin: 0 auto;
-    background: #fff;
-    border: 1px solid var(--border);
-    padding: 2.5rem 2.8rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,.04);
-  }
-
-  header{
-    border-bottom: 2px solid var(--gold);
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
-  }
-  header h1{
-    margin: 0 0 .3rem 0;
-    font-size: 1.9rem;
-    color: var(--navy-dark);
-    font-weight: 700;
-  }
-  header .meta{
-    font-size: .95rem;
-    color: var(--muted);
-  }
-
-  .section-title{
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--navy-dark);
-    margin: 2.2rem 0 1.2rem 0;
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .definition-box, .theorem-box, .exercise-box, .note-box{
-    border-left: 4px solid var(--gold);
-    padding: 1.2rem 1.4rem;
-    margin: 1.5rem 0;
-    background: var(--box-bg);
-  }
-
-  .definition-box strong, .theorem-box strong{
-    color: var(--navy-dark);
-  }
-
-  .exercise-box{
-    border-left-color: var(--gold);
-    background: #fffbf0;
-  }
-
-  .note-box{
-    border-left-color: #888;
-    background: #f5f5f5;
-    font-size: .95rem;
-  }
-
-  .theorem-box{
-    background: #f0f4ff;
-    border-left-color: #3366cc;
-  }
-
-  p{
-    margin: 0.8rem 0;
-  }
-
-  .blank-fill{
-    border-bottom: 1px solid var(--muted);
-    display: inline-block;
-    min-width: 8rem;
-    padding: 0 0.3rem;
-  }
-
-  .back{
-    display: inline-block;
-    margin-top: 2.5rem;
-    font-size: .9rem;
-    color: var(--navy-mid);
-    text-decoration: none;
-    border-bottom: 1px dashed var(--border);
-  }
-  .back:hover{ color: var(--gold); }
-
-  .formula{
-    font-family: "Courier New", monospace;
-    background: #f0f0f0;
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-  }
-
-  ul, ol{
-    margin: 0.8rem 0;
-  }
-
-  li{
-    margin: 0.5rem 0;
-  }
-
-  .centered{
-    text-align: center;
-    margin: 1.5rem 0;
-  }
-
-  strong{
-    color: var(--navy-mid);
-  }
-
-  em{
-    color: #555;
-  }
-
-  .eps-box{
-    background: #fef9e7;
-    border: 1px solid #f0e68c;
-    padding: 0.8rem;
-    margin: 1rem 0;
-    font-family: "Courier New", monospace;
-    font-size: 0.9rem;
-  }
+body { font-family: Georgia, serif; max-width: 8.5in; margin: 0 auto; padding: 0.5in; line-height: 1.55; color: #333; }
+header { text-align: center; margin-bottom: 1.5em; padding-bottom: 0.8em; border-bottom: 1px solid #999; }
+header h1 { font-size: 1.15em; margin: 0 0 0.2em; }
+header .subtitle { font-size: 0.9em; color: #666; font-style: italic; }
+h2 { font-size: 1em; font-weight: bold; margin: 1.3em 0 0.6em; border-top: 1px solid #ccc; padding-top: 0.4em; }
+h3 { font-size: 0.95em; font-weight: bold; margin: 1.1em 0 0.5em; }
+p { margin: 0.4em 0; text-align: justify; }
+.fbox { border: 1px solid #999; padding: 0.7em; margin: 0.9em 0; background: #fafaf8; }
+.definition-box { border-left: 4px solid #333; padding: 0.7em; margin: 0.9em 0; background: #f8f8f6; }
+.theorem-box { border-left: 4px solid #1a5aba; padding: 0.7em; margin: 0.9em 0; background: #eff3f9; }
+.exercise-box { border-left: 4px solid #b8860b; padding: 0.7em; margin: 0.9em 0; background: #fffbf0; }
+.definition, .theorem { font-weight: bold; }
+.observation { font-weight: bold; }
+ol, ul { margin: 0.35em 0; padding-left: 2em; }
+li { margin: 0.25em 0; }
+em { font-style: italic; }
+strong { font-weight: bold; }
+.blank { border-bottom: 1px solid #333; display: inline-block; min-width: 2.2cm; margin: 0 0.08em; }
+.fill { display: block; height: 0.28in; margin: 0.15em 0; }
+.back-link { display: inline-block; margin-top: 1.5em; text-decoration: none; color: #1a5aba; border-bottom: 1px dashed #ccc; }
+.proof-label { font-weight: bold; margin-top: 0.5em; margin-bottom: 0.3em; }
+.proof-note { font-style: italic; }
 </style>
-
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 </head>
-
 <body>
-<main class="page">
 
-  <header>
-    <h1>Topology in ℝⁿ — Handout 4</h1>
-    <div class="meta">Continuity and Uniform Continuity in Higher Dimensions</div>
-  </header>
+<header>
+<h1>MATH 4630</h1>
+<div class="subtitle">Chapter 3: Connected Sets</div>
+</header>
 
-  <div class="section-title">§1. Continuity at a Point</div>
+<h2>Connected Sets</h2>
 
-  <p>
-    Continuity generalizes from ℝ to ℝⁿ in the obvious way: instead of the absolute value, we use the Euclidean norm. 
-    The ε-δ definition remains the same in spirit.
-  </p>
+<p>We have now characterized compactness and perfectness. We turn to a third property: <strong>connectedness</strong>. Informally, a connected set is one that is "all in one piece." Making this precise is more subtle than it sounds.</p>
 
-  <div class="definition-box">
-    <strong>Definition (Continuity at a Point in ℝⁿ):</strong> Let <span class="formula">f : D → ℝⁿ</span> where 
-    <span class="formula">D ⊆ ℝⁿ</span>, and let <span class="formula">x₀ ∈ D</span>. We say <span class="formula">f</span> is 
-    <strong>continuous at <span class="formula">x₀</span></strong> if for every <span class="formula">ε > 0</span>, there exists 
-    <span class="formula">δ > 0</span> such that
-    $$x \in D \text{ and } \|x - x_0\| < \delta \implies \|f(x) - f(x_0)\| < \varepsilon.$$
-  </div>
+<div class="exercise-box">
+<strong>Question:</strong> Consider these two sets:
+$$E_1 = (1,2) \cup (2,5) \quad \text{and} \quad E_2 = (1,5).$$
 
-  <div class="centered">
-    <strong>Equivalently (sequential definition):</strong> <span class="formula">f</span> is continuous at <span class="formula">x₀</span> 
-    if whenever <span class="formula">xₖ → x₀</span>, we have <span class="formula">f(xₖ) → f(x₀)</span>.
-  </div>
+Intuitively E<sub>1</sub> has a "gap" at x = 2 while E<sub>2</sub> does not. But can we make this precise using only the language of limit points and closures?
 
-  <div class="definition-box">
-    <strong>Definition (Continuity on a Set):</strong> <span class="formula">f</span> is <strong>continuous on a set</strong> 
-    <span class="formula">D</span> if it is continuous at every point of <span class="formula">D</span>.
-  </div>
+<p>Let A = (1,2) and B = (2,5). Work through the following:</p>
 
-  <div class="exercise-box">
-    <strong>Determine if each function is continuous at the given point:</strong>
-    <ol>
-      <li>
-        <span class="formula">f(x,y) = x² + y²</span> at <span class="formula">(0,0)</span>
-        <br><br>Continuous? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">f(x,y) = \begin{cases} \frac{xy}{x^2+y^2} & \text{if } (x,y) \neq (0,0) \\ 0 & \text{if } (x,y) = (0,0) \end{cases}</span> 
-        at <span class="formula">(0,0)</span>
-        <br><br>Continuous? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">f : ℝ² → ℝ</span> defined by <span class="formula">f(x,y) = \|x-y\|</span> (difference norm) everywhere
-        <br><br>Continuous? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-    </ol>
-  </div>
+<ol>
+<li>Is 2 ∈ A? <span class="blank"></span> Is 2 ∈ B? <span class="blank"></span>
+<br/>So A ∩ B = <span class="blank"></span></li>
 
-  <div class="theorem-box">
-    <strong>Theorem (Composition of Continuous Functions):</strong> If <span class="formula">f : ℝⁿ → ℝᵐ</span> is continuous 
-    at <span class="formula">x₀</span> and <span class="formula">g : ℝᵐ → ℝᵏ</span> is continuous at <span class="formula">f(x₀)</span>, 
-    then <span class="formula">g ∘ f : ℝⁿ → ℝᵏ</span> is continuous at <span class="formula">x₀</span>.
-  </div>
+<li>Is 2 a limit point of A = (1,2)? <span class="blank"></span>
+<br/>So Ā = <span class="blank"></span></li>
 
-  <div class="theorem-box">
-    <strong>Theorem (Continuity via Open Sets):</strong> <span class="formula">f : ℝⁿ → ℝᵐ</span> is continuous if and only if 
-    the preimage of every open set is open: for all open <span class="formula">U ⊆ ℝᵐ</span>, 
-    $$f^{-1}(U) = \{x \in \mathbb{R}^n : f(x) \in U\} \text{ is open in } \mathbb{R}^n.$$
-  </div>
+<li>Does Ā ∩ B = [1,2] ∩ (2,5) equal ∅? <span class="blank"></span></li>
 
-  <div class="note-box">
-    <strong>Remark:</strong> This topological characterization is powerful: continuous functions preserve openness (and closedness via complements).
-  </div>
+<li>Does A ∩ B̄ = (1,2) ∩ [2,5] equal ∅? <span class="blank"></span></li>
 
-  <div class="section-title">§2. Properties of Continuous Functions on Compact Sets</div>
+<li>Now try C = (1,2] and D = (2,5): does C̄ ∩ D = ∅? <span class="blank"></span> Is C ∩ D̄ = ∅? <span class="blank"></span></li>
+</ol>
 
-  <div class="theorem-box">
-    <strong>Theorem (Extreme Value Theorem in ℝⁿ):</strong> If <span class="formula">f : K → ℝ</span> is continuous and 
-    <span class="formula">K ⊆ ℝⁿ</span> is compact, then <span class="formula">f</span> attains its maximum and minimum on <span class="formula">K</span>.
-  </div>
+<p><strong>Observation:</strong> For A = (1,2) and B = (2,5): neither set contains a limit point of the other, even though they share the limit point 2. For C = (1,2] and D = (2,5): the closure of C hits D, so they are <em>not</em> separated in the same way. This "mutual closure-disjointness" is the right notion of separation.</p>
+</div>
 
-  <div class="theorem-box">
-    <strong>Theorem (Continuous Image of Compact):</strong> If <span class="formula">f : K → ℝⁿ</span> is continuous and 
-    <span class="formula">K ⊆ ℝⁿ</span> is compact, then <span class="formula">f(K)</span> is compact.
-  </div>
+<div class="definition-box">
+<span class="definition">Definition</span>
+<p>Two nonempty sets A, B ⊆ ℝ are <strong>separated</strong> if
+$$\overline{A} \cap B = \emptyset \quad\text{and}\quad A \cap \overline{B} = \emptyset.$$
 
-  <div class="exercise-box">
-    <strong>Application:</strong> Let <span class="formula">f(x,y) = \sin(x) + \cos(y)</span> on <span class="formula">K = [0,2π]²</span>.
-    <ol>
-      <li>Is <span class="formula">K</span> compact? <span class="blank-fill"></span></li>
-      <li>Is <span class="formula">f</span> continuous? <span class="blank-fill"></span></li>
-      <li><span class="formula">f(K)</span> is a <span class="blank-fill"></span> (closed interval / open interval / neither)</li>
-      <li><span class="formula">\max f(K) =</span> <span class="blank-fill"></span> &nbsp; <span class="formula">\min f(K) =</span> <span class="blank-fill"></span></li>
-    </ol>
-  </div>
+A set E ⊆ ℝ is <strong>disconnected</strong> if it can be written as E = A ∪ B for some nonempty separated sets A and B. A set is <strong>connected</strong> if it is not disconnected.</p>
+</div>
 
-  <div class="section-title">§3. Uniform Continuity</div>
-
-  <p>
-    <strong>Continuity</strong> is pointwise: at each point <span class="formula">x₀</span>, the δ can depend on both ε and the 
-    location of <span class="formula">x₀</span>. Sometimes we need <em>uniform</em> control: a single δ works for all points.
-  </p>
-
-  <div class="definition-box">
-    <strong>Definition (Uniform Continuity):</strong> A function <span class="formula">f : D → ℝⁿ</span> (where <span class="formula">D ⊆ ℝⁿ</span>) 
-    is <strong>uniformly continuous</strong> if for every <span class="formula">ε > 0</span>, there exists <span class="formula">δ > 0</span> 
-    such that for <strong>all</strong> <span class="formula">x, y ∈ D</span>:
-    $$\|x - y\| < \delta \implies \|f(x) - f(y)\| < \varepsilon.$$
-  </div>
-
-  <div class="centered">
-    <strong>Key difference from continuity:</strong> The δ does <strong>not</strong> depend on the location (unlike pointwise continuity).
-  </div>
-
-  <div class="eps-box">
-    <strong>Uniform Continuity (ε-δ form):</strong><br>
-    For all ε > 0, there exists δ > 0 such that<br>
-    ∥x − y∥ < δ  ⟹  ∥f(x) − f(y)∥ < ε<br>
-    (This δ works everywhere on D simultaneously.)
-  </div>
-
-  <div class="exercise-box">
-    <strong>Determine if each function is uniformly continuous on the given domain:</strong>
-    <ol>
-      <li>
-        <span class="formula">f(x) = x²</span> on <span class="formula">[0,1]</span>
-        <br><br>Uniformly continuous? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">f(x) = x²</span> on <span class="formula">\mathbb{R}</span>
-        <br><br>Uniformly continuous? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">f(x,y) = xy</span> on <span class="formula">[-1,1]²</span>
-        <br><br>Uniformly continuous? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-    </ol>
-  </div>
-
-  <div class="theorem-box">
-    <strong>Theorem (Heine–Cantor):</strong> If <span class="formula">f : K → ℝⁿ</span> is continuous and 
-    <span class="formula">K ⊆ ℝⁿ</span> is compact, then <span class="formula">f</span> is uniformly continuous on <span class="formula">K</span>.
-  </div>
-
-  <div class="centered">
-    <strong>Intuition:</strong> Compactness is strong enough to ensure uniform control over the continuity modulus.
-  </div>
-
-  <div class="section-title">§4. Lipschitz Continuity</div>
-
-  <p>
-    An even stronger form of uniformity: the function doesn't change "too fast" anywhere.
-  </p>
-
-  <div class="definition-box">
-    <strong>Definition (Lipschitz Continuous):</strong> A function <span class="formula">f : D → ℝⁿ</span> is 
-    <strong>Lipschitz continuous</strong> with constant <span class="formula">L > 0</span> if for all <span class="formula">x, y ∈ D</span>:
-    $$\|f(x) - f(y)\| \leq L \|x - y\|.$$
-  </div>
-
-  <div class="exercise-box">
-    <strong>Check Lipschitz continuity:</strong>
-    <ol>
-      <li>
-        <span class="formula">f(x,y) = x + y</span> on <span class="formula">\mathbb{R}²</span>
-        <br><br>Lipschitz? If yes, what is <span class="formula">L</span>? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">f(x) = |x|</span> on <span class="formula">\mathbb{R}</span>
-        <br><br>Lipschitz? If yes, what is <span class="formula">L</span>? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-      <li>
-        <span class="formula">f(x) = x²</span> on <span class="formula">[−1,1]</span>
-        <br><br>Lipschitz? If yes, what is <span class="formula">L</span>? <span class="blank-fill"></span>
-        <br><br>
-      </li>
-    </ol>
-  </div>
-
-  <div class="note-box">
-    <strong>Hierarchy:</strong> Lipschitz $\implies$ uniformly continuous $\implies$ continuous. But the reverse implications 
-    do not hold. Lipschitz is the "nicest" form of continuity with explicit control on the rate of change.
-  </div>
-
-  <div class="theorem-box">
-    <strong>Theorem (Differentiability implies Lipschitz locally):</strong> If <span class="formula">f : U → ℝⁿ</span> is 
-    continuously differentiable on an open set <span class="formula">U ⊆ ℝⁿ</span> with bounded derivative 
-    (i.e., <span class="formula">∥Df(x)∥ ≤ M</span> for all <span class="formula">x ∈ U</span>), then <span class="formula">f</span> 
-    is Lipschitz continuous with constant <span class="formula">L = M</span>.
-  </div>
-
-  <div class="section-title">§5. Summary: Continuity in ℝⁿ</div>
-
-  <div style="background: #f9f9f9; border: 1px solid var(--border); padding: 1.2rem; margin: 1.5rem 0; border-radius: 4px;">
-    <strong>Three forms of continuity (from weakest to strongest):</strong>
-    <ol>
-      <li>
-        <strong>Continuous:</strong> For each point and each ε, find δ (may depend on location)
-      </li>
-      <li>
-        <strong>Uniformly continuous:</strong> For each ε, find δ (same δ works everywhere)
-      </li>
-      <li>
-        <strong>Lipschitz continuous:</strong> Explicit bound on rate of change: <span class="formula">∥f(x) − f(y)∥ ≤ L∥x − y∥</span>
-      </li>
-    </ol>
+<svg viewBox="0 0 920 180" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; margin: 0.8em 0;">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- LEFT PANEL: Disconnected (1,2)∪(2,5) -->
+  <g>
+    <!-- Number line -->
+    <line x1="20" y1="70" x2="380" y2="70" stroke="#666" stroke-width="2.5" marker-end="url(#arrowhead)"/>
     
-    <strong>Key theorems:</strong>
-    <ul>
-      <li>Continuity is preserved by composition and algebraic operations.</li>
-      <li>Continuous on compact $\implies$ uniformly continuous (Heine–Cantor).</li>
-      <li>Continuous on compact $\implies$ attains max/min (Extreme Value Theorem).</li>
-      <li>Continuous on connected $\implies$ image is connected (intermediate values).</li>
-    </ul>
-  </div>
+    <!-- Set A = (1,2) -->
+    <line x1="85" y1="70" x2="155" y2="70" stroke="#1e5ab4" stroke-width="6"/>
+    <circle cx="85" cy="70" r="5" fill="white" stroke="#1e5ab4" stroke-width="2.5"/>
+    <circle cx="155" cy="70" r="5" fill="white" stroke="#1e5ab4" stroke-width="2.5"/>
+    <text x="120" y="38" font-size="14" fill="#1e5ab4" font-weight="bold">A=(1,2)</text>
+    
+    <!-- Set B = (2,5) -->
+    <line x1="175" y1="70" x2="330" y2="70" stroke="#d26e00" stroke-width="6"/>
+    <circle cx="175" cy="70" r="5" fill="white" stroke="#d26e00" stroke-width="2.5"/>
+    <circle cx="330" cy="70" r="5" fill="white" stroke="#d26e00" stroke-width="2.5"/>
+    <text x="252" y="38" font-size="14" fill="#d26e00" font-weight="bold">B=(2,5)</text>
+    
+    <!-- Gap point at 2 (limit point of A) -->
+    <circle cx="165" cy="70" r="4" fill="#be1e1e"/>
+    <line x1="165" y1="76" x2="165" y2="95" stroke="#be1e1e" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="165" y="120" font-size="11" fill="#be1e1e" text-anchor="middle">gap at x=2</text>
+    
+    <!-- Bottom label -->
+    <text x="200" y="155" font-size="12" font-weight="bold" text-anchor="middle"><tspan>Disconnected:</tspan> <tspan x="200" dy="16">Ā∩B=∅ and A∩B̄=∅</tspan></text>
+  </g>
+  
+  <!-- RIGHT PANEL: Connected (1,5) -->
+  <g>
+    <!-- Number line -->
+    <line x1="520" y1="70" x2="880" y2="70" stroke="#666" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+    
+    <!-- Set E = (1,5) -->
+    <line x1="585" y1="70" x2="815" y2="70" stroke="#008273" stroke-width="6"/>
+    <circle cx="585" cy="70" r="5" fill="white" stroke="#008273" stroke-width="2.5"/>
+    <circle cx="815" cy="70" r="5" fill="white" stroke="#008273" stroke-width="2.5"/>
+    <text x="700" y="38" font-size="14" fill="#008273" font-weight="bold">E=(1,5)</text>
+    
+    <!-- Interior point (any point) -->
+    <circle cx="700" cy="70" r="4" fill="#6e1eb4"/>
+    <line x1="700" y1="76" x2="700" y2="95" stroke="#6e1eb4" stroke-width="1.5" stroke-dasharray="3,3"/>
+    
+    <!-- Bottom label -->
+    <text x="700" y="155" font-size="12" font-weight="bold" text-anchor="middle"><tspan>Connected:</tspan> <tspan x="700" dy="16">cannot be separated</tspan></text>
+  </g>
+</svg>
 
-  <hr style="border:none; border-top:1px solid var(--border); margin: 2rem 0;">
+<p><strong>Example 1:</strong> Let A = (1,2) and B = (2,5). Consider: E = (1,2) ∪ (2,5). Is the set E connected?</p>
 
-  <a class="back" href="index.html">&larr; Back to Topology Handouts</a>
+<div class="exercise-box">
+<div class="fill"></div><div class="fill"></div>
+</div>
 
-</main>
+<p><strong>Example 2:</strong> Let C = (1,2] and D = (2,5), so that C ∪ D = (1,5).
+Does the pair C, D give a separation of (1,5)?</p>
+
+<div class="exercise-box">
+<div class="fill"></div>
+</div>
+
+<h3>Characterisation of Connected Sets in ℝ</h3>
+
+<p>The surprising result is that in ℝ, connected sets are exactly intervals.</p>
+
+<div class="theorem-box">
+<span class="theorem">Theorem</span>
+<p>A set E ⊆ ℝ is connected if and only if: whenever a, b ∈ E and a < c < b, we have c ∈ E.
+
+<p>In other words, E is connected ⟺ E is an <strong>interval</strong>.</p>
+</div>
+
+<svg viewBox="0 0 920 180" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; margin: 0.8em 0;">
+  <defs>
+    <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- LEFT PANEL: Connected interval with all points -->
+  <g>
+    <!-- Number line -->
+    <line x1="20" y1="70" x2="380" y2="70" stroke="#666" stroke-width="2.5" marker-end="url(#arrowhead2)"/>
+    
+    <!-- Interval [a,b] -->
+    <line x1="85" y1="70" x2="320" y2="70" stroke="#008273" stroke-width="6"/>
+    <circle cx="85" cy="70" r="5" fill="#008273" stroke="#008273" stroke-width="2"/>
+    <circle cx="320" cy="70" r="5" fill="#008273" stroke="#008273" stroke-width="2"/>
+    <text x="85" y="100" font-size="13" fill="#008273" text-anchor="middle">a</text>
+    <text x="320" y="100" font-size="13" fill="#008273" text-anchor="middle">b</text>
+    
+    <!-- Interior point c -->
+    <circle cx="202" cy="70" r="4" fill="#be1e1e"/>
+    <text x="202" y="100" font-size="13" fill="#be1e1e" text-anchor="middle">c ∈ E ✓</text>
+    
+    <!-- Bottom label -->
+    <text x="200" y="155" font-size="12" font-weight="bold" text-anchor="middle"><tspan>Connected:</tspan> <tspan x="200" dy="16">every in-between point present</tspan></text>
+  </g>
+  
+  <!-- RIGHT PANEL: Disconnected with gap at c -->
+  <g>
+    <!-- Number line -->
+    <line x1="520" y1="70" x2="880" y2="70" stroke="#666" stroke-width="2.5" marker-end="url(#arrowhead2)"/>
+    
+    <!-- Left piece [a, .) -->
+    <line x1="585" y1="70" x2="680" y2="70" stroke="#1e5ab4" stroke-width="6"/>
+    <circle cx="585" cy="70" r="5" fill="#1e5ab4" stroke="#1e5ab4" stroke-width="2"/>
+    <circle cx="680" cy="70" r="5" fill="white" stroke="#1e5ab4" stroke-width="2.5"/>
+    <text x="585" y="100" font-size="13" fill="#1e5ab4" text-anchor="middle">a</text>
+    
+    <!-- Right piece (., b] -->
+    <line x1="740" y1="70" x2="815" y2="70" stroke="#1e5ab4" stroke-width="6"/>
+    <circle cx="740" cy="70" r="5" fill="white" stroke="#1e5ab4" stroke-width="2.5"/>
+    <circle cx="815" cy="70" r="5" fill="#1e5ab4" stroke="#1e5ab4" stroke-width="2"/>
+    <text x="815" y="100" font-size="13" fill="#1e5ab4" text-anchor="middle">b</text>
+    
+    <!-- Gap at c -->
+    <circle cx="710" cy="70" r="5" fill="white" stroke="#be1e1e" stroke-width="2.5"/>
+    <text x="710" y="100" font-size="13" fill="#be1e1e" text-anchor="middle">c ∉ E ✗</text>
+    
+    <!-- Bottom label -->
+    <text x="700" y="155" font-size="12" font-weight="bold" text-anchor="middle"><tspan>Disconnected:</tspan> <tspan x="700" dy="16">gap at c</tspan></text>
+  </g>
+</svg>
+
+<p><em>Proof sketch:</em></p>
+
+<p><strong>(⟹):</strong> Suppose E is connected. Let a, b ∈ E with a < c < b. Define:
+$$A = (-\infty, c) \cap E \quad \text{and} \quad B = (c, \infty) \cap E.$$
+</p>
+
+<div class="exercise-box">
+<strong>Step 1:</strong> Prove that a ∈ A and b ∈ B.
+<div class="fill"></div>
+
+<strong>Step 2:</strong> Prove that A and B are separated.
+<div class="fill"></div><div class="fill"></div><div class="fill"></div>
+
+<strong>Step 3:</strong> Use the connectedness of E to prove that c ∈ E.
+<div class="fill"></div>
+
+<p>Therefore this direction is proved. ∎</p>
+</div>
+
+<p><strong>(⟸):</strong> Conversely, assume that E is an interval: whenever a, b ∈ E satisfy a < c < b for some c, then c ∈ E.</p>
+
+<div class="exercise-box">
+<p>Let E = A ∪ B with A, B nonempty and disjoint. We show A and B are <em>not</em> separated.</p>
+
+<p>Pick a<sub>0</sub> ∈ A, b<sub>0</sub> ∈ B, and assume WLOG a<sub>0</sub> < b<sub>0</sub>.</p>
+
+<p><strong>Step 1:</strong> Why is I<sub>0</sub> = [a<sub>0</sub>, b<sub>0</sub>] ⊆ E?
+<div class="fill"></div>
+</p>
+
+<p><strong>Step 2:</strong> Bisect I<sub>0</sub> at its midpoint m. The midpoint lies in A or B. Explain why we can always choose a half I<sub>1</sub> = [a<sub>1</sub>, b<sub>1</sub>] ⊆ I<sub>0</sub> so that a<sub>1</sub> ∈ A and b<sub>1</sub> ∈ B.
+<div class="fill"></div><div class="fill"></div>
+</p>
+
+<p><strong>Step 3:</strong> Continuing, we get nested intervals I<sub>0</sub> ⊇ I<sub>1</sub> ⊇ I<sub>2</sub> ⊇ ⋯ with:</p>
+
+<ul>
+<li>a<sub>n</sub> ∈ A, b<sub>n</sub> ∈ B for each n, and</li>
+<li>b<sub>n</sub> − a<sub>n</sub> = (b<sub>0</sub> − a<sub>0</sub>)/2<sup>n</sup> → 0.</li>
+</ul>
+
+<p>By the <strong>Nested Interval Property</strong>, there exists <span class="blank"></span></p>
+
+<p><strong>Step 4:</strong> Show that a<sub>n</sub> → x and b<sub>n</sub> → x.
+<div class="fill"></div>
+</p>
+
+<p><strong>Step 5:</strong> Prove that A and B are not separated.
+<div class="fill"></div><div class="fill"></div>
+</p>
+
+<p>Therefore, E is connected. ∎</p>
+</div>
+
+<div class="exercise-box">
+<strong>Your turn:</strong> For each set, decide whether it is connected. If not, exhibit an explicit separation E = A ∪ B.
+
+<ol>
+<li>E = (−3,0) ∪ (0,3) — Connected? <span class="blank"></span>
+<div class="fill"></div>
+</li>
+<li>E = ℝ ∖ {0} — Connected? <span class="blank"></span>
+<div class="fill"></div>
+</li>
+<li>E = [0,1] ∪ {2} — Connected? <span class="blank"></span>
+<div class="fill"></div>
+</li>
+<li>E = [0,1] ∪ [1,2] — Connected? <span class="blank"></span>
+<div class="fill"></div>
+</li>
+</ol>
+</div>
+
+<hr style="margin-top: 2em; border: none; border-top: 1px solid #999;">
+
+<a href="../../index.html" class="back-link">&larr; Back to MATH 4630</a>
+
 </body>
 </html>
