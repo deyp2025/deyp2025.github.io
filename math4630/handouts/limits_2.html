@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 4: Continuous Functions | MATH 4630</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --blue: #1e5ab4;
+      --cream: #faf7f3;
+      --gold: #b8922a;
+      --muted: #6b6560;
+      --border: #e2ddd6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--cream);
+      color: #1a1a1a;
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.5in;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 1.5em;
+      padding-bottom: 0.8em;
+      border-bottom: 1px solid #999;
+    }
+    header h1 {
+      font-size: 1.6em;
+      color: var(--navy);
+      margin-bottom: 0.3em;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
+      color: var(--navy);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    section { margin-bottom: 2em; }
+    h2 {
+      font-size: 1.3em;
+      color: var(--navy);
+      margin-top: 1.5em;
+      margin-bottom: 0.8em;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4em;
+    }
+    h3 {
+      font-size: 1.1em;
+      color: var(--navy);
+      margin-top: 1.2em;
+      margin-bottom: 0.6em;
+    }
+    p { margin-bottom: 0.8em; text-align: justify; }
+    .def-box, .thm-box, .ex-box, .cor-box {
+      border-left: 4px solid;
+      padding: 1em;
+      margin: 1em 0;
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+    }
+    .def-box { border-left-color: #333; }
+    .def-box p {
+      margin-bottom: 0.6em;
+      line-height: 1.6;
+      word-wrap: break-word;
+    }
+    .def-box mjx-container {
+      display: inline !important;
+      margin: 0 0.2em;
+    }
+    .thm-box { border-left-color: var(--blue); }
+    .ex-box { border-left-color: var(--gold); }
+    .cor-box { border-left-color: var(--gold); }
+    .def-box strong, .thm-box strong, .ex-box strong, .cor-box strong {
+      display: block;
+      font-size: 1em;
+      margin-bottom: 0.5em;
+    }
+    .diagram {
+      text-align: center;
+      margin: 1.5em 0;
+      padding: 1em;
+      background: #fafafa;
+      border-radius: 4px;
+    }
+    svg { max-width: 100%; height: auto; }
+    .work-space {
+      border: 1px dashed var(--border);
+      padding: 1.5em;
+      margin: 1em 0;
+      min-height: 4em;
+      background: #f9f9f9;
+    }
+    .blanks {
+      border-bottom: 1px solid #333;
+      display: inline-block;
+      min-width: 2.5cm;
+      margin: 0 0.1em;
+    }
+    .highlight {
+      background: #fff9e6;
+      border-left: 4px solid var(--gold);
+      padding: 1em;
+      margin: 1.5em 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+      background: white;
+    }
+    table td, table th {
+      border: 1px solid var(--border);
+      padding: 0.8em;
+      text-align: left;
+    }
+    table th {
+      background: var(--blue);
+      color: white;
+    }
+    table tr:nth-child(even) {
+      background: #f5f5f5;
+    }
+    ol { margin-left: 1.5em; margin-bottom: 0.8em; }
+    ol li { margin-bottom: 0.5em; line-height: 1.6; }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85em;
+      padding: 1.5rem 0 2rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<a href="../../index.html" class="back-link">← Back to MATH 4630</a>
+
+<header>
+  <h1>Continuous Functions</h1>
+</header>
+
+<section>
+  <h2>Motivation: Why continuity needs a definition</h2>
+
+  <p>You have been using the word <em>continuous</em> since precalculus: a function is continuous if you can draw its graph <em>without lifting your pen</em>. This picture is compelling, but it is not a definition — it is an intuition. And intuitions can fail.</p>
+
+  <p>Consider the following:</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 950 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke: #1e5ab4; stroke-width: 2.5; fill: none; }
+          .point { fill: #1e5ab4; r: 3; }
+          .hole { fill: white; stroke: #1e5ab4; stroke-width: 2.5; r: 3; }
+          .red-point { fill: #be1e1e; r: 3; }
+          .teal-curve { stroke: #008273; stroke-width: 2.5; fill: none; }
+          .dashed { stroke-dasharray: 3,3; stroke-width: 1; stroke: #999; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <!-- Panel 1: Removable discontinuity -->
+      <g>
+        <line class="axis" x1="20" y1="230" x2="220" y2="230"/>
+        <line class="axis" x1="20" y1="20" x2="20" y2="230"/>
+        <text class="label" x="200" y="250">x</text>
+        <text class="label" x="5" y="15">f</text>
+        
+        <path class="curve" d="M 30 190 L 130 70"/>
+        <path class="curve" d="M 150 50 L 210 20"/>
+        
+        <circle class="hole" cx="140" cy="68"/>
+        <circle class="red-point" cx="140" cy="20"/>
+        
+        <line class="dashed" x1="140" y1="230" x2="140" y2="68"/>
+        <text class="label" x="135" y="250">c</text>
+        <text class="label" x="130" y="270" font-weight="bold">Removable</text>
+      </g>
+
+      <!-- Panel 2: Jump discontinuity -->
+      <g>
+        <line class="axis" x1="280" y1="230" x2="480" y2="230"/>
+        <line class="axis" x1="280" y1="20" x2="280" y2="230"/>
+        <text class="label" x="460" y="250">x</text>
+        <text class="label" x="265" y="15">f</text>
+        
+        <path class="curve" d="M 290 200 L 380 160"/>
+        <path class="curve" d="M 410 100 L 470 40"/>
+        
+        <circle class="hole" cx="390" cy="150"/>
+        <circle class="point" cx="410" cy="100"/>
+        
+        <line class="dashed" x1="390" y1="230" x2="390" y2="150"/>
+        <text class="label" x="385" y="250">c</text>
+        <text class="label" x="395" y="270" font-weight="bold">Jump</text>
+      </g>
+
+      <!-- Panel 3: Continuous -->
+      <g>
+        <line class="axis" x1="540" y1="230" x2="740" y2="230"/>
+        <line class="axis" x1="540" y1="20" x2="540" y2="230"/>
+        <text class="label" x="720" y="250">x</text>
+        <text class="label" x="525" y="15">f</text>
+        
+        <path class="teal-curve" d="M 550 190 Q 600 60 640 55 Q 680 50 730 30"/>
+        
+        <circle class="point" cx="640" cy="55" fill="#008273"/>
+        
+        <line class="dashed" x1="640" y1="230" x2="640" y2="55"/>
+        <line class="dashed" x1="540" y1="55" x2="640" y2="55"/>
+        <text class="label" x="635" y="250">c</text>
+        <text class="label" x="620" y="270" font-weight="bold">Continuous</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="work-space">
+    <strong>Both of the first two functions have a well-defined value at \(c\), and both look "almost" continuous there. What precisely separates them from the third?</strong>
+    <p style="margin-top: 1em; min-height: 2.5em;"></p>
+  </div>
+
+  <p>We now have a rigorous definition of \(\lim_{x\to c}f(x)\) from the last handout. It is time to use it.</p>
+</section>
+
+<section>
+  <h2>Definition of continuity</h2>
+
+  <div class="def-box">
+    <strong>Definition</strong>
+    <p>A function f: A → ℝ is continuous at a point c ∈ A if, for all ε > 0, there exists δ > 0 such that whenever |x − c| < δ (and x ∈ A): |f(x) − f(c)| < ε. If f is continuous at every point in A, we say f is continuous on A.</p>
+  </div>
+
+  <div class="highlight">
+    <strong>Takeaways:</strong> Continuity at \(c\) means three things simultaneously:
+    <ol>
+      <li>\(f(c)\) is defined (\(c\) is in the domain),</li>
+      <li>\(\lim_{x\to c} f(x)\) exists,</li>
+      <li>\(\lim_{x\to c} f(x) = f(c)\).</li>
+    </ol>
+    <p>Any one of these failing means \(f\) is <strong>discontinuous</strong> at \(c\).</p>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 500 350" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke: #008273; stroke-width: 2.5; fill: none; }
+          .point { fill: #008273; r: 3.5; }
+          .band { fill: #be1e1e; opacity: 0.12; }
+          .strip { fill: #d4860b; opacity: 0.12; }
+          .dashed { stroke-dasharray: 3,3; stroke-width: 1; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <line class="axis" x1="40" y1="280" x2="480" y2="280"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="280"/>
+      <text class="label" x="460" y="300">x</text>
+      <text class="label" x="15" y="15">f(x)</text>
+
+      <!-- Epsilon band -->
+      <rect class="band" x="40" y="140" width="440" height="80"/>
+      <line class="dashed" x1="40" y1="140" x2="480" y2="140" stroke="#be1e1e"/>
+      <line class="dashed" x1="40" y1="220" x2="480" y2="220" stroke="#be1e1e"/>
+
+      <!-- Delta strip -->
+      <rect class="strip" x="180" y="20" width="100" height="260"/>
+      <line class="dashed" x1="180" y1="20" x2="180" y2="280" stroke="#d4860b"/>
+      <line class="dashed" x1="280" y1="20" x2="280" y2="280" stroke="#d4860b"/>
+
+      <!-- f(c) line -->
+      <line class="dashed" x1="40" y1="180" x2="480" y2="180" stroke="#999"/>
+
+      <!-- Curve -->
+      <path class="curve" d="M 50 240 Q 100 120 180 100 Q 230 70 280 100 Q 340 140 450 180"/>
+
+      <!-- Point at c, f(c) - SOLID -->
+      <circle class="point" cx="230" cy="100"/>
+      <line class="dashed" x1="230" y1="280" x2="230" y2="100" stroke="#999" stroke-width="1"/>
+      <line class="dashed" x1="40" y1="100" x2="230" y2="100" stroke="#999" stroke-width="1"/>
+
+      <text class="label" x="225" y="300">c</text>
+      <text class="label" x="12" y="105">f(c)</text>
+    </svg>
+  </div>
+
+  <p><strong>Reading the picture:</strong> Same orange/red band structure as before. The one change: the point \(c\) is now <em>solid</em> on the curve and <em>included</em> in the orange strip. We must have \(f(c)\) land inside the red band — not just nearby points.</p>
+</section>
+
+<section>
+  <h2>Three equivalent characterizations</h2>
+
+  <p>Just as functional limits had an \(\varepsilon\)–\(\delta\) version and a sequential version, continuity has multiple equivalent formulations. Each is useful in different situations.</p>
+
+  <div class="thm-box">
+    <strong>Theorem</strong>
+    <p>Let \(f: A \to \mathbb{R}\) and \(c \in A\). The function \(f\) is continuous at \(c\) if and only if any one of the following holds:</p>
+    <ol>
+      <li><strong>(\(\varepsilon\)–\(\delta\) definition):</strong> For all \(\varepsilon > 0\), there exists \(\delta > 0\) such that whenever \(|x - c| < \delta\) (and \(x \in A\)): \(|f(x) - f(c)| < \varepsilon\).</li>
+      <li><strong>(Topological version):</strong> For every \(\varepsilon\)-neighborhood \(V_\varepsilon(f(c))\) of \(f(c)\), there exists a \(\delta\)-neighborhood \(V_\delta(c)\) of \(c\) such that for all \(x \in V_\delta(c)\) (with \(x \in A\)): \(f(x) \in V_\varepsilon(f(c))\).</li>
+      <li><strong>(Sequential):</strong> For all sequences \((x_n) \to c\) with \(x_n \in A\): \(f(x_n) \to f(c)\).</li>
+    </ol>
+    <p style="margin-top: 0.8em;">If \(c\) is a limit point of \(A\), all three are also equivalent to:</p>
+    <ol start="4">
+      <li>\(\lim_{x\to c} f(x) = f(c)\).</li>
+    </ol>
+  </div>
+
+  <div class="highlight">
+    <strong>When to use each characterization.</strong>
+    <table style="margin-top: 0.8em;">
+      <tr>
+        <th>Version</th>
+        <th>Best used for …</th>
+      </tr>
+      <tr>
+        <td>\(\varepsilon\)–\(\delta\)</td>
+        <td>Direct proofs that a specific function IS continuous</td>
+      </tr>
+      <tr>
+        <td>Sequential (iii)</td>
+        <td>Proving discontinuity: exhibit one bad sequence \((x_n)\to c\) with \(f(x_n)\not\to f(c)\)</td>
+      </tr>
+      <tr>
+        <td>(iv)</td>
+        <td>Inheriting results from the last handout (Algebraic Limit Theorem, etc.)</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="cor-box">
+    <strong>Corollary (Criterion for Discontinuity)</strong>
+    <p>Let f: A → ℝ, c ∈ A a limit point. If there exists a sequence (xₙ) ⊆ A with (xₙ) → c but f(xₙ) ↛ f(c), then f is not continuous at c.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Examples</h2>
+
+  <div class="ex-box">
+    <strong>Example 1.</strong> Prove that the function \(f(x) = 3x - 1\) is continuous at every \(c \in \mathbb{R}\).
+  </div>
+
+  <p><em>Scratch work:</em></p>
+  <div class="work-space" style="min-height: 4em;"></div>
+
+  <p><em>Formal proof:</em></p>
+  <div class="work-space" style="min-height: 4em;"></div>
+
+  <p><strong>Note:</strong> \(\delta = \varepsilon/3\) works for <em>every</em> \(c\in\mathbb{R}\): it does not depend on \(c\) at all. This will become important when we study <em>uniform continuity</em>.</p>
+
+  <div class="ex-box">
+    <strong>Example 2 (Greatest Integer Function).</strong> Consider the function \(h\) defined by \(h(x) = \lfloor x \rfloor.\) Show \(h\) is discontinuous at each \(m\in\mathbb{Z}\), but continuous at each \(c\notin\mathbb{Z}\).
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .step { stroke: #1e5ab4; stroke-width: 2.5; fill: none; }
+          .point { fill: #1e5ab4; r: 2.5; }
+          .hole { fill: white; stroke: #1e5ab4; stroke-width: 2.5; r: 2.5; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <line class="axis" x1="20" y1="200" x2="380" y2="200"/>
+      <line class="axis" x1="20" y1="20" x2="20" y2="200"/>
+      <text class="label" x="360" y="220">x</text>
+      <text class="label" x="5" y="15">h(x)</text>
+
+      <!-- Steps -->
+      <path class="step" d="M 20 200 L 100 200"/>
+      <circle class="hole" cx="20" cy="200"/>
+      <circle class="point" cx="100" cy="200"/>
+
+      <path class="step" d="M 100 140 L 180 140"/>
+      <circle class="hole" cx="100" cy="140"/>
+      <circle class="point" cx="180" cy="140"/>
+
+      <path class="step" d="M 180 80 L 260 80"/>
+      <circle class="hole" cx="180" cy="80"/>
+      <circle class="point" cx="260" cy="80"/>
+
+      <path class="step" d="M 260 20 L 340 20"/>
+      <circle class="hole" cx="260" cy="20"/>
+      <circle class="point" cx="340" cy="20"/>
+
+      <!-- Ticks -->
+      <line x1="100" y1="205" x2="100" y2="195"/>
+      <line x1="180" y1="205" x2="180" y2="195"/>
+      <line x1="260" y1="205" x2="260" y2="195"/>
+      <text class="label" x="95" y="220">1</text>
+      <text class="label" x="175" y="220">2</text>
+      <text class="label" x="255" y="220">3</text>
+
+      <line x1="15" y1="140" x2="25" y2="140"/>
+      <line x1="15" y1="80" x2="25" y2="80"/>
+      <line x1="15" y1="20" x2="25" y2="20"/>
+      <text class="label" x="0" y="145">1</text>
+      <text class="label" x="0" y="85">2</text>
+      <text class="label" x="0" y="25">3</text>
+    </svg>
+  </div>
+
+  <p><strong>Discontinuity at integers.</strong> Let \(m \in \mathbb{Z}\). We want to show \(h = \lfloor x \rfloor\) is not continuous at \(m\) using the sequential criterion.</p>
+  <div class="work-space" style="min-height: 4em;"></div>
+
+  <p><strong>Continuity away from integers.</strong> Let \(c\notin\mathbb{Z}\), so \(n < c < n+1\) for some \(n\in\mathbb{Z}\). Choose \(\delta = \) <span class="blanks" style="min-width: 3cm;"></span></p>
+
+  <div class="work-space">
+    <strong>Explain why \(|x-c|<\delta\) forces \(h(x) = h(c)\) and hence \(|h(x)-h(c)| < \varepsilon\) for any \(\varepsilon>0\).</strong>
+    <p style="margin-top: 1em; min-height: 3em;"></p>
+  </div>
+
+  <p><strong>Observation:</strong> Here \(\delta\) does <em>not</em> depend on \(\varepsilon\) at all — the same \(\delta\) works for every \(\varepsilon>0\).</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .step { stroke: #1e5ab4; stroke-width: 2.5; fill: none; }
+          .point { fill: #1e5ab4; r: 2.5; }
+          .hole { fill: white; stroke: #1e5ab4; stroke-width: 2.5; r: 2.5; }
+          .band { fill: #be1e1e; opacity: 0.12; }
+          .strip { fill: #d4860b; opacity: 0.12; }
+          .dashed { stroke-dasharray: 3,3; stroke-width: 1; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <line class="axis" x1="40" y1="240" x2="380" y2="240"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="240"/>
+      <text class="label" x="360" y="260">x</text>
+      <text class="label" x="15" y="15">h(x)</text>
+
+      <!-- Steps -->
+      <path class="step" d="M 40 240 L 110 240"/>
+      <circle class="hole" cx="40" cy="240"/>
+      <circle class="point" cx="110" cy="240"/>
+
+      <path class="step" d="M 110 160 L 180 160"/>
+      <circle class="hole" cx="110" cy="160"/>
+      <circle class="point" cx="180" cy="160"/>
+
+      <path class="step" d="M 180 80 L 250 80"/>
+      <circle class="hole" cx="180" cy="80"/>
+      <circle class="point" cx="250" cy="80"/>
+
+      <path class="step" d="M 250 20 L 320 20"/>
+      <circle class="hole" cx="250" cy="20"/>
+      <circle class="point" cx="320" cy="20"/>
+
+      <!-- c = 1.7, between 1 and 2 -->
+      <circle cx="145" cy="160" r="3" fill="#008273"/>
+
+      <!-- Delta strip around c -->
+      <rect class="strip" x="115" y="20" width="60" height="220"/>
+      <line class="dashed" x1="115" y1="20" x2="115" y2="240" stroke="#d4860b"/>
+      <line class="dashed" x1="175" y1="20" x2="175" y2="240" stroke="#d4860b"/>
+
+      <!-- Epsilon band around h(c) -->
+      <rect class="band" x="40" y="130" width="340" height="60"/>
+      <line class="dashed" x1="40" y1="130" x2="380" y2="130" stroke="#be1e1e"/>
+      <line class="dashed" x1="40" y1="190" x2="380" y2="190" stroke="#be1e1e"/>
+
+      <!-- Redraw curve -->
+      <path class="step" d="M 40 240 L 110 240"/>
+      <path class="step" d="M 110 160 L 180 160"/>
+      <path class="step" d="M 180 80 L 250 80"/>
+      <circle cx="145" cy="160" r="3" fill="#008273"/>
+
+      <!-- Labels -->
+      <text class="label" x="140" y="255">c</text>
+      <text class="label" x="12" y="165">h(c)</text>
+    </svg>
+  </div>
+
+  <div class="ex-box">
+    <strong>Example 3.</strong> Prove that the function \(f(x) = \sqrt{x}\) is continuous on \(A = [0,\infty)\).
+  </div>
+
+  <p><strong>Case 1: \(c = 0\).</strong></p>
+  <div class="work-space" style="min-height: 4em;"></div>
+
+  <p><strong>Case 2: \(c > 0\).</strong></p>
+  <p><em>Scratch work:</em></p>
+  <div class="work-space" style="min-height: 3em;"></div>
+
+  <div class="work-space">
+    <strong>Using the bound above, what should \(\delta\) be? Then write the formal proof.</strong>
+    <p style="margin-top: 1em; min-height: 4em;"></p>
+  </div>
+
+  <div class="ex-box">
+    <strong>Example 4.</strong> Consider \(g(x) = \begin{cases} x\sin(1/x) & x \neq 0 \\ 0 & x = 0. \end{cases}\)
+    
+    We saw that \(\lim_{x\to 0}\sin(1/x)\) does not exist. But multiplying by \(x\) <em>kills</em> the oscillation. Is \(g\) continuous at \(0\)?
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke: #008273; stroke-width: 1.5; fill: none; }
+          .point { fill: #008273; r: 2.5; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <line class="axis" x1="40" y1="150" x2="360" y2="150"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="280"/>
+      <text class="label" x="340" y="170">x</text>
+      <text class="label" x="15" y="15">g(x)</text>
+
+      <!-- Oscillating curve x*sin(1/x) -->
+      <path class="curve" d="M 200 150 Q 205 130 210 150 Q 215 170 220 150 Q 225 120 230 150 Q 235 180 240 150 Q 245 100 250 150 Q 255 200 260 150 Q 265 80 270 150"/>
+      <path class="curve" d="M 200 150 Q 195 170 190 150 Q 185 130 180 150 Q 175 180 170 150 Q 165 120 160 150 Q 155 180 150 150 Q 145 120 140 150"/>
+
+      <!-- Solid dot at origin -->
+      <circle class="point" cx="200" cy="150"/>
+      <text class="label" x="200" y="165">O</text>
+    </svg>
+  </div>
+
+  <div class="work-space">
+    <strong>Solution:</strong>
+    <p style="margin-top: 1em; min-height: 4em;"></p>
+  </div>
+</section>
+
+<section>
+  <h2>The Algebraic Continuity Theorem</h2>
+
+  <p>We do not need to prove continuity from scratch for every function. The Sequential Criterion lets us inherit the Algebraic Limit Theorem:</p>
+
+  <div class="thm-box">
+    <strong>Theorem</strong>
+    <p>Assume \(f: A\to\mathbb{R}\) and \(g: A\to\mathbb{R}\) are both continuous at \(c\in A\). Then:</p>
+    <ol>
+      <li>\(kf(x)\) is continuous at \(c\) for all \(k\in\mathbb{R}\),</li>
+      <li>\(f(x)\pm g(x)\) is continuous at \(c\),</li>
+      <li>\(f(x)\cdot g(x)\) is continuous at \(c\),</li>
+      <li>\(\frac{f(x)}{g(x)}\) is continuous at \(c\), provided \(g(c)\neq 0\).</li>
+    </ol>
+  </div>
+
+  <div class="highlight">
+    <strong>Consequence: All polynomials are continuous on \(\mathbb{R}\).</strong>
+    <p><em>Why?</em> Start from two facts:</p>
+    <ol>
+      <li>The constant function \(f(x)=k\) is continuous everywhere (\(\delta=1\) works for any \(\varepsilon>0\)).</li>
+      <li>The identity function \(g(x)=x\) is continuous everywhere (\(\delta=\varepsilon\) works).</li>
+    </ol>
+    <p>By the Algebraic Continuity Theorem (repeatedly applying parts (i)–(iii)):</p>
+    <p style="text-align: center; margin: 0.5em 0;">\(p(x) = a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n\)</p>
+    <p>is a sum and product of continuous functions, hence continuous on \(\mathbb{R}\).</p>
+    <p>By part (iv): <strong>rational functions</strong> are continuous wherever the denominator is nonzero.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Continuity of Compositions</h2>
+
+  <p>The Algebraic Continuity Theorem handles sums and products. But what about \(\sqrt{3x^2+5}\)? We need to compose two continuous functions. The Algebraic Continuity Theorem does <em>not</em> cover this.</p>
+
+  <div class="thm-box">
+    <strong>Theorem</strong>
+    <p>Let \(f: A \to \mathbb{R}\) and \(g: B \to \mathbb{R}\) with \(f(A)\subseteq B\). If \(f\) is continuous at \(c\in A\) and \(g\) is continuous at \(f(c)\in B\), then \(g\circ f\) is continuous at \(c\).</p>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .point { fill: #1e5ab4; r: 3; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <!-- Three number lines -->
+      <text class="label" x="10" y="45">Domain A</text>
+      <line class="axis" x1="40" y1="40" x2="460" y2="40"/>
+      <ellipse cx="120" cy="40" rx="30" ry="8" fill="#d4860b" opacity="0.2"/>
+      <circle class="point" cx="120" cy="40"/>
+      <text class="label" x="110" y="25">c</text>
+
+      <text class="label" x="10" y="135">Domain B</text>
+      <line class="axis" x1="40" y1="130" x2="460" y2="130"/>
+      <ellipse cx="220" cy="130" rx="40" ry="8" fill="#008273" opacity="0.2"/>
+      <circle class="point" cx="220" cy="130"/>
+      <text class="label" x="210" y="115">f(c)</text>
+
+      <text class="label" x="10" y="225">Range of g</text>
+      <line class="axis" x1="40" y1="220" x2="460" y2="220"/>
+      <ellipse cx="300" cy="220" rx="35" ry="8" fill="#be1e1e" opacity="0.2"/>
+      <circle class="point" cx="300" cy="220"/>
+      <text class="label" x="290" y="205">g(f(c))</text>
+
+      <!-- Arrows -->
+      <path d="M 120 45 Q 150 85 220 125" stroke="#1e5ab4" stroke-width="2.5" fill="none" marker-end="url(#arrowblue)"/>
+      <text class="label" x="160" y="70">f</text>
+
+      <path d="M 220 135 Q 240 175 300 215" stroke="#008273" stroke-width="2.5" fill="none" marker-end="url(#arrowteal)"/>
+      <text class="label" x="230" y="180">g</text>
+
+      <defs>
+        <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,6 L9,3 z" fill="#1e5ab4"/>
+        </marker>
+        <marker id="arrowteal" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,6 L9,3 z" fill="#008273"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="work-space">
+    <strong>Proof sketch:</strong> Let \((x_n)\to c\) with \(x_n\in A\).
+    <p style="margin-top: 0.8em;">Since \(f\) is continuous at \(c\): \(f(x_n) \to\) <span class="blanks" style="min-width: 2cm;"></span></p>
+    <p style="margin-top: 0.8em;">Since \(g\) is continuous at \(f(c)\) and \(f(x_n)\to f(c)\): \(g(f(x_n)) \to\) <span class="blanks" style="min-width: 2cm;"></span></p>
+    <p style="margin-top: 0.8em;">That is: \((g\circ f)(x_n) \to g(f(c)) = (g\circ f)(c)\). By the sequential criterion, \(g\circ f\) is continuous at \(c\). \(\square\)</p>
+  </div>
+
+  <div class="ex-box">
+    <strong>Example 5.</strong> \(h(x) = \sqrt{3x^2+5}\) is continuous on all of \(\mathbb{R}\).
+    <div class="work-space" style="min-height: 3em;"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Dirichlet's Function</h2>
+
+  <p>Define a function \(g: \mathbb{R} \to \mathbb{R}\) as follows:</p>
+  <p style="text-align: center;">\(g(x) = \begin{cases}1 & x\in\mathbb{Q}\\ 0 & x\notin\mathbb{Q}.\end{cases}\)</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .dot { r: 1.5; }
+          .label { font-size: 10px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <line class="axis" x1="20" y1="150" x2="380" y2="150"/>
+      <line class="axis" x1="20" y1="20" x2="20" y2="150"/>
+      <text class="label" x="360" y="165">x</text>
+      <text class="label" x="5" y="15">g(x)</text>
+
+      <!-- Rationals at y=1 -->
+      <circle class="dot" cx="30" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="50" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="70" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="90" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="110" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="130" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="150" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="170" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="190" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="210" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="230" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="250" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="270" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="290" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="310" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="330" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="350" cy="50" fill="#1e5ab4"/>
+      <circle class="dot" cx="370" cy="50" fill="#1e5ab4"/>
+
+      <!-- Irrationals at y=0 -->
+      <circle class="dot" cx="40" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="60" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="80" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="100" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="120" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="140" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="160" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="180" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="200" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="220" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="240" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="260" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="280" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="300" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="320" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="340" cy="150" fill="#d4860b"/>
+      <circle class="dot" cx="360" cy="150" fill="#d4860b"/>
+
+      <!-- Ticks -->
+      <line x1="15" y1="50" x2="25" y2="50"/>
+      <text class="label" x="0" y="55">1</text>
+
+      <text class="label" x="320" y="75" fill="#1e5ab4" font-size="9">rationals</text>
+      <text class="label" x="320" y="130" fill="#d4860b" font-size="9">irrationals</text>
+    </svg>
+  </div>
+
+  <div class="highlight">
+    <strong>Fact.</strong> Dirichlet's function \(g\) is <strong>nowhere continuous</strong> on \(\mathbb{R}\): it is discontinuous at every single point of the real line.
+  </div>
+
+  <div class="highlight">
+    <strong>Fact.</strong> If \(c\) is an <em>isolated point</em> of \(A\), then \(f\) is automatically continuous at \(c\), for any \(f\).
+    <p style="margin-top: 0.8em;"><em>Why?</em></p>
+    <div class="work-space" style="min-height: 2em;"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Activity</h2>
+
+  <div class="ex-box">
+    <strong>Problem 1.</strong> Use Definition 1 (the \(\varepsilon\)–\(\delta\) definition of continuity) to prove that \(f(x) = x^2 + 1\) is continuous at \(c = 2\).
+    <div class="work-space" style="min-height: 7em;"></div>
+  </div>
+
+  <div class="ex-box">
+    <strong>Problem 2.</strong> <strong>True/False:</strong> If \(f\) and \(g\) are both discontinuous at \(c\), then \(f+g\) is discontinuous at \(c\).
+    <div class="work-space" style="min-height: 3.5em;"></div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Priyadarshi Dey. All handouts are available for use in MATH 4630.
+</footer>
+
+</body>
+</html>
