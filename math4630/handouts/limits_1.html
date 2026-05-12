@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter 4: Functional Limits and Continuity | MATH 4630</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --navy-mid: #1b3352;
+      --cream: #faf7f3;
+      --gold: #b8922a;
+      --muted: #6b6560;
+      --border: #e2ddd6;
+      --text: #1a1a1a;
+      --blue: #1e5ab4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.5in;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.5em;
+      padding-bottom: 0.8em;
+      border-bottom: 1px solid #999;
+    }
+
+    header h1 {
+      font-size: 1.6em;
+      color: var(--navy);
+      margin-bottom: 0.3em;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.9em;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
+      color: var(--navy-mid);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .back-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+    section { margin-bottom: 2em; }
+
+    h2 {
+      font-size: 1.3em;
+      color: var(--navy);
+      margin-top: 1.5em;
+      margin-bottom: 0.8em;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4em;
+    }
+
+    h3 {
+      font-size: 1.1em;
+      color: var(--navy-mid);
+      margin-top: 1.2em;
+      margin-bottom: 0.6em;
+    }
+
+    p { margin-bottom: 0.8em; text-align: justify; }
+
+    .definition-box, .theorem-box, .example-box, .corollary-box {
+      border-left: 4px solid;
+      padding: 1em;
+      margin: 1em 0;
+      background: #fafafa;
+      border-radius: 2px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .definition-box { border-left-color: #333; }
+    .theorem-box { border-left-color: var(--blue); }
+    .example-box { border-left-color: var(--gold); }
+    .corollary-box { border-left-color: var(--gold); }
+
+    .definition-box strong, .theorem-box strong, .example-box strong, .corollary-box strong {
+      display: block;
+      font-size: 1em;
+      margin-bottom: 0.5em;
+    }
+
+    .blanks {
+      border-bottom: 1px solid #333;
+      display: inline-block;
+      min-width: 2.5cm;
+      margin: 0 0.1em;
+    }
+
+    .activity-box {
+      background: #f5f5f5;
+      border: 1px solid var(--border);
+      padding: 1.2em;
+      border-radius: 4px;
+      margin: 1.5em 0;
+    }
+
+    .diagram {
+      text-align: center;
+      margin: 1.5em 0;
+      padding: 1em;
+      background: #fafafa;
+      border-radius: 4px;
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .work-space {
+      border: 1px dashed var(--border);
+      padding: 1.5em;
+      margin: 1em 0;
+      min-height: 4em;
+      background: #f9f9f9;
+    }
+
+    .list-important {
+      margin: 1em 0;
+      padding-left: 2em;
+    }
+
+    .list-important li {
+      margin-bottom: 0.5em;
+      line-height: 1.6;
+    }
+
+    .remark {
+      color: #555;
+      font-size: 0.95em;
+      margin-top: 0.5em;
+      font-style: italic;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85em;
+      padding: 1.5rem 0 2rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    .checkbox {
+      display: inline-block;
+      width: 1.2em;
+      height: 1.2em;
+      border: 1px solid #333;
+      margin-right: 0.5em;
+      vertical-align: middle;
+    }
+
+    ol {
+      margin-left: 1.5em;
+      margin-bottom: 0.8em;
+    }
+
+    ol li {
+      margin-bottom: 0.5em;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<a href="../../index.html" class="back-link">← Back to MATH 4630</a>
+
+<header>
+  <h1>Chapter 4: Functional Limits and Continuity</h1>
+  <p>Limit of Functions</p>
+</header>
+
+<section>
+  <h2>From Sequential to Functional Limits</h2>
+
+  <p>We have a precise definition of \(\lim_{n\to\infty} a_n = L\) for a sequence. The idea behind \(\lim_{x\to c} f(x) = L\) is analogous: \(f(x)\) gets arbitrarily close to \(L\) whenever \(x\) is chosen close enough (but not equal) to \(c\).</p>
+
+  <p>Recall the \(\varepsilon\)–\(N\) definition of limit: for every \(\varepsilon > 0\), there exists \(N \in \mathbb{N}\) such that whenever \(n \ge N\),</p>
+  <p style="text-align: center;">\(|a_n-L|<\varepsilon\)</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .grid { stroke: #ddd; stroke-width: 0.5; }
+          .point { fill: #1e5ab4; r: 3; }
+          .band { fill: #be1e1e; opacity: 0.15; }
+          .label { font-size: 12px; font-family: Georgia; }
+          .dashed { stroke-dasharray: 3,3; }
+        </style>
+      </defs>
+      <!-- Axes -->
+      <line class="axis" x1="30" y1="200" x2="380" y2="200"/>
+      <line class="axis" x1="30" y1="20" x2="30" y2="200"/>
+      <text class="label" x="360" y="220">n</text>
+      <text class="label" x="15" y="15">\(a_n\)</text>
+      
+      <!-- Epsilon band -->
+      <rect class="band" x="30" y="90" width="350" height="40"/>
+      <line class="dashed" x1="30" y1="90" x2="380" y2="90" stroke="#be1e1e"/>
+      <line class="dashed" x1="30" y1="130" x2="380" y2="130" stroke="#be1e1e"/>
+      <text class="label" x="10" y="95" fill="#be1e1e">L+ε</text>
+      <text class="label" x="10" y="135" fill="#be1e1e">L-ε</text>
+      
+      <!-- L line -->
+      <line class="dashed" x1="30" y1="110" x2="380" y2="110" stroke="#999"/>
+      <text class="label" x="5" y="115">L</text>
+      
+      <!-- Points -->
+      <circle class="point" cx="50" cy="140"/>
+      <circle class="point" cx="80" cy="60"/>
+      <circle class="point" cx="110" cy="150"/>
+      <circle class="point" cx="140" cy="75"/>
+      <circle class="point" cx="170" cy="145"/>
+      <circle class="point" cx="200" cy="120"/>
+      <circle class="point" cx="230" cy="115"/>
+      <circle class="point" cx="260" cy="112"/>
+      <circle class="point" cx="290" cy="111"/>
+      <circle class="point" cx="320" cy="110.5"/>
+      <circle class="point" cx="350" cy="110.2"/>
+    </svg>
+  </div>
+
+  <div class="work-space">
+    <strong>Rewrite the definition of \(a_n \to L\) using \(\varepsilon\)-neighborhoods of \(L\):</strong>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+  </div>
+
+  <p class="remark">For functional limits, the challenge is still an \(\varepsilon\)-neighborhood around \(L\), but the response is a \(\delta\)-neighborhood around \(c\).</p>
+</section>
+
+<section>
+  <h2>The \(\varepsilon\)–\(\delta\) Definition</h2>
+
+  <div class="definition-box">
+    <strong>Definition</strong>
+    <p>Let \(f: A \to \mathbb{R}\), and let \(c\) be a <em>limit point</em> of the domain \(A\). We say \(\lim_{x \to c} f(x) = L\) provided that, for all \(\varepsilon > 0\), there exists \(\delta > 0\) such that whenever</p>
+    <p style="text-align: center;">\(0 < |x - c| < \delta\) and \(x \in A\) implies \(|f(x) - L| < \varepsilon\)</p>
+  </div>
+
+  <h3>Important remarks:</h3>
+  <ol class="list-important">
+    <li>The condition \(0 < |x-c|\) means \(x \neq c\): <em>what happens at \(c\) itself is irrelevant</em>.</li>
+    <li>The point \(c\) need <span class="blanks" style="min-width: 1.5cm;"></span> even be in the domain of \(f\).</li>
+    <li>We only discuss \(\lim_{x\to c} f(x)\) when \(c\) is a <span class="blanks" style="min-width: 2.5cm;"></span> of \(A\) (so \(c\) can be approached).</li>
+  </ol>
+
+  <div class="diagram">
+    <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke: #1e5ab4; stroke-width: 2.5; fill: none; }
+          .point { fill: #1e5ab4; r: 3.5; }
+          .band { fill: #be1e1e; opacity: 0.12; }
+          .strip { fill: #d4860b; opacity: 0.12; }
+          .dashed { stroke-dasharray: 3,3; stroke-width: 1; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+      <!-- Axes -->
+      <line class="axis" x1="40" y1="220" x2="380" y2="220"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="220"/>
+      <text class="label" x="360" y="240">x</text>
+      <text class="label" x="15" y="15">f(x)</text>
+      
+      <!-- Epsilon band (horizontal) -->
+      <rect class="band" x="40" y="120" width="340" height="60"/>
+      <line class="dashed" x1="40" y1="120" x2="380" y2="120" stroke="#be1e1e"/>
+      <line class="dashed" x1="40" y1="180" x2="380" y2="180" stroke="#be1e1e"/>
+      
+      <!-- Delta strip (vertical) -->
+      <rect class="strip" x="140" y="20" width="80" height="200"/>
+      <line class="dashed" x1="140" y1="20" x2="140" y2="220" stroke="#d4860b"/>
+      <line class="dashed" x1="220" y1="20" x2="220" y2="220" stroke="#d4860b"/>
+      
+      <!-- L line -->
+      <line class="dashed" x1="40" y1="150" x2="380" y2="150" stroke="#999"/>
+      <text class="label" x="12" y="155">L</text>
+      
+      <!-- Curve: smooth parabola-like -->
+      <path class="curve" d="M 50 200 Q 100 100 140 80 Q 180 50 220 80 Q 260 100 320 140 Q 360 160 380 170"/>
+      
+      <!-- c and L point -->
+      <circle class="point" cx="180" cy="80"/>
+      <line class="dashed" x1="180" y1="220" x2="180" y2="80" stroke="#999" stroke-width="1"/>
+      <line class="dashed" x1="40" y1="80" x2="180" y2="80" stroke="#999" stroke-width="1"/>
+      
+      <!-- c label -->
+      <text class="label" x="175" y="240">c</text>
+      <text class="label" x="5" y="85">L</text>
+    </svg>
+  </div>
+
+  <p class="remark"><strong>Reading the picture:</strong> The challenge is any \(\varepsilon > 0\) (horizontal band around \(L\)). The response is a \(\delta > 0\) (vertical strip around \(c\)). The definition says: <em>the entire portion of the graph inside the vertical strip (excluding \(x=c\)) must lie inside the horizontal band.</em></p>
+
+  <h3>Topological Version</h3>
+
+  <div class="definition-box">
+    <strong>Definition</strong>
+    <p>Let \(c\) be a limit point of the domain of \(f: A \to \mathbb{R}\). We say \(\lim_{x\to c} f(x) = L\) provided that, for every \(\varepsilon\)-neighborhood \(V_\varepsilon(L)\) of \(L\), there exists a \(\delta\)-neighborhood \(V_\delta(c)\) such that for all \(x \in V_\delta(c)\) with \(x \neq c\) and \(x \in A\):</p>
+    <p style="text-align: center;">\(f(x) \in V_\varepsilon(L)\)</p>
+  </div>
+</section>
+
+<section>
+  <h2>Examples</h2>
+
+  <div class="example-box">
+    <strong>Example 1.</strong> Prove that \(\lim_{x \to -1}(4x+3) = -1\).
+
+    <p><em>Scratch work:</em></p>
+    <div class="work-space" style="min-height: 3.5em;"></div>
+
+    <p><em>Formal proof:</em></p>
+    <div class="work-space" style="min-height: 2.5em;"></div>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .line { stroke: #1e5ab4; stroke-width: 2.5; }
+          .point { fill: #1e5ab4; r: 3.5; }
+          .band { fill: #be1e1e; opacity: 0.12; }
+          .strip { fill: #d4860b; opacity: 0.12; }
+          .dashed { stroke-dasharray: 3,3; stroke-width: 1; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+      <!-- Axes -->
+      <line class="axis" x1="40" y1="150" x2="380" y2="150"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="220"/>
+      <text class="label" x="360" y="170">x</text>
+      <text class="label" x="15" y="15">f(x)</text>
+      
+      <!-- L band -->
+      <rect class="band" x="40" y="110" width="340" height="50"/>
+      <line class="dashed" x1="40" y1="110" x2="380" y2="110" stroke="#be1e1e"/>
+      <line class="dashed" x1="40" y1="160" x2="380" y2="160" stroke="#be1e1e"/>
+      
+      <!-- Delta strip around x=-1 -->
+      <rect class="strip" x="130" y="20" width="60" height="200"/>
+      <line class="dashed" x1="130" y1="20" x2="130" y2="220" stroke="#d4860b"/>
+      <line class="dashed" x1="190" y1="20" x2="190" y2="220" stroke="#d4860b"/>
+      
+      <!-- L=-1 line -->
+      <line class="dashed" x1="40" y1="135" x2="380" y2="135" stroke="#999"/>
+      <text class="label" x="12" y="140">-1</text>
+      
+      <!-- Linear function f(x)=4x+3 -->
+      <line class="line" x1="50" y1="190" x2="370" y2="50"/>
+      
+      <!-- Point at c=-1, L=-1 -->
+      <circle class="point" cx="160" cy="135"/>
+      <line class="dashed" x1="160" y1="150" x2="160" y2="135" stroke="#999" stroke-width="1"/>
+      <line class="dashed" x1="40" y1="135" x2="160" y2="135" stroke="#999" stroke-width="1"/>
+      
+      <!-- c label -->
+      <text class="label" x="155" y="170">-1</text>
+    </svg>
+  </div>
+
+  <div class="example-box">
+    <strong>Example 2.</strong> Prove \(\lim_{x\to 2} x^2 = 4\).
+
+    <p><em>Scratch work:</em></p>
+    <div class="work-space" style="min-height: 5em;"></div>
+
+    <p><em>Formal proof:</em></p>
+    <div class="work-space" style="min-height: 3em;"></div>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .parabola { stroke: #1e5ab4; stroke-width: 2.5; fill: none; }
+          .point { fill: #1e5ab4; r: 3.5; }
+          .band { fill: #be1e1e; opacity: 0.12; }
+          .strip { fill: #d4860b; opacity: 0.12; }
+          .dashed { stroke-dasharray: 3,3; stroke-width: 1; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+      <!-- Axes -->
+      <line class="axis" x1="40" y1="240" x2="380" y2="240"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="240"/>
+      <text class="label" x="360" y="260">x</text>
+      <text class="label" x="15" y="15">f(x)</text>
+      
+      <!-- L band around y=4 -->
+      <rect class="band" x="40" y="110" width="340" height="50"/>
+      <line class="dashed" x1="40" y1="110" x2="380" y2="110" stroke="#be1e1e"/>
+      <line class="dashed" x1="40" y1="160" x2="380" y2="160" stroke="#be1e1e"/>
+      
+      <!-- Delta strip around x=2 -->
+      <rect class="strip" x="140" y="20" width="70" height="220"/>
+      <line class="dashed" x1="140" y1="20" x2="140" y2="240" stroke="#d4860b"/>
+      <line class="dashed" x1="210" y1="20" x2="210" y2="240" stroke="#d4860b"/>
+      
+      <!-- L=4 line -->
+      <line class="dashed" x1="40" y1="135" x2="380" y2="135" stroke="#999"/>
+      <text class="label" x="18" y="140">4</text>
+      
+      <!-- Parabola x^2: scaled -->
+      <path class="parabola" d="M 50 200 Q 80 160 110 130 Q 140 110 170 100 Q 200 95 240 100 Q 280 120 320 160 Q 350 200 370 240"/>
+      
+      <!-- Point at c=2, L=4 -->
+      <circle class="point" cx="175" cy="100"/>
+      <line class="dashed" x1="175" y1="240" x2="175" y2="100" stroke="#999" stroke-width="1"/>
+      <line class="dashed" x1="40" y1="100" x2="175" y2="100" stroke="#999" stroke-width="1"/>
+      
+      <!-- c label -->
+      <text class="label" x="170" y="260">2</text>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <h2>Sequential Criterion for Functional Limits</h2>
+
+  <div class="theorem-box">
+    <strong>Theorem</strong>
+    <p>Given \(f: A \to \mathbb{R}\) and a limit point \(c\) of \(A\), the following are equivalent:</p>
+    <ol style="margin-left: 1.5em; margin-top: 0.5em;">
+      <li>\(\lim_{x \to c} f(x) = L\)</li>
+      <li>For all sequences \((x_n) \subseteq A\) with \(x_n \neq c\) and \((x_n) \to c\), we have \(f(x_n) \to L\).</li>
+    </ol>
+  </div>
+
+  <h3>Proof sketch: \((i)\implies (ii)\)</h3>
+  <p>Assume \(\lim_{x\to c} f(x) = L\). Let \((x_n) \to c\) with \(x_n \neq c\).</p>
+  
+  <div class="work-space">
+    <strong>Use the definition of \(\lim_{x \to c}f(x)=L\) to show that \(f(x_n) \to L\).</strong>
+    <p style="margin-top: 1em; min-height: 4em;"></p>
+  </div>
+
+  <h3>Proof sketch: \((ii) \implies (i)\) (by contrapositive)</h3>
+  <p>Assume \(\lim_{x\to c} f(x) \neq L\).</p>
+
+  <div class="work-space">
+    <strong>Write what it means to say that \(\lim_{x\to c} f(x) \neq L\).</strong>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+  </div>
+
+  <p>For each \(n \in \mathbb{N}\), apply the negation above with \(\delta = \frac{1}{n}\) to obtain \(x_n\) with</p>
+  <p style="text-align: center;">\(0 < |x_n - c| < \frac{1}{n}\) and \(|f(x_n) - L| \geq \varepsilon_0\)</p>
+
+  <div class="work-space">
+    <strong>Explain why \((x_n) \to c\) but \(f(x_n) \not\to L\), and why this contradicts \((ii)\).</strong>
+    <p style="margin-top: 1em; min-height: 4em;"></p>
+  </div>
+</section>
+
+<section>
+  <h2>Divergence Criterion: Proving Limits Don't Exist</h2>
+
+  <div class="corollary-box">
+    <strong>Corollary</strong>
+    <p>Let \(f: A \to \mathbb{R}\) and \(c\) a limit point of \(A\). If there exist sequences \((x_n)\) and \((y_n)\) in \(A\) with \(x_n \neq c\), \(y_n \neq c\), and</p>
+    <p style="text-align: center;">\(\lim_{n \to \infty} x_n = \lim_{n \to \infty} y_n = c\) but \(\lim_{n \to \infty} f(x_n) \neq \lim_{n \to \infty} f(y_n)\),</p>
+    <p>then \(\lim_{x\to c} f(x)\) <strong>does not exist</strong>.</p>
+  </div>
+
+  <div class="example-box">
+    <strong>Example 3.</strong> Show \(\lim_{x\to 0} \sin(1/x)\) does not exist.
+
+    <p><em>The function oscillates rapidly near \(0\).</em></p>
+
+    <div class="diagram">
+      <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <style>
+            .axis { stroke: black; stroke-width: 2; }
+            .curve { stroke: #1e5ab4; stroke-width: 1.5; fill: none; }
+            .dashed { stroke-dasharray: 3,3; stroke-width: 1; }
+            .label { font-size: 11px; font-family: Georgia; }
+          </style>
+        </defs>
+        <!-- Axes -->
+        <line class="axis" x1="40" y1="125" x2="380" y2="125"/>
+        <line class="axis" x1="40" y1="20" x2="40" y2="230"/>
+        <text class="label" x="360" y="145">x</text>
+        <text class="label" x="15" y="15">sin(1/x)</text>
+        
+        <!-- Oscillating curve: multiple high-frequency oscillations as x approaches 0 -->
+        <path class="curve" d="M 360 60 Q 350 140 345 70 Q 340 145 335 65 Q 330 140 325 70 Q 320 145 310 50 Q 300 140 285 80 Q 270 135 250 100 Q 230 130 200 110 Q 170 125 150 115 Q 130 123 110 118 Q 95 121 85 120 Q 75 120.5 70 120 Q 65 120 62 120"/>
+        
+        <!-- Bounds at ±1 -->
+        <line class="dashed" x1="40" y1="50" x2="380" y2="50" stroke="#999"/>
+        <line class="dashed" x1="40" y1="200" x2="380" y2="200" stroke="#999"/>
+        <text class="label" x="5" y="55">1</text>
+        <text class="label" x="0" y="205">-1</text>
+      </svg>
+    </div>
+
+    <p>Take \(x_n = \) <span class="blanks" style="min-width: 2.5cm;"></span> and \(y_n = \) <span class="blanks" style="min-width: 2.5cm;"></span></p>
+
+    <p><strong>Checklist:</strong></p>
+    <div style="margin-left: 1.5em;">
+      <p><input type="checkbox" class="checkbox"> Show that \(x_n \to 0\) and \(y_n \to 0\).</p>
+      <div class="work-space" style="min-height: 1.5em;"></div>
+      
+      <p><input type="checkbox" class="checkbox"> Check \(\sin(1/x_n) \neq \sin(1/y_n)\).</p>
+      <div class="work-space" style="min-height: 2em;"></div>
+    </div>
+
+    <p style="margin-top: 1em;">Since \(\lim \sin(1/x_n) = 0 \neq 1 = \lim \sin(1/y_n)\), the limit does not exist. \(\blacksquare\)</p>
+  </div>
+</section>
+
+<section>
+  <h2>The Algebraic Limit Theorem for Functional Limits</h2>
+
+  <p>Just as we built up arithmetic for sequences, the Sequential Criterion lets us inherit the results immediately:</p>
+
+  <div class="corollary-box">
+    <strong>Corollary (Algebraic Limit Theorem)</strong>
+    <p>Assume \(\lim_{x\to c} f(x) = L\) and \(\lim_{x\to c} g(x) = M\). Then:</p>
+    <ol style="margin-left: 1.5em; margin-top: 0.5em;">
+      <li>\(\lim_{x\to c} kf(x) = \) <span class="blanks" style="min-width: 2cm;"></span> for all \(k \in \mathbb{R}\)</li>
+      <li>\(\lim_{x\to c} [f(x) + g(x)] = \) <span class="blanks" style="min-width: 2.5cm;"></span></li>
+      <li>\(\lim_{x\to c} [f(x)g(x)] = \) <span class="blanks" style="min-width: 2cm;"></span></li>
+      <li>\(\lim_{x\to c} \frac{f(x)}{g(x)} = \) <span class="blanks" style="min-width: 2cm;"></span>, provided \(M \neq 0\)</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <h2>Activity</h2>
+
+  <div class="activity-box">
+    <strong>Problem 1.</strong> Prove that \(\lim_{x\to 2}(3x+4) = 10\) using the definition of limit.
+
+    <div class="work-space" style="min-height: 8em;"></div>
+  </div>
+
+  <div class="activity-box">
+    <strong>Problem 2.</strong> Decide whether each claim is <strong>true</strong> or <strong>false</strong>, and give a brief justification:
+    
+    <ol style="margin-top: 1em;">
+      <li style="margin-bottom: 2.5em;">Show that if \(\delta > 0\) is a valid choice for a given \(\varepsilon > 0\), then any \(\delta'\) with \(0 < \delta' < \delta\) is also a valid choice for the same \(\varepsilon\).
+        <div class="work-space" style="min-height: 3em;"></div>
+      </li>
+
+      <li>If \(\lim_{x\to a} f(x) = L\) and \(a \in \text{dom}(f)\), then \(L = f(a)\).
+        <div class="work-space" style="min-height: 4em;"></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  © 2026 Priyadarshi Dey. All handouts are available for use in MATH 4630.
+</footer>
+
+</body>
+</html>
