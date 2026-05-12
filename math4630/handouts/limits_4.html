@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Intermediate Value Theorem | MATH 4630</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --blue: #1e5ab4;
+      --cream: #faf7f3;
+      --gold: #b8922a;
+      --muted: #6b6560;
+      --border: #e2ddd6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--cream);
+      color: #1a1a1a;
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.5in;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 1.5em;
+      padding-bottom: 0.8em;
+      border-bottom: 1px solid #999;
+    }
+    header h1 {
+      font-size: 1.6em;
+      color: var(--navy);
+      margin-bottom: 0.3em;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
+      color: var(--navy);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    section { margin-bottom: 2em; }
+    h2 {
+      font-size: 1.3em;
+      color: var(--navy);
+      margin-top: 1.5em;
+      margin-bottom: 0.8em;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4em;
+    }
+    h3 {
+      font-size: 1.1em;
+      color: var(--navy);
+      margin-top: 1.2em;
+      margin-bottom: 0.6em;
+    }
+    p { margin-bottom: 0.8em; text-align: justify; }
+    .def-box, .thm-box, .ex-box, .cor-box {
+      border-left: 4px solid;
+      padding: 1em;
+      margin: 1em 0;
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+    }
+    .def-box { border-left-color: #333; }
+    .thm-box { border-left-color: var(--blue); }
+    .ex-box { border-left-color: var(--gold); }
+    .cor-box { border-left-color: var(--gold); }
+    .def-box strong, .thm-box strong, .ex-box strong, .cor-box strong {
+      display: block;
+      font-size: 1em;
+      margin-bottom: 0.5em;
+    }
+    .diagram {
+      text-align: center;
+      margin: 1.5em 0;
+      padding: 1em;
+      background: #fafafa;
+      border-radius: 4px;
+    }
+    svg { max-width: 100%; height: auto; }
+    .work-space {
+      border: 1px dashed var(--border);
+      padding: 1.5em;
+      margin: 1em 0;
+      min-height: 3em;
+      background: #f9f9f9;
+    }
+    .blanks {
+      border-bottom: 1px solid #333;
+      display: inline-block;
+      min-width: 2.5cm;
+      margin: 0 0.1em;
+    }
+    .highlight {
+      background: #fff9e6;
+      border-left: 4px solid var(--gold);
+      padding: 1em;
+      margin: 1.5em 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+      background: white;
+    }
+    table td, table th {
+      border: 1px solid var(--border);
+      padding: 0.8em;
+      text-align: left;
+    }
+    table th {
+      background: var(--blue);
+      color: white;
+    }
+    table tr:nth-child(even) {
+      background: #f5f5f5;
+    }
+    ol { margin-left: 1.5em; margin-bottom: 0.8em; }
+    ol li { margin-bottom: 0.8em; line-height: 1.6; }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85em;
+      padding: 1.5rem 0 2rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<a href="../../index.html" class="back-link">← Back to MATH 4630</a>
+
+<header>
+  <h1>The Intermediate Value Theorem</h1>
+</header>
+
+<section>
+  <h2>What does the IVT say?</h2>
+
+  <div class="highlight">
+    <p>Draw any continuous path from a point <em>below</em> the $x$-axis to a point <em>above</em> it, without lifting your pen. You <em>must</em> cross the axis somewhere.</p>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 650 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke: #008273; stroke-width: 2.5; fill: none; }
+          .point { r: 2.5; }
+          .dashed { stroke-dasharray: 3,3; stroke-width: 1; stroke: #999; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <line class="axis" x1="40" y1="150" x2="620" y2="150"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="200"/>
+      <text class="label" x="600" y="170">x</text>
+      <text class="label" x="20" y="15">f(x)</text>
+
+      <!-- Curve: starts below, ends above, passes through zero -->
+      <path class="curve" d="M 80 220 Q 150 80 250 40 Q 350 120 550 100"/>
+
+      <!-- Points -->
+      <circle class="point" cx="80" cy="220" fill="#008273"/>
+      <circle class="point" cx="550" cy="100" fill="#008273"/>
+      <circle class="point" cx="240" cy="150" fill="#be1e1e"/>
+
+      <!-- Dashed lines -->
+      <line class="dashed" x1="80" y1="150" x2="80" y2="220"/>
+      <line class="dashed" x1="550" y1="150" x2="550" y2="100"/>
+      <line class="dashed" x1="240" y1="150" x2="240" y2="55"/>
+      <line class="dashed" x1="40" y1="220" x2="80" y2="220"/>
+      <line class="dashed" x1="40" y1="100" x2="550" y2="100"/>
+
+      <!-- Labels -->
+      <text class="label" x="75" y="170">a</text>
+      <text class="label" x="545" y="170">b</text>
+      <text class="label" x="235" y="170" fill="#be1e1e">c</text>
+      <text class="label" x="25" y="225">f(a)<0</text>
+      <text class="label" x="25" y="105">f(b)>0</text>
+      <text class="label" x="250" y="50" fill="#be1e1e">f(c)=0</text>
+    </svg>
+  </div>
+
+  <p>The goal of this handout is to understand <em>why</em> it needs a proof, and <em>what</em> property of $\mathbb{R}$ makes it true.</p>
+
+  <h3>Activity</h3>
+
+  <div class="thm-box">
+    <strong>Q1. Consider $f(x) = x^2 - 2$ on $[1,2]$. Compute $f(1)$ and $f(2)$. What does IVT (believe it for a moment) promise about $f(x)=0$?</strong>
+    <div class="work-space" style="min-height: 2.5em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>Q2. Now restrict entirely to $\mathbb{Q}$: work only with $x \in [1,2]\cap\mathbb{Q}$. Does $f(x)=0$ have a solution? Why not?</strong>
+    <div class="work-space" style="min-height: 2.5em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>Q3. So $f$ is continuous, $f(1) < 0 < f(2)$, yet the equation $f(x)=0$ has no solution in $[1,2]\cap\mathbb{Q}$. Which hypothesis of IVT is failing here?</strong>
+    <div class="work-space" style="min-height: 2em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>Q4. What does $\mathbb{Q}$ lack that $\mathbb{R}$ has, and how does that gap allow $f$ to "skip" the value $0$?</strong>
+    <div class="work-space" style="min-height: 2em;"></div>
+  </div>
+
+  <div class="highlight">
+    <p><strong>Note.</strong> Every proof of IVT must use something $\mathbb{Q}$ lacks: <span class="blanks" style="min-width: 3cm;"></span></p>
+  </div>
+</section>
+
+<section>
+  <h2>Does IVT apply?</h2>
+
+  <p>For each scenario, decide (without computing anything) whether the IVT <em>guarantees</em> a solution. If yes, state what it guarantees. If no, explain which hypothesis fails.</p>
+
+  <div class="thm-box">
+    <strong>(a) $f(x) = x^3 - 3x + 1$ on $[0,1]$. Does $f(c) = 0$ for some $c \in (0,1)$?</strong>
+    <div class="work-space" style="min-height: 2.5em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>(b) $h(x) = x^2 - 2$ on $(1,2)$. Does $h(c) = 0$ for some $c \in (1,2)$?</strong>
+    <div class="work-space" style="min-height: 3em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>(c) $p(x) = \lfloor x \rfloor$ on $[0,2]$. Does $p(c) = \frac{1}{2}$ for some $c \in (0,2)$?</strong>
+    <div class="work-space" style="min-height: 2.5em;"></div>
+  </div>
+</section>
+
+<section>
+  <h2>The Theorem</h2>
+
+  <div class="thm-box">
+    <strong>Theorem (Intermediate Value Theorem)</strong>
+    <p>Let $f: [a,b] \to \mathbb{R}$ be continuous. If $L$ is a real number satisfying $f(a) < L < f(b)$ or $f(a) > L > f(b)$, then there exists a point $c \in (a,b)$ such that $f(c) = L$.</p>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 650 350" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke: #008273; stroke-width: 2.5; fill: none; }
+          .point { fill: #008273; r: 2.5; }
+          .dashed { stroke-dasharray: 3,3; stroke-width: 1; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <line class="axis" x1="40" y1="280" x2="600" y2="280"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="280"/>
+      <text class="label" x="580" y="300">x</text>
+      <text class="label" x="20" y="15">f(x)</text>
+
+      <!-- Curve: concave increasing -->
+      <path class="curve" d="M 70 240 Q 150 140 250 80 Q 350 40 580 100"/>
+
+      <!-- f(a) and f(b) points -->
+      <circle class="point" cx="70" cy="240"/>
+      <circle class="point" cx="580" cy="100"/>
+
+      <!-- L horizontal line -->
+      <line class="dashed" x1="40" y1="170" x2="580" y2="170" stroke="#d4860b" stroke-width="2"/>
+
+      <!-- c point on curve at L -->
+      <circle cx="220" cy="170" r="3" fill="#be1e1e"/>
+      <line class="dashed" x1="220" y1="170" x2="220" y2="280" stroke="#be1e1e"/>
+
+      <!-- Dashed to axes -->
+      <line class="dashed" x1="70" y1="280" x2="70" y2="240" stroke="#999"/>
+      <line class="dashed" x1="580" y1="280" x2="580" y2="100" stroke="#999"/>
+      <line class="dashed" x1="40" y1="240" x2="70" y2="240" stroke="#999"/>
+      <line class="dashed" x1="40" y1="100" x2="580" y2="100" stroke="#999"/>
+      <line class="dashed" x1="40" y1="170" x2="40" y2="170" stroke="#999"/>
+
+      <!-- Labels -->
+      <text class="label" x="65" y="300">a</text>
+      <text class="label" x="575" y="300">b</text>
+      <text class="label" x="215" y="300" fill="#be1e1e">c</text>
+      <text class="label" x="25" y="245">f(a)</text>
+      <text class="label" x="25" y="105">f(b)</text>
+      <text class="label" x="25" y="175" fill="#d4860b">L</text>
+    </svg>
+  </div>
+
+  <p><strong>Why each hypothesis is necessary:</strong></p>
+
+  <table>
+    <tr>
+      <th>Condition dropped</th>
+      <th>Counterexample</th>
+      <th>What fails</th>
+    </tr>
+    <tr>
+      <td>$f$ not continuous</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Domain not a closed interval (e.g. open)</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>$\mathbb{R}$ replaced by $\mathbb{Q}$</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>Proof via the Axiom of Completeness</h2>
+
+  <p>We prove the special case $f(a) < 0 < f(b)$. The general case follows by replacing $f$ with $f - L$.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 650 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke: #008273; stroke-width: 2.5; fill: none; }
+          .point { fill: #008273; r: 2.5; }
+          .shaded { fill: #d4860b; opacity: 0.15; }
+          .dashed { stroke-dasharray: 3,3; stroke-width: 1; stroke: #999; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <line class="axis" x1="40" y1="220" x2="580" y2="220"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="280"/>
+      <text class="label" x="560" y="240">x</text>
+      <text class="label" x="20" y="15">f(x)</text>
+
+      <!-- Shaded region K = {x: f(x) ≤ 0} -->
+      <path class="shaded" d="M 70 220 Q 120 180 180 140 L 180 220 L 70 220"/>
+
+      <!-- Curve crossing zero -->
+      <path class="curve" d="M 70 260 Q 120 180 180 140 Q 280 60 580 120"/>
+
+      <!-- Points -->
+      <circle class="point" cx="70" cy="260"/>
+      <circle class="point" cx="580" cy="120"/>
+      <circle cx="180" cy="140" r="3" fill="#be1e1e"/>
+
+      <!-- Dashed lines -->
+      <line class="dashed" x1="70" y1="220" x2="70" y2="260" stroke="#999"/>
+      <line class="dashed" x1="580" y1="220" x2="580" y2="120" stroke="#999"/>
+      <line class="dashed" x1="180" y1="220" x2="180" y2="140" stroke="#be1e1e"/>
+
+      <!-- Labels -->
+      <text class="label" x="65" y="240">a</text>
+      <text class="label" x="575" y="240">b</text>
+      <text class="label" x="175" y="240" fill="#be1e1e">c</text>
+      <text class="label" x="25" y="265">f(a)<0</text>
+      <text class="label" x="25" y="125">f(b)>0</text>
+    </svg>
+  </div>
+
+  <p><em>Proof sketch.</em> Let $K = \{x \in [a,b] : f(x) \leq 0\}$.</p>
+
+  <div class="thm-box">
+    <strong>Step 1. Explain why $K$ is non-empty and bounded above. Conclude $c = \sup K$ exists.</strong>
+    <div class="work-space" style="min-height: 4em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>Step 2. Show $f(c) \leq 0$.</strong>
+    <div class="work-space" style="min-height: 4em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>Step 3. Show $f(c) \geq 0$.</strong>
+    <div class="work-space" style="min-height: 5em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>Step 4. Combine Steps 2 and 3. Conclude that $f(c) = 0$ and $c \in (a,b)$. $\square$</strong>
+    <div class="work-space" style="min-height: 2.5em;"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Proof via the Nested Interval Property</h2>
+
+  <p>The NIP gives an <em>algorithmic</em> proof: we <em>bisect</em> our way to the root.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke: #008273; stroke-width: 2.5; fill: none; }
+          .point { fill: #008273; r: 2; }
+          .bracket { stroke-width: 2; fill: none; }
+          .dashed { stroke-dasharray: 3,3; stroke-width: 1; stroke: #999; }
+          .label { font-size: 10px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <line class="axis" x1="40" y1="120" x2="680" y2="120"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="160"/>
+
+      <!-- Curve -->
+      <path class="curve" d="M 60 160 Q 150 80 250 60 Q 350 80 500 130 Q 600 160 680 140"/>
+
+      <!-- Nested intervals shown as brackets below -->
+      <g>
+        <line class="bracket" x1="60" y1="170" x2="520" y2="170" stroke="#1e5ab4" stroke-width="2"/>
+        <line class="bracket" x1="60" y1="165" x2="60" y2="175" stroke="#1e5ab4" stroke-width="2"/>
+        <line class="bracket" x1="520" y1="165" x2="520" y2="175" stroke="#1e5ab4" stroke-width="2"/>
+        <text class="label" x="290" y="185" fill="#1e5ab4">$I_0=[a,b]$</text>
+      </g>
+
+      <g>
+        <line class="bracket" x1="60" y1="200" x2="330" y2="200" stroke="#d4860b" stroke-width="2"/>
+        <line class="bracket" x1="60" y1="195" x2="60" y2="205" stroke="#d4860b" stroke-width="2"/>
+        <line class="bracket" x1="330" y1="195" x2="330" y2="205" stroke="#d4860b" stroke-width="2"/>
+        <text class="label" x="195" y="215" fill="#d4860b">$I_1$</text>
+      </g>
+
+      <g>
+        <line class="bracket" x1="195" y1="230" x2="330" y2="230" stroke="#008273" stroke-width="2"/>
+        <line class="bracket" x1="195" y1="225" x2="195" y2="235" stroke="#008273" stroke-width="2"/>
+        <line class="bracket" x1="330" y1="225" x2="330" y2="235" stroke="#008273" stroke-width="2"/>
+        <text class="label" x="262" y="245" fill="#008273">$I_2$</text>
+      </g>
+
+      <!-- Zero crossing -->
+      <circle cx="240" cy="120" r="3" fill="#be1e1e"/>
+      <line class="dashed" x1="240" y1="120" x2="240" y2="255"/>
+      <text class="label" x="235" y="268" fill="#be1e1e">c</text>
+    </svg>
+  </div>
+
+  <p><em>Proof sketch.</em> Again assume $f(a) < 0 < f(b)$. Let $I_0 = [a,b]$ and $z = \frac{a+b}{2}$.</p>
+
+  <p><strong>Bisection rule:</strong></p>
+  <div style="text-align: center; margin: 1em 0;">
+    <p>If $f(z) \geq 0$, let $I_1 = \phantom{[a,b]}$ <span class="blanks" style="min-width: 2.5cm;"></span></p>
+    <p>If $f(z) < 0$, let $I_1 = \phantom{[a,b]}$ <span class="blanks" style="min-width: 2.5cm;"></span></p>
+  </div>
+
+  <p>In either case, $I_1 = [a_1,b_1]$ satisfies</p>
+  <ul style="margin-left: 2em; margin-top: 0.8em; margin-bottom: 0.8em;">
+    <li><span class="blanks" style="min-width: 4cm;"></span></li>
+    <li><span class="blanks" style="min-width: 4cm;"></span></li>
+  </ul>
+
+  <p>Continuing inductively, we get nested closed intervals $I_0 \supseteq I_1 \supseteq I_2 \supseteq \cdots$ with $|I_n| = \frac{b-a}{2^{n}}$.</p>
+
+  <div class="thm-box">
+    <strong>(a) Invoke the NIP to find a point $c$ in the intersection of all $I_n$. What does the fact that $|I_n| \to 0$ tell you about the left endpoints $a_n$ and right endpoints $b_n$?</strong>
+    <div class="work-space" style="min-height: 3.5em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>(b) By construction, $f(a_n) < 0$ and $f(b_n) \geq 0$ for all $n$. Conclude $f(c) \leq 0$ and $f(c) \geq 0$.</strong>
+    <div class="work-space" style="min-height: 3em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>(c) Conclude $f(c) = 0$. $\square$</strong>
+    <div class="work-space" style="min-height: 1.5em;"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Application: Existence of Roots</h2>
+
+  <div class="ex-box">
+    <strong>Example 1.</strong> Show that the polynomial $p(x) = x^5 - 3x^3 + x - 1$ has at least two real roots.
+    
+    <p style="margin-top: 0.8em;"><em>Strategy:</em> Evaluate $p$ at a few well-chosen integers and apply IVT on each sign-change interval.</p>
+    <div class="work-space" style="min-height: 4em;"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Fixed Points</h2>
+
+  <p>A fixed point of $f$ is a point $x_0$ such that $f(x_0) = x_0$ — the function maps the point to itself.</p>
+
+  <div class="thm-box">
+    <strong>Theorem</strong>
+    <p>Let $f: [0,1] \to [0,1]$ be continuous. Then $f$ has at least one fixed point, i.e., there exists $x_0 \in [0,1]$ with $f(x_0) = x_0$.</p>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 450 450" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .square { stroke: #999; stroke-width: 1; fill: none; }
+          .diagonal { stroke: #1e5ab4; stroke-width: 2; stroke-dasharray: 3,3; }
+          .curve { stroke: #d4860b; stroke-width: 2.5; fill: none; }
+          .point { r: 2.5; }
+          .dashed { stroke-dasharray: 3,3; stroke-width: 1; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <line class="axis" x1="30" y1="400" x2="430" y2="400"/>
+      <line class="axis" x1="30" y1="400" x2="30" y2="0"/>
+      <text class="label" x="410" y="425">x</text>
+      <text class="label" x="10" y="20">f(x)</text>
+
+      <!-- Unit square -->
+      <rect class="square" x="30" y="30" width="370" height="370"/>
+
+      <!-- Diagonal y=x -->
+      <line class="diagonal" x1="30" y1="400" x2="400" y2="30"/>
+      <text class="label" x="400" y="20" fill="#1e5ab4">y=x</text>
+
+      <!-- Curve: from below to above diagonal -->
+      <path class="curve" d="M 50 350 Q 80 380 120 380 Q 160 340 200 220 Q 240 160 280 120 Q 320 80 390 110"/>
+
+      <!-- Fixed point -->
+      <circle class="point" cx="210" cy="210" fill="#be1e1e"/>
+      <line class="dashed" x1="210" y1="400" x2="210" y2="210" stroke="#be1e1e"/>
+      <line class="dashed" x1="30" y1="210" x2="210" y2="210" stroke="#be1e1e"/>
+
+      <!-- Labels -->
+      <text class="label" x="400" y="415">1</text>
+      <text class="label" x="15" y="35">1</text>
+      <text class="label" x="205" y="415" fill="#be1e1e">x₀</text>
+      <text class="label" x="15" y="215" fill="#be1e1e">x₀</text>
+      <text class="label" x="390" y="130" fill="#d4860b">f</text>
+    </svg>
+  </div>
+
+  <p><em>Proof sketch.</em> Define $g(x) = f(x) - x$ on $[0,1]$.</p>
+
+  <div class="thm-box">
+    <strong>(a) Compute $g(0)$ and $g(1)$ and find out the signs.</strong>
+    <div class="work-space" style="min-height: 2em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>(b) Apply IVT to $g$ to find $x_0$ with $g(x_0) = 0$, i.e., $f(x_0) = x_0$.</strong>
+    <div class="work-space" style="min-height: 3.5em;"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Preservation of Connected Sets</h2>
+
+  <p>There is a more conceptual proof of IVT using the topology of $\mathbb{R}$.</p>
+
+  <div class="thm-box">
+    <strong>Theorem</strong>
+    <p>Let $f: G \to \mathbb{R}$ be continuous. If $E \subseteq G$ is connected, then $f(E)$ is connected.</p>
+  </div>
+
+  <p><em>Proof.</em> Suppose for contradiction that $f(E)$ is not connected. Then there exist nonempty sets $A, B$ with</p>
+  <p style="text-align: center; margin: 1em 0;">
+    <span class="blanks" style="min-width: 2.5cm;"></span>, <span class="blanks" style="min-width: 2.5cm;"></span>, <span class="blanks" style="min-width: 2.5cm;"></span>
+  </p>
+
+  <p>Define the preimages $C = f^{-1}(A)\cap E$ and $D = f^{-1}(B)\cap E$.</p>
+
+  <div class="thm-box">
+    <strong>(a) Verify that $C$ and $D$ are nonempty, and $E = C\cup D$.</strong>
+    <div class="work-space" style="min-height: 6em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>(b) Show that $\overline{C}\cap D = \emptyset$ and $C\cap\overline{D} = \emptyset$, so that $C$ and $D$ are separated.</strong>
+    <div class="work-space" style="min-height: 6em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>Corollary. IVT follows immediately. Explain why.</strong>
+    <div class="work-space" style="min-height: 3em;"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Does the Converse Hold?</h2>
+
+  <div class="def-box">
+    <strong>Definition</strong>
+    <p>A function $f$ has the intermediate value property (IVP) on $[a,b]$ if for all $x < y$ in $[a,b]$ and all $L$ between $f(x)$ and $f(y)$, there exists $c \in (x,y)$ with $f(c) = L$.</p>
+  </div>
+
+  <p>IVT says: continuous $\Rightarrow$ IVP. Is the converse true?</p>
+
+  <div class="ex-box">
+    <strong>Counterexample.</strong> Consider $g(x) = \begin{cases} \sin\left(\frac{1}{x}\right) & x \neq 0 \\ 0 & x = 0. \end{cases}$
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 550 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke: #d4860b; stroke-width: 2; fill: none; }
+          .point { r: 2.5; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <line class="axis" x1="30" y1="140" x2="530" y2="140"/>
+      <line class="axis" x1="30" y1="280" x2="30" y2="20"/>
+      <text class="label" x="510" y="160">x</text>
+      <text class="label" x="10" y="15">g(x)</text>
+
+      <!-- Curve: sin(1/x) with oscillations near 0 -->
+      <path class="curve" d="M 35 145 Q 40 135 50 125 Q 70 110 100 130 Q 140 160 180 145 Q 230 110 280 170 Q 330 200 380 155 Q 430 100 500 150"/>
+
+      <!-- Open circle at origin (x=30, y=140) -->
+      <circle class="point" cx="30" cy="140" fill="white" stroke="#d4860b" stroke-width="2"/>
+      <!-- Filled dot at g(0)=0 -->
+      <circle class="point" cx="30" cy="140" fill="#be1e1e"/>
+
+      <text class="label" x="480" y="100" fill="#d4860b">sin(1/x)</text>
+    </svg>
+  </div>
+
+  <div class="thm-box">
+    <strong>(a) Is $g$ continuous at $0$?</strong>
+    <div class="work-space" style="min-height: 3em;"></div>
+  </div>
+
+  <div class="thm-box">
+    <strong>(b) Despite this, it can be shown that $g$ does <em>not</em> have the IVP on $[0,1]$.</strong>
+    <div class="work-space" style="min-height: 2em;"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Activity</h2>
+
+  <div class="ex-box">
+    <strong>Problem 1. True/False (justify each):</strong>
+
+    <p><strong>(a)</strong> If $f: [a,b] \to \mathbb{R}$ is continuous and $f(a) \cdot f(b) < 0$, then $f$ has at least one root in $(a,b)$.</p>
+    <div class="work-space" style="min-height: 4em;"></div>
+
+    <p style="margin-top: 1.5em;"><strong>(b)</strong> If $f: [0,1] \to [0,1]$ is continuous, then $f$ has exactly one fixed point.</p>
+    <div class="work-space" style="min-height: 4.5em;"></div>
+
+    <p style="margin-top: 1.5em;"><strong>(c)</strong> If $f: \mathbb{R} \to \mathbb{R}$ is continuous and $\lim_{x\to -\infty} f(x) = -\infty$ and $\lim_{x \to +\infty} f(x) = +\infty$, then $f$ has at least one root.</p>
+    <div class="work-space" style="min-height: 5em;"></div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Priyadarshi Dey. All handouts are available for use in MATH 4630.
+</footer>
+
+</body>
+</html>
