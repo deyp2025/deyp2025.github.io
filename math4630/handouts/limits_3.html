@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Compact Sets and Uniform Continuity | MATH 4630</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --blue: #1e5ab4;
+      --cream: #faf7f3;
+      --gold: #b8922a;
+      --muted: #6b6560;
+      --border: #e2ddd6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--cream);
+      color: #1a1a1a;
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.5in;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 1.5em;
+      padding-bottom: 0.8em;
+      border-bottom: 1px solid #999;
+    }
+    header h1 {
+      font-size: 1.6em;
+      color: var(--navy);
+      margin-bottom: 0.3em;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
+      color: var(--navy);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    section { margin-bottom: 2em; }
+    h2 {
+      font-size: 1.3em;
+      color: var(--navy);
+      margin-top: 1.5em;
+      margin-bottom: 0.8em;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4em;
+    }
+    h3 {
+      font-size: 1.1em;
+      color: var(--navy);
+      margin-top: 1.2em;
+      margin-bottom: 0.6em;
+    }
+    p { margin-bottom: 0.8em; text-align: justify; }
+    .def-box, .thm-box, .ex-box, .cor-box {
+      border-left: 4px solid;
+      padding: 1em;
+      margin: 1em 0;
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+    }
+    .def-box { border-left-color: #333; }
+    .thm-box { border-left-color: var(--blue); }
+    .ex-box { border-left-color: var(--gold); }
+    .cor-box { border-left-color: var(--gold); }
+    .def-box strong, .thm-box strong, .ex-box strong, .cor-box strong {
+      display: block;
+      font-size: 1em;
+      margin-bottom: 0.5em;
+    }
+    .diagram {
+      text-align: center;
+      margin: 1.5em 0;
+      padding: 1em;
+      background: #fafafa;
+      border-radius: 4px;
+    }
+    svg { max-width: 100%; height: auto; }
+    .work-space {
+      border: 1px dashed var(--border);
+      padding: 1.5em;
+      margin: 1em 0;
+      min-height: 4em;
+      background: #f9f9f9;
+    }
+    .blanks {
+      border-bottom: 1px solid #333;
+      display: inline-block;
+      min-width: 2.5cm;
+      margin: 0 0.1em;
+    }
+    .highlight {
+      background: #fff9e6;
+      border-left: 4px solid var(--gold);
+      padding: 1em;
+      margin: 1.5em 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+      background: white;
+    }
+    table td, table th {
+      border: 1px solid var(--border);
+      padding: 0.8em;
+      text-align: left;
+    }
+    table th {
+      background: var(--blue);
+      color: white;
+    }
+    table tr:nth-child(even) {
+      background: #f5f5f5;
+    }
+    ol { margin-left: 1.5em; margin-bottom: 0.8em; }
+    ol li { margin-bottom: 0.5em; line-height: 1.6; }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85em;
+      padding: 1.5rem 0 2rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<a href="../../index.html" class="back-link">← Back to MATH 4630</a>
+
+<header>
+  <h1>Compact Sets and Uniform Continuity</h1>
+</header>
+
+<section>
+  <h2>Warm-up</h2>
+
+  <div class="highlight">
+    <strong>Warm-up:</strong>
+    <p>Consider the function $f(x) = \frac{1}{x}.$ We will study its behavior on three different domains. The function itself does not change. Only the domain does.</p>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 950 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke-width: 2.5; fill: none; }
+          .point { r: 3; }
+          .hole { fill: white; stroke-width: 2.5; }
+          .dashed { stroke-dasharray: 3,3; stroke-width: 1; stroke: #999; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <!-- Panel 1: (0,1) -->
+      <g>
+        <line class="axis" x1="20" y1="250" x2="200" y2="250"/>
+        <line class="axis" x1="20" y1="20" x2="20" y2="250"/>
+        <text class="label" x="180" y="270">x</text>
+        <text class="label" x="5" y="15">f</text>
+        
+        <path class="curve" d="M 35 240 Q 60 120 90 80 Q 120 60 180 50" stroke="#be1e1e"/>
+        
+        <circle class="hole" cx="35" cy="240" stroke="#be1e1e"/>
+        <circle class="hole" cx="180" cy="50" stroke="#be1e1e"/>
+        
+        <text class="label" x="30" y="270">0</text>
+        <text class="label" x="175" y="270">1</text>
+        <text class="label" x="90" y="300" text-anchor="middle">A₁ = (0,1)</text>
+      </g>
+
+      <!-- Panel 2: [1, ∞) -->
+      <g>
+        <line class="axis" x1="280" y1="250" x2="460" y2="250"/>
+        <line class="axis" x1="280" y1="20" x2="280" y2="250"/>
+        <text class="label" x="440" y="270">x</text>
+        <text class="label" x="265" y="15">f</text>
+        
+        <path class="curve" d="M 295 220 Q 330 140 380 100 Q 420 80 450 70" stroke="#d4860b"/>
+        
+        <circle class="point" cx="295" cy="220" fill="#d4860b"/>
+        <circle class="hole" cx="450" cy="70" stroke="#d4860b"/>
+        
+        <line class="dashed" x1="295" y1="250" x2="295" y2="220"/>
+        <line class="dashed" x1="280" y1="220" x2="295" y2="220"/>
+        
+        <text class="label" x="290" y="270">1</text>
+        <text class="label" x="270" y="225">1</text>
+        <text class="label" x="370" y="300" text-anchor="middle">A₂ = [1,∞)</text>
+      </g>
+
+      <!-- Panel 3: [1/2, 3] -->
+      <g>
+        <line class="axis" x1="540" y1="250" x2="720" y2="250"/>
+        <line class="axis" x1="540" y1="20" x2="540" y2="250"/>
+        <text class="label" x="700" y="270">x</text>
+        <text class="label" x="525" y="15">f</text>
+        
+        <path class="curve" d="M 570 180 Q 600 120 650 90 Q 690 70 710 60" stroke="#008273"/>
+        
+        <circle class="point" cx="570" cy="180" fill="#008273"/>
+        <circle class="point" cx="710" cy="60" fill="#008273"/>
+        
+        <line class="dashed" x1="570" y1="250" x2="570" y2="180"/>
+        <line class="dashed" x1="540" y1="180" x2="570" y2="180"/>
+        <line class="dashed" x1="710" y1="250" x2="710" y2="60"/>
+        <line class="dashed" x1="540" y1="60" x2="710" y2="60"/>
+        
+        <text class="label" x="565" y="270">½</text>
+        <text class="label" x="705" y="270">3</text>
+        <text class="label" x="530" y="185">2</text>
+        <text class="label" x="530" y="65">⅓</text>
+        <text class="label" x="630" y="300" text-anchor="middle">A₃ = [½,3]</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="work-space">
+    <strong>(a) Is $f(x) = 1/x$ continuous on the given domain?</strong>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>(b) What is the range $f(A_i)$ in each case? Is the range open, closed, bounded, compact?</strong>
+    <table style="margin-top: 0.8em;">
+      <tr>
+        <th>Domain</th>
+        <th>Range $f(A_i)$</th>
+        <th>Open?</th>
+        <th>Closed?</th>
+        <th>Bounded?</th>
+        <th>Compact?</th>
+      </tr>
+      <tr>
+        <td>$A_1 = (0,1)$</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>$A_2 = [1,\infty)$</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>$A_3 = [\frac{1}{2},3]$</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="work-space">
+    <strong>(c) On which domain(s) does $f$ attain a maximum value? A minimum value?</strong>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>(d) Recall the $\varepsilon$–$\delta$ definition of continuity. For a fixed $\varepsilon = \frac{1}{2}$, can you find a single $\delta > 0$ that works simultaneously for every point in $A_1$? What about in $A_3$? What is going wrong near $x = 0$ in $A_1$?</strong>
+    <p style="margin-top: 1em; min-height: 3em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>(e) What property does $A_3$ have that $A_1$ and $A_2$ lack? State it precisely using vocabulary from Chapter 3.</strong>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+  </div>
+
+  <div class="highlight">
+    <strong>The pattern.</strong> The answers to (b)–(d) are perfect on $A_3$ and fail on $A_1$ and $A_2$ — and the only structural difference is <span class="blanks" style="min-width: 3cm;"></span>. This is not a coincidence. The rest of this handout explains exactly why <span class="blanks" style="min-width: 3cm;"></span> forces these good behaviors, and proves it rigorously.
+  </div>
+</section>
+
+<section>
+  <h2>Preservation of Compact Sets</h2>
+
+  <div class="thm-box">
+    <strong>Theorem</strong>
+    <p>Let $f: A \to \mathbb{R}$ be continuous on $A$. If $K \subseteq A$ is compact, then $f(K)$ is compact as well.</p>
+  </div>
+
+  <p><strong>Proof.</strong> Let $K \subseteq A$ be a compact set and $(y_n)$ be an arbitrary sequence in $f(K)$.</p>
+
+  <div class="work-space">
+    <strong>Use compactness of $K$ and continuity of $f$ to show that the sequence $(y_n)$ has a convergent subsequence $(y_{n_k})$ converges to a limit in $f(K).$</strong>
+    <p style="margin-top: 1em; min-height: 5em;"></p>
+  </div>
+</section>
+
+<section>
+  <h2>The Extreme Value Theorem</h2>
+
+  <div class="thm-box">
+    <strong>Theorem (Extreme Value Theorem)</strong>
+    <p>If $f: K \to \mathbb{R}$ is continuous on a compact set $K \subseteq \mathbb{R}$, then $f$ attains both a maximum and minimum value. That is, there exist $x_0, x_1 \in K$ such that $f(x_0) \leq f(x) \leq f(x_1)$ for all $x \in K$.</p>
+  </div>
+
+  <p style="margin-top: 2em;"><strong>Why each hypothesis is necessary:</strong></p>
+
+  <table>
+    <tr>
+      <th>Condition dropped</th>
+      <th>Example</th>
+      <th>What fails</th>
+    </tr>
+    <tr>
+      <td>$f$ not continuous</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>$K$ not closed</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>$K$ not bounded</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <div class="ex-box">
+    <strong>Example 1.</strong> Let $f(x) = \cos(x)$ defined on $K = [0, \pi]$. Without computing, explain why $f$ attains both a maximum and minimum, and identify what they are.
+    <div class="work-space" style="min-height: 3em;"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Uniform Continuity</h2>
+
+  <p>Recall the definition of ordinary continuity: $f$ is continuous at $c$ if, given $\varepsilon > 0$, there exists $\delta > 0$ (possibly depending on $c$) such that $|x - c| < \delta$ implies $|f(x) - f(c)| < \varepsilon$.</p>
+
+  <p>The subtlety is the phrase "possibly depending on $c$." Uniform continuity removes this dependence entirely.</p>
+
+  <div class="def-box">
+    <strong>Definition (Uniform Continuity)</strong>
+    <p>A function $f: A \to \mathbb{R}$ is uniformly continuous on $A$ if for every $\varepsilon > 0$ there exists a $\delta > 0$ such that for all $x, y \in A$: $|x - y| < \delta \implies |f(x) - f(y)| < \varepsilon.$</p>
+  </div>
+
+  <div class="highlight">
+    <strong>Comparison.</strong> In standard continuity, the quantifier order is: $\forall \varepsilon > 0, \forall c \in A, \exists \delta > 0$ (may depend on $\varepsilon$ and $c$): $|x-c|<\delta \Rightarrow |f(x)-f(c)|<\varepsilon.$
+    
+    In uniform continuity, the quantifier order is: $\forall \varepsilon > 0, \exists \delta > 0$ (depends on $\varepsilon$ only): $\forall x, y \in A, |x-y|<\delta \Rightarrow |f(x)-f(y)|<\varepsilon.$
+    
+    The $\delta$ must work simultaneously for all pairs $x, y$ in $A$.
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke: #008273; stroke-width: 2.5; fill: none; }
+          .point { fill: #008273; r: 2.5; }
+          .band { opacity: 0.15; }
+          .strip { opacity: 0.12; }
+          .dashed { stroke-dasharray: 3,3; stroke-width: 1; }
+          .label { font-size: 10px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <line class="axis" x1="40" y1="300" x2="580" y2="300"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="300"/>
+      <text class="label" x="560" y="320">x</text>
+      <text class="label" x="20" y="15">f(x)</text>
+
+      <!-- Curve: f(x) = 0.13x² + 0.2 -->
+      <path class="curve" d="M 50 232 Q 100 170 150 135 Q 200 125 250 140 Q 300 190 350 265"/>
+
+      <!-- Three points -->
+      <circle class="point" cx="100" cy="170"/>
+      <circle class="point" cx="220" cy="120"/>
+      <circle class="point" cx="360" cy="270"/>
+
+      <!-- Epsilon bands (same height) -->
+      <rect class="band" x="40" y="155" width="540" height="30" fill="#be1e1e"/>
+      <rect class="band" x="40" y="105" width="540" height="30" fill="#1e5ab4"/>
+      <rect class="band" x="40" y="255" width="540" height="30" fill="#7c0000"/>
+
+      <!-- Delta strips (shrinking) -->
+      <rect class="strip" x="60" y="20" width="80" height="280" fill="#d4860b"/>
+      <rect class="strip" x="190" y="20" width="60" height="280" fill="#0066cc"/>
+      <rect class="strip" x="320" y="20" width="80" height="280" fill="#880000"/>
+
+      <!-- Dashed lines -->
+      <line class="dashed" x1="100" y1="300" x2="100" y2="170" stroke="#999"/>
+      <line class="dashed" x1="220" y1="300" x2="220" y2="120" stroke="#999"/>
+      <line class="dashed" x1="360" y1="300" x2="360" y2="270" stroke="#999"/>
+
+      <!-- Redraw curve -->
+      <path class="curve" d="M 50 232 Q 100 170 150 135 Q 200 125 250 140 Q 300 190 350 265"/>
+
+      <!-- Labels -->
+      <text class="label" x="95" y="320">c₁</text>
+      <text class="label" x="215" y="320">c₂</text>
+      <text class="label" x="355" y="320">c₃</text>
+      
+      <text class="label" x="25" y="175">ε</text>
+      <text class="label" x="25" y="125">ε</text>
+      <text class="label" x="25" y="275">ε</text>
+    </svg>
+  </div>
+
+  <div class="ex-box">
+    <strong>Example 2.</strong> Prove that the function $f(x)=2x+3$ is uniformly continuous on $\mathbb{R}$.
+  </div>
+
+  <p><em>Scratch work:</em></p>
+  <div class="work-space" style="min-height: 3em;"></div>
+
+  <p><em>Formal proof:</em></p>
+  <div class="work-space" style="min-height: 3.5em;"></div>
+
+  <div class="ex-box">
+    <strong>Example 3.</strong> Prove that the function $f(x)=x^2$ is uniformly continuous on $[0,1]$.
+  </div>
+
+  <p><em>Scratch work:</em></p>
+  <div class="work-space" style="min-height: 4em;"></div>
+
+  <p><em>Formal proof:</em></p>
+  <div class="work-space" style="min-height: 5em;"></div>
+</section>
+
+<section>
+  <h2>Failure of Uniform Continuity</h2>
+
+  <div class="thm-box">
+    <strong>Theorem</strong>
+    <p>A function $f: A \to \mathbb{R}$ fails to be uniformly continuous on $A$ if and only if there exists $\varepsilon_0 > 0$ and sequences $(x_n)$, $(y_n)$ in $A$ satisfying $|x_n - y_n| \to 0$ but $|f(x_n) - f(y_n)| \geq \varepsilon_0.$</p>
+  </div>
+
+  <p><strong>Proof sketch.</strong> Assume $f:A \to \mathbb{R}$ is not uniformly continuous on $A$.</p>
+
+  <div class="work-space">
+    <strong>Write the negation of the definition of uniform continuity.</strong>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>Using the negation above, construct two sequences $(x_n)$ and $(y_n)$ in $A$ such that $|x_n - y_n| \to 0$ and $|f(x_n) - f(y_n)| \geq \varepsilon_0$.</strong>
+    <p style="margin-top: 1em; min-height: 4em;"></p>
+  </div>
+
+  <div class="ex-box">
+    <strong>Example 4.</strong> Show that $f(x) = x^3$ is not uniformly continuous on $\mathbb{R}$.
+    
+    <p style="margin-top: 0.8em;"><em>Strategy:</em> Find sequences $(x_n)$ and $(y_n)$ in $\mathbb{R}$ with $|x_n - y_n| \to 0$ but $|f(x_n) - f(y_n)| \not\to 0$.</p>
+  </div>
+
+  <div class="work-space" style="min-height: 4em;"></div>
+
+  <div class="work-space">
+    <strong>Expand and estimate $\left(n + \frac{1}{n^2}\right)^3$ to show $|f(x_n) - f(y_n)| \to 3$ (you may use $(a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3$).</strong>
+    <p style="margin-top: 1em; min-height: 3em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>Conclude: $f(x) = x^3$ is not uniformly continuous on $\mathbb{R}$.</strong>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+  </div>
+
+  <div class="ex-box">
+    <strong>Example 5.</strong> Show that $h(x) = \frac{1}{x}$ is not uniformly continuous on $(0,1)$.
+    
+    <p style="margin-top: 0.8em;"><em>Strategy:</em> The problem is near $x = 0$ where $1/x$ blows up. Let $x_n = $ <span class="blanks" style="min-width: 1.5cm;"></span> and $y_n = $ <span class="blanks" style="min-width: 1.5cm;"></span></p>
+  </div>
+
+  <p><strong>(a) Verify that $|x_n - y_n| \to 0$.</strong></p>
+  <div class="work-space" style="min-height: 2em;"></div>
+
+  <p><strong>(b) Compute $|h(x_n) - h(y_n)|$ and show it does not go to $0$.</strong></p>
+  <div class="work-space" style="min-height: 3em;"></div>
+
+  <p><strong>(c) Conclude $h$ is not uniformly continuous on $(0,1)$.</strong></p>
+  <div class="work-space" style="min-height: 2em;"></div>
+</section>
+
+<section>
+  <h2>Uniform Continuity on Compact Sets</h2>
+
+  <p>The previous examples show that uniform continuity can fail on unbounded domains and on non-closed bounded domains. The next theorem closes the door: neither failure is possible when the domain is compact.</p>
+
+  <div class="thm-box">
+    <strong>Theorem</strong>
+    <p>If $f: K \to \mathbb{R}$ is continuous on a compact set $K \subseteq \mathbb{R}$, then $f$ is uniformly continuous on $K$.</p>
+  </div>
+
+  <p><strong>Proof.</strong> We argue by contradiction. Suppose $f$ is continuous on $K$ but not uniformly continuous. By the previous theorem, there exist $\varepsilon_0 > 0$ and sequences $(x_n), (y_n) \subseteq K$ with $|x_n - y_n| \to 0$ but $|f(x_n) - f(y_n)| \geq \varepsilon_0$.</p>
+
+  <div class="work-space">
+    <strong>Use compactness of $K$ to extract a convergent subsequence $(x_{n_k})$ of $(x_n)$.</strong>
+    <p style="margin-top: 1em; min-height: 1.5em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>Now consider the corresponding subsequence $(y_{n_k})$ and show that $(y_{n_k})$ converges to the same limit as $(x_{n_k})$ does.</strong>
+    <p style="margin-top: 1em; min-height: 2.5em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>Use the continuity of $f$ to show that $|f(x_{n_k})-f(y_{n_k})| \to 0$.</strong>
+    <p style="margin-top: 1em; min-height: 3em;"></p>
+  </div>
+
+  <p>But this contradicts $|f(x_n) - f(y_n)| \geq \varepsilon_0$ for all $n$. $\square$</p>
+</section>
+
+<section>
+  <h2>Summary</h2>
+
+  <div class="diagram">
+    <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .box { stroke-width: 2; fill-opacity: 0.08; font-family: Georgia; font-size: 13px; }
+          .arrow { stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+          .dashed-arrow { stroke-width: 2; stroke-dasharray: 5,5; fill: none; marker-end: url(#arrowhead); }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+          <polygon points="0 0, 10 3, 0 6"/>
+        </marker>
+      </defs>
+
+      <!-- Boxes -->
+      <rect class="box" x="150" y="20" width="200" height="50" rx="8" stroke="#1e5ab4" fill="#1e5ab4"/>
+      <text x="250" y="55" text-anchor="middle" class="label" fill="white" font-weight="bold">Uniformly continuous on K</text>
+
+      <rect class="box" x="150" y="90" width="200" height="50" rx="8" stroke="#008273" fill="#008273"/>
+      <text x="250" y="125" text-anchor="middle" class="label" fill="white" font-weight="bold">Continuous on K</text>
+
+      <rect class="box" x="150" y="160" width="200" height="50" rx="8" stroke="#d4860b" fill="#d4860b"/>
+      <text x="250" y="195" text-anchor="middle" class="label" fill="white" font-weight="bold">Continuous at c</text>
+
+      <!-- Arrows -->
+      <line class="arrow" x1="250" y1="70" x2="250" y2="90" stroke="#1e5ab4"/>
+      <text x="270" y="85" class="label" fill="#1e5ab4">implies</text>
+
+      <line class="arrow" x1="250" y1="140" x2="250" y2="160" stroke="#008273"/>
+      <text x="270" y="155" class="label" fill="#008273">implies</text>
+
+      <!-- Curved dashed arrow from continuous on K to uniformly continuous on K -->
+      <path class="dashed-arrow" d="M 150 115 Q 100 70 150 45" stroke="#7c0000"/>
+      <text x="80" y="80" class="label" fill="#7c0000">K compact</text>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <h2>Activity</h2>
+
+  <div class="ex-box">
+    <strong>Problem 1.</strong> Prove using the definition that $f(x) = x^3$ is uniformly continuous on $[-2, 2]$.
+    <div class="work-space" style="min-height: 10em;"></div>
+  </div>
+
+  <div class="ex-box">
+    <strong>Problem 2.</strong> Is $f(x) = \frac{1}{x}$ uniformly continuous on $\left[\frac{1}{4}, 4\right]$?
+    <div class="work-space" style="min-height: 8em;"></div>
+  </div>
+
+  <div class="ex-box">
+    <strong>Problem 3. True/False (justify each):</strong>
+    
+    <p><strong>(a)</strong> If $f$ is uniformly continuous on $(0,1)$ and $(x_n)$ is a Cauchy sequence in $(0,1)$, then $(f(x_n))$ is also a Cauchy sequence.</p>
+    <div class="work-space" style="min-height: 2.5em;"></div>
+
+    <p><strong>(b)</strong> If $f$ is continuous on $[0,\infty)$, then $f$ is uniformly continuous on $[0,\infty)$.</p>
+    <div class="work-space" style="min-height: 4em;"></div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Priyadarshi Dey. All handouts are available for use in MATH 4630.
+</footer>
+
+</body>
+</html>
