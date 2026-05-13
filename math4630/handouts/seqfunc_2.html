@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Uniform Convergence and Differentiation | MATH 4630</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --blue: #1e5ab4;
+      --cream: #faf7f3;
+      --gold: #b8922a;
+      --muted: #6b6560;
+      --border: #e2ddd6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--cream);
+      color: #1a1a1a;
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.5in;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 1.5em;
+      padding-bottom: 0.8em;
+      border-bottom: 1px solid #999;
+    }
+    header h1 {
+      font-size: 1.6em;
+      color: var(--navy);
+      margin-bottom: 0.3em;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 0.95em;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
+      color: var(--navy);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    section { margin-bottom: 2em; }
+    h2 {
+      font-size: 1.3em;
+      color: var(--navy);
+      margin-top: 1.5em;
+      margin-bottom: 0.8em;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4em;
+    }
+    h3 {
+      font-size: 1.1em;
+      color: var(--navy);
+      margin-top: 1.2em;
+      margin-bottom: 0.6em;
+    }
+    p { margin-bottom: 0.8em; text-align: justify; }
+    .def-box, .thm-box, .ex-box, .cor-box {
+      border-left: 4px solid;
+      padding: 1em;
+      margin: 1em 0;
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+    }
+    .def-box { border-left-color: #333; }
+    .thm-box { border-left-color: var(--blue); }
+    .ex-box { border-left-color: var(--gold); }
+    .cor-box { border-left-color: var(--gold); }
+    .def-box strong, .thm-box strong, .ex-box strong, .cor-box strong {
+      display: block;
+      font-size: 1em;
+      margin-bottom: 0.5em;
+    }
+    .diagram {
+      text-align: center;
+      margin: 1.5em 0;
+      padding: 1em;
+      background: #fafafa;
+      border-radius: 4px;
+    }
+    svg { max-width: 100%; height: auto; }
+    .work-space {
+      border: 1px dashed var(--border);
+      padding: 1.5em;
+      margin: 1em 0;
+      min-height: 3em;
+      background: #f9f9f9;
+    }
+    .blanks {
+      border-bottom: 1px solid #333;
+      display: inline-block;
+      min-width: 2.5cm;
+      margin: 0 0.1em;
+    }
+    .highlight {
+      background: #fff9e6;
+      border-left: 4px solid var(--gold);
+      padding: 1em;
+      margin: 1.5em 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+      background: white;
+    }
+    table td, table th {
+      border: 1px solid var(--border);
+      padding: 0.8em;
+      text-align: left;
+    }
+    table th {
+      background: var(--blue);
+      color: white;
+    }
+    table tr:nth-child(even) {
+      background: #f5f5f5;
+    }
+    ul { margin-left: 1.5em; margin-bottom: 0.8em; }
+    li { margin-bottom: 0.5em; }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85em;
+      padding: 1.5rem 0 2rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<a href="../../index.html" class="back-link">← Back to MATH 4630</a>
+
+<header>
+  <h1>Uniform Convergence and Differentiation</h1>
+  <p>Chapter 6: Can we differentiate through a limit?</p>
+</header>
+
+<section>
+  <h2>Quick Recap: The Derivative</h2>
+
+  <div class="highlight">
+    <p>We say $f : A \to \mathbb{R}$ is <em>differentiable at $c \in A$</em> if the limit</p>
+    <p style="text-align: center; margin: 1em 0;">$f'(c) = \lim_{x \to c} \frac{f(x) - f(c)}{x - c}$</p>
+    <p>exists. When $f'(c)$ exists, it equals the slope of the tangent line to the graph of $f$ at $c$.</p>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: #666; stroke-width: 2; }
+          .curve { stroke: #245291; stroke-width: 3; fill: none; }
+          .tangent { stroke: #b41414; stroke-width: 2.5; }
+          .dashed { stroke-dasharray: 3,3; stroke: #999; stroke-width: 1; }
+          .label { font-size: 12px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <!-- Axes -->
+      <line class="axis" x1="40" y1="280" x2="550" y2="280"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="280"/>
+      <text class="label" x="530" y="300" font-weight="bold">x</text>
+      <text class="label" x="20" y="15" font-weight="bold">y</text>
+
+      <!-- Smooth curve (U-shaped parabola) -->
+      <path class="curve" d="M 60 200 C 90 160 120 140 150 110 C 190 75 220 70 260 70 C 300 70 330 75 370 110 C 400 140 430 160 460 200"/>
+      <text class="label" x="480" y="190" fill="#245291" font-weight="600">y = f(x)</text>
+
+      <!-- Tangent line at c=260 with positive slope -->
+      <line class="tangent" x1="100" y1="180" x2="420" y2="140"/>
+
+      <!-- Point of tangency at (260, 80) -->
+      <circle cx="260" cy="80" r="4" fill="#b41414"/>
+      <circle cx="260" cy="80" r="3" fill="white" stroke="#b41414"/>
+
+      <!-- Dashed guides -->
+      <line class="dashed" x1="260" y1="280" x2="260" y2="80"/>
+      <line class="dashed" x1="40" y1="80" x2="260" y2="80"/>
+
+      <!-- Labels -->
+      <text class="label" x="255" y="300" fill="#b41414" font-weight="600">c</text>
+      <text class="label" x="20" y="85" fill="#b41414" font-weight="600">f(c)</text>
+      <text class="label" x="275" y="70" fill="#b41414" font-weight="600">(c, f(c))</text>
+    </svg>
+  </div>
+
+  <p><strong>Two key facts we will use:</strong></p>
+  <ul>
+    <li>If $f$ is differentiable at $c$, then $f$ is continuous at $c$.</li>
+    <li><strong>(Mean Value Theorem)</strong> If $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then there exists $\alpha \in (a,b)$ with $f'(\alpha) = \frac{f(b)-f(a)}{b-a}$.</li>
+  </ul>
+
+  <div class="diagram">
+    <svg viewBox="0 0 650 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: #666; stroke-width: 2; }
+          .curve { stroke: #245291; stroke-width: 3; fill: none; }
+          .secant { stroke: #b41414; stroke-width: 2; stroke-dasharray: 3,3; }
+          .tangent { stroke: #228022; stroke-width: 2.5; }
+          .dashed { stroke-dasharray: 3,3; stroke: #999; stroke-width: 1; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <!-- Axes -->
+      <line class="axis" x1="40" y1="240" x2="600" y2="240"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="240"/>
+      <text class="label" x="580" y="260" font-weight="bold">x</text>
+      <text class="label" x="20" y="15" font-weight="bold">y</text>
+
+      <!-- Curve: parabola -->
+      <path class="curve" d="M 60 200 C 90 160 120 120 150 90 C 180 60 200 40 220 30 C 240 40 260 60 290 90 C 320 120 350 160 380 200"/>
+
+      <!-- Endpoints a, b -->
+      <circle cx="80" cy="160" r="3" fill="white" stroke="#b41414" stroke-width="2"/>
+      <circle cx="80" cy="160" r="2" fill="#b41414"/>
+      <circle cx="380" cy="200" r="3" fill="white" stroke="#b41414" stroke-width="2"/>
+      <circle cx="380" cy="200" r="2" fill="#b41414"/>
+
+      <!-- Secant line through (a,f(a)) and (b,f(b)) -->
+      <line class="secant" x1="40" y1="145" x2="420" y2="210"/>
+
+      <!-- Point α where tangent is parallel to secant -->
+      <circle cx="220" cy="35" r="3" fill="white" stroke="#228022" stroke-width="2"/>
+      <circle cx="220" cy="35" r="2" fill="#228022"/>
+
+      <!-- Tangent at α parallel to secant -->
+      <line class="tangent" x1="100" y1="20" x2="340" y2="65"/>
+
+      <!-- Dashed guides -->
+      <line class="dashed" x1="80" y1="240" x2="80" y2="160"/>
+      <line class="dashed" x1="220" y1="240" x2="220" y2="35"/>
+      <line class="dashed" x1="380" y1="240" x2="380" y2="200"/>
+
+      <!-- Labels -->
+      <text class="label" x="75" y="260" fill="#b41414" font-weight="600">a</text>
+      <text class="label" x="215" y="260" fill="#228022" font-weight="600">α</text>
+      <text class="label" x="375" y="260" fill="#b41414" font-weight="600">b</text>
+      <text class="label" x="280" y="50" fill="#228022" font-weight="600">f'(α) = slope of secant</text>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <h2>The Question</h2>
+
+  <div class="highlight">
+    <p><strong>Background:</strong> We proved that if $f_n \to f$ <em>uniformly</em> and each $f_n$ is continuous, then $f$ is continuous. The natural next question is:</p>
+
+    <p style="text-align: center; margin: 1.5em 0; font-style: italic;">
+      If $f_n \to f$ uniformly and each $f_n$ is differentiable, must $f$ be differentiable?<br/>
+      And if so, does $f_n' \to f'$?
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>A Shocking Example</h2>
+
+  <div class="ex-box">
+    <strong>Example: $h_n(x) = \frac{\sin(nx)}{\sqrt{n}}$ on $\mathbb{R}$</strong>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 750 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+          .label { font-size: 12px; font-family: Georgia; }
+          .amplitude { stroke: #999; stroke-width: 1; stroke-dasharray: 2,2; }
+        </style>
+      </defs>
+
+      <!-- Axes -->
+      <line class="axis" x1="40" y1="140" x2="730" y2="140"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="140"/>
+      <text class="label" x="710" y="160" font-weight="bold">x</text>
+      <text class="label" x="20" y="15" font-weight="bold">y</text>
+
+      <!-- Amplitude envelope lines -->
+      <line class="amplitude" x1="40" y1="70" x2="730" y2="70"/>
+      <line class="amplitude" x1="40" y1="140" x2="730" y2="140"/>
+
+      <!-- n=1: sin(x)/1 — full amplitude 1, smooth single period -->
+      <path class="curve" d="M 40 140 C 80 60 140 20 160 20 C 180 20 220 60 280 140" stroke="#1e5ab4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text class="label" x="150" y="10" fill="#1e5ab4" font-weight="700">n=1</text>
+      <text class="label" x="290" y="55" fill="#1e5ab4" font-weight="600">amplitude = 1</text>
+
+      <!-- n=4: sin(4x)/2 — amplitude 1/2, 4 smooth periods -->
+      <path class="curve" d="M 40 140 C 55 105 70 70 80 70 C 90 70 100 105 120 140 C 135 105 150 70 160 70 C 170 70 180 105 200 140 C 215 105 230 70 240 70 C 250 70 260 105 280 140" stroke="#008273" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text class="label" x="150" y="35" fill="#008273" font-weight="700">n=4</text>
+      <text class="label" x="290" y="75" fill="#008273" font-weight="600">amplitude = 1/2</text>
+
+      <!-- n=16: sin(16x)/4 — amplitude 1/4, 16 smooth periods (tightly packed) -->
+      <path class="curve" d="M 40 140 C 42 135 44 130 46 127 C 48 125 50 125 52 127 C 54 130 56 135 58 140 C 60 135 62 130 64 127 C 66 125 68 125 70 127 C 72 130 74 135 76 140 C 78 135 80 130 82 127 C 84 125 86 125 88 127 C 90 130 92 135 94 140 C 96 135 98 130 100 127 C 102 125 104 125 106 127 C 108 130 110 135 112 140 C 114 135 116 130 118 127 C 120 125 122 125 124 127 C 126 130 128 135 130 140 C 132 135 134 130 136 127 C 138 125 140 125 142 127 C 144 130 146 135 148 140 C 150 135 152 130 154 127 C 156 125 158 125 160 127 C 162 130 164 135 166 140 C 168 135 170 130 172 127 C 174 125 176 125 178 127 C 180 130 182 135 184 140 C 186 135 188 130 190 127 C 192 125 194 125 196 127 C 198 130 200 135 202 140 C 204 135 206 130 208 127 C 210 125 212 125 214 127 C 216 130 218 135 220 140 C 222 135 224 130 226 127 C 228 125 230 125 232 127 C 234 130 236 135 238 140 C 240 135 242 130 244 127 C 246 125 248 125 250 127 C 252 130 254 135 256 140 C 258 135 260 130 262 127 C 264 125 266 125 268 127 C 270 130 272 135 274 140 C 276 135 278 130 280 127 C 282 125 284 125 286 127 C 288 130 290 135 292 140" stroke="#d4860b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text class="label" x="150" y="60" fill="#d4860b" font-weight="700">n=16</text>
+      <text class="label" x="290" y="95" fill="#d4860b" font-weight="600">amplitude = 1/4 (16 periods)</text>
+
+      <!-- Limit: x-axis -->
+      <line class="curve" x1="40" y1="140" x2="730" y2="140" stroke="#7c0000" stroke-width="3"/>
+      <text class="label" x="350" y="125" fill="#7c0000" font-weight="700">Limit: $h_n(x) \to 0$ uniformly</text>
+
+      <!-- x-axis label -->
+      <text class="label" x="30" y="145">0</text>
+    </svg>
+  </div>
+
+  <div class="work-space">
+    <strong>(a) Show that $h_n \to 0$ uniformly on $\mathbb{R}$.</strong>
+    <p style="margin-top: 1em; min-height: 2.5em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>(b) Compute $h_n'(x)$ for each $n$.</strong>
+    <p style="margin-top: 1em; min-height: 1.5em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>(c) Does $(h_n')$ converge for any $x$?</strong>
+    <p style="margin-top: 1em; min-height: 2.5em;"></p>
+  </div>
+
+  <div class="highlight" style="margin-top: 1.5em;">
+    <p><strong>Conclusion:</strong> $h_n \to 0$ uniformly, yet $(h_n')$ <em>diverges everywhere</em>.</p>
+  </div>
+</section>
+
+<section>
+  <h2>What Is Really Being Asked</h2>
+
+  <div class="highlight">
+    <p>Differentiating the limit function means computing:</p>
+    <p style="text-align: center; margin: 1em 0;">
+      $f'(c) = \lim_{x \to c} \frac{f(x)-f(c)}{x-c} = \lim_{x \to c} \frac{\left(\lim_{n\to\infty} f_n(x)\right) - \left(\lim_{n\to\infty} f_n(c)\right)}{x-c}$
+    </p>
+
+    <p>Saying $f' = \lim_n f_n'$ is asking to interchange the following limits:</p>
+    <p style="text-align: center; margin: 1em 0;">
+      $\lim_{x \to c} \lim_{n \to \infty} \frac{f_n(x)-f_n(c)}{x-c} \overset{?}{=} \lim_{n \to \infty} \lim_{x \to c} \frac{f_n(x)-f_n(c)}{x-c}$
+    </p>
+
+    <p>This is even more delicate than the continuity interchange. The fix: require the <em>derivatives</em> $(f_n')$ to converge uniformly.</p>
+  </div>
+</section>
+
+<section>
+  <h2>The Differentiable Limit Theorem</h2>
+
+  <div class="thm-box">
+    <strong>Theorem 1</strong>
+    <p>Let $f_n \to f$ pointwise on $[a,b]$, and assume each $f_n$ is differentiable on $[a,b]$. If $(f_n')$ converges <em>uniformly</em> on $[a,b]$ to a function $g$, then $f$ is differentiable and $f' = g$. That is,</p>
+    <p style="text-align: center; margin: 1em 0;">$\left(\lim_{n\to\infty} f_n\right)' = \lim_{n\to\infty} f_n'$</p>
+  </div>
+
+  <p style="margin-top: 1.5em;"><strong>What the theorem says in plain language:</strong> To differentiate through a limit, you do not need $(f_n)$ to converge uniformly — you need $(f_n')$ to converge uniformly. If the derivatives converge uniformly to some $g$, then the limit function $f$ is differentiable and its derivative is exactly $g$.</p>
+</section>
+
+<section>
+  <h2>Proof Sketch</h2>
+
+  <p>Fix $c \in [a,b]$ and $\varepsilon > 0$. We want to show $f'(c) = g(c)$, i.e., there exists $\delta>0$ such that whenever $|x-c|<\delta$:</p>
+
+  <p style="text-align: center; margin: 1em 0; border-bottom: 1px solid var(--border); padding-bottom: 1em;">
+    <span class="blanks" style="min-width: 6cm;"></span>
+  </p>
+
+  <p>By the triangle inequality, for any $n \in \mathbb{N}$ and $x \neq c$:</p>
+
+  <div style="text-align: center; margin: 1.5em 0; padding: 1em; background: #f9f9f9; border-radius: 4px;">
+    <p>$\left|\frac{f(x)-f(c)}{x-c} - g(c)\right| \leq$ <span class="blanks" style="min-width: 2cm;"></span> + <span class="blanks" style="min-width: 2cm;"></span> + <span class="blanks" style="min-width: 2cm;"></span></p>
+    <p style="font-size: 0.9em; margin-top: 0.8em;">Term (I), Term (II), Term (III)</p>
+  </div>
+
+  <div class="work-space">
+    <strong>Step 1.</strong> Use uniform convergence of $(f_n')$ to choose $N \in \mathbb{N}$ so that terms (I) and (III) are each $< \varepsilon/3$.
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>Step 2.</strong> How is the MVT used to control term (I)?
+    <p style="margin-top: 1em; min-height: 4em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>Step 3.</strong> With $N$ fixed, use differentiability of $f_N$ at $c$ to choose $\delta > 0$ so term (II) $< \varepsilon/3$ whenever $|x-c| < \delta$.
+    <p style="margin-top: 1em; min-height: 4em;"></p>
+  </div>
+
+  <p style="margin-top: 1.5em;">Conclude: for $0 < |x-c| < \delta$,</p>
+  <p style="text-align: center; margin: 1em 0;">
+    $\left|\frac{f(x)-f(c)}{x-c} - g(c)\right| < \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon$ $\square$
+  </p>
+
+  <div class="highlight" style="margin-top: 1.5em;">
+    <p><strong>Key insights about the proof:</strong></p>
+    <ul>
+      <li><strong>Three-tool argument.</strong> Each tool handles exactly one term — drop any one hypothesis and the proof collapses: Term (I) uses MVT; Term (II) uses differentiability of $f_N$; Term (III) uses uniform convergence of $(f_n')$.</li>
+      <li><strong>Order of quantifiers matters.</strong> Pick $N$ <em>first</em>. Then pick $\delta$ from the differentiability of the single function $f_N$. Reversing the order breaks the argument.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Examples</h2>
+
+  <div class="ex-box">
+    <strong>Example 1: $f_n(x) = \frac{x^2}{n} + x$ on $[-2,2]$</strong>
+
+    <p style="margin-top: 1em;"><strong>(a) Find the pointwise limit $f(x) = \lim_{n\to\infty} f_n(x)$.</strong></p>
+    <div class="work-space" style="min-height: 1.5em;"></div>
+
+    <p style="margin-top: 1em;"><strong>(b) Compute $f_n'(x)$ and find $g(x) = \lim_{n\to\infty} f_n'(x)$ pointwise.</strong></p>
+    <div class="work-space" style="min-height: 1.5em;"></div>
+
+    <p style="margin-top: 1em;"><strong>(c) Show $(f_n')$ converges uniformly to $g$ on $[-2,2]$.</strong></p>
+    <div class="work-space" style="min-height: 3em;"></div>
+
+    <p style="margin-top: 1em;"><strong>(d) Conclude by Theorem 1 that $f' = g$. Verify directly that $f'(x) = g(x)$.</strong></p>
+    <div class="work-space" style="min-height: 2.5em;"></div>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke-width: 2.5; fill: none; }
+          .label { font-size: 12px; font-family: Georgia; }
+          .gridline { stroke: #e0e0e0; stroke-width: 0.5; }
+        </style>
+      </defs>
+
+      <!-- Grid -->
+      <line class="gridline" x1="80" y1="60" x2="80" y2="280"/>
+      <line class="gridline" x1="160" y1="60" x2="160" y2="280"/>
+      <line class="gridline" x1="240" y1="60" x2="240" y2="280"/>
+      <line class="gridline" x1="80" y1="140" x2="680" y2="140"/>
+      <line class="gridline" x1="80" y1="170" x2="680" y2="170"/>
+      <line class="gridline" x1="80" y1="200" x2="680" y2="200"/>
+
+      <!-- Axes -->
+      <line class="axis" x1="80" y1="170" x2="680" y2="170"/>
+      <line class="axis" x1="80" y1="60" x2="80" y2="280"/>
+      <text class="label" x="660" y="190" font-weight="bold">x</text>
+      <text class="label" x="50" y="55" font-weight="bold">y</text>
+
+      <!-- Limit f(x) = x -->
+      <line class="curve" x1="80" y1="170" x2="680" y2="70" stroke="#7c0000" stroke-width="3"/>
+      <text class="label" x="600" y="95" fill="#7c0000" font-weight="700">f(x)=x (limit)</text>
+
+      <!-- f_1 = x²+x (parabola upward) -->
+      <path class="curve" d="M 80 170 C 110 150 140 110 160 80 C 190 40 220 20 240 15 C 280 20 330 60 380 130 C 480 210 620 280 680 290" stroke="#1e5ab4" stroke-width="2.5"/>
+      <text class="label" x="300" y="80" fill="#1e5ab4" font-weight="600">n=1</text>
+
+      <!-- f_2 = x²/2+x (less steep parabola) -->
+      <path class="curve" d="M 80 170 C 110 160 140 140 160 115 C 190 80 220 60 240 50 C 280 55 330 90 380 145 C 480 210 620 270 680 280" stroke="#008273" stroke-width="2.5"/>
+      <text class="label" x="350" y="95" fill="#008273" font-weight="600">n=2</text>
+
+      <!-- f_5 = x²/5+x -->
+      <path class="curve" d="M 80 170 C 110 168 140 160 160 145 C 190 120 220 100 240 85 C 280 80 330 110 380 155 C 480 210 620 265 680 275" stroke="#d4860b" stroke-width="2.5"/>
+      <text class="label" x="400" y="105" fill="#d4860b" font-weight="600">n=5</text>
+
+      <!-- f_20 = x²/20+x (almost linear) -->
+      <path class="curve" d="M 80 170 C 110 169 140 165 160 158 C 190 140 220 125 240 110 C 280 95 330 125 380 160 C 480 210 620 268 680 275" stroke="#be1e1e" stroke-width="2.5"/>
+      <text class="label" x="450" y="115" fill="#be1e1e" font-weight="600">n=20</text>
+
+      <!-- Axis labels -->
+      <text class="label" x="70" y="180">O</text>
+      <text class="label" x="75" y="295" text-anchor="end">-2</text>
+      <text class="label" x="680" y="295" text-anchor="end">2</text>
+    </svg>
+  </div>
+
+  <div class="ex-box">
+    <strong>Example 2: $g_n(x) = \frac{x^n}{n}$ on $[0,1]$</strong>
+
+    <p style="margin-top: 1em;"><strong>(a) Show $(g_n)$ converges uniformly on $[0,1]$ and find $g = \lim_{n \to \infty} g_n$.</strong></p>
+    <div class="work-space" style="min-height: 3em;"></div>
+
+    <p style="margin-top: 1em;"><strong>(b) Compute $g_n'(x)$ for each $n$. Show $(g_n')$ converges pointwise on $[0,1]$. Is the convergence uniform?</strong></p>
+    <div class="work-space" style="min-height: 4em;"></div>
+
+    <p style="margin-top: 1em;"><strong>(c) Compute $\lim_{n\to\infty} g_n'(x)$ and compare it with $g'(x)$. Are they equal?</strong></p>
+    <div class="work-space" style="min-height: 1.5em;"></div>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 500 450" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke-width: 2.5; fill: none; }
+          .label { font-size: 12px; font-family: Georgia; }
+          .gridline { stroke: #e0e0e0; stroke-width: 0.5; }
+          .unitbox { stroke: #999; stroke-width: 1; fill: none; opacity: 0.3; }
+        </style>
+      </defs>
+
+      <!-- Unit square -->
+      <rect class="unitbox" x="50" y="50" width="400" height="400"/>
+
+      <!-- Grid -->
+      <line class="gridline" x1="50" y1="130" x2="450" y2="130"/>
+      <line class="gridline" x1="50" y1="210" x2="450" y2="210"/>
+      <line class="gridline" x1="50" y1="290" x2="450" y2="290"/>
+      <line class="gridline" x1="130" y1="50" x2="130" y2="450"/>
+      <line class="gridline" x1="210" y1="50" x2="210" y2="450"/>
+      <line class="gridline" x1="290" y1="50" x2="290" y2="450"/>
+
+      <!-- Axes -->
+      <line class="axis" x1="50" y1="450" x2="450" y2="450"/>
+      <line class="axis" x1="50" y1="450" x2="50" y2="50"/>
+      <text class="label" x="420" y="475" font-weight="bold">x</text>
+      <text class="label" x="25" y="60" font-weight="bold">y</text>
+
+      <!-- Curves g_n = x^n/n -->
+      <!-- n=1: y=x -->
+      <line class="curve" x1="50" y1="450" x2="450" y2="50" stroke="#1e5ab4" stroke-width="2.5"/>
+      <text class="label" x="380" y="140" fill="#1e5ab4" font-weight="600">n=1</text>
+
+      <!-- n=2: y=x²/2 -->
+      <path class="curve" d="M 50 450 C 120 400 180 300 250 200 C 330 100 400 65 450 50" stroke="#008273" stroke-width="2.5"/>
+      <text class="label" x="320" y="200" fill="#008273" font-weight="600">n=2</text>
+
+      <!-- n=5: y=x^5/5 -->
+      <path class="curve" d="M 50 450 C 80 448 120 440 160 420 C 200 350 230 200 260 130 C 310 70 390 52 450 50" stroke="#d4860b" stroke-width="2.5"/>
+      <text class="label" x="220" y="100" fill="#d4860b" font-weight="600">n=5</text>
+
+      <!-- n=20: y=x^20/20 -->
+      <path class="curve" d="M 50 450 C 70 449 100 448 140 440 C 180 410 210 180 250 100 C 310 65 390 52 450 50" stroke="#be1e1e" stroke-width="2.5"/>
+      <text class="label" x="150" y="75" fill="#be1e1e" font-weight="600">n=20</text>
+
+      <!-- Limit g ≡ 0 -->
+      <line class="curve" x1="50" y1="450" x2="445" y2="450" stroke="#7c0000" stroke-width="3"/>
+      <circle cx="450" cy="450" r="3.5" fill="white" stroke="#7c0000" stroke-width="2.5"/>
+      <circle cx="450" cy="50" r="4" fill="#7c0000"/>
+      <line x1="450" y1="450" x2="450" y2="50" stroke="#7c0000" stroke-width="1.5" stroke-dasharray="2,2" opacity="0.5"/>
+
+      <!-- Axis labels -->
+      <text class="label" x="40" y="465">O</text>
+      <text class="label" x="440" y="475" text-anchor="middle">1</text>
+      <text class="label" x="35" y="55" text-anchor="end">1</text>
+    </svg>
+  </div>
+
+  <p style="margin-top: 1.5em; font-style: italic;"><strong>Note:</strong> This example shows that even when $(f_n)$ converges uniformly, the sequence $(f_n')$ may converge <em>non-uniformly</em>.</p>
+</section>
+
+<section>
+  <h2>What Hypothesis Do We Need?</h2>
+
+  <table>
+    <tr>
+      <th>Hypothesis</th>
+      <th>Conclusion</th>
+      <th>Example</th>
+    </tr>
+    <tr>
+      <td>$f_n \to f$ uniformly, each $f_n$ differentiable</td>
+      <td>No conclusion about $f'$</td>
+      <td>$h_n(x) = \frac{\sin(nx)}{\sqrt{n}}$</td>
+    </tr>
+    <tr>
+      <td>$f_n \to f$ pointwise, $f_n' \to g$ uniformly</td>
+      <td>$f$ is differentiable and $f' = g$</td>
+      <td>Example 1</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>Activity</h2>
+
+  <div class="ex-box">
+    <strong>Problem 1: $f_n(x) = \frac{nx + x^2}{2n}$ on $\mathbb{R}$</strong>
+
+    <p style="margin-top: 1em;"><strong>(a) Compute $f = \lim_{n\to\infty} f_n$ pointwise. Identify $f$.</strong></p>
+    <div class="work-space" style="min-height: 2em;"></div>
+
+    <p style="margin-top: 1em;"><strong>(b) Compute $f_n'(x)$ and find $\lim_{n\to\infty} f_n'(x)$ pointwise.</strong></p>
+    <div class="work-space" style="min-height: 2em;"></div>
+
+    <p style="margin-top: 1em;"><strong>(c) Show $(f_n')$ converges uniformly on every bounded interval $[-M, M]$.</strong></p>
+    <div class="work-space" style="min-height: 4em;"></div>
+
+    <p style="margin-top: 1em;"><strong>(d) Apply Theorem 1 to conclude $f' = \lim_{n \to \infty} f_n'$. Verify directly.</strong></p>
+    <div class="work-space" style="min-height: 3em;"></div>
+  </div>
+
+  <div class="ex-box">
+    <strong>Problem 2. True/False — justify each.</strong>
+
+    <p style="margin-top: 1em;"><strong>(a) If $f_n \to f$ uniformly and each $f_n$ is differentiable, then $f$ is differentiable.</strong></p>
+    <div class="work-space" style="min-height: 1.5em;"></div>
+
+    <p style="margin-top: 1em;"><strong>(b) If $f_n \to f$ pointwise, each $f_n$ is differentiable, and $f_n' \to g$ pointwise, then $f' = g$.</strong></p>
+    <div class="work-space" style="min-height: 2em;"></div>
+
+    <p style="margin-top: 1em;"><strong>(c) If $f_n \to f$ pointwise, each $f_n$ is differentiable, and $f_n' \to g$ uniformly, then $f' = g$.</strong></p>
+    <div class="work-space" style="min-height: 1.5em;"></div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Priyadarshi Dey. All handouts are available for use in MATH 4630.
+</footer>
+
+</body>
+</html>
