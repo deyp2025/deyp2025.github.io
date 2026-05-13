@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sequences of Functions | MATH 4630</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --blue: #1e5ab4;
+      --cream: #faf7f3;
+      --gold: #b8922a;
+      --muted: #6b6560;
+      --border: #e2ddd6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--cream);
+      color: #1a1a1a;
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.5in;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 1.5em;
+      padding-bottom: 0.8em;
+      border-bottom: 1px solid #999;
+    }
+    header h1 {
+      font-size: 1.6em;
+      color: var(--navy);
+      margin-bottom: 0.3em;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
+      color: var(--navy);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    section { margin-bottom: 2em; }
+    h2 {
+      font-size: 1.3em;
+      color: var(--navy);
+      margin-top: 1.5em;
+      margin-bottom: 0.8em;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4em;
+    }
+    h3 {
+      font-size: 1.1em;
+      color: var(--navy);
+      margin-top: 1.2em;
+      margin-bottom: 0.6em;
+    }
+    p { margin-bottom: 0.8em; text-align: justify; }
+    .def-box, .thm-box, .ex-box, .cor-box {
+      border-left: 4px solid;
+      padding: 1em;
+      margin: 1em 0;
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+    }
+    .def-box { border-left-color: #333; }
+    .thm-box { border-left-color: var(--blue); }
+    .ex-box { border-left-color: var(--gold); }
+    .cor-box { border-left-color: var(--gold); }
+    .def-box strong, .thm-box strong, .ex-box strong, .cor-box strong {
+      display: block;
+      font-size: 1em;
+      margin-bottom: 0.5em;
+    }
+    .diagram {
+      text-align: center;
+      margin: 1.5em 0;
+      padding: 1em;
+      background: #fafafa;
+      border-radius: 4px;
+    }
+    svg { max-width: 100%; height: auto; }
+    .work-space {
+      border: 1px dashed var(--border);
+      padding: 1.5em;
+      margin: 1em 0;
+      min-height: 3em;
+      background: #f9f9f9;
+    }
+    .blanks {
+      border-bottom: 1px solid #333;
+      display: inline-block;
+      min-width: 2.5cm;
+      margin: 0 0.1em;
+    }
+    .highlight {
+      background: #fff9e6;
+      border-left: 4px solid var(--gold);
+      padding: 1em;
+      margin: 1.5em 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+      background: white;
+    }
+    table td, table th {
+      border: 1px solid var(--border);
+      padding: 0.8em;
+      text-align: left;
+    }
+    table th {
+      background: var(--blue);
+      color: white;
+    }
+    table tr:nth-child(even) {
+      background: #f5f5f5;
+    }
+    ol { margin-left: 1.5em; margin-bottom: 0.8em; }
+    ol li { margin-bottom: 0.8em; line-height: 1.6; }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85em;
+      padding: 1.5rem 0 2rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<a href="../../index.html" class="back-link">← Back to MATH 4630</a>
+
+<header>
+  <h1>Sequences of Functions</h1>
+  <p>Chapter 6: Uniform Convergence</p>
+</header>
+
+<section>
+  <h2>What is a Sequence of Functions?</h2>
+
+  <div class="highlight">
+    <p>You already know what it means for a sequence of <em>real numbers</em> $(a_n)$ to converge: for every $\varepsilon > 0$, all terms are eventually within $\varepsilon$ of the limit $L$.</p>
+
+    <p style="margin-top: 1em;">Now suppose instead of a single number at each stage, we have a <em>function</em> $f_n : A \to \mathbb{R}$. For each fixed $x \in A$, evaluating the sequence at $x$ gives a sequence of real numbers: $f_1(x), f_2(x), f_3(x), \ldots, f_n(x), \ldots$</p>
+
+    <p style="margin-top: 1em;">So $(f_n)$ is simply a sequence whose terms happen to be functions rather than numbers. Let us consider some examples.</p>
+  </div>
+
+  <table>
+    <tr>
+      <th>$f_n(x)$</th>
+      <th>Domain</th>
+      <th>First few terms of the sequence $(f_n)$</th>
+    </tr>
+    <tr>
+      <td>$\frac{x}{n}$</td>
+      <td>$\mathbb{R}$</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>$x^n$</td>
+      <td>$[0,1]$</td>
+      <td></td>
+    </tr>
+  </table>
+
+  <div class="work-space">
+    <strong>Question: What does it mean for the sequence $(f_n)$ to converge, and to what kind of object?</strong>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+  </div>
+</section>
+
+<section>
+  <h2>Two Examples</h2>
+
+  <h3>Activity: Finding Pointwise Limits</h3>
+
+  <p>For each family below, fix an arbitrary $x$ in the domain and ask: what does the sequence of <em>numbers</em> $f_1(x), f_2(x), f_3(x), \ldots$ converge to? Compute at several specific values of $x$, then write a formula for the limit.</p>
+
+  <h3>Family A: $f_n(x) = \frac{x}{n}$ on $\mathbb{R}$</h3>
+
+  <div class="diagram">
+    <svg viewBox="0 0 650 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke-width: 2.5; fill: none; }
+          .label { font-size: 12px; font-family: Georgia; }
+          .gridline { stroke: #ddd; stroke-width: 0.5; }
+        </style>
+      </defs>
+
+      <!-- Grid -->
+      <line class="gridline" x1="40" y1="50" x2="600" y2="50"/>
+      <line class="gridline" x1="40" y1="100" x2="600" y2="100"/>
+      <line class="gridline" x1="40" y1="150" x2="600" y2="150"/>
+      <line class="gridline" x1="40" y1="200" x2="600" y2="200"/>
+      <line class="gridline" x1="40" y1="250" x2="600" y2="250"/>
+
+      <!-- Axes -->
+      <line class="axis" x1="40" y1="250" x2="600" y2="250"/>
+      <line class="axis" x1="40" y1="30" x2="40" y2="250"/>
+      <text class="label" x="580" y="270" font-weight="bold">x</text>
+      <text class="label" x="20" y="25" font-weight="bold">y</text>
+
+      <!-- Lines: y = x/n for various n -->
+      <!-- n=1: y=x -->
+      <line class="curve" x1="40" y1="250" x2="280" y2="70" stroke="#1e5ab4" stroke-width="2.5"/>
+      <text class="label" x="290" y="65" fill="#1e5ab4" font-weight="600">n=1</text>
+
+      <!-- n=2: y=x/2 -->
+      <line class="curve" x1="40" y1="250" x2="380" y2="125" stroke="#008273" stroke-width="2.5"/>
+      <text class="label" x="390" y="120" fill="#008273" font-weight="600">n=2</text>
+
+      <!-- n=5: y=x/5 -->
+      <line class="curve" x1="40" y1="250" x2="520" y2="155" stroke="#d4860b" stroke-width="2.5"/>
+      <text class="label" x="530" y="150" fill="#d4860b" font-weight="600">n=5</text>
+
+      <!-- n=10: y=x/10 -->
+      <line class="curve" x1="40" y1="250" x2="580" y2="185" stroke="#be1e1e" stroke-width="2.5"/>
+      <text class="label" x="590" y="180" fill="#be1e1e" font-weight="600">n=10</text>
+
+      <!-- x-axis = limit function f≡0 -->
+      <line class="curve" x1="40" y1="250" x2="600" y2="250" stroke="#7c0000" stroke-width="3"/>
+      <text class="label" x="360" y="232" fill="#7c0000" font-weight="700">Limit: $f(x) \equiv 0$</text>
+
+      <!-- Axis ticks and labels -->
+      <text class="label" x="35" y="265">O</text>
+      <line x1="100" y1="246" x2="100" y2="254"/>
+      <line x1="200" y1="246" x2="200" y2="254"/>
+      <line x1="300" y1="246" x2="300" y2="254"/>
+      <line x1="400" y1="246" x2="400" y2="254"/>
+      <line x1="500" y1="246" x2="500" y2="254"/>
+    </svg>
+  </div>
+
+  <div class="work-space">
+    <strong>A1. Fix $x = 3$. Write out $f_1(3), f_2(3), f_5(3), f_{10}(3)$. What do these numbers converge to?</strong>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>A2. For an arbitrary fixed $x \in \mathbb{R}$, compute $\lim_{n\to\infty} \frac{x}{n}$.</strong>
+    <p style="margin-top: 1em; min-height: 1.5em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>A3. Write the limit function $f(x) = \lim_{n\to\infty} f_n(x)$. Is $f$ continuous?</strong>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+  </div>
+
+  <h3>Family B: $g_n(x) = x^n$ on $[0,1]$</h3>
+
+  <div class="diagram">
+    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke-width: 2.5; fill: none; }
+          .label { font-size: 12px; font-family: Georgia; }
+          .gridline { stroke: #e0e0e0; stroke-width: 0.5; }
+          .unitbox { stroke: #999; stroke-width: 1; fill: none; opacity: 0.4; }
+        </style>
+      </defs>
+
+      <!-- Unit square -->
+      <rect class="unitbox" x="50" y="50" width="400" height="400"/>
+
+      <!-- Grid -->
+      <line class="gridline" x1="50" y1="130" x2="450" y2="130"/>
+      <line class="gridline" x1="50" y1="210" x2="450" y2="210"/>
+      <line class="gridline" x1="50" y1="290" x2="450" y2="290"/>
+      <line class="gridline" x1="130" y1="50" x2="130" y2="450"/>
+      <line class="gridline" x1="210" y1="50" x2="210" y2="450"/>
+      <line class="gridline" x1="290" y1="50" x2="290" y2="450"/>
+
+      <!-- Axes -->
+      <line class="axis" x1="50" y1="450" x2="450" y2="450"/>
+      <line class="axis" x1="50" y1="450" x2="50" y2="50"/>
+      <text class="label" x="420" y="475" font-weight="bold">x</text>
+      <text class="label" x="25" y="60" font-weight="bold">y</text>
+
+      <!-- Power curves: y = x^n -->
+      
+      <!-- n=1: y=x (diagonal) -->
+      <line class="curve" x1="50" y1="450" x2="450" y2="50" stroke="#1e5ab4" stroke-width="2.5"/>
+      <text class="label" x="380" y="130" fill="#1e5ab4" font-weight="600">$n=1$</text>
+
+      <!-- n=2: y=x^2 (parabola) -->
+      <path class="curve" d="M 50 450 Q 130 380 210 250 Q 290 120 450 50" stroke="#008273" stroke-width="2.5"/>
+      <text class="label" x="360" y="200" fill="#008273" font-weight="600">$n=2$</text>
+
+      <!-- n=5: y=x^5 -->
+      <path class="curve" d="M 50 450 Q 100 445 150 430 Q 200 350 250 150 Q 300 80 380 55 Q 420 52 450 50" stroke="#d4860b" stroke-width="2.5"/>
+      <text class="label" x="260" y="100" fill="#d4860b" font-weight="600">$n=5$</text>
+
+      <!-- n=20: y=x^20 (very steep) -->
+      <path class="curve" d="M 50 450 Q 80 448 120 445 Q 170 420 220 120 Q 280 60 380 52 Q 420 51 450 50" stroke="#be1e1e" stroke-width="2.5"/>
+      <text class="label" x="150" y="75" fill="#be1e1e" font-weight="600">$n=20$</text>
+
+      <!-- Limit function g: piecewise -->
+      <!-- g ≡ 0 on [0,1) -->
+      <line class="curve" x1="50" y1="450" x2="445" y2="450" stroke="#7c0000" stroke-width="3"/>
+      <!-- Open circle at (1,0) -->
+      <circle cx="450" cy="450" r="3.5" fill="white" stroke="#7c0000" stroke-width="2.5"/>
+      <!-- Filled dot at (1,1) -->
+      <circle cx="450" cy="50" r="4" fill="#7c0000"/>
+      <!-- Vertical "jump" indicator -->
+      <line x1="450" y1="450" x2="450" y2="50" stroke="#7c0000" stroke-width="1.5" stroke-dasharray="2,2" opacity="0.5"/>
+
+      <!-- Limit label -->
+      <text class="label" x="270" y="425" fill="#7c0000" font-weight="700" font-size="13">Limit: g = 0 on [0,1), g(1) = 1</text>
+
+      <!-- Axis labels -->
+      <text class="label" x="40" y="465">O</text>
+      <text class="label" x="440" y="475" text-anchor="middle">1</text>
+      <text class="label" x="35" y="55" text-anchor="end">1</text>
+    </svg>
+  </div>
+
+  <div class="work-space">
+    <strong>B1. Fix $x = 1/2$. Write out $g_1(1/2), g_2(1/2), g_5(1/2), g_{10}(1/2)$. What do these numbers converge to?</strong>
+    <p style="margin-top: 1em; min-height: 2.5em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>B2. Fix $x = 9/10$. How large must $n$ be before $g_n(9/10) < 0.01$? Compare this with the $n$ needed for $x = 1/2$. What does the difference tell you?</strong>
+    <p style="margin-top: 1em; min-height: 4em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>B3. For arbitrary fixed $x \in [0,1)$, compute $\lim_{n\to\infty} x^n$. What about $x = 1$? Write the limit function $g(x)$.</strong>
+    <p style="margin-top: 1em; min-height: 2.5em;"></p>
+  </div>
+
+  <div class="work-space">
+    <strong>B4. Each $g_n$ is continuous on $[0,1]$. Is $g$ continuous on $[0,1]$?</strong>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+  </div>
+</section>
+
+<section>
+  <h2>The Problem: Lost Continuity</h2>
+
+  <div class="highlight">
+    <p><strong>What just happened?</strong></p>
+
+    <p style="margin-top: 0.8em;">In both families above, every $f_n$ was <em>continuous</em>. Yet in each case the pointwise limit failed to be continuous at one point.</p>
+
+    <p style="margin-top: 0.8em;">The obvious conjecture — the pointwise limit of continuous functions is continuous — is <em>false</em>.</p>
+
+    <p style="margin-top: 0.8em;">The word "limit" is doing two different jobs simultaneously. Continuity of the limit requires <em>interchanging</em> the order of two limit operations:</p>
+
+    <div style="text-align: center; margin: 1em 0;">
+      $\lim_{x \to c}\Bigl(\lim_{n \to \infty} f_n(x)\Bigr) \overset{?}{=} \lim_{n \to \infty}\Bigl(\lim_{x \to c} f_n(x)\Bigr)$
+    </div>
+
+    <p>This interchange is not free. The rest of this handout is about finding the right condition that makes it valid.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Pointwise Convergence</h2>
+
+  <div class="def-box">
+    <strong>Definition (Pointwise Convergence)</strong>
+    <p>For each $n \in \mathbb{N}$, let $f_n$ be a function defined on a set $A \subseteq \mathbb{R}$. The sequence $(f_n)$ converges pointwise on $A$ to $f$ if, for every $x \in A$, $\lim_{n\to\infty} f_n(x) = f(x)$.</p>
+
+    <p>Equivalently: for every $\varepsilon > 0$ and every $x \in A$, there exists $N \in \mathbb{N}$ (which may depend on $x$) such that $n \geq N$ implies $|f_n(x) - f(x)| < \varepsilon$.</p>
+  </div>
+
+  <div class="ex-box">
+    <strong>Example 1.</strong> Let $f_n(x) = \frac{x^2 + nx}{n}$ on $\mathbb{R}$. Show that $f_n \to f$ pointwise and identify $f$.
+  </div>
+
+  <div class="work-space" style="min-height: 4em;"></div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 650 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke-width: 2.5; fill: none; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <line class="axis" x1="40" y1="200" x2="620" y2="200"/>
+      <line class="axis" x1="40" y1="20" x2="40" y2="280"/>
+      <text class="label" x="600" y="220">x</text>
+      <text class="label" x="20" y="15">y</text>
+
+      <!-- Limit f(x)=x -->
+      <line class="curve" x1="40" y1="200" x2="600" y2="60" stroke="#7c0000" stroke-width="3"/>
+      <text class="label" x="610" y="55" fill="#7c0000">f(x)=x</text>
+
+      <!-- Curves approaching the limit -->
+      <path class="curve" d="M 80 150 Q 150 50 250 0 Q 350 -50 450 -80" stroke="#1e5ab4" stroke-width="2" opacity="0.8"/>
+      <text class="label" x="460" y="10" fill="#1e5ab4">n=1</text>
+
+      <path class="curve" d="M 80 170 Q 150 120 250 70 Q 350 20 450 -20" stroke="#008273" stroke-width="2" opacity="0.8"/>
+      <text class="label" x="460" y="40" fill="#008273">n=2</text>
+
+      <path class="curve" d="M 80 190 Q 150 160 250 130 Q 350 100 450 70" stroke="#d4860b" stroke-width="2" opacity="0.8"/>
+      <text class="label" x="460" y="80" fill="#d4860b">n=5</text>
+
+      <path class="curve" d="M 80 198 Q 150 185 250 175 Q 350 165 450 155" stroke="#be1e1e" stroke-width="2" opacity="0.8"/>
+      <text class="label" x="460" y="120" fill="#be1e1e">n=20</text>
+    </svg>
+  </div>
+
+  <div class="ex-box">
+    <strong>Example 2.</strong> Let $f_n(x) = x^n$ on $[0,1]$. Show that $f_n \to g$ pointwise and identify $g$.
+  </div>
+
+  <div class="work-space" style="min-height: 4em;"></div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 450 450" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke-width: 2.5; fill: none; }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <rect x="30" y="30" width="400" height="400" stroke="#999" stroke-width="1" fill="none" opacity="0.3"/>
+      <line class="axis" x1="30" y1="430" x2="430" y2="430"/>
+      <line class="axis" x1="30" y1="30" x2="30" y2="430"/>
+      <text class="label" x="410" y="450">x</text>
+      <text class="label" x="15" y="25">y</text>
+
+      <!-- y=x -->
+      <line class="curve" x1="30" y1="430" x2="430" y2="30" stroke="#1e5ab4" stroke-width="2" opacity="0.8"/>
+
+      <!-- y=x^2 -->
+      <path class="curve" d="M 30 430 Q 150 280 250 80 Q 350 35 430 30" stroke="#008273" stroke-width="2" opacity="0.8"/>
+
+      <!-- y=x^5 -->
+      <path class="curve" d="M 30 430 Q 100 410 200 100 Q 300 40 430 30" stroke="#d4860b" stroke-width="2" opacity="0.8"/>
+
+      <!-- y=x^20 -->
+      <path class="curve" d="M 30 430 Q 80 425 150 100 Q 350 35 430 30" stroke="#be1e1e" stroke-width="2" opacity="0.8"/>
+
+      <!-- Limit: y=0 for x<1, jump to 1 at x=1 -->
+      <line class="curve" x1="30" y1="430" x2="428" y2="430" stroke="#7c0000" stroke-width="3"/>
+      <circle cx="428" cy="430" r="3" fill="white" stroke="#7c0000" stroke-width="2"/>
+      <circle cx="428" cy="30" r="4" fill="#7c0000"/>
+
+      <text class="label" x="425" y="450">1</text>
+      <text class="label" x="15" y="35">1</text>
+      <text class="label" x="15" y="450">0</text>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <h2>Why Pointwise Convergence Is Not Enough</h2>
+
+  <p>Suppose $(f_n)$ is a sequence of continuous functions on $A$ converging <em>pointwise</em> to $f$. Attempt to prove $f$ is continuous at $c \in A$.</p>
+
+  <div class="work-space">
+    <strong>Fix $c \in A$ and $\varepsilon > 0$. By the triangle inequality:</strong>
+    <p style="text-align: center; margin: 1em 0;">$|f(x) - f(c)| \leq$ <span class="blanks" style="min-width: 2cm;"></span> + <span class="blanks" style="min-width: 2cm;"></span> + <span class="blanks" style="min-width: 2cm;"></span></p>
+
+    <p><strong>(a) Term (III):</strong> Since $f_n(c) \to f(c)$, we can choose $N$ so that term (III) $< \varepsilon/3$.</p>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+
+    <p><strong>(b) Term (II):</strong> Once $N$ is fixed, continuity of $f_N$ provides $\delta > 0$ so term (II) $< \varepsilon/3$ whenever $|x - c| < \delta$.</p>
+    <p style="margin-top: 1em; min-height: 2.5em;"></p>
+
+    <p><strong>(c) Why can't we control term (I) for all $x$ with $|x-c| < \delta$ simultaneously?</strong></p>
+    <p style="margin-top: 1em; min-height: 3em;"></p>
+  </div>
+</section>
+
+<section>
+  <h2>Uniform Convergence</h2>
+
+  <div class="def-box">
+    <strong>Definition (Uniform Convergence)</strong>
+    <p>The sequence $(f_n)$ converges uniformly on $A$ to $f$ if for every $\varepsilon > 0$ there exists $N \in \mathbb{N}$ (independent of $x$) such that $n \geq N$ implies $|f_n(x) - f(x)| < \varepsilon$ for <em>all</em> $x \in A$.</p>
+  </div>
+
+  <h3>The Quantifier Picture</h3>
+
+  <table>
+    <tr>
+      <th>Type</th>
+      <th>Quantifier Order</th>
+    </tr>
+    <tr>
+      <td><strong>Pointwise</strong></td>
+      <td>$\forall \varepsilon > 0, \forall x \in A, \exists N \in \mathbb{N}$ (depending on $x$): $n \geq N \Rightarrow |f_n(x)-f(x)| < \varepsilon$</td>
+    </tr>
+    <tr>
+      <td><strong>Uniform</strong></td>
+      <td>$\forall \varepsilon > 0, \exists N \in \mathbb{N}$ (depending only on $\varepsilon$), $\forall x \in A$: $n \geq N \Rightarrow |f_n(x)-f(x)| < \varepsilon$</td>
+    </tr>
+  </table>
+
+  <p style="margin-top: 1.5em;"><strong>Geometric Picture:</strong> Uniform convergence of $f_n \to f$ on $A$ means: for every $\varepsilon$-band around the graph of $f$, there exists $N$ such that the entire graph of $f_n$ lies inside the band for all $n \geq N$.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 700 350" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .axis { stroke: black; stroke-width: 2; }
+          .curve { stroke-width: 2.5; fill: none; }
+          .band { opacity: 0.12; }
+          .label { font-size: 10px; font-family: Georgia; }
+        </style>
+      </defs>
+
+      <!-- TOP: Uniform -->
+      <g>
+        <!-- Epsilon band -->
+        <path class="band" d="M 50 80 Q 150 100 250 110 Q 350 120 600 140 L 600 200 Q 350 180 250 170 Q 150 160 50 140 Z" fill="#008273"/>
+
+        <!-- Curve f -->
+        <path class="curve" d="M 50 110 Q 150 130 250 140 Q 350 150 600 170" stroke="#7c0000" stroke-width="3"/>
+
+        <!-- Curves f_n -->
+        <path class="curve" d="M 50 115 Q 150 128 250 138 Q 350 148 600 168" stroke="#d4860b" stroke-width="2"/>
+        <text class="label" x="620" y="170" fill="#d4860b">$f_n, n \geq N$</text>
+
+        <!-- Axes -->
+        <line class="axis" x1="40" y1="250" x2="650" y2="250"/>
+        <line class="axis" x1="40" y1="30" x2="40" y2="250"/>
+        <text class="label" x="630" y="270">x</text>
+
+        <!-- Labels -->
+        <text class="label" x="50" y="270">a</text>
+        <text class="label" x="595" y="270">b</text>
+        <text class="label" x="550" y="60" fill="#7c0000">Uniform convergence</text>
+      </g>
+
+      <!-- BOTTOM: Pointwise only -->
+      <g transform="translate(0, 150)">
+        <!-- Epsilon band -->
+        <path class="band" d="M 50 80 Q 150 100 250 110 Q 350 120 600 140 L 600 200 Q 350 180 250 170 Q 150 160 50 140 Z" fill="#be1e1e" opacity="0.08"/>
+
+        <!-- Curve f -->
+        <path class="curve" d="M 50 110 Q 150 130 250 140 Q 350 150 600 170" stroke="#7c0000" stroke-width="3"/>
+
+        <!-- Curve f_n that escapes -->
+        <path class="curve" d="M 50 115 Q 150 95 250 75 Q 350 100 600 190" stroke="#be1e1e" stroke-width="2"/>
+        <text class="label" x="620" y="190" fill="#be1e1e">$f_n$ (escapes)</text>
+
+        <!-- Axes -->
+        <line class="axis" x1="40" y1="250" x2="650" y2="250"/>
+        <line class="axis" x1="40" y1="30" x2="40" y2="250"/>
+        <text class="label" x="630" y="270">x</text>
+
+        <!-- Labels -->
+        <text class="label" x="50" y="270">a</text>
+        <text class="label" x="595" y="270">b</text>
+        <text class="label" x="550" y="60" fill="#be1e1e">Pointwise only</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="ex-box">
+    <strong>Example 3.</strong> Let $g_n(x) = \frac{1}{n(1+x^2)}$ on $\mathbb{R}$. Find the pointwise limit. Is convergence uniform?
+  </div>
+
+  <p><em>Scratch work:</em></p>
+  <div class="work-space" style="min-height: 3.5em;"></div>
+
+  <p><em>Formal proof:</em></p>
+  <div class="work-space" style="min-height: 5em;"></div>
+
+  <div class="ex-box">
+    <strong>Example 4.</strong> Let $f_n(x) = \frac{x^2 + nx}{n}$ on $\mathbb{R}$. Find the pointwise limit. Show convergence is <em>not</em> uniform on $\mathbb{R}$ but <em>is</em> uniform on every bounded interval $[-b,b]$.
+  </div>
+
+  <p><em>Scratch work:</em></p>
+  <div class="work-space" style="min-height: 3.5em;"></div>
+
+  <p><em>Formal proof:</em></p>
+  <div class="work-space" style="min-height: 5em;"></div>
+</section>
+
+<section>
+  <h2>Cauchy Criterion for Uniform Convergence</h2>
+
+  <div class="thm-box">
+    <strong>Theorem</strong>
+    <p>A sequence of functions $(f_n)$ defined on $A \subseteq \mathbb{R}$ converges uniformly on $A$ if and only if for every $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that $|f_n(x) - f_m(x)| < \varepsilon$ whenever $m,n \geq N$ and $x \in A$.</p>
+  </div>
+
+  <p>An important advantage of the Cauchy criterion is that it lets us verify uniform convergence <em>without knowing the limit function in advance</em>.</p>
+
+  <div class="work-space">
+    <strong>Proof sketch. ($\Rightarrow$) Suppose $f_n \to f$ uniformly.</strong>
+    <p style="margin-top: 0.8em;">— Write down the $\varepsilon$-$N$ definition of uniform convergence for $f_n \to f$</p>
+    <p style="margin-top: 1em; min-height: 1.5em;"></p>
+
+    <p style="margin-top: 1em;">— Use triangle inequality to show that for $m, n \geq N$ and $x\in A$: $|f_n(x)-f_m(x)|<\varepsilon.$</p>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+
+    <p style="margin-top: 1em;"><strong>($\Leftarrow$) Assume the Cauchy condition holds.</strong></p>
+    <p style="margin-top: 0.8em;">— Explain why for each fixed $x \in A$, the sequence $(f_n(x))$ is Cauchy in $\mathbb{R}$, and converges.</p>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+
+    <p style="margin-top: 1em;">— Define $f(x) = \lim_{n\to\infty} f_n(x)$. Now show $f_n \to f$ uniformly:</p>
+    <p style="margin-top: 1em; min-height: 2.5em;"></p>
+  </div>
+</section>
+
+<section>
+  <h2>Uniform Convergence and Continuity</h2>
+
+  <div class="thm-box">
+    <strong>Theorem</strong>
+    <p>Let $(f_n)$ be a sequence of functions defined on $A \subseteq \mathbb{R}$ converging uniformly on $A$ to $f$. If each $f_n$ is continuous at $c \in A$, then $f$ is continuous at $c$.</p>
+  </div>
+
+  <div class="work-space">
+    <strong>Proof sketch: Fix $c \in A$ and $\varepsilon > 0$.</strong>
+
+    <p><strong>Step 1.</strong> Write the $\varepsilon$-$N$ definition of $f_n \to f$ uniformly.</p>
+    <p style="margin-top: 1em; min-height: 1.5em;"></p>
+
+    <p style="margin-top: 1em;"><strong>Step 2.</strong> Now $N \in \mathbb{N}$ is fixed. Write down the $\varepsilon$-$\delta$ definition of continuity for $f_N$ at $c$.</p>
+    <p style="margin-top: 1em; min-height: 2em;"></p>
+
+    <p style="margin-top: 1em;"><strong>Step 3.</strong> For $|x - c| < \delta$, apply the triangle inequality:</p>
+    <p style="text-align: center; margin: 1em 0;">
+      $|f(x) - f(c)| \leq$ <span class="blanks" style="min-width: 2cm;"></span> + <span class="blanks" style="min-width: 2cm;"></span> + <span class="blanks" style="min-width: 2cm;"></span>
+      <br/>
+      $< \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon$
+    </p>
+
+    <p>Since $\varepsilon>0$ and $c \in A$ was arbitrary, $f$ is continuous at $c$. $\square$</p>
+  </div>
+</section>
+
+<section>
+  <h2>Summary Diagram</h2>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .box { stroke-width: 2; rx: 6; font-size: 12px; font-family: Georgia; }
+          .arrow { stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+          .label { font-size: 11px; font-family: Georgia; }
+        </style>
+        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+          <polygon points="0 0, 10 3, 0 6" fill="#1e5ab4"/>
+        </marker>
+      </defs>
+
+      <!-- Uniform convergence box -->
+      <rect class="box" x="50" y="30" width="180" height="60" fill="#008273" fill-opacity="0.15" stroke="#008273"/>
+      <text x="140" y="55" text-anchor="middle" font-weight="bold">Uniform</text>
+      <text x="140" y="75" text-anchor="middle">convergence</text>
+      <text x="140" y="90" text-anchor="middle" font-size="10">$f_n \rightrightarrows f$</text>
+
+      <!-- Pointwise convergence box -->
+      <rect class="box" x="370" y="30" width="180" height="60" fill="#1e5ab4" fill-opacity="0.12" stroke="#1e5ab4"/>
+      <text x="460" y="55" text-anchor="middle" font-weight="bold">Pointwise</text>
+      <text x="460" y="75" text-anchor="middle">convergence</text>
+      <text x="460" y="90" text-anchor="middle" font-size="10">$f_n \to f$</text>
+
+      <!-- Arrow: uniform implies pointwise -->
+      <path class="arrow" d="M 230 60 L 370 60" stroke="#008273"/>
+      <text x="300" y="50" text-anchor="middle" class="label" fill="#008273">implies</text>
+
+      <!-- Continuous limit box -->
+      <rect class="box" x="50" y="160" width="180" height="60" fill="#30a070" fill-opacity="0.12" stroke="#30a070"/>
+      <text x="140" y="185" text-anchor="middle" font-weight="bold">Limit $f$</text>
+      <text x="140" y="205" text-anchor="middle">is continuous</text>
+
+      <!-- Non-continuous limit box -->
+      <rect class="box" x="370" y="160" width="180" height="60" fill="#be1e1e" fill-opacity="0.1" stroke="#be1e1e"/>
+      <text x="460" y="185" text-anchor="middle" font-weight="bold">Limit $f$ may</text>
+      <text x="460" y="205" text-anchor="middle">not be continuous</text>
+
+      <!-- Arrow: uniform → continuous limit -->
+      <path class="arrow" d="M 140 90 L 140 160" stroke="#30a070"/>
+      <text x="160" y="130" text-anchor="start" class="label" fill="#30a070" font-size="10">(Thm)</text>
+
+      <!-- Arrow: pointwise → possibly non-continuous -->
+      <path class="arrow" d="M 460 90 L 460 160" stroke="#be1e1e"/>
+      <text x="480" y="130" text-anchor="start" class="label" fill="#be1e1e" font-size="10">in general</text>
+
+      <!-- Dashed arrow: pointwise does NOT imply uniform -->
+      <path class="arrow" d="M 370 60 Q 300 120 230 60" stroke="#999" stroke-dasharray="4,4"/>
+      <text x="300" y="100" text-anchor="middle" class="label" fill="#666" font-size="10">does NOT imply</text>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <h2>Activity</h2>
+
+  <div class="ex-box">
+    <strong>Problem 1. Find the pointwise limit and determine uniform convergence</strong>
+
+    <p style="margin-top: 1em;"><strong>(a)</strong> $f_n(x) = \frac{nx}{1+nx^2}$ on $(0,\infty)$.</p>
+    <div class="work-space" style="min-height: 8em;"></div>
+
+    <p style="margin-top: 1.5em;"><strong>(b)</strong> $f_n(x) = \frac{x}{1+nx^2}$ on $\mathbb{R}$.</p>
+    <div class="work-space" style="min-height: 6em;"></div>
+  </div>
+
+  <div class="ex-box">
+    <strong>Problem 2. True or False (justify each)</strong>
+
+    <p style="margin-top: 1em;"><strong>(a)</strong> If $f_n \to f$ uniformly on $A$ and each $f_n$ is bounded, then $f$ is bounded.</p>
+    <div class="work-space" style="min-height: 3em;"></div>
+
+    <p style="margin-top: 1.5em;"><strong>(b)</strong> If $f_n \to f$ uniformly on $A$ and each $f_n$ is uniformly continuous on $A$, then $f$ is uniformly continuous on $A$.</p>
+    <div class="work-space" style="min-height: 3.5em;"></div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Priyadarshi Dey. All handouts are available for use in MATH 4630.
+</footer>
+
+</body>
+</html>
