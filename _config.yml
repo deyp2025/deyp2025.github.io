@@ -36,6 +36,7 @@ avatar: "/img/avatar-icon.jpg"
 # - If the image is in a folder, add the folder name before the image name, like "/folder/image.png"
 # - If you want to ellipsize the image rather than crop it, use the "round-avatar" class
 # navbar-avatar: true
+round-avatar: false
 
 # --- Footer options --- #
 
