@@ -126,7 +126,6 @@ post-date-format: "%B %-d, %Y"
 
 # List of links for the navigation bar
 navbar-links:
-  About: "aboutme"
   Publications: "publications"
   Teaching: "teaching"
 
