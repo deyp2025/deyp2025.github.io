@@ -24,7 +24,11 @@ I believe in creating an active and inclusive classroom environment where studen
 ## Contact
 
 **Email:** deyp@millsaps.edu, priyadarshid4@gmail.com
-**Office:** Department of Mathematics, Millsaps College, Jackson, MS  
+
+**Office:**  
+Department of Mathematics  
+Millsaps College  
+Jackson, MS 
 
 
 [Google Scholar](https://scholar.google.com/citations?user=Pl2Ei5kAAAAJ) | [ORCID](https://orcid.org/0000-0002-1064-7735) | [ResearchGate](https://www.researchgate.net/profile/Priyadarshi-Dey-2?ev=hdr_xprf)
