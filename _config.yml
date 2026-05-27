@@ -23,6 +23,7 @@ baseurl: ""
 # List of links in the navigation bar
 navbar-links:
   Publications: "publications"
+   Talks: "talks"
   Teaching: "teaching"
   CV: "files/CV_PDey.pdf"
 
