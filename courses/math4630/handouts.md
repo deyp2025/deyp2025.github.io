@@ -3,7 +3,7 @@ layout: page
 title: MATH 4630 - Handouts
 ---
 
-## Handouts - Real Analysis
+### Handouts - Real Analysis
 
 ### Chapter 1: Completeness
 - [Axiom of completeness I](Axiom-of-completeness--I.pdf)
