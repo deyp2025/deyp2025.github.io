@@ -8,17 +8,17 @@ title: MATH 4630 - Handouts
 ### Chapter 1: Completeness
 - [Axiom of completeness I](Axiom-of-completeness--I.pdf)
 - [Axiom of completeness II](Axiom-of-completeness--II.pdf)
-- [Consequences of completeness I](courses/math4630/Consequences-of-Completeness--I.pdf)
-- [Consequences of completeness II](courses/math4630/Consequences-of-Completeness--II.pdf)
+- [Consequences of completeness I](Consequences-of-Completeness--I.pdf)
+- [Consequences of completeness II](Consequences-of-Completeness--II.pdf)
 
 ### Chapter 2: Sequences and Series
-- [Limits of sequences](courses/math4630/Limits-of-sequence.pdf)
-- [Limit theorems I](courses/math4630/Limit-theorems--I.pdf)
-- [Limit theorems II](courses/math4630/Limit-theorems--II.pdf)
-- [Monotone convergence theorem](courses/math4630/MCT-and-Infinite-series.pdf)
-- [Subsequences and BWT](courses/math4630/Subsequences-and-BWT.pdf)
-- [Cauchy sequences](courses/math4630/Cauchy-sequences.pdf)
-- [Infinite series](courses/math4630/Properties-of-Infinite-series.pdf)
+- [Limits of sequences](Limits-of-sequence.pdf)
+- [Limit theorems I](Limit-theorems--I.pdf)
+- [Limit theorems II](Limit-theorems--II.pdf)
+- [Monotone convergence theorem](MCT-and-Infinite-series.pdf)
+- [Subsequences and BWT](Subsequences-and-BWT.pdf)
+- [Cauchy sequences](Cauchy-sequences.pdf)
+- [Infinite series](Properties-of-Infinite-series.pdf)
 
 ### Chapter 3: Basic Topology of R
 - [Open and Closed sets](courses/math4630/Open-Closed-Sets.pdf)
