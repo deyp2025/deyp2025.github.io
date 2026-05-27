@@ -1,162 +1,74 @@
 # --- General options --- #
 
-# Name of website
 title: Priyadarshi Dey
-
-# Short description of your site
 description: Assistant Professor of Mathematics at Millsaps College
-
-# --- Local development options ---
-# If your website is hosted locally rather than on GitHub, then you need to uncomment the lines below
-
-# url: "http://localhost:4000"
-# baseurl: ""
-
-# --- Website MUST be hosted on GitHub!
-# If you're hosted on GitHub, just edit the _config.yml file and make sure baseurl is "" and you WONT set url of your website.
 
 url: "https://deyp2025.github.io"
 baseurl: ""
 
 # --- Navigation bar options --- #
 
-# List of links in the navigation bar
 navbar-links:
   Publications: "publications"
-   Talks: "talks"
-  Teaching: "teaching"
+  Talks: "talks"
+  Courses: "courses"
   CV: "files/CV_PDey.pdf"
 
 # --- Logo --- #
 
-# Image to show in the navigation bar - works best with a square image
-# Remove this parameter if you don't want an image in the navbar
 avatar: "/img/avatar-icon.jpg"
 avatar-size: 120px
 
-# By default, the image is cut into a circle. For this:
-# - If the image is in a folder, add the folder name before the image name, like "/folder/image.png"
-# - If you want to ellipsize the image rather than crop it, use the "round-avatar" class
-# navbar-avatar: true
-round-avatar: false
-
 # --- Footer options --- #
-
-# Change all these values or delete the ones you don't want.
-# Important: you must keep the "name" parameter, if you don't want the footer, just set "name" to an empty string.
 
 author:
   name: Priyadarshi Dey
 
-# Select your active Social Network Links.
-# Uncomment the links you want to show in the footer and add your information to each link.
-# You can reorder the items to define the order of appearance on the page.
-
 social-network-links:
   email: "deyp@millsaps.edu"
   github: deyp2025
-  twitter: 
-  rss: false
-  rss-description: 
   orcid: "0000-0002-1064-7735"
 
-# If you want to show a link to an external website in the footer, add it here
-# footer-links-active:
-#   - Beautiful Jekyll
-#   - Learn markdown
-
 # --- General options --- #
-
-# Which HTML elements to use for pushing the page down, so you can use full-width sections
-# - "sections" is the default
-# - "navbar" pushes down just the navbar
-# - "off" means I need to push down navbar manually
 
 height-of-header: navbar
 
-# --- Misc --- #
+# --- Ruby Date Format --- #
 
-# Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
-# disqus: ""
-
-# To use Utterances comments instead of Disqus, uncomment this line and leave the Disqus fields empty
-# utterances: "daattali/beautiful-jekyll"
-
-# To use Giscus comments instead of Disqus, uncomment this line and leave the Disqus fields empty
-# giscus:
-#   repository: user/repo
-#   repository-id: 1234567
-#   category: General
-#   category-id: 1234567
-#   mapping: pathname
-#   strict: 0
-#   reactions-enabled: 1
-#   emit-metadata: 0
-#   input-position: bottom
-#   theme: light
-
-# --- Misc --- #
-
-# Ruby Date Format to show dates of posts
 post-date-format: "%B %-d, %Y"
 
-# Facebook App ID
-#fb_app_id: ""
+# --- Markdown --- #
 
-# --- Web Analytics Section --- #
-
-# Google Analytics ID
-#google_analytics: ""
-
-# Cloudflare Analytics
-#cloudflare_analytics: ""
-
-# Plausible Analytics
-#plausible:
-#  domain: mywebsite.com
-
-# umaami Analytics
-#umami:
-#  website_id: 1234567
-#  url: https://yourdomain.com/umami
-
-# --- Comments --- #
-
-# To use Utterances, uncomment the following line
-# utterances: "daattali/beautiful-jekyll"
-
-# --- General options --- #
-
-# List of links for the navigation bar
-navbar-links:
-  Publications: "publications"
-  Teaching: "teaching"
-
-# --- Beautiful Jekyll / Dean Attali Main options --- #
-
-# Important: use full URLs (`https://example.com/page`) for all links in the entire website.
-
-# Everything below can be left untouched if you are using everything as instructed.
-# You can also safely delete the comments (lines beginning with #) if you want.
-
-# By default, Beautiful Jekyll will use Font Awesome 5 (via BootstrapCDN) for icons.
-# However, you can optionally set this to false and include your own local copy of Font Awesome. To do this, set the variable to "local" and add a "assets/css/font-awesome.css" file in your website.
-# Note the path begins with 'assets'
-
-font-awesome-animation: true
-font-awesome-version: "6.4.0"
-bootstrap-version: "4.6.2"
-
-# Markdown
 markdown: kramdown
 
-# Kramdown
 kramdown:
   input: GFM
 
+# --- Sass/SCSS --- #
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# --- Outputting --- #
+
+permalink: /:categories/:title/
+paginate: 5
+paginate_path: /page:num/
+timezone: America/Chicago
+
+# --- Plugins --- #
+
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-redirect-from
+  - jekyll-include-cache
+
 # --- Jekyll --- #
 
-# exclude my node related stuff
 exclude:
   - .babelrc
   - .dcignore
@@ -182,7 +94,8 @@ include:
   - _redirects
   - _headers
 
-# Collections
+# --- Collections --- #
+
 collections:
   posts:
     output: true
@@ -191,7 +104,8 @@ collections:
     output: true
     permalink: /:collection/:path/
 
-# Default YAML values (more information on Jekyll's site)
+# --- Defaults --- #
+
 defaults:
   - scope:
       path: ""
@@ -207,12 +121,11 @@ defaults:
     values:
       layout: "page"
 
-# Use tags index page and make tags on each post clickable
+# --- Tags --- #
+
 link-tags: true
 
 # --- Sitemap --- #
-plugins:
-  - jekyll-sitemap
 
 sitemap:
   changefreq: monthly
