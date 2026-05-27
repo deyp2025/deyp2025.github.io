@@ -62,4 +62,3 @@ March 2022
 
 ---
 
-You can also find my papers on [Google Scholar](https://scholar.google.com/citations?user=Pl2Ei5kAAAAJ&hl=en).
