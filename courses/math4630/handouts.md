@@ -21,14 +21,16 @@ title: MATH 4630 - Handouts
 - [Infinite series](Properties-of-Infinite-series.pdf)
 
 ### Chapter 3: Basic Topology of R
-- [Open and Closed sets](courses/math4630/Open-Closed-Sets.pdf)
-- [Compact sets](courses/math4630/Compact-Sets.pdf)
-- [Perfect sets](courses/math4630/Perfect-Sets.pdf)
-- [Connected sets](courses/math4630/Connected-Sets.pdf)
+- [Open and Closed sets](Open-Closed-Sets.pdf)
+- [Compact sets](Compact-Sets.pdf)
+- [Perfect sets](Perfect-Sets.pdf)
+- [Connected sets](Connected-Sets.pdf)
 
 ### Chapter 4: Functional Limits and Continuity
-- [Handout 4.1](Chapter4_FunctionalLimits_1.pdf)
-- [Handout 4.2](Chapter4_FunctionalLimits_2.pdf)
+- [Functional limits](Chapter4_FunctionalLimits_1.pdf)
+- [Continuous functions](Chapter4_FunctionalLimits_2.pdf)
+- [Continuity and compactness](Chapter4_FunctionalLimits_2.pdf)
+- [Intermediate value theorem](Chapter4_FunctionalLimits_2.pdf)
 
 ### Chapter 5: Sequences and Series of Functions
 - [Handout 5.1](Chapter5_SeriesOfFunctions_1.pdf)
