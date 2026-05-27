@@ -11,7 +11,7 @@ baseurl: ""
 navbar-links:
   Publications: "publications"
   Talks: "talks"
-  Courses: "courses"
+  Teaching: "teaching"
   CV: "files/CV_PDey.pdf"
 
 # --- Logo --- #
