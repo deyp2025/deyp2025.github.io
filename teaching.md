@@ -9,9 +9,9 @@ I am committed to creating an active and inclusive classroom environment where s
 ## Current Teaching (Millsaps College)
 
 **MATH 4630: Real Analysis** (Spring 2026, Spring 2027)  
-- [Handouts](courses/math4630/handouts)
-- [Homework](courses/math4630/homework)
-- [Syllabus](courses/math4630/syllabus)
+- [Handouts](/courses/math4630/handouts)
+- [Homework](/courses/math4630/homework)
+- [Syllabus](/courses/math4630/syllabus)
 
 ---
 
