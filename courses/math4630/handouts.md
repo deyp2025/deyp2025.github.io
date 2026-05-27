@@ -27,10 +27,11 @@ title: MATH 4630 - Handouts
 - [Connected sets](Connected-Sets.pdf)
 
 ### Chapter 4: Functional Limits and Continuity
-- [Functional limits](Chapter4_FunctionalLimits_1.pdf)
-- [Continuous functions](Chapter4_FunctionalLimits_2.pdf)
-- [Continuity and compactness](Chapter4_FunctionalLimits_2.pdf)
-- [Intermediate value theorem](Chapter4_FunctionalLimits_2.pdf)
+- [Functional limits](Limit-of-a-function.pdf)
+- [Continuous functions](Continuous-functions.pdf)
+- [Continuity and compactness](Continuous-functions-compact-sets-Unifrom-continuity.pdf)
+- [Intermediate value theorem](Intermediate-value-theorem.pdf)
 
 ### Chapter 5: Sequences and Series of Functions
-- [Handout 5.1](Chapter5_SeriesOfFunctions_1.pdf)
+- [Pointwise and Uniform convergence](Pointwise-and-uniform-convergence.pdf)
+- [Uniform convergence and derivatives](Uniform-convergence-and-derivatives.pdf)
