@@ -22,6 +22,10 @@ Botelho, F., Dey, P., & Ilišević, D. (2020)
 
 ## Preprints
 
+**The Bishop--Phelps--Bollobás Property for Extremally Disconnected Ranges: Separable and Low-Density Domains**  
+Amrutam, T., Dey, P., Liu, C., & Monika (2026).
+[[arXiv]](https://arxiv.org/abs/2606.12080)
+
 **On the Convergence of Numerical Index via Operator Openings and Ultraproducts**  
 Amrutam, T., Dey, P., & Monika (2026).
 [[arXiv]](https://arxiv.org/abs/2603.21311)
