@@ -2,6 +2,7 @@
 
 title: Priyadarshi Dey
 description: Assistant Professor of Mathematics at Millsaps College
+author: Priyadarshi Dey
 
 url: "https://deyp2025.github.io"
 baseurl: ""
@@ -9,6 +10,7 @@ baseurl: ""
 # --- Navigation bar options --- #
 
 navbar-links:
+  About: ""
   Publications: "publications"
   Talks: "talks"
   Teaching: "teaching"
@@ -18,20 +20,28 @@ navbar-links:
 
 avatar: "/img/avatar-icon.jpg"
 avatar-size: 160px
+share-img: "/assets/img/og.png"
 
 # --- Footer options --- #
-
-author:
-  name: Priyadarshi Dey
 
 social-network-links:
   email: "deyp@millsaps.edu"
   github: deyp2025
   orcid: "0000-0002-1064-7735"
 
+profile:
+  location: "Jackson, Mississippi"
+  institution: "Millsaps College"
+  institution-url: "https://www.millsaps.edu/"
+  email: "deyp@millsaps.edu"
+  scholar: "https://scholar.google.com/citations?user=Pl2Ei5kAAAAJ"
+  orcid: "https://orcid.org/0000-0002-1064-7735"
+  github: "https://github.com/deyp2025"
+
 # --- General options --- #
 
 height-of-header: navbar
+title-on-all-pages: true
 
 # --- Ruby Date Format --- #
 
@@ -70,6 +80,7 @@ plugins:
 # --- Jekyll --- #
 
 exclude:
+  - .openai
   - .babelrc
   - .dcignore
   - .eslintignore
@@ -79,6 +90,9 @@ exclude:
   - .prettierrc
   - .ruby-version
   - CONTRIBUTING
+  - CHANGELOG.md
+  - LICENSE
+  - Appraisals
   - docker-compose.yml
   - Gemfile
   - Gemfile.lock
@@ -88,6 +102,12 @@ exclude:
   - Procfile
   - Rakefile
   - README.md
+  - beautiful-jekyll-theme.gemspec
+  - dist
+  - scripts
+  - sites-worker
+  - staticman.yml
+  - screenshot.png
   - tmp
 
 include:

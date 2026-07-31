@@ -1,7 +1,6 @@
 ---
 layout: page
-title: About me
-subtitle: Assistant Professor of Mathematics
+title: About
 ---
 
 I am an Assistant Professor in the Department of Mathematics at [Millsaps College](https://www.millsaps.edu/) in Jackson, MS. My research interests lie in **functional analysis and operator theory**, with a focus on Banach space geometry, the structure of projections and isometries on Banach spaces, the numerical index, and the Bishop-Phelps-Bollobás property.
