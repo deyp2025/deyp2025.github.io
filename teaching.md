@@ -4,6 +4,8 @@ title: Teaching
 subtitle: 
 ---
 
+<div class="teaching-page" markdown="1">
+
 I am committed to creating an active and inclusive classroom environment where students develop both mathematical intuition and the ability to think and communicate rigorously. I maintain an active interest in undergraduate research.
 
 ## Current Teaching (Millsaps College)
@@ -46,3 +48,5 @@ Linear Algebra, Engineering Calculus II, Calculus II
 
 **Virginia Tech** (2021–22)  
 Calculus of a Single Variable
+
+</div>
