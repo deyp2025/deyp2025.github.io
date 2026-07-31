@@ -1,8 +1,10 @@
 ---
 layout: page
-title: Publications
-subtitle: 
+title: Research
+subtitle: Functional Analysis and Operator Theory
 ---
+
+My research lies at the intersection of functional analysis, operator theory, and the geometry of Banach spaces. I am particularly interested in how algebraic and spectral properties of operators interact with the geometry of the underlying Banach space. Much of my work focuses on isometries, projections, and the ways in which these two classes of operators are connected.
 
 ## Published Papers
 
