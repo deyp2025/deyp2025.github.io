@@ -275,6 +275,9 @@ img {
 }
 
 .page__content .talk-list li {
+  display: grid;
+  grid-template-columns: 5.1rem minmax(0, 1fr);
+  column-gap: 0.35rem;
   padding: 0.42rem 0;
   border-bottom: 1px solid var(--rule);
   line-height: 1.42;
@@ -288,12 +291,24 @@ img {
   border-bottom: 0;
 }
 
-.page__content .talk-list li > strong:first-child {
-  display: inline-block;
-  min-width: 5.4rem;
+.page__content .talk-date {
   color: var(--muted);
   font-size: 0.88rem;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
+}
+
+.page__content .talk-entry {
+  position: relative;
+  min-width: 0;
+  padding-left: 1.05rem;
+}
+
+.page__content .talk-entry::before {
+  position: absolute;
+  left: 0;
+  content: "—";
+  color: var(--muted);
 }
 
 .page__content .talk-list + h2 {
