@@ -296,57 +296,6 @@ img {
   font-variant-numeric: tabular-nums;
 }
 
-.page__content .publication-list {
-  margin: 0;
-  padding-left: 1.65rem;
-}
-
-.page__content .publication-list li {
-  padding: 0.82rem 0 0.9rem 0.25rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.page__content .publication-list li:first-child {
-  padding-top: 0;
-}
-
-.page__content .publication-list li:last-child {
-  border-bottom: 0;
-}
-
-.page__content .publication-list li::marker {
-  color: var(--muted);
-  font-size: 0.88rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-}
-
-.page__content .publication-list li > strong:first-child {
-  display: inline-block;
-  margin-bottom: 0.16rem;
-}
-
-.page__content .publication-link {
-  display: inline-block;
-  padding: 0.03rem 0.42rem;
-  color: var(--link-dark);
-  border: 1px solid #b8d7e2;
-  border-radius: 999px;
-  font-size: 0.77rem;
-  font-weight: 700;
-  line-height: 1.45;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-}
-
-.page__content .publication-link:hover,
-.page__content .publication-link:focus-visible {
-  color: var(--paper);
-  background: var(--link);
-  border-color: var(--link);
-  text-decoration: none;
-}
-
 .page__content strong {
   color: #2e3439;
   font-weight: 700;
