@@ -11,6 +11,7 @@ baseurl: ""
 
 navbar-links:
   About: ""
+  Research: "research"
   Publications: "publications"
   Talks: "talks"
   Teaching: "teaching"
