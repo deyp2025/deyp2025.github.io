@@ -2,12 +2,13 @@
   <nav class="site-nav" aria-label="Primary navigation">
     <a class="site-nav__brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
 
-    <details class="site-nav__menu">
-      <summary aria-label="Open navigation">
+    <div class="site-nav__menu">
+      <input class="site-nav__toggle" type="checkbox" id="site-nav-toggle" aria-label="Toggle navigation">
+      <label class="site-nav__toggle-label" for="site-nav-toggle">
         <span>Menu</span>
         <i class="fa-solid fa-bars" aria-hidden="true"></i>
-      </summary>
-      <ul>
+      </label>
+      <ul id="site-nav-links">
         {%- for link in site.navbar-links -%}
           {%- if link[1] == "" -%}
             {%- assign link_url = "/" | relative_url -%}
@@ -25,6 +26,6 @@
           </li>
         {%- endfor -%}
       </ul>
-    </details>
+    </div>
   </nav>
 </header>
