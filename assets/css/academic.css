@@ -183,7 +183,7 @@ img {
 }
 
 .profile__role {
-  margin: 0 0 1.15rem;
+  margin: 0 0 1.5rem;
   color: var(--muted);
   font-size: 0.94rem;
   line-height: 1.5;
@@ -376,6 +376,20 @@ img {
   margin: 1.65rem 0;
   background: var(--rule);
   border: 0;
+}
+
+.page__content .teaching-page h2 {
+  margin-top: 1.45rem;
+  margin-bottom: 0.5rem;
+}
+
+.page__content .teaching-page p,
+.page__content .teaching-page ul {
+  margin-bottom: 0.62rem;
+}
+
+.page__content .teaching-page hr {
+  margin: 0.68rem 0;
 }
 
 .page__content table {
