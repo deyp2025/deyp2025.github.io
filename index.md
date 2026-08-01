@@ -13,13 +13,5 @@ I earned my Ph.D. in Mathematics from the [University of Memphis](https://www.me
 
 Prior to joining Millsaps, I held postdoctoral positions at [Kenyon College](https://www.kenyon.edu/) (2023–2025), the [University of South Florida](https://www.usf.edu/) (2022–23), and [Virginia Tech](https://www.vt.edu/) (2021–22).
 
-## Contact
-
-**Email:** [deyp@millsaps.edu](mailto:deyp@millsaps.edu) · [priyadarshid4@gmail.com](mailto:priyadarshid4@gmail.com)
-
-**Office:**  
-Department of Mathematics  
-Millsaps College  
-Jackson, Mississippi
 
 **Profiles:** [Google Scholar](https://scholar.google.com/citations?user=Pl2Ei5kAAAAJ) · [ORCID](https://orcid.org/0000-0002-1064-7735) · [ResearchGate](https://www.researchgate.net/profile/Priyadarshi-Dey-2?ev=hdr_xprf)
