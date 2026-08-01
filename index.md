@@ -13,4 +13,4 @@ I earned my Ph.D. in Mathematics from the [University of Memphis](https://www.me
 
 Prior to joining Millsaps, I held postdoctoral positions at [Kenyon College](https://www.kenyon.edu/) (2023–2025), the [University of South Florida](https://www.usf.edu/) (2022–23), and [Virginia Tech](https://www.vt.edu/) (2021–22).
 
-<small><em>Last updated: August 2026.</em></small>
+<p class="page-updated"><em>Last updated: August 2026.</em></p>
