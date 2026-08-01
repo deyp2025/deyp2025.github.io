@@ -6,7 +6,7 @@ subtitle: Functional Analysis and Operator Theory
 
 My research lies at the intersection of functional analysis, operator theory, and the geometry of Banach spaces. I am particularly interested in how algebraic and spectral properties of operators interact with the geometry of the underlying Banach space. Much of my work focuses on isometries, projections, and the ways in which these two classes of operators are connected.
 
-## Published Articles (2)
+## Published Articles
 
 1. **Projections in the Convex Hull of Isometries on Absolutely Continuous Function Spaces**<br>
    [Botelho, F.](https://www.memphis.edu/msci/people/mbotelho.php), **Dey, P.**, and [Easley, Z.](https://www.memphis.edu/msci/people/zkeasley.php) · *Journal of Mathematical Analysis and Applications* **520** (2023), 126877 · [Journal](https://www.sciencedirect.com/science/article/abs/pii/S0022247X22008897){: .publication-link }
@@ -15,7 +15,7 @@ My research lies at the intersection of functional analysis, operator theory, an
    [Botelho, F.](https://www.memphis.edu/msci/people/mbotelho.php), **Dey, P.**, and [Ilišević, D.](https://web.math.pmf.unizg.hr/~ilisevic/) · *Linear Algebra and Its Applications* **592** (2020), 26–50 · [Journal](https://www.sciencedirect.com/science/article/pii/S0024379520301701#cited-by){: .publication-link }
 {: .publication-list }
 
-## Preprints (3)
+## Preprints
 
 1. **The Bishop–Phelps–Bollobás Property for Extremally Disconnected Ranges: Separable and Low-Density Domains**<br>
    [Amrutam, T.](https://tattwamasiamrutam.wordpress.com/), **Dey, P.**, [Liu, C.](https://chunlinliumath.github.io/), and [Monika](https://www.researchgate.net/profile/Monika-Monika-64) · Preprint (2026) · [arXiv](https://arxiv.org/pdf/2606.12080){: .publication-link }
