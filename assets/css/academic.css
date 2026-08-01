@@ -306,9 +306,15 @@ img {
 
 .page__content .talk-entry::before {
   position: absolute;
-  left: 0;
-  content: "—";
-  color: var(--muted);
+  top: 0.71em;
+  left: 0.2rem;
+  width: 0.32rem;
+  height: 0.32rem;
+  content: "";
+  background: var(--link);
+  border-radius: 50%;
+  opacity: 0.58;
+  transform: translateY(-50%);
 }
 
 .page__content .talk-list + h2 {
