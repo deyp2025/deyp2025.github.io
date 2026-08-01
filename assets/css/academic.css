@@ -377,6 +377,12 @@ img {
   font-weight: 700;
 }
 
+.page__content .page-updated {
+  margin-top: clamp(2.75rem, 7vh, 4.5rem);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
 .page__content hr {
   height: 1px;
   margin: 1.65rem 0;
