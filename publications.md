@@ -17,7 +17,7 @@ My research lies at the intersection of functional analysis, operator theory, an
 ## Preprints
 
 1. **Nonparametric Regression with Measurement Error in Banach Spaces**<br>
-   [Niypgi, P.]((https://sites.google.com/view/pratimguhaniyogi/)), **Dey, P.** · Preprint (2026) · [arXiv](https://arxiv.org/abs/2609.14844){: .publication-link }
+   [Guha Niyogi, P.](https://sites.google.com/view/pratimguhaniyogi/about?authuser=0), **Dey, P.** · Preprint (2026) · [arXiv](https://arxiv.org/abs/2609.14844){: .publication-link }
 
 2. **The Bishop–Phelps–Bollobás Property for Extremally Disconnected Ranges: Separable and Low-Density Domains**<br>
    [Amrutam, T.](https://tattwamasiamrutam.wordpress.com/), **Dey, P.**, [Liu, C.](https://chunlinliumath.github.io/), and [Monika](https://monikaganit.github.io/) · Preprint (2026) · [arXiv](https://arxiv.org/pdf/2606.12080){: .publication-link }
